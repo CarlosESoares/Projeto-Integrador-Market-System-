@@ -68,6 +68,14 @@ public class Login extends JFrame {
 		
 		LblIcon.setIcon(new ImageIcon(Login.class.getResource("/Imagens/telas.png")));
 		panel_1.add(LblIcon);
+		
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel LBLMK = new JLabel("SVGEM");
+		LBLMK.setFont(new Font("SimSun", Font.PLAIN, 98));
+		panel_2.add(LBLMK);
 	}
 
 }
