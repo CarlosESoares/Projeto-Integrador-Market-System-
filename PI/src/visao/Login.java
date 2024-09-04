@@ -62,6 +62,7 @@ public class Login extends JFrame {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		JLabel imgOndinha = new JLabel("");
+		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
@@ -114,7 +115,6 @@ public class Login extends JFrame {
 		sl_panel_2.putConstraint(SpringLayout.WEST, txtSenha, 0, SpringLayout.WEST, txtCPF);
 		panel_2.add(txtSenha);
 		
-		//ta dando erro aq
 		TextFielArredondada ResSenha = new TextFielArredondada(15, 20, 20);
 		ResSenha.setBorder(BorderFactory.createEmptyBorder()); // Remove a borda padrão para usar a nossa
 		sl_panel_2.putConstraint(SpringLayout.NORTH, ResSenha, 6, SpringLayout.SOUTH, txtSenha);
@@ -128,7 +128,7 @@ public class Login extends JFrame {
 		
 		RoundedButton BtnEntrarLogin = new RoundedButton("Entrar", 30, 30);
 		BtnEntrarLogin.setForeground(new Color(255, 255, 255));
-		BtnEntrarLogin.setFont(new Font("Arial", Font.BOLD, 20));
+		BtnEntrarLogin.setFont(new Font("Alef", Font.PLAIN, 20));
 		BtnEntrarLogin.setBackground(new Color(255, 0, 0));
 		sl_panel_2.putConstraint(SpringLayout.NORTH, BtnEntrarLogin, 22, SpringLayout.SOUTH, ResSenha);
 		sl_panel_2.putConstraint(SpringLayout.WEST, BtnEntrarLogin, 259, SpringLayout.WEST, panel_2);

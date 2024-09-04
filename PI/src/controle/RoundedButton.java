@@ -29,12 +29,17 @@ public class RoundedButton extends JButton {
         g2.setColor(getBackground());
         g2.fill(roundedRect);
 
-        // Desenha o texto
-        g2.setColor(getForeground());
+        
+       /*
+         Ta deixando o texto sobreposto nao sei se vamos usar entao deixa em comentario
+        
+         g2.setColor(getForeground());
         FontMetrics fm = g2.getFontMetrics();
         int x = (getWidth() - fm.stringWidth(getText())) / 2;
         int y = (getHeight() + fm.getAscent()) / 2 - fm.getDescent();
         g2.drawString(getText(), x, y);
+        
+        */
 
         g2.dispose();
         super.paintComponent(g);
