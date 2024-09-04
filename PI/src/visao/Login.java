@@ -96,7 +96,9 @@ public class Login extends JFrame {
 		txtCPF.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_2.add(txtCPF);
 		
-		resCPF = new JTextField();
+		TextFielArredondada resCPF = new TextFielArredondada(15,20,20);
+		resCPF.setBorder(BorderFactory.createEmptyBorder());
+		
 		sl_panel_2.putConstraint(SpringLayout.NORTH, resCPF, 160, SpringLayout.NORTH, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.SOUTH, resCPF, -194, SpringLayout.SOUTH, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.WEST, txtCPF, 0, SpringLayout.WEST, resCPF);
@@ -112,16 +114,17 @@ public class Login extends JFrame {
 		sl_panel_2.putConstraint(SpringLayout.WEST, txtSenha, 0, SpringLayout.WEST, txtCPF);
 		panel_2.add(txtSenha);
 		
-
-		TextFielArredondada ReSenha = new TextFielArredondada(15, 20, 20);
-		ReSenha.setBorder(BorderFactory.createEmptyBorder()); // Remove a borda padrão para usar a nossa
-
+		//ta dando erro aq
+		TextFielArredondada ResSenha = new TextFielArredondada(15, 20, 20);
+		ResSenha.setBorder(BorderFactory.createEmptyBorder()); // Remove a borda padrão para usar a nossa
 		sl_panel_2.putConstraint(SpringLayout.NORTH, ResSenha, 6, SpringLayout.SOUTH, txtSenha);
 		sl_panel_2.putConstraint(SpringLayout.WEST, ResSenha, 0, SpringLayout.WEST, txtCPF);
 		sl_panel_2.putConstraint(SpringLayout.SOUTH, ResSenha, 45, SpringLayout.SOUTH, txtSenha);
 		sl_panel_2.putConstraint(SpringLayout.EAST, ResSenha, 0, SpringLayout.EAST, resCPF);
+		
 		panel_2.add(ResSenha);
 		ResSenha.setColumns(10);
+		
 		
 		RoundedButton BtnEntrarLogin = new RoundedButton("Entrar", 30, 30);
 		BtnEntrarLogin.setForeground(new Color(255, 255, 255));
@@ -133,11 +136,13 @@ public class Login extends JFrame {
 		sl_panel_2.putConstraint(SpringLayout.EAST, BtnEntrarLogin, 0, SpringLayout.EAST, resCPF);
 		panel_2.add(BtnEntrarLogin);
 		
+		
 		JLabel lblNewLabel = new JLabel("Fazer Login");
 		sl_panel_2.putConstraint(SpringLayout.NORTH, lblNewLabel, 23, SpringLayout.NORTH, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.WEST, lblNewLabel, 296, SpringLayout.WEST, panel_2);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 40));
 		panel_2.add(lblNewLabel);
+		
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3, BorderLayout.EAST);
