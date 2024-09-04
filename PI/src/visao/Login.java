@@ -55,8 +55,11 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 500, 500, 500); 
+		setBounds(0, 0, 500, 500); 
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -135,6 +138,12 @@ public class Login extends JFrame {
 		ResSenha2.setColumns(10);
 		
 		RoundedButton BtnEntrarLogin2 = new RoundedButton("Entrar",30,30);
+		BtnEntrarLogin2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			
+			}
+		});
 		sl_panel_2.putConstraint(SpringLayout.WEST, BtnEntrarLogin2, 151, SpringLayout.WEST, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.EAST, BtnEntrarLogin2, -144, SpringLayout.EAST, panel_2);
 		
