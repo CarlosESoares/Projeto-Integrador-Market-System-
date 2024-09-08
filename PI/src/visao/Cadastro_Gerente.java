@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import controle.TextFielArredondada;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -22,9 +25,9 @@ public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField TextNome;
+	private JTextField TextCpf;
+	private JTextField TextSenha;
 
 	/**
 	 * Launch the application.
@@ -91,29 +94,29 @@ public class Cadastro_Gerente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Cadastro Funcionário");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		JLabel lblNewLabel_2 = new JLabel("Nome Completo");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblNome = new JLabel("Nome Completo");
+		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
+		TextNome.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("CPF");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblCpf = new JLabel("CPF");
+		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
+		TextCpf.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Senha");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
+		TextSenha.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Função");
-		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 15));
+		JLabel lblFuncao = new JLabel("Função");
+		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Caixa", "Gerente", "Estoquista"}));
+		JComboBox comboFuncao = new JComboBox();
+		comboFuncao.setModel(new DefaultComboBoxModel(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -125,16 +128,16 @@ public class Cadastro_Gerente extends JFrame {
 					.addGap(284)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNewLabel_5)
+							.addComponent(lblFuncao)
 							.addContainerGap())
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNewLabel_4)
+							.addComponent(lblSenha)
 							.addContainerGap())
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNewLabel_3)
+							.addComponent(lblCpf)
 							.addContainerGap())
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNewLabel_2)
+							.addComponent(lblNome)
 							.addContainerGap())
 						.addGroup(gl_panel_2.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
@@ -142,10 +145,10 @@ public class Cadastro_Gerente extends JFrame {
 							.addGap(470))
 						.addGroup(gl_panel_2.createSequentialGroup()
 							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textField, Alignment.LEADING)
-								.addComponent(textField_1, Alignment.LEADING)
-								.addComponent(textField_2, Alignment.LEADING)
-								.addComponent(comboBox, Alignment.LEADING, 0, 261, Short.MAX_VALUE))
+								.addComponent(TextNome, Alignment.LEADING)
+								.addComponent(TextCpf, Alignment.LEADING)
+								.addComponent(TextSenha, Alignment.LEADING)
+								.addComponent(comboFuncao, Alignment.LEADING, 0, 261, Short.MAX_VALUE))
 							.addContainerGap())))
 		);
 		gl_panel_2.setVerticalGroup(
@@ -157,21 +160,21 @@ public class Cadastro_Gerente extends JFrame {
 						.addGroup(gl_panel_2.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addGap(25))
-						.addComponent(lblNewLabel_2))
+						.addComponent(lblNome))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(TextNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_3)
+					.addComponent(lblCpf)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(TextCpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_4)
+					.addComponent(lblSenha)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(TextSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_5)
+					.addComponent(lblFuncao)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
