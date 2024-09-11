@@ -20,6 +20,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import net.miginfocom.swing.MigLayout;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -49,6 +50,7 @@ public class Cadastro_Gerente extends JFrame {
 	 * Create the frame.
 	 */
 	public Cadastro_Gerente() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 536);
 		contentPane = new JPanel();
@@ -88,29 +90,29 @@ public class Cadastro_Gerente extends JFrame {
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel = new JLabel("SVGEM");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro Funcionário");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		
+		JLabel lblNewLabel = new JLabel("SVGEM");
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		
 		JLabel lblNome = new JLabel("Nome Completo");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setColumns(10);
+		TextFielArredondada TextNome_1 = new TextFielArredondada(15,20,20);
+		TextNome_1.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
-		TextCpf.setColumns(10);
+		TextFielArredondada TextCpf_1 = new TextFielArredondada(15,20,20);
+		TextCpf_1.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
-		TextSenha.setColumns(10);
+		TextFielArredondada TextSenha_1 = new TextFielArredondada(15,20,20);
+		TextSenha_1.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -121,61 +123,56 @@ public class Cadastro_Gerente extends JFrame {
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(345)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(388, Short.MAX_VALUE))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(284)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblFuncao)
-							.addContainerGap())
+							.addGap(299)
+							.addComponent(lblNewLabel_1))
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblSenha)
-							.addContainerGap())
+							.addGap(361)
+							.addComponent(lblNewLabel))
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblCpf)
-							.addContainerGap())
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNome)
-							.addContainerGap())
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-							.addComponent(lblNewLabel)
-							.addGap(470))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(TextNome, Alignment.LEADING)
-								.addComponent(TextCpf, Alignment.LEADING)
-								.addComponent(TextSenha, Alignment.LEADING)
-								.addComponent(comboFuncao, Alignment.LEADING, 0, 261, Short.MAX_VALUE))
-							.addContainerGap())))
+							.addGap(252)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+								.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+									.addComponent(lblNome)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel_2.createSequentialGroup()
+									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblCpf)
+										.addComponent(lblSenha)
+										.addComponent(lblFuncao, Alignment.TRAILING))
+									.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(TextSenha_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(TextCpf_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+										.addComponent(comboFuncao, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+					.addGap(390))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(7)
 					.addComponent(lblNewLabel_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(25))
-						.addComponent(lblNome))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(TextNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblCpf)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(TextCpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblSenha)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(TextSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblFuncao)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addGap(4)
+					.addComponent(lblNewLabel)
+					.addGap(9)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNome)
+						.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(21)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(TextCpf_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCpf))
+					.addGap(26)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSenha)
+						.addComponent(TextSenha_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(21)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFuncao))
+					.addGap(2))
 		);
 		panel_2.setLayout(gl_panel_2);
 		
