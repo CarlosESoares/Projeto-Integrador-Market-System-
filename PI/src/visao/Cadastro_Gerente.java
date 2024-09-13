@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.RoundedButton;
 import controle.TextFielArredondada;
 
 import java.awt.BorderLayout;
@@ -21,6 +22,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -119,7 +122,14 @@ public class Cadastro_Gerente extends JFrame {
 		
 		JComboBox comboFuncao = new JComboBox();
 		comboFuncao.setModel(new DefaultComboBoxModel(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
+		
+		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
+		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
+		Cadastrar.setBackground(new Color(255, 0, 0));
+		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		
+		
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
@@ -132,8 +142,8 @@ public class Cadastro_Gerente extends JFrame {
 							.addComponent(lblNewLabel))
 						.addGroup(gl_panel_2.createSequentialGroup()
 							.addGap(252)
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_2.createSequentialGroup()
 									.addComponent(lblNome)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
@@ -142,12 +152,16 @@ public class Cadastro_Gerente extends JFrame {
 										.addComponent(lblCpf)
 										.addComponent(lblSenha)
 										.addComponent(lblFuncao, Alignment.TRAILING))
-									.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
 									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(TextSenha_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(TextCpf_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
 										.addComponent(comboFuncao, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
 					.addGap(390))
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(416)
+					.addComponent(Cadastrar)
+					.addContainerGap(603, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -172,7 +186,8 @@ public class Cadastro_Gerente extends JFrame {
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFuncao))
-					.addGap(2))
+					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addComponent(Cadastrar))
 		);
 		panel_2.setLayout(gl_panel_2);
 		
