@@ -23,6 +23,8 @@ import javax.swing.DefaultComboBoxModel;
 import net.miginfocom.swing.MigLayout;
 
 public class Produto extends JFrame {
+	public Produto() {
+	}
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -48,8 +50,9 @@ public class Produto extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public Cadastro_Gerente() {
+	public void Cadastro_Gerente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 536);
