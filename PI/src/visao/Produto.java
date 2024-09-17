@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.RoundedButton;
 import controle.TextFielArredondada;
 
 import java.awt.BorderLayout;
@@ -21,10 +22,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class Produto extends JFrame {
-	public Produto() {
-	}
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -39,7 +40,7 @@ public class Produto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cadastro_Gerente frame = new Cadastro_Gerente();
+					Produto frame = new Produto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,9 +51,8 @@ public class Produto extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @return 
 	 */
-	public void Cadastro_Gerente() {
+	public Produto() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1042, 536);
@@ -70,7 +70,7 @@ public class Produto extends JFrame {
 		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
-		Image newImage = image.getScaledInstance(1200, 200, Image.SCALE_SMOOTH); // Redimensione a imagem
+		Image newImage = image.getScaledInstance(1400, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
 		
 		ImageIcon resizedIcon = new ImageIcon(newImage);
 		imgOndinha.setIcon(resizedIcon);
@@ -99,29 +99,51 @@ public class Produto extends JFrame {
 		JLabel lblNewLabel = new JLabel("SVGEM");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		
-		JLabel lblNome = new JLabel("Nome Completo");
+		JLabel lblNome = new JLabel("Nome do produto:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome_1 = new TextFielArredondada(15,20,20);
 		TextNome_1.setColumns(10);
 		
-		JLabel lblCpf = new JLabel("CPF");
+		JLabel lblCpf = new JLabel("Tipo do produto:");
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf_1 = new TextFielArredondada(15,20,20);
 		TextCpf_1.setColumns(10);
 		
-		JLabel lblSenha = new JLabel("Senha");
+		JLabel lblSenha = new JLabel("Data de chegada:");
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha_1 = new TextFielArredondada(15,20,20);
 		TextSenha_1.setColumns(10);
 		
-		JLabel lblFuncao = new JLabel("Função");
+		JLabel lblFuncao = new JLabel("Preço:");
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		JComboBox comboFuncao = new JComboBox();
-		comboFuncao.setModel(new DefaultComboBoxModel(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
+		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
+		Cadastrar.setText("Cadastrar produto");
+		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
+		Cadastrar.setBackground(new Color(255, 0, 0));
+		
+		TextFielArredondada TextSenha_1_1 = new TextFielArredondada(15, 20, 20);
+		TextSenha_1_1.setColumns(10);
+		
+		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnExcluir.setText("Excluir");
+		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnExcluir.setBackground(Color.RED);
+		
+		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnEditar.setText("Editar");
+		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnEditar.setBackground(Color.RED);
+		
+		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
+		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
+		
+		TextFielArredondada TextSenha_1_1_1 = new TextFielArredondada(15, 20, 20);
+		TextSenha_1_1_1.setColumns(10);
+		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -134,22 +156,43 @@ public class Produto extends JFrame {
 							.addGap(361)
 							.addComponent(lblNewLabel))
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(252)
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
-									.addComponent(lblNome)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap(110, Short.MAX_VALUE)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_2.createSequentialGroup()
+									.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
+										.addGroup(gl_panel_2.createSequentialGroup()
+											.addComponent(lblNome)
+											.addGap(90))
+										.addGroup(gl_panel_2.createSequentialGroup()
+											.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_panel_2.createSequentialGroup()
+													.addGap(10)
+													.addComponent(lblCpf))
+												.addComponent(TextNome_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+												.addComponent(TextCpf_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+												.addComponent(TextSenha_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+												.addGroup(gl_panel_2.createSequentialGroup()
+													.addGap(10)
+													.addComponent(lblFuncao))
+												.addComponent(TextSenha_1_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
+												.addComponent(Cadastrar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addGap(27)))
 									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblCpf)
-										.addComponent(lblSenha)
-										.addComponent(lblFuncao, Alignment.TRAILING))
-									.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(TextSenha_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(TextCpf_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-										.addComponent(comboFuncao, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+										.addGroup(gl_panel_2.createSequentialGroup()
+											.addGap(10)
+											.addComponent(TextSenha_1_1_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_panel_2.createSequentialGroup()
+											.addGap(23)
+											.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblValidadeDoProduto, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+												.addGroup(gl_panel_2.createSequentialGroup()
+													.addComponent(rndbtnExcluir, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+													.addGap(65)
+													.addComponent(rndbtnEditar, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))))))
+								.addGroup(gl_panel_2.createSequentialGroup()
+									.addGap(10)
+									.addComponent(lblSenha)))
+							.addGap(198)))
 					.addGap(390))
 		);
 		gl_panel_2.setVerticalGroup(
@@ -160,22 +203,32 @@ public class Produto extends JFrame {
 					.addGap(4)
 					.addComponent(lblNewLabel)
 					.addGap(9)
+					.addComponent(lblNome)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblCpf)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(TextCpf_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblSenha)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(TextSenha_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome)
-						.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(TextCpf_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCpf))
-					.addGap(26)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSenha)
-						.addComponent(TextSenha_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFuncao))
-					.addGap(2))
+						.addComponent(lblFuncao)
+						.addComponent(lblValidadeDoProduto, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(TextSenha_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TextSenha_1_1_1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addGap(54)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(Cadastrar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+							.addComponent(rndbtnExcluir, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addComponent(rndbtnEditar, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		panel_2.setLayout(gl_panel_2);
 		
