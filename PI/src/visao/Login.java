@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.ProcessoDeLogin;
 import controle.RoundedButton;
 import controle.TextFielArredondada;
 
@@ -140,9 +141,14 @@ public class Login extends JFrame {
 		RoundedButton BtnEntrarLogin2 = new RoundedButton("Entrar",30,30);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-			
-			}
+		        // Obtenha os valores dos campos de texto (CPF e Senha)
+		        String cpf = ResCPF.getText();
+		        String senha = ResSenha2.getText();
+		        
+		        // Cria uma instância de ProcessoDeLogin e chama o método login
+		        ProcessoDeLogin processoLogin = new ProcessoDeLogin();
+		        processoLogin.login(cpf, senha);
+		    }
 		});
 		sl_panel_2.putConstraint(SpringLayout.WEST, BtnEntrarLogin2, 151, SpringLayout.WEST, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.EAST, BtnEntrarLogin2, -144, SpringLayout.EAST, panel_2);
