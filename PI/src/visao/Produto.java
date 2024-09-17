@@ -70,18 +70,14 @@ public class Produto extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
 		Image newImage = image.getScaledInstance(1400, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
 		
 		ImageIcon resizedIcon = new ImageIcon(newImage);
-		imgOndinha.setIcon(resizedIcon);
-		panel.add(imgOndinha);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(192, 192, 192));
 		contentPane.add(panel_1, BorderLayout.WEST);
 		
 		JLabel imgLogo = new JLabel("");
@@ -114,26 +110,35 @@ public class Produto extends JFrame {
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(Cadastrar_1_2, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(imgLogo)
-						.addComponent(Cadastrar_1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Cadastrar_1_1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Cadastrar_1_2, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(16, Short.MAX_VALUE))
+					.addContainerGap()
+					.addComponent(Cadastrar_1_1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(Cadastrar_1, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(11, Short.MAX_VALUE)
+					.addComponent(imgLogo)
+					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(7)
+					.addContainerGap()
 					.addComponent(imgLogo)
-					.addGap(28)
+					.addGap(24)
 					.addComponent(Cadastrar_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(Cadastrar_1_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(Cadastrar_1_2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(146, Short.MAX_VALUE))
+					.addContainerGap(246, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -141,69 +146,64 @@ public class Produto extends JFrame {
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro de produto");
-		lblNewLabel_1.setBounds(195, 0, 182, 24);
+		lblNewLabel_1.setBounds(185, 0, 182, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		JLabel lblNewLabel = new JLabel("SVGEM");
-		lblNewLabel.setBounds(224, 30, 64, 22);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		
 		JLabel lblNome = new JLabel("Nome do produto:");
-		lblNome.setBounds(18, 66, 116, 18);
+		lblNome.setBounds(9, 71, 116, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome_1 = new TextFielArredondada(15,20,20);
-		TextNome_1.setBounds(10, 90, 187, 24);
+		TextNome_1.setBounds(10, 104, 187, 24);
 		TextNome_1.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("Tipo do produto:");
-		lblCpf.setBounds(20, 125, 105, 18);
+		lblCpf.setBounds(10, 139, 105, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf_1 = new TextFielArredondada(15,20,20);
-		TextCpf_1.setBounds(10, 149, 187, 24);
+		TextCpf_1.setBounds(10, 165, 187, 24);
 		TextCpf_1.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Data de chegada:");
-		lblSenha.setBounds(20, 184, 115, 18);
+		lblSenha.setBounds(10, 200, 115, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha_1 = new TextFielArredondada(15,20,20);
-		TextSenha_1.setBounds(10, 208, 187, 24);
+		TextSenha_1.setBounds(10, 229, 187, 24);
 		TextSenha_1.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Preço:");
-		lblFuncao.setBounds(20, 238, 43, 18);
+		lblFuncao.setBounds(10, 264, 43, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
-		Cadastrar.setBounds(10, 340, 150, 26);
-		Cadastrar.setText("Cadastrar produto");
+		Cadastrar.setBounds(10, 369, 150, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
 		
 		TextFielArredondada TextSenha_1_1 = new TextFielArredondada(15, 20, 20);
-		TextSenha_1_1.setBounds(10, 262, 187, 24);
+		TextSenha_1_1.setBounds(10, 293, 187, 24);
 		TextSenha_1_1.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
-		rndbtnExcluir.setBounds(227, 340, 150, 26);
+		rndbtnExcluir.setBounds(199, 369, 150, 26);
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
 		
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
-		rndbtnEditar.setBounds(446, 340, 150, 26);
+		rndbtnEditar.setBounds(374, 369, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnEditar.setBackground(Color.RED);
 		
 		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
-		lblValidadeDoProduto.setBounds(248, 238, 139, 18);
+		lblValidadeDoProduto.setBounds(234, 264, 139, 18);
 		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha_1_1_1 = new TextFielArredondada(15, 20, 20);
-		TextSenha_1_1_1.setBounds(234, 262, 187, 24);
+		TextSenha_1_1_1.setBounds(234, 293, 187, 24);
 		TextSenha_1_1_1.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
@@ -239,8 +239,14 @@ public class Produto extends JFrame {
 		panel_2.add(rndbtnEditar);
 		panel_2.add(lblValidadeDoProduto);
 		panel_2.add(TextSenha_1_1_1);
-		panel_2.add(lblNewLabel);
 		panel_2.add(panel_3);
+		
+		JLabel imgOndinha = new JLabel("");
+		imgOndinha.setBounds(-14, 395, 690, 100);
+		panel_2.add(imgOndinha);
+		imgOndinha.setBackground(new Color(192, 192, 192));
+		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		imgOndinha.setIcon(resizedIcon);
 
 
 }
