@@ -25,14 +25,17 @@ public static Connection getConexaoMySQL() {
 	
 	try {
 		connection = DriverManager.getConnection(url, username, password);
+		return connection;
+
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		System.out.println("não foi possivel se conectar");
+		return null;
+	
 	}
 	
 	
 	
-	return connection;
 }
 }

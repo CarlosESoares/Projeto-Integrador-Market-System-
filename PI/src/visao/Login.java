@@ -7,11 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.mysql.cj.xdevapi.Statement;
+
+import controle.Banco2;
 import controle.ProcessoDeLogin;
 import controle.RoundedButton;
 import controle.TextFielArredondada;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Image;
 
 import javax.swing.BorderFactory;
@@ -25,6 +30,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -141,15 +149,41 @@ public class Login extends JFrame {
 		RoundedButton BtnEntrarLogin2 = new RoundedButton("Entrar",30,30);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        // Obtenha os valores dos campos de texto (CPF e Senha)
-		        String cpf = ResCPF.getText();
-		        String senha = ResSenha2.getText();
+				Statement stml = null;
+				Connection conn = Banco2.getConexaoMySQL();
+				
+				try {
+					stml = (Statement) conn.createStatement();
+					ResultSet resl = null;
+					resl = ((java.sql.Statement) stml).executeQuery("SELECT * FROM Funcionarios");
+					while(resl.next())
+					{
+						if(ResCPF.getText().equals(resl.getString("login")))
+						{
+							if(txtSenha.getText().equals(resl.getString("senha")))
+							{
+								if(resl.getInt("administrador") == 1)
+								{
+									JOptionPane.showMessageDialog(null, "ADM");
+								}
+								else
+								{
+									JOptionPane.showMessageDialog(null, "FUNC");
+								}
+							}
+						}
+					}
+					resl.close();
+					((Connection) stml).close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+					System.out.println("N foi");
 		        
-		        // Cria uma instância de ProcessoDeLogin e chama o método login
-		        ProcessoDeLogin processoLogin = new ProcessoDeLogin();
-		        processoLogin.login(cpf, senha);
+		        
+		        
 		    }
-		});
+		}});
 		sl_panel_2.putConstraint(SpringLayout.WEST, BtnEntrarLogin2, 151, SpringLayout.WEST, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.EAST, BtnEntrarLogin2, -144, SpringLayout.EAST, panel_2);
 		
