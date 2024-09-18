@@ -81,8 +81,8 @@ public class Produto extends JFrame {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
-		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
-		Image newImage = image.getScaledInstance(1400, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
+		Image image = originalIcon.getImage(); 
+		Image newImage = image.getScaledInstance(1400, 100, Image.SCALE_SMOOTH); 
 		
 		ImageIcon resizedIcon = new ImageIcon(newImage);
 		
@@ -92,8 +92,8 @@ public class Produto extends JFrame {
 		
 		JLabel imgLogo = new JLabel("");
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
-		Image imageLogo = originalIconLogo.getImage(); // Obtenha a imagem do ImageIcon
-		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
+		Image imageLogo = originalIconLogo.getImage(); 
+		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); 
 		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
 		imgLogo.setIcon(ImgRedimencionada);
 		
@@ -220,23 +220,21 @@ public class Produto extends JFrame {
 		panel_3.setBounds(224, 58, 344, 167);
 		
 		
-		// Inicializa a tabela
+
         String[] columnNames = {"Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade"};
-        Object[][] data = {}; // Inicialmente vazio
+        Object[][] data = {};
         table = new JTable(new DefaultTableModel(data, columnNames));
         
-        // Crie o JScrollPane e adicione à tabela
+  
         JScrollPane scrollPane = new JScrollPane(table);
         panel_3.setLayout(new BorderLayout());
         panel_3.add(scrollPane, BorderLayout.CENTER);
 
-        // Chama o método de busca
+
         buscarProdutos();
 		
 
-		// Crie a tabela
 
-		// Adicione a tabela ao panel_3
 		panel_2.setLayout(null);
 		panel_2.add(lblNewLabel_1);
 		panel_2.add(lblNome);
@@ -287,7 +285,7 @@ public class Produto extends JFrame {
 	    }
 	 private void atualizarTabela(List<Object[]> produtos) {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-	        model.setRowCount(0); // Limpa as linhas existentes
+	        model.setRowCount(0);
 
 	        for (Object[] produto : produtos) {
 	            model.addRow(produto);
