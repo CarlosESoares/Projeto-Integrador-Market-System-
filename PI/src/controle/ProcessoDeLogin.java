@@ -20,13 +20,14 @@ public class ProcessoDeLogin {
 
     		    String url = "jdbc:mysql://localhost:3306/mercado";
     String user = "root";
-    String password = "aluno";
+    String password = "aluno";{
     
     try (Connection connection = DriverManager.getConnection(url, user, password)){
  System.out.println("Conectado!");
     }catch(SQLException e) {
     	e.printStackTrace();
-    		System.out.println("falha na conexão");}
+    		System.out.println("falha na conexão");}}
+    }
 
 
    
