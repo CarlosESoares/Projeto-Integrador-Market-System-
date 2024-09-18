@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controle.ConexaoBanco;
 import controle.RoundedButton;
 import controle.TextFielArredondada;
 
@@ -20,6 +21,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
+import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
@@ -29,6 +31,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Produto extends JFrame {
 
@@ -37,6 +45,7 @@ public class Produto extends JFrame {
 	private JTextField TextNome;
 	private JTextField TextCpf;
 	private JTextField TextSenha;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -53,6 +62,7 @@ public class Produto extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
@@ -210,20 +220,23 @@ public class Produto extends JFrame {
 		panel_3.setBounds(224, 58, 344, 167);
 		
 		
-		String[] columnNames = {"Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade"};
-		Object[][] data = {
-		    {"Produto 1", "Tipo 1", "01/09/2024", "10.00", "10/12/2024"},
-		    {"Produto 2", "Tipo 2", "05/09/2024", "15.00", "15/12/2024"},
-		    {"Produto 3", "Tipo 3", "07/09/2024", "20.00", "20/12/2024"}
-		};
+		// Inicializa a tabela
+        String[] columnNames = {"Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade"};
+        Object[][] data = {}; // Inicialmente vazio
+        table = new JTable(new DefaultTableModel(data, columnNames));
+        
+        // Crie o JScrollPane e adicione à tabela
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel_3.setLayout(new BorderLayout());
+        panel_3.add(scrollPane, BorderLayout.CENTER);
+
+        // Chama o método de busca
+        buscarProdutos();
+		
 
 		// Crie a tabela
-		JTable table = new JTable(new DefaultTableModel(data, columnNames));
-		JScrollPane scrollPane = new JScrollPane(table);
 
 		// Adicione a tabela ao panel_3
-		panel_3.setLayout(new BorderLayout());
-		panel_3.add(scrollPane, BorderLayout.CENTER);
 		panel_2.setLayout(null);
 		panel_2.add(lblNewLabel_1);
 		panel_2.add(lblNome);
@@ -250,4 +263,34 @@ public class Produto extends JFrame {
 
 
 }
-}
+	 private void buscarProdutos() {
+	        List<Object[]> produtos = new ArrayList<>();
+	        String query = "SELECT * FROM produtos";
+
+	        try (Connection connection = ConexaoBanco.getConexaoMySQL();
+	             Statement statement = connection.createStatement();
+	             ResultSet resultSet = statement.executeQuery(query)) {
+
+	            while (resultSet.next()) {
+	                String nome = resultSet.getString("produto");
+	                String tipo = resultSet.getString("tipo_produto");
+	                String dataChegada = resultSet.getString("data_chegada");
+	                String preco = resultSet.getString("preco");
+	                String validade = resultSet.getString("validade_produto");
+	                produtos.add(new Object[]{nome, tipo, dataChegada, preco, validade});
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        atualizarTabela(produtos);
+	    }
+	 private void atualizarTabela(List<Object[]> produtos) {
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+	        model.setRowCount(0); // Limpa as linhas existentes
+
+	        for (Object[] produto : produtos) {
+	            model.addRow(produto);
+	        }
+	        
+}}
