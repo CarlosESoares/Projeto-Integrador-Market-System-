@@ -112,10 +112,10 @@ public class Produto extends JFrame {
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnHomeClientes.setBackground(Color.GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    	rndbtnHomeClientes.setBackground(Color.GRAY); 
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnHomeClientes.setBackground(Color.RED); // Cor original
+		    	rndbtnHomeClientes.setBackground(Color.RED); 
 		    }
 		});
 		rndbtnHomeClientes.addActionListener(new ActionListener() {
@@ -129,10 +129,10 @@ public class Produto extends JFrame {
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeVendas.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnHomeVendas.setBackground(Color.GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    	rndbtnHomeVendas.setBackground(Color.GRAY); 
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnHomeVendas.setBackground(Color.RED); // Cor original
+		    	rndbtnHomeVendas.setBackground(Color.RED);
 		    }
 		});
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
@@ -221,10 +221,10 @@ public class Produto extends JFrame {
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnExcluir.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnExcluir.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    	rndbtnExcluir.setBackground(Color.LIGHT_GRAY);
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnExcluir.setBackground(Color.RED); // Cor original
+		    	rndbtnExcluir.setBackground(Color.RED);
 		    }
 		});
 		rndbtnExcluir.addActionListener(new ActionListener() {
@@ -240,10 +240,10 @@ public class Produto extends JFrame {
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnEditar.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    	rndbtnEditar.setBackground(Color.LIGHT_GRAY); 
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnEditar.setBackground(Color.RED); // Cor original
+		    	rndbtnEditar.setBackground(Color.RED);
 		    }
 		});
 		rndbtnEditar.addActionListener(new ActionListener() {
@@ -286,10 +286,10 @@ public class Produto extends JFrame {
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));
 		rndbtnCadastrar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnCadastrar.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    	rndbtnCadastrar.setBackground(Color.LIGHT_GRAY); 
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnCadastrar.setBackground(Color.RED); // Cor original
+		    	rndbtnCadastrar.setBackground(Color.RED);
 		    }
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {

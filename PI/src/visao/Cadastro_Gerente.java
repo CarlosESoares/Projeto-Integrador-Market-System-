@@ -24,6 +24,10 @@ import javax.swing.DefaultComboBoxModel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -65,18 +69,15 @@ public class Cadastro_Gerente extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
 		Image newImage = image.getScaledInstance(1200, 200, Image.SCALE_SMOOTH); // Redimensione a imagem
 		
 		ImageIcon resizedIcon = new ImageIcon(newImage);
-		imgOndinha.setIcon(resizedIcon);
-		panel.add(imgOndinha);
+		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
 		
 		JLabel imgLogo = new JLabel("");
@@ -94,102 +95,79 @@ public class Cadastro_Gerente extends JFrame {
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro Funcionário");
+		lblNewLabel_1.setBounds(299, 7, 187, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel = new JLabel("SVGEM");
+		lblNewLabel.setBounds(361, 35, 64, 22);
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		
 		JLabel lblNome = new JLabel("Nome Completo");
+		lblNome.setBounds(224, 68, 106, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome_1 = new TextFielArredondada(15,20,20);
+		TextNome_1.setBounds(340, 66, 187, 24);
 		TextNome_1.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF");
+		lblCpf.setBounds(224, 113, 30, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf_1 = new TextFielArredondada(15,20,20);
+		TextCpf_1.setBounds(340, 111, 187, 24);
 		TextCpf_1.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setBounds(224, 163, 42, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha_1 = new TextFielArredondada(15,20,20);
+		TextSenha_1.setBounds(340, 161, 187, 24);
 		TextSenha_1.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
+		lblFuncao.setBounds(224, 206, 49, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		JComboBox comboFuncao = new JComboBox();
+		comboFuncao.setBounds(340, 206, 187, 20);
 		comboFuncao.setModel(new DefaultComboBoxModel(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
+		Cadastrar.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	Cadastrar.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	Cadastrar.setBackground(Color.RED);
+		    }
+		});
+		Cadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Cadastrar.setBounds(331, 277, 113, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
+		panel_2.setLayout(null);
+		panel_2.add(lblNewLabel_1);
+		panel_2.add(lblNewLabel);
+		panel_2.add(lblNome);
+		panel_2.add(TextNome_1);
+		panel_2.add(lblCpf);
+		panel_2.add(lblSenha);
+		panel_2.add(lblFuncao);
+		panel_2.add(TextSenha_1);
+		panel_2.add(TextCpf_1);
+		panel_2.add(comboFuncao);
+		panel_2.add(Cadastrar);
 		
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		
-		
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(299)
-							.addComponent(lblNewLabel_1))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(361)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(252)
-							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_2.createSequentialGroup()
-									.addComponent(lblNome)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_2.createSequentialGroup()
-									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblCpf)
-										.addComponent(lblSenha)
-										.addComponent(lblFuncao, Alignment.TRAILING))
-									.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-									.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(TextSenha_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(TextCpf_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-										.addComponent(comboFuncao, Alignment.TRAILING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-					.addGap(390))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(416)
-					.addComponent(Cadastrar)
-					.addContainerGap(603, Short.MAX_VALUE))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(7)
-					.addComponent(lblNewLabel_1)
-					.addGap(4)
-					.addComponent(lblNewLabel)
-					.addGap(9)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome)
-						.addComponent(TextNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(TextCpf_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCpf))
-					.addGap(26)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSenha)
-						.addComponent(TextSenha_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFuncao))
-					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-					.addComponent(Cadastrar))
-		);
-		panel_2.setLayout(gl_panel_2);
+		JLabel imgOndinha = new JLabel("");
+		imgOndinha.setBounds(-132, 277, 1200, 355);
+		panel_2.add(imgOndinha);
+		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		imgOndinha.setIcon(resizedIcon);
 		
 		
 
