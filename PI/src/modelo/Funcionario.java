@@ -9,6 +9,9 @@ private float TelefoneFuncionario;
 private String AreaTrabalho;
 private String Endereco;
 private double Salario;
+
+
+
 public String getNomeFuncionario() {
 	return NomeFuncionario;
 }

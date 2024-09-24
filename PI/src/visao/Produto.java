@@ -78,9 +78,6 @@ public class Produto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.SOUTH);
-		
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); 
 		Image newImage = image.getScaledInstance(1400, 100, Image.SCALE_SMOOTH); 
@@ -348,7 +345,7 @@ public class Produto extends JFrame {
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-14, 395, 690, 100);
+		imgOndinha.setBounds(-20, 416, 710, 100);
 		panel_2.add(imgOndinha);
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));

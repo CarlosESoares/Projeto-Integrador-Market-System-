@@ -9,10 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.mysql.cj.xdevapi.Statement;
 
-import controle.Banco2;
+import controle.ConexaoBanco;
+import controle.FuncionarioDAO;
 import controle.ProcessoDeLogin;
 import controle.RoundedButton;
 import controle.TextFielArredondada;
+import modelo.Funcionario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -133,43 +135,22 @@ public class Login extends JFrame {
 		    	BtnEntrarLogin2.setBackground(Color.RED);
 		    }
 		});
-		BtnEntrarLogin2.setBounds(151, 339, 179, 32);
+		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Statement stml = null;
-				Connection conn = Banco2.getConexaoMySQL();
 				
-				try {
-					stml = (Statement) conn.createStatement();
-					ResultSet resl = null;
-					resl = ((java.sql.Statement) stml).executeQuery("SELECT * FROM Funcionarios");
-					while(resl.next())
-					{
-						if(ResCPF.getText().equals(resl.getString("login")))
-						{
-							if(txtSenha.getText().equals(resl.getString("senha")))
-							{
-								if(resl.getInt("administrador") == 1)
-								{
-									JOptionPane.showMessageDialog(null, "ADM");
-								}
-								else
-								{
-									JOptionPane.showMessageDialog(null, "FUNC");
-								}
-							}
-						}
-					}
-					resl.close();
-					((Connection) stml).close();
-					conn.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-					System.out.println("N foi");
-		        
-		        
-		        
-		    }
+				String login = ResCPF.getText();
+				String senha = txtSenha.getText();
+				FuncionarioDAO fdao = new FuncionarioDAO();
+				Funcionario f =fdao.buscarFuncionario(login, senha);
+				if(f == null) {
+					JOptionPane.showMessageDialog(null, "n logou");
+				}else {
+					JOptionPane.showMessageDialog(null, "logado");
+				}
+				
+				
+				
 		}});
 		
 		BtnEntrarLogin2.setBackground(new Color(255, 0, 0));
