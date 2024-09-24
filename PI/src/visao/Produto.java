@@ -28,6 +28,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -86,7 +88,7 @@ public class Produto extends JFrame {
 		ImageIcon resizedIcon = new ImageIcon(newImage);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
 		
 		JLabel imgLogo = new JLabel("");
@@ -99,16 +101,40 @@ public class Produto extends JFrame {
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeProdutos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rndbtnHomeProdutos.setText("Produtos");
 		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
-		rndbtnHomeProdutos.setBackground(Color.RED);
+		rndbtnHomeProdutos.setBackground(Color.GRAY);
 		
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnHomeClientes.setBackground(Color.GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnHomeClientes.setBackground(Color.RED); // Cor original
+		    }
+		});
+		rndbtnHomeClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rndbtnHomeClientes.setText("Clientes");
 		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnHomeClientes.setBackground(Color.RED);
 		
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeVendas.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnHomeVendas.setBackground(Color.GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnHomeVendas.setBackground(Color.RED); // Cor original
+		    }
+		});
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -193,12 +219,38 @@ public class Produto extends JFrame {
 		TextPreco.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnExcluir.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnExcluir.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnExcluir.setBackground(Color.RED); // Cor original
+		    }
+		});
+		rndbtnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		rndbtnExcluir.setBounds(199, 369, 150, 26);
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
 		
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnEditar.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnEditar.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnEditar.setBackground(Color.RED); // Cor original
+		    }
+		});
+		rndbtnEditar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rndbtnEditar.setBounds(374, 369, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -232,6 +284,14 @@ public class Produto extends JFrame {
 		rndbtnCadastrar.setBounds(10, 369, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));
+		rndbtnCadastrar.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnCadastrar.setBackground(Color.LIGHT_GRAY); // Cor ao passar o mouseLIGHT_GRAY
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnCadastrar.setBackground(Color.RED); // Cor original
+		    }
+		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String nome = TextNome.getText();
@@ -239,6 +299,11 @@ public class Produto extends JFrame {
 		        String dataChegada = TextChegada.getText();
 		        String preco = TextPreco.getText();
 		        String validade = TextValidade.getText();
+		        TextNome.setText("");
+		        TextTipo.setText("");
+		        TextChegada.setText("");
+		        TextPreco.setText("");
+		        TextValidade.setText("");
 		        
 		        String query = "INSERT INTO produtos (produto, tipo_produto, data_chegada, preco, validade_produto) VALUES (?, ?, ?, ?, ?)";
 		        
@@ -313,6 +378,7 @@ public class Produto extends JFrame {
 
 	        atualizarTabela(produtos);
 	    }
+	 
 	 private void atualizarTabela(List<Object[]> produtos) {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 	        model.setRowCount(0);
