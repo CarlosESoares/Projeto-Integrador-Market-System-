@@ -40,6 +40,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import controle.ProdutoDAO;
 import java.util.List;
 
 public class Produto extends JFrame {
@@ -47,6 +48,7 @@ public class Produto extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private ProdutoDAO produtoDAO;
 
 	/**
 	 * Launch the application.
@@ -74,7 +76,7 @@ public class Produto extends JFrame {
 		setBounds(100, 100, 823, 554);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		produtoDAO = new ProdutoDAO();
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -291,40 +293,21 @@ public class Produto extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        String nome = TextNome.getText();
-		        String tipo = TextTipo.getText();
-		        String dataChegada = TextChegada.getText();
-		        String preco = TextPreco.getText();
-		        String validade = TextValidade.getText();
-		        TextNome.setText("");
-		        TextTipo.setText("");
-		        TextChegada.setText("");
-		        TextPreco.setText("");
-		        TextValidade.setText("");
-		        
-		        String query = "INSERT INTO produtos (produto, tipo_produto, data_chegada, preco, validade_produto) VALUES (?, ?, ?, ?, ?)";
-		        
-		        try (Connection connection = ConexaoBanco.getConexaoMySQL();
-		             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-		             
-		            preparedStatement.setString(1, nome);
-		            preparedStatement.setString(2, tipo);
-		            preparedStatement.setString(3, dataChegada);
-		            preparedStatement.setString(4, preco);
-		            preparedStatement.setString(5, validade);
-		            
-		            int rowsInserted = preparedStatement.executeUpdate();
-		            if (rowsInserted > 0) {
-		                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-		                buscarProdutos(); 
-		            }
-		        } catch (SQLException e1) {
-		            e1.printStackTrace();
-		            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
-
-		        }
-		    }
-		});
+	             String nome = TextNome.getText();
+	                String tipo = TextTipo.getText();
+	                String dataChegada = TextChegada.getText();
+	                String preco = TextPreco.getText();
+	                String validade = TextValidade.getText();
+	                try {
+	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade);
+	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+	                    buscarProdutos(); 
+	                } catch (SQLException ex) {
+	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
+	                    ex.printStackTrace();
+	                }
+	            }
+	        });
 
 
 		panel_2.setLayout(null);
@@ -353,35 +336,20 @@ public class Produto extends JFrame {
 
 
 }
-	 private void buscarProdutos() {
-	        List<Object[]> produtos = new ArrayList<>();
-	        String query = "SELECT * FROM produtos";
-
-	        try (Connection connection = ConexaoBanco.getConexaoMySQL();
-	             Statement statement = connection.createStatement();
-	             ResultSet resultSet = statement.executeQuery(query)) {
-
-	            while (resultSet.next()) {
-	                String nome = resultSet.getString("produto");
-	                String tipo = resultSet.getString("tipo_produto");
-	                String dataChegada = resultSet.getString("data_chegada");
-	                String preco = resultSet.getString("preco");
-	                String validade = resultSet.getString("validade_produto");
-	                produtos.add(new Object[]{nome, tipo, dataChegada, preco, validade});
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-
-	        atualizarTabela(produtos);
-	    }
+	private void buscarProdutos() {
+        try {
+            List<Object[]> produtos = produtoDAO.buscarTodosProdutos();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);  
+            for (Object[] produto : produtos) {
+                model.addRow(produto); 
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+            e.printStackTrace();
+        }
+    }
 	 
-	 private void atualizarTabela(List<Object[]> produtos) {
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-	        model.setRowCount(0);
 
-	        for (Object[] produto : produtos) {
-	            model.addRow(produto);
-	        }
 	        
-}}
+}
