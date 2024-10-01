@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -11,33 +12,52 @@ import com.mysql.cj.xdevapi.Statement;
 import Controle.Funcionario;
 
 public class FuncionarioDAO {
-	
-	public Funcionario buscarFuncionario(String login, String senha) {
-		Statement stml = null;
-		Connection conn = ConexaoBanco.getConexaoMySQL();
-		Funcionario f = null;
-		try {
-			stml = (Statement) conn.createStatement();
-			ResultSet resl = null;
-			resl = ((java.sql.Statement) stml).executeQuery("SELECT * FROM Funcionarios where login = '"+login+"' and senha = '"+senha+"'");
-			while(resl.next())
-			{
-				f = new Funcionario();
-				f.setIdFuncionario(resl.getInt("id_funcionario"));
-				f.setSenhaFuncionario(resl.getString("senha"));
+
+		 Connection conexao = null;
+		 PreparedStatement pst = null;
+		 ResultSet rs = null;
+
+
+		public String autenticar(String resCPF, String ResSenha2) {
+			String sql = "SELECT * FROM usuarios WHERE login =? AND senha=?";
+			
+			try {
+				pst = conexao.prepareStatement(sql);
+				pst.setString(1, resCPF);
+				pst.setString(2, ResSenha2);
+
+				rs = pst.executeQuery();
 				
+				if(rs.next()) {
+					String perfil = rs.getString("perfil");
+					
+					return perfil;
+				}else {
+					return null;
+				}
+				
+			}catch(Exception e) {
+				
+			
+			JOptionPane.showMessageDialog(null, e);
+				
+			return null;
 			}
-			resl.close();
-			((Connection) stml).close();
-			conn.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-			System.out.println("N foi");
-        
-        
-        
-    }
-		return f;
+			
+			
+		}
+		
+		public void FecharConexao() {
+			if (conexao != null){
+				try {
+					conexao.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		
 	}
 
-}
+	}
+

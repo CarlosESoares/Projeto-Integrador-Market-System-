@@ -2,40 +2,27 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class ConexaoBanco {
-public static Connection getConexaoMySQL() {
-	Connection connection = null;
-	// driver de conexão
-	String driverName = "com.mysql.cj.jdbc.Driver";
-	try {
-	Class.forName(driverName);
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-		System.out.println("O driver especificado não foi encontrado");
+	public static Connection conector() {
+		Connection conexao = null;
+		// chamar o driver
+		String driver = "com.mysql.cj.jdbc.Driver";
+		// Armazenando infos do banco
+		String url = "jdbc:mysql://localhost:3306/mercado";
+		String user = "root";
+		String password = "aluno";
+		// Estabelecer a conexao com o DB
+		try {
+			Class.forName(driver);
+			conexao = DriverManager.getConnection(url, user, password);
+			return conexao;
+		} catch (Exception e) {
+			return null;
+		}
+	
+	
+	
 	}
-	String serverName = "localhost";
-	String mydatabase = "mercado";
-	String url = "jdbc:mysql://" + serverName + ":3306/" + mydatabase;
-	
-	String username = "root";
-	
-	String password = "aluno";
-	
-	try {
-		connection = DriverManager.getConnection(url, username, password);
-		return connection;
 
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		System.out.println("não foi possivel se conectar");
-		return null;
-	
-	}
-	
-	
-	
-}
 }

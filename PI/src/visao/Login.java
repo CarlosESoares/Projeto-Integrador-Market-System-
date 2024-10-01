@@ -43,10 +43,8 @@ public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField resCPF;
-	private JTextField ResSenha;
-	private JTextField ResCPF;
-	private JTextField ResSenha2;
+	public JTextField resCPF;
+	public JTextField ResSenha2;
 
 	/**
 	 * Launch the application.
@@ -138,18 +136,7 @@ public class Login extends JFrame {
 		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String login = ResCPF.getText();
-				String senha = txtSenha.getText();
-				FuncionarioDAO fdao = new FuncionarioDAO();
-				Funcionario f =fdao.buscarFuncionario(login, senha);
-				if(f == null) {
-					JOptionPane.showMessageDialog(null, "n logou");
-				}else {
-					JOptionPane.showMessageDialog(null, "logado");
-				}
-				
-				
+				Logar(ResCPF,ResSenha2);
 				
 		}});
 		
