@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.mysql.cj.xdevapi.Statement;
 
+import Controle.ControleDeLogin;
 import Controle.Funcionario;
 import Modelo.ConexaoBanco;
 import Modelo.FuncionarioDAO;
@@ -136,7 +137,7 @@ public class Login extends JFrame {
 		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Logar(ResCPF,ResSenha2);
+			ControleDeLogin login = new ControleDeLogin(ResCPF,ResSenha2);
 				
 		}});
 		

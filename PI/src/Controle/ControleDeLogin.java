@@ -3,6 +3,7 @@ package Controle;
 import javax.swing.JOptionPane;
 
 import Modelo.FuncionarioDAO;
+import Modelo.TextFielArredondada;
 import visao.Login;
 
 public class ControleDeLogin {
@@ -18,7 +19,8 @@ public class ControleDeLogin {
 		
 			}
 	
-	public void logar() {
+
+	public void logar(TextFielArredondada resCPF, TextFielArredondada ResSenha2) {
 		String Login = view.resCPF.getText();
 		String senha = new  String(view.ResSenha2.getText());
 		String perfil = model.autenticar(Login,senha);
