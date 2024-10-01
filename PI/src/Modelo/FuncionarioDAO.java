@@ -1,4 +1,4 @@
-package controle;
+package Modelo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import com.mysql.cj.xdevapi.Statement;
 
-import modelo.Funcionario;
+import Controle.Funcionario;
 
 public class FuncionarioDAO {
 	

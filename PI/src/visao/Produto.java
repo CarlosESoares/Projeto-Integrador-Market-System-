@@ -9,10 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controle.ConexaoBanco;
-import controle.RoundedButton;
-import controle.TextFielArredondada;
-
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,13 +30,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import Modelo.ConexaoBanco;
+import Modelo.ProdutoDAO;
+import Modelo.RoundedButton;
+import Modelo.TextFielArredondada;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import controle.ProdutoDAO;
 import java.util.List;
 
 public class Produto extends JFrame {

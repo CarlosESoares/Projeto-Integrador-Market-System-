@@ -1,4 +1,4 @@
-package controle;
+package Modelo;
 
 public class MarketDAO {
 

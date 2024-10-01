@@ -1,4 +1,4 @@
-package controle;
+package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 
 import com.mysql.cj.xdevapi.Statement;
 
+import Modelo.ConexaoBanco;
 import visao.Login;
-import controle.ConexaoBanco;
 
 public class ProcessoDeLogin {
     Connection conn = ConexaoBanco.getConexaoMySQL();

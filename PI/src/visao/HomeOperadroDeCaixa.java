@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controle.RoundedButton;
+import Modelo.RoundedButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.Color;

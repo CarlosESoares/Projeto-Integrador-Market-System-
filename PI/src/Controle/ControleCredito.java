@@ -1,4 +1,4 @@
-package modelo;
+package Controle;
 
 public class ControleCredito {
 private String Parcela;

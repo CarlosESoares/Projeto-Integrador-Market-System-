@@ -1,4 +1,4 @@
-package controle;
+package Modelo;
 
 import javax.swing.*;
 import java.awt.*;

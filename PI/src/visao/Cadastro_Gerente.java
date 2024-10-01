@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controle.RoundedButton;
-import controle.TextFielArredondada;
+import Modelo.RoundedButton;
+import Modelo.TextFielArredondada;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;

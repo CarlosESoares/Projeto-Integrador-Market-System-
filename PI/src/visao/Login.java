@@ -9,12 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.mysql.cj.xdevapi.Statement;
 
-import controle.ConexaoBanco;
-import controle.FuncionarioDAO;
-import controle.ProcessoDeLogin;
-import controle.RoundedButton;
-import controle.TextFielArredondada;
-import modelo.Funcionario;
+import Controle.Funcionario;
+import Modelo.ConexaoBanco;
+import Modelo.FuncionarioDAO;
+import Modelo.ProcessoDeLogin;
+import Modelo.RoundedButton;
+import Modelo.TextFielArredondada;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
