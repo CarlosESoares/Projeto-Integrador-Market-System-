@@ -137,8 +137,14 @@ public class Login extends JFrame {
 		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			ControleDeLogin login = new ControleDeLogin(ResCPF,ResSenha2);
-				
+				ControleDeLogin controleDeLogin = new ControleDeLogin(Login.this); // Passando a instância atual
+
+		        // Obtenha os valores dos campos
+		        String cpf = ResCPF.getText(); // Use ResCPF corretamente
+		        String senha = new String(ResSenha2.getText());
+
+		        // Chame o método logar
+		        String perfil = controleDeLogin.logar(cpf, senha); // O método já está retornando perfil
 		}});
 		
 		BtnEntrarLogin2.setBackground(new Color(255, 0, 0));

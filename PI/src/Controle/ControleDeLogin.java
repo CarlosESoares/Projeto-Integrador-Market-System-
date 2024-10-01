@@ -20,9 +20,9 @@ public class ControleDeLogin {
 			}
 	
 
-	public void logar(TextFielArredondada resCPF, TextFielArredondada ResSenha2) {
-		String Login = view.resCPF.getText();
-		String senha = new  String(view.ResSenha2.getText());
+	public String logar(String cpf, String senha ) {
+		String Login = cpf;
+		String senha2 = senha;
 		String perfil = model.autenticar(Login,senha);
 		
 		if(perfil != null) {
@@ -30,6 +30,8 @@ public class ControleDeLogin {
 		}else {
 			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos ou os 2");
 		}
+		return perfil;
+		
 		
 	}
 }
