@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import com.mysql.cj.xdevapi.Statement;
 
 import Controle.Funcionario;

@@ -1,7 +1,6 @@
 package Controle;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Produto {
 private int IdProduto;
