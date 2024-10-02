@@ -72,7 +72,7 @@ public class Produto extends JFrame {
 	public Produto() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 823, 554);
+		setBounds(100, 100, 1000, 525);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		produtoDAO = new ProdutoDAO();
@@ -327,7 +327,7 @@ public class Produto extends JFrame {
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-20, 416, 710, 100);
+		imgOndinha.setBounds(-109, 253, 974, 355);
 		panel_2.add(imgOndinha);
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));

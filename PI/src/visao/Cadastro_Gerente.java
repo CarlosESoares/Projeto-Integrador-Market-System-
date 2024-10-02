@@ -56,7 +56,7 @@ public class Cadastro_Gerente extends JFrame {
 	public Cadastro_Gerente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1042, 536);
+		setBounds(100, 100, 900, 525);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -161,7 +161,7 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(Cadastrar);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-132, 277, 1200, 355);
+		imgOndinha.setBounds(-110, 277, 974, 355);
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
