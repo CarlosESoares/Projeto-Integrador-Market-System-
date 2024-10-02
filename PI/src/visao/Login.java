@@ -14,8 +14,6 @@ import Controle.Funcionario;
 import Modelo.ConexaoBanco;
 import Modelo.FuncionarioDAO;
 import Modelo.ProcessoDeLogin;
-import Modelo.RoundedButton;
-import Modelo.TextFielArredondada;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
