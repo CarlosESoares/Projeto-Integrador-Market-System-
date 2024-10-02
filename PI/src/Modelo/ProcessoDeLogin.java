@@ -14,7 +14,7 @@ import Modelo.ConexaoBanco;
 import visao.Login;
 
 public class ProcessoDeLogin {
-    Connection conn = ConexaoBanco.getConexaoMySQL();
+    Connection conn = ConexaoBanco.conector();
     String sql = "SELECT * FROM funcionarios WHERE cpf = ? AND senha = ?";
     ResultSet rs = null;
 

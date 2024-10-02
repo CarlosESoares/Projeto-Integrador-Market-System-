@@ -13,7 +13,7 @@ public class ProdutoDAO {
     public void cadastrarProduto(String nome, String tipo, String dataChegada, String preco, String validade) throws SQLException {
         String query = "INSERT INTO produtos (produto, tipo_produto, data_chegada, preco, validade_produto) VALUES (?, ?, ?, ?, ?)";
         
-        try (Connection connection = ConexaoBanco.getConexaoMySQL();
+        try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, nome);
@@ -30,7 +30,7 @@ public class ProdutoDAO {
         List<Object[]> produtos = new ArrayList<>();
         String query = "SELECT * FROM produtos";
         
-        try (Connection connection = ConexaoBanco.getConexaoMySQL();
+        try (Connection connection = ConexaoBanco.conector();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
