@@ -1,4 +1,4 @@
-package Modelo;
+package visao;
 
 import javax.swing.*;
 import java.awt.*;
