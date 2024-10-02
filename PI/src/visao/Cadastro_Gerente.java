@@ -12,14 +12,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,9 +24,6 @@ public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField TextNome;
-	private JTextField TextCpf;
-	private JTextField TextSenha;
 
 	/**
 	 * Launch the application.
