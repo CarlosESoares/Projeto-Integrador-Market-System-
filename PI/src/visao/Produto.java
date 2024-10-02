@@ -33,8 +33,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.ConexaoBanco;
 import Modelo.ProdutoDAO;
-import Modelo.RoundedButton;
-import Modelo.TextFielArredondada;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
