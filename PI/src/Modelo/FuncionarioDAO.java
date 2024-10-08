@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import com.mysql.cj.xdevapi.Statement;
 
 import Controle.Funcionario;
 

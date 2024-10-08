@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import com.mysql.cj.xdevapi.Statement;
 
 import Modelo.ConexaoBanco;
 import visao.Login;

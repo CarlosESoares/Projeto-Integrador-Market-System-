@@ -3,7 +3,6 @@ package Controle;
 import javax.swing.JOptionPane;
 
 import Modelo.FuncionarioDAO;
-import Modelo.TextFielArredondada;
 import visao.Login;
 
 public class ControleDeLogin {
