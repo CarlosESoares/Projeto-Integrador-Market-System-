@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS produtos (
   tipo_produto VARCHAR(45) NOT NULL,
   data_chegada VARCHAR(45) NOT NULL,
   validade_produto VARCHAR(45) NULL,
-  preco DOUBLE NOT NULL
+  preco DOUBLE NOT NULL,
+  qntd INT NOT NULL
 );
 
 -- -----------------------------------------------------
