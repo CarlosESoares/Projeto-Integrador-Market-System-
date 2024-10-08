@@ -19,7 +19,7 @@ public class ProcessoDeLogin {
 
     		    String url = "jdbc:mysql://localhost:3306/mercado";
     String user = "root";
-    String password = "aluno";{
+    String password = "Aluno";{
     
     try (Connection connection = DriverManager.getConnection(url, user, password)){
  System.out.println("Conectado!");
