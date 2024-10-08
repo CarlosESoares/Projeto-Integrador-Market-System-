@@ -71,7 +71,7 @@ public class Produto extends JFrame {
 	public Produto() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 823, 554);
+		setBounds(100, 100, 950, 582);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		produtoDAO = new ProdutoDAO();
@@ -211,12 +211,12 @@ public class Produto extends JFrame {
 		
 		TextFielArredondada TextQntd = new TextFielArredondada(15, 20, 20);
 		TextQntd.setColumns(10);
-		TextQntd.setBounds(450, 293, 187, 24);
+		TextQntd.setBounds(523, 293, 187, 24);
 		panel_2.add(TextQntd);
 		
 		JLabel lblQntd = new JLabel("Quantidade:");
 		lblQntd.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblQntd.setBounds(450, 264, 139, 18);
+		lblQntd.setBounds(523, 264, 139, 18);
 		panel_2.add(lblQntd);
 
 		
@@ -238,7 +238,7 @@ public class Produto extends JFrame {
 				
 			}
 		});
-		rndbtnExcluir.setBounds(199, 369, 150, 26);
+		rndbtnExcluir.setBounds(255, 396, 150, 26);
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
@@ -257,21 +257,21 @@ public class Produto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		rndbtnEditar.setBounds(374, 369, 150, 26);
+		rndbtnEditar.setBounds(523, 396, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnEditar.setBackground(Color.RED);
 		
 		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
-		lblValidadeDoProduto.setBounds(234, 264, 139, 18);
+		lblValidadeDoProduto.setBounds(255, 264, 139, 18);
 		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
-		TextValidade.setBounds(234, 293, 187, 24);
+		TextValidade.setBounds(255, 293, 187, 24);
 		TextValidade.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(224, 58, 344, 167);
+		panel_3.setBounds(224, 58, 486, 195);
 		
 		
 
@@ -287,7 +287,7 @@ public class Produto extends JFrame {
 
         buscarProdutos();
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
-		rndbtnCadastrar.setBounds(10, 369, 150, 26);
+		rndbtnCadastrar.setBounds(10, 396, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));
 		rndbtnCadastrar.addMouseListener(new MouseAdapter() {
@@ -336,7 +336,7 @@ public class Produto extends JFrame {
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-20, 416, 710, 100);
+		imgOndinha.setBounds(-25, 433, 866, 100);
 		panel_2.add(imgOndinha);
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
