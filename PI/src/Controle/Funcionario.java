@@ -1,14 +1,14 @@
 package Controle;
 
 public class Funcionario {
-private String NomeFuncionario;
-private String SobrenomeFuncionario;
-private int IdFuncionario;
-private String SenhaFuncionario;
-private float TelefoneFuncionario;
-private String AreaTrabalho;
-private String Endereco;
-private double Salario;
+public String NomeFuncionario;
+public String SobrenomeFuncionario;
+public int IdFuncionario;
+public String SenhaFuncionario;
+public float TelefoneFuncionario;
+public String AreaTrabalho;
+public String Endereco;
+public double Salario;
 
 
 

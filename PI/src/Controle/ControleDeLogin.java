@@ -1,36 +1,57 @@
 package Controle;
 
-import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import Modelo.FuncionarioDAO;
-import visao.Login;
+import Modelo.GenericDAO;
 
-public class ControleDeLogin {
-
+public class ControleDeLogin extends GenericDAO{
 	
-	private Login view;
-	
-	private FuncionarioDAO model;
-	
-	public ControleDeLogin(Login view) {
-		this.view = view;
-		this.model = new FuncionarioDAO();
-		
+	//Método para verificar se o banco esta online
+	public Boolean bancoOnline()  {
+		Connection valor = conectarDAO();
+		if (valor != null){
+			try {
+				conectarDAO().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
+			return true;
+		} else
+			return false;
+	}
 	
+	
+	// Método para autenticar usuários
+	public Funcionario autenticar(String login, String senha2) throws SQLException {
+		String Login = login;
+		String senha = senha2;
+		String sql = "SELECT * FROM USUARIOS WHERE login=? AND senha=?";
+		Funcionario funcionario = null;
+		PreparedStatement stmt = conectarDAO().prepareStatement(sql);
 
-	public String logar(String cpf, String senha ) {
-		String Login = cpf;
-		String senha2 = senha;
-		String perfil = model.autenticar(Login,senha);
+		stmt.setString(1, Login);
+		stmt.setString(2, senha);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+			funcionario = new Funcionario();
+			funcionario.setIdFuncionario(rs.getInt("id"));
+			funcionario.setNomeFuncionario(rs.getString("nome"));
+			funcionario.setSobrenomeFuncionario(rs.getString("sobrenome"));
+			funcionario.setSenhaFuncionario(rs.getString("senha"));
+			funcionario.setTelefoneFuncionario(rs.getInt("telefone"));
+			funcionario.setAreaTrabalho(rs.getString("area_trabalho"));
+			funcionario.setEndereco(rs.getString("endereco"));
+			funcionario.setSalario(rs.getDouble("salario"));}
 		
-		if(perfil != null) {
-			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");
-		}else {
-			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos ou os 2");
-		}
-		return perfil;
-		
-		
+
+		rs.close();
+		stmt.close();
+		conectarDAO().close();
+
+		return funcionario;
 	}
 }

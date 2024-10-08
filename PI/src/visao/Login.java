@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 import Controle.ControleDeLogin;
 import Controle.Funcionario;
 import Modelo.ConexaoBanco;
-import Modelo.FuncionarioDAO;
 import Modelo.ProcessoDeLogin;
 
 import javax.swing.JLabel;
@@ -134,14 +133,28 @@ public class Login extends JFrame {
 		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
 		BtnEntrarLogin2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControleDeLogin controleDeLogin = new ControleDeLogin(Login.this); // Passando a instância atual
+				 ControleDeLogin controleDeLogin = new ControleDeLogin(); // Passando a instância atual
 
-		        // Obtenha os valores dos campos
-		        String cpf = ResCPF.getText(); // Use ResCPF corretamente
-		        String senha = new String(ResSenha2.getText());
+				    // Obtenha os valores dos campos corretamente
+				    String cpf = ResCPF.getText(); // Captura o CPF inserido pelo usuário
+				    String senha1 = new String(ResSenha2.getText()); // Captura a senha, use getPassword para campos JPasswordField
 
-		        // Chame o método logar
-		        String perfil = controleDeLogin.logar(cpf, senha); // O método já está retornando perfil
+				    // Chame o método autenticar, que retorna o perfil
+				    Object perfil = null;
+					try {
+						perfil = controleDeLogin.autenticar(cpf, senha1);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				    if (perfil != null) {
+				        // Aqui você pode direcionar o fluxo para outra tela ou ação
+				        System.out.println("Login bem-sucedido! Bem-vindo, " + perfil.toString());
+				    } else {
+				        // Caso o login falhe, você pode notificar o usuário
+				        System.out.println("CPF ou senha incorretos.");
+				    }
 		}});
 		
 		BtnEntrarLogin2.setBackground(new Color(255, 0, 0));
