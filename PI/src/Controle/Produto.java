@@ -6,10 +6,10 @@ import java.util.Date;
 public class Produto {
 private int IdProduto;
 private String Nome;
-private String tipoProduto;
-private LocalDate dataValidade;
-private int qntd;
-private Double preco;
+private String Data;
+private String DataValidade;
+private int Qntd;
+private Double Preco;
 public int getIdProduto() {
 	return IdProduto;
 }
@@ -22,29 +22,27 @@ public String getNome() {
 public void setNome(String nome) {
 	Nome = nome;
 }
-public String getTipoProduto() {
-	return tipoProduto;
+public String getData() {
+	return Data;
 }
-public void setTipoProduto(String tipoProduto) {
-	this.tipoProduto = tipoProduto;
+public void setData(String data) {
+	Data = data;
 }
-public LocalDate getDataValidade() {
-	return dataValidade;
+public String getDataValidade() {
+	return DataValidade;
 }
-public void setDataValidade(LocalDate dataValidade) {
-	this.dataValidade = dataValidade;
+public void setDataValidade(String dataValidade) {
+	DataValidade = dataValidade;
 }
 public int getQntd() {
-	return qntd;
+	return Qntd;
 }
 public void setQntd(int qntd) {
-	this.qntd = qntd;
+	Qntd = qntd;
 }
 public Double getPreco() {
-	return preco;
+	return Preco;
 }
 public void setPreco(Double preco) {
-	this.preco = preco;
-}
-
-}
+	Preco = preco;
+}}

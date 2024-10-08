@@ -209,6 +209,15 @@ public class Produto extends JFrame {
 		lblPreco.setBounds(10, 264, 43, 18);
 		lblPreco.setFont(new Font("Arial", Font.PLAIN, 15));
 		
+		TextFielArredondada TextQntd = new TextFielArredondada(15, 20, 20);
+		TextQntd.setColumns(10);
+		TextQntd.setBounds(450, 293, 187, 24);
+		panel_2.add(TextQntd);
+		
+		JLabel lblQntd = new JLabel("Quantidade:");
+		lblQntd.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblQntd.setBounds(450, 264, 139, 18);
+		panel_2.add(lblQntd);
 
 		
 		TextFielArredondada TextPreco = new TextFielArredondada(15, 20, 20);
@@ -266,14 +275,14 @@ public class Produto extends JFrame {
 		
 		
 
-        String[] columnNames = {"Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade"};
-        Object[][] data = {};
-        table = new JTable(new DefaultTableModel(data, columnNames));
-        
-  
-        JScrollPane scrollPane = new JScrollPane(table);
-        panel_3.setLayout(new BorderLayout());
-        panel_3.add(scrollPane, BorderLayout.CENTER);
+		String[] columnNames = {"ID", "Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade", "Quantidade"};
+		Object[][] data = {};
+		table = new JTable(new DefaultTableModel(data, columnNames));
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		panel_3.setLayout(new BorderLayout());
+		panel_3.add(scrollPane, BorderLayout.CENTER);
+
 
 
         buscarProdutos();
@@ -296,8 +305,9 @@ public class Produto extends JFrame {
 	                String dataChegada = TextChegada.getText();
 	                String preco = TextPreco.getText();
 	                String validade = TextValidade.getText();
+	                String qntd = TextQntd.getText();
 	                try {
-	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade);
+	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
 	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 	                    buscarProdutos(); 
 	                } catch (SQLException ex) {
@@ -331,6 +341,8 @@ public class Produto extends JFrame {
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+
 
 
 }
@@ -347,7 +359,4 @@ public class Produto extends JFrame {
             e.printStackTrace();
         }
     }
-	 
-
-	        
 }

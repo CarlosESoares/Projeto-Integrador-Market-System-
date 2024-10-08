@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-    public void cadastrarProduto(String nome, String tipo, String dataChegada, String preco, String validade) throws SQLException {
-        String query = "INSERT INTO produtos (produto, tipo_produto, data_chegada, preco, validade_produto) VALUES (?, ?, ?, ?, ?)";
+    public void cadastrarProduto(String nome, String tipo, String dataChegada, String preco, String validade, String qntd) throws SQLException {
+        String query = "INSERT INTO produtos (produto, tipo_produto, data_chegada, preco, validade_produto, qntd) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -21,6 +21,7 @@ public class ProdutoDAO {
             preparedStatement.setString(3, dataChegada);
             preparedStatement.setString(4, preco);
             preparedStatement.setString(5, validade);
+            preparedStatement.setString(6, qntd);
             
             preparedStatement.executeUpdate();
         }
@@ -35,13 +36,15 @@ public class ProdutoDAO {
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
+            	String id = resultSet.getString("id_produto");
                 String nome = resultSet.getString("produto");
                 String tipo = resultSet.getString("tipo_produto");
                 String dataChegada = resultSet.getString("data_chegada");
                 String preco = resultSet.getString("preco");
                 String validade = resultSet.getString("validade_produto");
+                String qntd = resultSet.getString("qntd");
 
-                produtos.add(new Object[] { nome, tipo, dataChegada, preco, validade });
+                produtos.add(new Object[] { id, nome, tipo, dataChegada, preco, validade, qntd });
             }
         }
         
