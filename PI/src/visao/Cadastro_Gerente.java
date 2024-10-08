@@ -18,7 +18,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
