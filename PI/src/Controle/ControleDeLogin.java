@@ -22,7 +22,7 @@ public class ControleDeLogin {
 	public String logar(String cpf, String senha ) {
 		String Login = cpf;
 		String senha2 = senha;
-		String perfil = model.autenticar(Login,senha);
+		String perfil = model.autenticar(Login,senha2);
 		
 		if(perfil != null) {
 			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");

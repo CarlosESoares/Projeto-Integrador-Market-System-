@@ -17,13 +17,16 @@ public class FuncionarioDAO {
 		 ResultSet rs = null;
 
 
-		public String autenticar(String resCPF, String ResSenha2) {
+		public String autenticar(String Login, String senha2) {
 			String sql = "SELECT * FROM usuarios WHERE login =? AND senha=?";
 			
 			try {
+				String Login2 = Login;
+				String senha = senha2;
+				
 				pst = conexao.prepareStatement(sql);
-				pst.setString(1, resCPF);
-				pst.setString(2, ResSenha2);
+				pst.setString(1, Login2);
+				pst.setString(2, senha);
 
 				rs = pst.executeQuery();
 				
