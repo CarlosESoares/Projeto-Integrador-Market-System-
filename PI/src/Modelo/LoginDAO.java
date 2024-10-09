@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Controle.Funcionario;
-
 public class LoginDAO extends GenericDAO{
 	
 	//Método para verificar se o banco esta online

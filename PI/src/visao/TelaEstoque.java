@@ -41,7 +41,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Produto extends JFrame {
+public class TelaEstoque extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -55,7 +55,7 @@ public class Produto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Produto frame = new Produto();
+					TelaEstoque frame = new TelaEstoque();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +68,7 @@ public class Produto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Produto() {
+	public TelaEstoque() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 582);

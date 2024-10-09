@@ -5,18 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Controle.ControleDeLogin;
-
 public class FuncionarioDAO {
 
-	ControleDeLogin telas = new ControleDelogin();
 
 	 Connection conexao = null;
 	 PreparedStatement pst = null;
 	 ResultSet rs = null;
 
 
-	public String autenticar(String resCPF, String ResSenha2) throws SQLException {
+	public Funcionario autenticar(String resCPF, String ResSenha2) throws SQLException {
 		String sql = "SELECT * FROM funcionarios WHERE login =? AND senha=?  ";
 			conexao = ConexaoBanco.conector();
 			pst = conexao.prepareStatement(sql);
@@ -26,11 +23,16 @@ public class FuncionarioDAO {
 			rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				String perfil = rs.getString("Caixa");
-				telas.ChamarTelas();
-				//chamar a função Abrir tela caixa
-				
-				return perfil;
+			
+				Funcionario f = new Funcionario();
+				f.setNomeFuncionario(rs.getString("Nome"));
+				f.setSobrenomeFuncionario(rs.getString("SobreNome"));
+				f.setIdFuncionario(rs.getInt("id_funcionario"));
+				f.setEndereco(rs.getString("Endereco"));
+				f.setSenhaFuncionario(rs.getString("senha"));
+				f.setTelefoneFuncionario(rs.getInt("Fone"));
+				f.setSalario(rs.getDouble("Salario"));
+				return f;
 			}else {
 				return null;
 			}

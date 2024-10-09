@@ -1,6 +1,7 @@
-package Controle;
+package Modelo;
 
 public class Funcionario {
+	
 public String NomeFuncionario;
 public String SobrenomeFuncionario;
 public int IdFuncionario;
@@ -9,9 +10,16 @@ public float TelefoneFuncionario;
 public String AreaTrabalho;
 public String Endereco;
 public double Salario;
+public String tipoFucionario;
 
 
 
+public String getTipoFucionario() {
+	return tipoFucionario;
+}
+public void setTipoFucionario(String tipoFucionario) {
+	this.tipoFucionario = tipoFucionario;
+}
 public String getNomeFuncionario() {
 	return NomeFuncionario;
 }

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
 import Modelo.GenericDAO;
 import visao.Login;
@@ -21,41 +22,41 @@ public class ControleDeLogin extends GenericDAO{
 		
 			}
 	
-	public String logar(String cpf, String senha2 ) {
+	public void logar(String cpf, String senha2 ) {
 		
 		String Login = cpf;
 		String senha =senha2;
-		String perfil;
+		Funcionario f;
 		try {
-			perfil = model.autenticar(Login,senha);
+			f = model.autenticar(Login,senha);
 			
-			if(perfil != null) {
+			if(f!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");
-			return perfil;
+			ChamarTelas(f);
 		}else {
 			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos ou os 2");
-			return perfil = null;
+			
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			
 		}
 		
 		
 		
 	}
-	public String ChamarTelas(String perfil) {
-		if(perfil.equals("Caixa")){
+	public void ChamarTelas(Funcionario f) {
+		if(f.getTipoFucionario().equals("Caixa")){
 			ControllerTelaCAIxa abrir = new ControllerTelaCAIxa();
 			abrir.AbrirTelaCaixa();
-		}else if(perfil.equals("Gerente")){
+		}else if(f.getTipoFucionario().equals("Gerente")){
 			ControllerGerente abrir = new ControllerGerente();
 			abrir.AbrirTelaGerente();
 			
 		}else {
 			ControllerEstoquista abrir = new ControllerEstoquista();
-			abrir.AbrirTelaEstoquista;
+			abrir.AbrirTelaEstoquista();
 			
 		}
 	}
