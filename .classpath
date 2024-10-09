@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="PI/src"/>
+	<classpathentry kind="lib" path="PI/com.miglayout.core_11.4.0.jar"/>
+	<classpathentry kind="lib" path="PI/com.miglayout.swing_11.4.0.jar"/>
+	<classpathentry kind="lib" path="PI/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="PI/mysql-connector-j-9.0.0.jar"/>
+	<classpathentry kind="output" path="PI/bin"/>
+</classpath>
