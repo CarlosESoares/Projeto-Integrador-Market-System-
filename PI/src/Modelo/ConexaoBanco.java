@@ -11,15 +11,15 @@ public class ConexaoBanco {
 		// Armazenando infos do banco
 		String url = "jdbc:mysql://localhost:3306/mercado";
 		String user = "root";
-		String password = "Aluno";
+		String password = "aluno";
 		// Estabelecer a conexao com o DB
 		try {
 			Class.forName(driver);
 			conexao = DriverManager.getConnection(url, user, password);
-			System.out.println("nao conectado");
+			System.out.println(" conectado");
 			return conexao;
 		} catch (Exception e) {
-			System.out.println("conectado");
+			System.out.println(" nao conectado");
 			return null;
 		}
 	

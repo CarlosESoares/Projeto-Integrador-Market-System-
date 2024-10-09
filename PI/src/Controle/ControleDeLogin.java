@@ -1,57 +1,63 @@
 package Controle;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
+import Modelo.FuncionarioDAO;
 import Modelo.GenericDAO;
+import visao.Login;
 
 public class ControleDeLogin extends GenericDAO{
-	
-	//Método para verificar se o banco esta online
-	public Boolean bancoOnline()  {
-		Connection valor = conectarDAO();
-		if (valor != null){
-			try {
-				conectarDAO().close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return true;
-		} else
-			return false;
-	}
-	
-	
-	// Método para autenticar usuários
-	public Funcionario autenticar(String login, String senha2) throws SQLException {
-		String Login = login;
-		String senha = senha2;
-		String sql = "SELECT * FROM USUARIOS WHERE login=? AND senha=?";
-		Funcionario funcionario = null;
-		PreparedStatement stmt = conectarDAO().prepareStatement(sql);
 
-		stmt.setString(1, Login);
-		stmt.setString(2, senha);
-		ResultSet rs = stmt.executeQuery();
-
-		while (rs.next()) {
-			funcionario = new Funcionario();
-			funcionario.setIdFuncionario(rs.getInt("id"));
-			funcionario.setNomeFuncionario(rs.getString("nome"));
-			funcionario.setSobrenomeFuncionario(rs.getString("sobrenome"));
-			funcionario.setSenhaFuncionario(rs.getString("senha"));
-			funcionario.setTelefoneFuncionario(rs.getInt("telefone"));
-			funcionario.setAreaTrabalho(rs.getString("area_trabalho"));
-			funcionario.setEndereco(rs.getString("endereco"));
-			funcionario.setSalario(rs.getDouble("salario"));}
+	
+	private Login view;
+	
+	private FuncionarioDAO model;
+	
+	public ControleDeLogin(Login view) {
+		this.view = view;
+		this.model = new FuncionarioDAO();
 		
-
-		rs.close();
-		stmt.close();
-		conectarDAO().close();
-
-		return funcionario;
+			}
+	
+	public String logar(String cpf, String senha2 ) {
+		
+		String Login = cpf;
+		String senha =senha2;
+		String perfil;
+		try {
+			perfil = model.autenticar(Login,senha);
+			
+			if(perfil != null) {
+			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");
+			return perfil;
+		}else {
+			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos ou os 2");
+			return perfil = null;
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
 	}
-}
+	public String ChamarTelas(String perfil) {
+		if(perfil.equals("Caixa")){
+			ControllerTelaCAIxa abrir = new ControllerTelaCAIxa();
+			abrir.AbrirTelaCaixa();
+		}else if(perfil.equals("Gerente")){
+			ControllerGerente abrir = new ControllerGerente();
+			abrir.AbrirTelaGerente();
+			
+		}else {
+			ControllerEstoquista abrir = new ControllerEstoquista();
+			abrir.AbrirTelaEstoquista;
+			
+		}
+	}
+	}
+
