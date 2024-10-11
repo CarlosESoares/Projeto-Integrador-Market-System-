@@ -242,7 +242,9 @@ public class TelaEstoque extends JFrame {
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
-		
+		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
+		TextValidade.setBounds(255, 293, 187, 24);
+		TextValidade.setColumns(10);
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
@@ -253,10 +255,34 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnEditar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            // Pega o ID do produto da linha selecionada
+		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+
+		            // Pega os novos valores da tabela
+		            String nome = table.getValueAt(selectedRow, 1).toString();
+		            String tipo = table.getValueAt(selectedRow, 2).toString();
+		            String chegada = table.getValueAt(selectedRow, 3).toString();
+		            String validade = table.getValueAt(selectedRow, 4).toString();
+		            double preco = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
+		            int quantidade = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
+
+		            // Atualiza o produto no banco de dados
+		            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
+		            
+		            if (success) {
+		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+		        }
+		    }
 		});
+
 		rndbtnEditar.setBounds(523, 396, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -266,9 +292,7 @@ public class TelaEstoque extends JFrame {
 		lblValidadeDoProduto.setBounds(255, 264, 139, 18);
 		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
-		TextValidade.setBounds(255, 293, 187, 24);
-		TextValidade.setColumns(10);
+
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(224, 58, 486, 195);

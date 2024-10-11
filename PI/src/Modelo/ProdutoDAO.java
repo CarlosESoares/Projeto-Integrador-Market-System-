@@ -49,4 +49,22 @@ public class ProdutoDAO {
         }
         
         return produtos;
+    }
+    public boolean atualizarProduto(int id, String nome, String tipo, String chegada, String validade, double preco, int quantidade) {
+        String sql = "UPDATE produtos SET produto = ?, tipo_produto = ?, data_chegada = ?, validade_produto = ?, preco = ?, qntd = ? WHERE id_produto = ?";
+        try (Connection connection = ConexaoBanco.conector();
+        	PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nome);
+            stmt.setString(2, tipo);
+            stmt.setString(3, chegada);
+            stmt.setString(4, validade);
+            stmt.setDouble(5, preco);
+            stmt.setInt(6, quantidade);
+            stmt.setInt(7, id);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }}
