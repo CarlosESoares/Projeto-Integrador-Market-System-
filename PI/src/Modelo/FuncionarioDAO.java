@@ -28,10 +28,13 @@ public class FuncionarioDAO {
 				f.setNomeFuncionario(rs.getString("Nome"));
 				f.setSobrenomeFuncionario(rs.getString("SobreNome"));
 				f.setIdFuncionario(rs.getInt("id_funcionario"));
-				f.setEndereco(rs.getString("Endereco"));
+				f.setAreaTrabalho(rs.getString("tipo_funcionario"));
+				f.setLoginFuncionari(rs.getString("login"));
 				f.setSenhaFuncionario(rs.getString("senha"));
-				f.setTelefoneFuncionario(rs.getInt("Fone"));
-				f.setSalario(rs.getDouble("Salario"));
+				f.setTelefoneFuncionario(rs.getInt("Telefone"));
+				f.setSalario(rs.getFloat("Salario"));
+				f.setEndereco(rs.getString("Endereco"));
+				
 				return f;
 			}else {
 				return null;

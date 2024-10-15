@@ -126,6 +126,13 @@ public class Login extends JFrame {
 
 		        // Chame o método logar
 		        controleDeLogin.logar(cpf1, senha1 ); // O método já está retornando perfil
+				    if (perfil != null) {
+				        // Aqui você pode direcionar o fluxo para outra tela ou ação
+				    	JOptionPane.showInputDialog("Login bem-sucedido! Bem-vindo, " + perfil.toString());
+				    } else {
+				        // Caso o login falhe, você pode notificar o usuário
+				    	JOptionPane.showInputDialog ("CPF ou senha incorretos.");
+				    }
 		}});
 		
 		BtnEntrarLogin2.setBackground(new Color(255, 0, 0));
