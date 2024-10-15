@@ -27,6 +27,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaDoCaixa extends JFrame {
 
@@ -229,6 +231,16 @@ public class TelaDoCaixa extends JFrame {
 		panel_4.add(scrollPane, BorderLayout.CENTER);
 		
 		HintTextField textfield = new HintTextField("000 00000 00000");  
+		textfield.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_F2) { //Se quiser a tecla Enter
+				    //evento
+					System.out.println("22222");
+				}
+			}
+		});
 		textfield.setHorizontalAlignment(SwingConstants.CENTER);
 
 		textfield.setBounds(48, 133, 155, 20);
