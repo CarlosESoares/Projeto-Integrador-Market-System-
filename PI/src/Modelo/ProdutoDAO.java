@@ -67,4 +67,16 @@ public class ProdutoDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public boolean excluirProduto(int id) throws SQLException {
+        String query = "DELETE FROM produtos WHERE id_produto = ?";
+        
+        try (Connection connection = ConexaoBanco.conector();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             
+            preparedStatement.setInt(1, id);
+            
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        }
     }}

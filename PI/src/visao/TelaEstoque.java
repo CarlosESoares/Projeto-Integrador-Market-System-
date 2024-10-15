@@ -234,9 +234,32 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            int idProduto = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+		            
+		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		            if (confirm == JOptionPane.YES_OPTION) {
+		                try {
+		                    boolean sucesso = produtoDAO.excluirProduto(idProduto);
+		                    if (sucesso) {
+		                 
+		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+		                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+		                    } else {
+		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
+		                    }
+		                } catch (SQLException ex) {
+		                    ex.printStackTrace();
+		                    JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
+		                }
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+		        }
+		    }
+
 		});
 		rndbtnExcluir.setBounds(255, 396, 150, 26);
 		rndbtnExcluir.setText("Excluir");
@@ -258,10 +281,9 @@ public class TelaEstoque extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int selectedRow = table.getSelectedRow();
 		        if (selectedRow != -1) {
-		            // Pega o ID do produto da linha selecionada
 		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
 
-		            // Pega os novos valores da tabela
+
 		            String nome = table.getValueAt(selectedRow, 1).toString();
 		            String tipo = table.getValueAt(selectedRow, 2).toString();
 		            String chegada = table.getValueAt(selectedRow, 3).toString();
@@ -269,7 +291,7 @@ public class TelaEstoque extends JFrame {
 		            double preco = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
 		            int quantidade = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
 
-		            // Atualiza o produto no banco de dados
+
 		            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
 		            
 		            if (success) {
