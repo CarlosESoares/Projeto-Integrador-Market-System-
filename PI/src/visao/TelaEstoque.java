@@ -346,12 +346,34 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	 if (TextNome.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
+	                }
+	                if (TextTipo.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
+	                }
+	                if (TextChegada.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
+	  
+	                }
+	                if (TextPreco.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
+	                }
+	                if (TextValidade.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
+	                }
+	                if (TextQntd.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
+	                } else {
 	             String nome = TextNome.getText();
 	                String tipo = TextTipo.getText();
 	                String dataChegada = TextChegada.getText();
 	                String preco = TextPreco.getText();
 	                String validade = TextValidade.getText();
 	                String qntd = TextQntd.getText();
+	               
+	               
+	            
 	                try {
 	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
 	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
@@ -359,6 +381,7 @@ public class TelaEstoque extends JFrame {
 	                } catch (SQLException ex) {
 	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
 	                    ex.printStackTrace();
+	                }
 	                }
 	            }
 	        });
