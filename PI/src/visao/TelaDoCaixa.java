@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaDoCaixa extends JFrame {
 
@@ -88,13 +89,17 @@ public class TelaDoCaixa extends JFrame {
 		Image imageLogo = originalIconLogo.getImage(); // Obtenha a imagem do ImageIcon
 		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
 		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
+		panel_1.setLayout(new MigLayout("", "[100px]", "[100px][][][][][][][][][][]"));
 		imgLogo.setIcon(ImgRedimencionada);
 		
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
-		panel_1.add(imgLogo);
+		panel_1.add(imgLogo, "cell 0 0,alignx left,aligny top");
+		
+		
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setVisible(false);
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(null);
 		
@@ -107,26 +112,40 @@ public class TelaDoCaixa extends JFrame {
 		RoundedButton btnNewButton = new RoundedButton("ABRIR CAIXA",30,30);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			panel_2.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_1.add(btnNewButton, "cell 0 6,alignx left,aligny center");
+		
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.setBackground(new Color(255, 0, 0));
-		btnNewButton.setBounds(44, 25, 777, 34);
-		panel_2.add(btnNewButton);
+		
+		RoundedButton rndbtnFecharCaixa = new RoundedButton("ABRIR CAIXA", 30, 30);
+		rndbtnFecharCaixa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_2.setVisible(false);
+
+			}
+		});
+		rndbtnFecharCaixa.setText("FECHAR CAIXA");
+		rndbtnFecharCaixa.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rndbtnFecharCaixa.setBackground(Color.RED);
+		panel_1.add(rndbtnFecharCaixa, "cell 0 8");
 		
 		RoundedButton btnNewButton_1 = new RoundedButton("New button",1,1);
 		btnNewButton_1.setText("CÓIGO DE BARRAS");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton_1.setBackground(new Color(192, 192, 192));
-		btnNewButton_1.setBounds(48, 113, 155, 23);
+		btnNewButton_1.setBounds(47, 57, 155, 23);
 		panel_2.add(btnNewButton_1);
 		
 		JPanel panel_3_1 = new JPanel();
 		panel_3_1.setBackground(Color.WHITE);
-		panel_3_1.setBounds(48, 199, 155, 23);
+		panel_3_1.setBounds(47, 152, 155, 23);
 		panel_2.add(panel_3_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("R$ 0,00");
@@ -135,12 +154,12 @@ public class TelaDoCaixa extends JFrame {
 		RoundedButton btnNewButton_1_1 = new RoundedButton("New button", 1, 1);
 		btnNewButton_1_1.setText("VALOR UNITÁRIO");
 		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1.setBounds(48, 178, 155, 23);
+		btnNewButton_1_1.setBounds(47, 131, 155, 23);
 		panel_2.add(btnNewButton_1_1);
 		
 		JPanel panel_3_2 = new JPanel();
 		panel_3_2.setBackground(Color.WHITE);
-		panel_3_2.setBounds(48, 266, 155, 23);
+		panel_3_2.setBounds(47, 227, 155, 23);
 		panel_2.add(panel_3_2);
 		
 		JLabel lblNewLabel_2 = new JLabel("R$ 0,00");
@@ -149,7 +168,7 @@ public class TelaDoCaixa extends JFrame {
 		RoundedButton btnNewButton_1_2 = new RoundedButton("New button", 1, 1);
 		btnNewButton_1_2.setText("TOTAL DO IEM");
 		btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_2.setBounds(48, 245, 155, 23);
+		btnNewButton_1_2.setBounds(47, 206, 155, 23);
 		panel_2.add(btnNewButton_1_2);
 		
 		RoundedButton btnNewButton_1_3 = new RoundedButton("New button", 1, 1);
@@ -159,7 +178,7 @@ public class TelaDoCaixa extends JFrame {
 		});
 		btnNewButton_1_3.setText("CÓDIGO");
 		btnNewButton_1_3.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_3.setBounds(48, 310, 155, 23);
+		btnNewButton_1_3.setBounds(47, 278, 155, 23);
 		panel_2.add(btnNewButton_1_3);
 		
 		RoundedButton btnNewButton_1_3_1 = new RoundedButton("New button", 1, 1);
@@ -169,15 +188,15 @@ public class TelaDoCaixa extends JFrame {
 		});
 		btnNewButton_1_3_1.setText("SUBTOTAL");
 		btnNewButton_1_3_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_3_1.setBounds(246, 331, 486, 23);
+		btnNewButton_1_3_1.setBounds(294, 331, 486, 23);
 		panel_2.add(btnNewButton_1_3_1);
 		
 		JPanel panel_3_3_1 = new JPanel();
 		panel_3_3_1.setBackground(Color.WHITE);
-		panel_3_3_1.setBounds(246, 354, 486, 23);
+		panel_3_3_1.setBounds(294, 354, 486, 23);
 		panel_2.add(panel_3_3_1);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		JLabel lblNewLabel_4 = new JLabel("R$:0,00");
 		panel_3_3_1.add(lblNewLabel_4);
 		
 		RoundedButton btnNewButton_1_3_1_1 = new RoundedButton("New button", 1, 1);
@@ -187,15 +206,15 @@ public class TelaDoCaixa extends JFrame {
 		});
 		btnNewButton_1_3_1_1.setText("TOTAL RECEBIDO");
 		btnNewButton_1_3_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_3_1_1.setBounds(297, 399, 181, 23);
+		btnNewButton_1_3_1_1.setBounds(345, 399, 181, 23);
 		panel_2.add(btnNewButton_1_3_1_1);
 		
 		JPanel panel_3_3_1_1 = new JPanel();
 		panel_3_3_1_1.setBackground(Color.WHITE);
-		panel_3_3_1_1.setBounds(297, 422, 181, 23);
+		panel_3_3_1_1.setBounds(345, 422, 181, 23);
 		panel_2.add(panel_3_3_1_1);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
+		JLabel lblNewLabel_5 = new JLabel("R$:0,00");
 		panel_3_3_1_1.add(lblNewLabel_5);
 		
 		RoundedButton btnNewButton_1_3_1_1_1 = new RoundedButton("New button", 1, 1);
@@ -205,30 +224,25 @@ public class TelaDoCaixa extends JFrame {
 		});
 		btnNewButton_1_3_1_1_1.setText("TROCO");
 		btnNewButton_1_3_1_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_3_1_1_1.setBounds(488, 399, 186, 23);
+		btnNewButton_1_3_1_1_1.setBounds(536, 399, 186, 23);
 		panel_2.add(btnNewButton_1_3_1_1_1);
 		
 		JPanel panel_3_3_1_1_1 = new JPanel();
 		panel_3_3_1_1_1.setBackground(Color.WHITE);
-		panel_3_3_1_1_1.setBounds(488, 422, 186, 23);
+		panel_3_3_1_1_1.setBounds(536, 422, 186, 23);
 		panel_2.add(panel_3_3_1_1_1);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
+		JLabel lblNewLabel_6 = new JLabel("R$:0,00");
 		panel_3_3_1_1_1.add(lblNewLabel_6);
 		
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(246, 113, 486, 195);
+		panel_4.setBounds(247, 57, 582, 263);
 		panel_2.add(panel_4);
 		
 		String[] columnNames = {"N°item", "codigo ", "Discriçao", "QTD", "valor.unitario", "total"};
 		Object[][] data = {};
 		panel_4.setLayout(new BorderLayout());
-		table = new JTable(new DefaultTableModel(data, columnNames));
-		panel_4.add(table);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		panel_4.add(scrollPane, BorderLayout.CENTER);
 		
 		HintTextField textfield = new HintTextField("000 00000 00000");  
 		textfield.addKeyListener(new KeyAdapter() {
@@ -243,15 +257,20 @@ public class TelaDoCaixa extends JFrame {
 		});
 		textfield.setHorizontalAlignment(SwingConstants.CENTER);
 
-		textfield.setBounds(48, 133, 155, 20);
+		textfield.setBounds(47, 80, 155, 20);
 		panel_2.add(textfield);
 		textfield.setColumns(10);
 		
 		HintTextField textfield_1 = new HintTextField("00000");
 		textfield_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textfield_1.setColumns(10);
-		textfield_1.setBounds(48, 332, 155, 20);
+		textfield_1.setBounds(47, 300, 155, 20);
 		panel_2.add(textfield_1);
+		table = new JTable(new DefaultTableModel(data, columnNames));
+		panel_4.add(table);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		panel_4.add(scrollPane, BorderLayout.CENTER);
 		
 		/*-----------------------------------------------------
 		
