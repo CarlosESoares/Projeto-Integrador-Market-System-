@@ -11,9 +11,15 @@ public String AreaTrabalho;
 public String Endereco;
 public double Salario;
 public String tipoFucionario;
+public String LoginFuncionari;
 
 
-
+public String getLoginFuncionari() {
+	return LoginFuncionari;
+}
+public void setLoginFuncionari(String loginFuncionari) {
+	LoginFuncionari = loginFuncionari;
+}
 public String getTipoFucionario() {
 	return tipoFucionario;
 }
