@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -18,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import Controle.ControllerCadastro;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -93,25 +96,25 @@ public class Cadastro_Gerente extends JFrame {
 		lblNome.setBounds(224, 68, 106, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextNome_1 = new TextFielArredondada(15,20,20);
-		TextNome_1.setBounds(340, 66, 187, 24);
-		TextNome_1.setColumns(10);
+		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
+		TextNome.setBounds(340, 66, 187, 24);
+		TextNome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setBounds(224, 113, 30, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextCpf_1 = new TextFielArredondada(15,20,20);
-		TextCpf_1.setBounds(340, 111, 187, 24);
-		TextCpf_1.setColumns(10);
+		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
+		TextCpf.setBounds(340, 111, 187, 24);
+		TextCpf.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(224, 163, 42, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextSenha_1 = new TextFielArredondada(15,20,20);
-		TextSenha_1.setBounds(340, 161, 187, 24);
-		TextSenha_1.setColumns(10);
+		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
+		TextSenha.setBounds(340, 161, 187, 24);
+		TextSenha.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
 		lblFuncao.setBounds(224, 206, 49, 18);
@@ -132,6 +135,20 @@ public class Cadastro_Gerente extends JFrame {
 		});
 		Cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String login = TextCpf.getText();
+                String senha = TextSenha.getText();
+                String tipo_funcionario = comboFuncao.getToolTipText(); //a descobrir ainda
+            
+                // testando ainda o cadastro, perdendo a cabeça
+                try {
+					ControllerCadastro.Controle(login, senha, tipo_funcionario);
+					System.out.println("Cadastrado"); 
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("Erro ao Cadastrar");
+				} 
 			}
 		});
 		Cadastrar.setBounds(331, 277, 113, 26);
@@ -141,12 +158,12 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(lblNewLabel_1);
 		panel_2.add(lblNewLabel);
 		panel_2.add(lblNome);
-		panel_2.add(TextNome_1);
+		panel_2.add(TextNome);
 		panel_2.add(lblCpf);
 		panel_2.add(lblSenha);
 		panel_2.add(lblFuncao);
-		panel_2.add(TextSenha_1);
-		panel_2.add(TextCpf_1);
+		panel_2.add(TextSenha);
+		panel_2.add(TextCpf);
 		panel_2.add(comboFuncao);
 		panel_2.add(Cadastrar);
 		
@@ -155,8 +172,5 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
-		
-		
-
-}
+	}
 }
