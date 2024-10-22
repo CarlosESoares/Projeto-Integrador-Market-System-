@@ -6,9 +6,10 @@ import Modelo.CadastroFuncionarioDAO;
 
 public class ControllerCadastro{
 
-	public static void Controle(String login, String senha, String tipo_funcionario ) throws SQLException {
+	public static void Controle(String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco ) throws SQLException {
 		
-		System.out.println("ERRO 1");
-		CadastroFuncionarioDAO.cadastroFuncionario(login, senha, tipo_funcionario);
+		CadastroFuncionarioDAO f = new CadastroFuncionarioDAO();
+		
+		f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
 	}
 }

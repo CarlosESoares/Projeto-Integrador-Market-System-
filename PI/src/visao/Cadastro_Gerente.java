@@ -26,6 +26,7 @@ public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private String tipo_funcionario;
 
 	/**
 	 * Launch the application.
@@ -92,36 +93,56 @@ public class Cadastro_Gerente extends JFrame {
 		lblNewLabel.setBounds(361, 35, 64, 22);
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 		
-		JLabel lblNome = new JLabel("Nome Completo");
-		lblNome.setBounds(224, 68, 106, 18);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(160, 68, 106, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(340, 66, 187, 24);
+		TextNome.setBounds(220, 66, 187, 24);
 		TextNome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF");
-		lblCpf.setBounds(224, 113, 30, 18);
+		lblCpf.setBounds(159, 113, 30, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
-		TextCpf.setBounds(340, 111, 187, 24);
+		TextCpf.setBounds(220, 111, 187, 24);
 		TextCpf.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(224, 163, 42, 18);
+		lblSenha.setBounds(160, 163, 42, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
-		TextSenha.setBounds(340, 161, 187, 24);
+		TextSenha.setBounds(220, 161, 187, 24);
 		TextSenha.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
-		lblFuncao.setBounds(224, 206, 49, 18);
+		lblFuncao.setBounds(160, 206, 49, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
+		TextFielArredondada TextSobrenome = new TextFielArredondada(15, 20, 20);
+		TextSobrenome.setColumns(10);
+		TextSobrenome.setBounds(522, 66, 187, 24);
+		panel_2.add(TextSobrenome);
+		
+		TextFielArredondada TextTelefone = new TextFielArredondada(15, 20, 20);
+		TextTelefone.setColumns(10);
+		TextTelefone.setBounds(522, 114, 187, 24);
+		panel_2.add(TextTelefone);
+		
+		TextFielArredondada TextSalario = new TextFielArredondada(15, 20, 20);
+		TextSalario.setColumns(10);
+		TextSalario.setBounds(522, 161, 187, 24);
+		panel_2.add(TextSalario);
+		
+		TextFielArredondada TextEndereço = new TextFielArredondada(15, 20, 20);
+		TextEndereço.setColumns(10);
+		TextEndereço.setBounds(522, 207, 187, 24);
+		panel_2.add(TextEndereço);
+		
 		JComboBox<Object> comboFuncao = new JComboBox<Object>();
-		comboFuncao.setBounds(340, 206, 187, 20);
+		comboFuncao.setBounds(220, 206, 187, 20);
 		comboFuncao.setModel(new DefaultComboBoxModel<Object>(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
@@ -135,13 +156,27 @@ public class Cadastro_Gerente extends JFrame {
 		});
 		Cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String NomeFuncionario = TextNome.getText();
 				String login = TextCpf.getText();
                 String senha = TextSenha.getText();
-                String tipo_funcionario = comboFuncao.getToolTipText(); //a descobrir ainda
+                String sobrenome = TextSobrenome.getText();
+                String telefone = TextTelefone.getText();
+                String salario = TextSalario.getText();
+                String endereco = TextEndereço.getText();
+                int op = comboFuncao.getSelectedIndex();
+                	if(op == 1) {
+                		tipo_funcionario = "Caixa";
+                	}else if(op == 2){
+                		tipo_funcionario = "Gerente";
+                	}else if (op == 2) {
+                		tipo_funcionario = "Esqoquista";
+                	}else {
+                		tipo_funcionario = null;
+                	}
             
                 // testando ainda o cadastro, perdendo a cabeça
                 try {
-					ControllerCadastro.Controle(login, senha, tipo_funcionario);
+					ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
 					System.out.println("Cadastrado"); 
 					
 				} catch (SQLException e1) {
@@ -172,5 +207,27 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+		JLabel lblSobrenome = new JLabel("Sobrenome");
+		lblSobrenome.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblSobrenome.setBounds(431, 68, 106, 18);
+		panel_2.add(lblSobrenome);
+		
+		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblTelefone.setBounds(431, 113, 106, 18);
+		panel_2.add(lblTelefone);
+		
+		JLabel lblSalario = new JLabel("Salario");
+		lblSalario.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblSalario.setBounds(431, 163, 106, 18);
+		panel_2.add(lblSalario);
+		
+		JLabel lblEndereco = new JLabel("Endereco");
+		lblEndereco.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblEndereco.setBounds(431, 206, 106, 18);
+		panel_2.add(lblEndereco);
+		
+		
 	}
 }

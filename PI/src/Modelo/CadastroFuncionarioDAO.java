@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CadastroFuncionarioDAO extends GenericDAO {
-	public static void cadastroFuncionario(String login, String senha, String tipo_funcionario) throws SQLException {
-        String query = "INSERT INTO funcionarios (login, senha, tipo_funcionario) VALUES (=?, =?, =?)";
+	public void cadastroFuncionario(String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco) throws SQLException {
+        String query = "INSERT INTO funcionarios (NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, senha);
-            preparedStatement.setString(3, tipo_funcionario);
+            preparedStatement.setString(1, NomeFuncionario);
+            preparedStatement.setString(2, login);
+            preparedStatement.setString(3, senha);
+            preparedStatement.setString(4, tipo_funcionario);
+            preparedStatement.setString(5, sobrenome);
+            preparedStatement.setString(6, salario);
+            preparedStatement.setString(7, telefone);
+            preparedStatement.setString(8, endereco);
+            
             preparedStatement.executeUpdate();
         }
     }
@@ -31,24 +37,34 @@ public class CadastroFuncionarioDAO extends GenericDAO {
 
             while (resultSet.next()) {
             	String id = resultSet.getString("id_funcionario");
+            	String NomeFuncionario = resultSet.getString("NomeFuncionario");
             	String login = resultSet.getString("login");
                 String senha = resultSet.getString("senha");
                 String tipo_funcionario = resultSet.getString("tipo_funcionario");
+                String sobrenome = resultSet.getString("Sobrenome");
+            	String salario = resultSet.getString("salario");
+                String telefone = resultSet.getString("telefone");
+                String endereco = resultSet.getString("endereco");
 
-                Funcionario.add(new Object[] { id, login, senha, tipo_funcionario});
+                Funcionario.add(new Object[] { id, NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco});
             }
         }
         
         return Funcionario;
     }
-    public boolean atualizarFuncionario(int id, String login, String senha, String tipo_funcionario) {
-        String sql = "UPDATE funcionario SET login = ?, senha = ?, tipo_funcionario = ? WHERE id_funcionario = ?";
+    public boolean atualizarFuncionario(int id,String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco) {
+        String sql = "UPDATE funcionario SET NomeFuncionario = ?, login = ?, senha = ?, tipo_funcionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, login);
-            stmt.setString(2, senha);
-            stmt.setString(3, tipo_funcionario);
-            stmt.setInt(7, id);
+        	 stmt.setString(1, NomeFuncionario);
+        	stmt.setString(2, login);
+            stmt.setString(3, senha);
+            stmt.setString(4, tipo_funcionario);
+            stmt.setString(5, sobrenome);
+        	stmt.setString(6, salario);
+            stmt.setString(7, telefone);
+            stmt.setString(8, endereco);
+            stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
