@@ -19,5 +19,11 @@ public class ControllerEstoquista {
 		tela2.setVisible(true);
 		
 	}
+	public void AbrirTelaInicial() {
+		telaInicial Tela = new telaInicial();
+		
+		Tela.setVisible(true);
+		
+	}
 
 }

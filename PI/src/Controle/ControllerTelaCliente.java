@@ -2,6 +2,7 @@ package Controle;
 
 import visao.TelaCadastroCliente;
 import visao.TelaEstoque;
+import visao.telaInicial;
 
 public class ControllerTelaCliente {
 	public void AbrirTelaCliente(){
@@ -12,6 +13,12 @@ public class ControllerTelaCliente {
 
 	public void AbrirTelaEstoque() {
 		TelaEstoque Tela = new TelaEstoque();
+		
+		Tela.setVisible(true);
+		
+	}
+	public void AbrirTelaInicial() {
+		telaInicial Tela = new telaInicial();
 		
 		Tela.setVisible(true);
 		

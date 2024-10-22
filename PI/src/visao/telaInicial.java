@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Controle.ControleDeLogin;
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCAIxa;
 import Controle.ControllerTelaCliente;
@@ -184,8 +185,21 @@ public class telaInicial extends JFrame {
 		btnCaixa.setBounds(468, 175, 156, 66);
 		panel_2.add(btnCaixa);
 		
+		RoundedButton rndbtnLo = new RoundedButton("Tela_Estoque", 30, 30);
+		rndbtnLo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControleDeLogin login = new ControleDeLogin();
+            	login.iniciar();
+            	dispose();
+			}
+		});
+		rndbtnLo.setText("Log off");
+		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnLo.setBackground(Color.RED);
+		rndbtnLo.setBounds(787, 13, 109, 24);
+		panel_2.add(rndbtnLo);
+		
 		
 
 }
-
 }
