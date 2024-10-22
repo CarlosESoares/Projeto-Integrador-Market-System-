@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controle.ControllerTelaCliente;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -83,18 +85,11 @@ public class TelaDoCaixa extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
-		
-		JLabel imgLogo = new JLabel("");
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
 		Image imageLogo = originalIconLogo.getImage(); // Obtenha a imagem do ImageIcon
 		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
 		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
 		panel_1.setLayout(new MigLayout("", "[100px]", "[100px][][][][][][][][][][]"));
-		imgLogo.setIcon(ImgRedimencionada);
-		
-		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
-		
-		panel_1.add(imgLogo, "cell 0 0,alignx left,aligny top");
 		
 		
 		
@@ -115,6 +110,20 @@ public class TelaDoCaixa extends JFrame {
 			panel_2.setVisible(true);
 			}
 		});
+		
+		RoundedButton imgLogo = new RoundedButton("",1,1);
+		imgLogo.setBackground(new Color(192, 192, 192));
+		panel_1.add(imgLogo, "cell 0 0");
+		imgLogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				abrir.AbrirTelaInicial();
+				dispose();
+			}
+		});
+		imgLogo.setIcon(ImgRedimencionada);
+		
+		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		panel_1.add(btnNewButton, "cell 0 6,alignx left,aligny center");
 		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
