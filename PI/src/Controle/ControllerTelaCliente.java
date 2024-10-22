@@ -8,13 +8,6 @@ public class ControllerTelaCliente {
 		TelaCadastroCliente Tela = new TelaCadastroCliente();
 		
 		Tela.setVisible(true);
-		
 	}
-		public void AbrirTelaEstoque(){
-			TelaEstoque tela = new TelaEstoque();
-			
-			tela.setVisible(true);
-		}
-			
 		
 }

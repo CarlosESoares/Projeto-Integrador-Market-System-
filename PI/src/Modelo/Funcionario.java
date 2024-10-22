@@ -6,8 +6,7 @@ public String NomeFuncionario;
 public String SobrenomeFuncionario;
 public int IdFuncionario;
 public String SenhaFuncionario;
-public float TelefoneFuncionario;
-public String AreaTrabalho;
+public int TelefoneFuncionario;
 public String Endereco;
 public double Salario;
 public String tipoFucionario;
@@ -50,18 +49,13 @@ public String getSenhaFuncionario() {
 public void setSenhaFuncionario(String senhaFuncionario) {
 	SenhaFuncionario = senhaFuncionario;
 }
-public float getTelefoneFuncionario() {
+public int getTelefoneFuncionario() {
 	return TelefoneFuncionario;
 }
-public void setTelefoneFuncionario(float telefoneFuncionario) {
+public void setTelefoneFuncionario(int telefoneFuncionario) {
 	TelefoneFuncionario = telefoneFuncionario;
 }
-public String getAreaTrabalho() {
-	return AreaTrabalho;
-}
-public void setAreaTrabalho(String areaTrabalho) {
-	AreaTrabalho = areaTrabalho;
-}
+
 public String getEndereco() {
 	return Endereco;
 }

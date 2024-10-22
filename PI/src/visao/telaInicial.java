@@ -134,7 +134,7 @@ public class telaInicial extends JFrame {
 		btnEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerEstoquista abrir = new ControllerEstoquista();
-				abrir.AbrirTelaEstoquista();
+				abrir.AbrirTelaEstoque();
 				dispose();
 		
 			}
@@ -177,7 +177,7 @@ public class telaInicial extends JFrame {
 		btnCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerTelaCAIxa abrir = new ControllerTelaCAIxa();
-				abrir.AbrirTelaCaixa();
+				abrir.AbrirCaixa();
 				dispose();
 			}
 		});

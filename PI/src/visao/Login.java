@@ -24,29 +24,17 @@ public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JTextField resCPF;
+	public JTextField ResCPF;
 	public JTextField ResSenha2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	ControleDeLogin controleDeLogin;
 
 	/**
 	 * Create the frame.
+	 * @param controleDeLogin 
 	 */
-	public Login() {
+	public Login(ControleDeLogin controleDeLogin) {
+		this.controleDeLogin = controleDeLogin;
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0,500,500); 
@@ -82,16 +70,16 @@ public class Login extends JFrame {
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 40));
 		panel_2.add(lblNewLabel);
 		
-		JLabel TxtCPF2 = new JLabel("CPF");
-		TxtCPF2.setBounds(151, 145, 39, 24);
+		JLabel TxtCPF2 = new JLabel("Login");
+		TxtCPF2.setBounds(151, 145, 82, 24);
 		TxtCPF2.setFont(new Font("Arial", Font.BOLD, 20));
 		panel_2.add(TxtCPF2);
 		
 		
-		TextFielArredondada ResCPF = new TextFielArredondada(15,20,20);
-		ResCPF.setBounds(151, 175, 179, 24);
-		panel_2.add(ResCPF);
-		ResCPF.setColumns(10);
+		this.ResCPF = new TextFielArredondada(15, 20, 20);  // Usando "this." para referenciar a variável de instância
+        ResCPF.setBounds(151, 175, 179, 24);
+        panel_2.add(ResCPF);
+        ResCPF.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha");
 		lblNewLabel_1.setBounds(151, 246, 59, 24);
@@ -100,10 +88,11 @@ public class Login extends JFrame {
 		
 		
 		
-		TextFielArredondada ResSenha2 = new TextFielArredondada(15, 20, 20);
-		ResSenha2.setBounds(151, 276, 179, 24);
-		panel_2.add(ResSenha2);
-		ResSenha2.setColumns(10);
+		  this.ResSenha2 = new TextFielArredondada(15, 20, 20);  // Usando "this." para referenciar a variável de instância
+	        ResSenha2.setBounds(151, 276, 179, 24);
+	        panel_2.add(ResSenha2);
+	        ResSenha2.setColumns(10);
+
 		
 		RoundedButton BtnEntrarLogin2 = new RoundedButton("Entrar",30,30);
 		BtnEntrarLogin2.addMouseListener(new MouseAdapter() {
@@ -115,25 +104,9 @@ public class Login extends JFrame {
 		    }
 		});
 		BtnEntrarLogin2.setBounds(151, 335, 179, 32);
-		BtnEntrarLogin2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				ControleDeLogin controleDeLogin = new ControleDeLogin(Login.this); // Passando a instância atual
-
-		        // Obtenha os valores dos campos
-		        String cpf1 = ResCPF.getText(); // Use ResCPF corretamente
-		        String senha1 = new String(ResSenha2.getText());
-
-		        // Chame o método logar
-		        controleDeLogin.logar(cpf1, senha1 ); // O método já está retornando perfil
-				    if (perfil != null) {
-				        // Aqui você pode direcionar o fluxo para outra tela ou ação
-				    	JOptionPane.showInputDialog("Login bem-sucedido! Bem-vindo, " + perfil.toString());
-				    } else {
-				        // Caso o login falhe, você pode notificar o usuário
-				    	JOptionPane.showInputDialog ("CPF ou senha incorretos.");
-				    }
-		}});
+		
+		BtnEntrarLogin2.addActionListener(controleDeLogin.logar());
+	
 		
 		BtnEntrarLogin2.setBackground(new Color(255, 0, 0));
 		BtnEntrarLogin2.setForeground(new Color(255, 255, 255));

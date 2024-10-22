@@ -1,12 +1,16 @@
 package Controle;
 
+import visao.Login;
 import visao.TelaVendas;
+import visao.telaInicial;
 
 public class ControllerTelaVendas {
 	public void AbrirTelaVendas(){
-		TelaVendas Tela = new TelaVendas();
+
+		telaInicial tela = new telaInicial();
 		
-		Tela.setVisible(true);
+		tela.setVisible(true);
+	
 		
 	}
 }

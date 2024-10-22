@@ -1,12 +1,13 @@
 package Controle;
 
-import visao.TelaGerente;
+import visao.Login;
+import visao.telaInicial;
 
 public class ControllerGerente {
 
 	public void AbrirTelaGerente() {
 
-		TelaGerente tela = new TelaGerente();
+		telaInicial tela = new telaInicial();
 		
 		tela.setVisible(true);
 		

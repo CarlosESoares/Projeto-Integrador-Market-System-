@@ -21,7 +21,12 @@ CREATE TABLE IF NOT EXISTS funcionarios (
   id_funcionario INT  primary key auto_increment,
   tipo_funcionario VARCHAR(45) NOT NULL,
   login VARCHAR(45) NOT NULL,
-  senha VARCHAR(45) NOT NULL
+  senha VARCHAR(45) NOT NULL,
+  NomeFuncionario Varchar(45) not null,
+  SobreNome Varchar(45) not null,
+  Telefone Varchar(45) not null,
+  Salario Varchar(45) not null,
+  Endereco Varchar(45) not null
 );
 
 -- -----------------------------------------------------

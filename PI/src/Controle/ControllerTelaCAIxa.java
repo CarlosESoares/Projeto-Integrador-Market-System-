@@ -1,13 +1,22 @@
 package Controle;
 
 import visao.TelaDoCaixa;
+import visao.telaInicial;
 
 public class ControllerTelaCAIxa {
 
 	public void AbrirTelaCaixa(){
-		TelaDoCaixa Tela = new TelaDoCaixa();
+
+		telaInicial tela = new telaInicial();
 		
-		Tela.setVisible(true);
+		tela.setVisible(true);
+	
+	}
+
+	public void AbrirCaixa() {
+		// TODO Auto-generated method stub
+		TelaDoCaixa tela = new TelaDoCaixa();
+		tela.setVisible(true);
 		
 	}
 }
