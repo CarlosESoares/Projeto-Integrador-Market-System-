@@ -9,5 +9,12 @@ public class ControllerTelaCliente {
 		
 		Tela.setVisible(true);
 	}
+
+	public void AbrirTelaEstoque() {
+		TelaEstoque Tela = new TelaEstoque();
+		
+		Tela.setVisible(true);
+		
+	}
 		
 }
