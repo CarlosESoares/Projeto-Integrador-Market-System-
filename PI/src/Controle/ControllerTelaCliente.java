@@ -1,12 +1,20 @@
 package Controle;
 
-import visao.TelaCliente;
+import visao.TelaCadastroCliente;
+import visao.TelaEstoque;
 
 public class ControllerTelaCliente {
 	public void AbrirTelaCliente(){
-		TelaCliente Tela = new TelaCliente();
+		TelaCadastroCliente Tela = new TelaCadastroCliente();
 		
 		Tela.setVisible(true);
 		
 	}
+		public void AbrirTelaEstoque(){
+			TelaEstoque tela = new TelaEstoque();
+			
+			tela.setVisible(true);
+		}
+			
+		
 }

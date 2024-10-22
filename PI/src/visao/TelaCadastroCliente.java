@@ -32,8 +32,9 @@ import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCliente;
+import Modelo.ClienteDAO;
 import Modelo.ConexaoBanco;
-import Modelo.ProdutoDAO;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,12 +44,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelaEstoque extends JFrame {
+public class TelaCadastroCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private ProdutoDAO produtoDAO;
+	private ClienteDAO clienteDAO;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class TelaEstoque extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEstoque frame = new TelaEstoque();
+					TelaCadastroCliente frame = new TelaCadastroCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,13 +71,13 @@ public class TelaEstoque extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEstoque() {
+	public TelaCadastroCliente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 582);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		produtoDAO = new ProdutoDAO();
+		clienteDAO = new ClienteDAO();
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -100,35 +101,36 @@ public class TelaEstoque extends JFrame {
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
-		rndbtnHomeProdutos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		rndbtnHomeProdutos.setText("Produtos");
-		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
-		rndbtnHomeProdutos.setBackground(Color.GRAY);
-		
-		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
-		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
+		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnHomeClientes.setBackground(Color.GRAY); 
+		    	rndbtnHomeProdutos.setBackground(Color.GRAY); 
 		    }
 		    public void mouseExited(MouseEvent e) {
-		    	rndbtnHomeClientes.setBackground(Color.RED); 
+		    	rndbtnHomeProdutos.setBackground(Color.RED);
 		    }
 		});
-		rndbtnHomeClientes.addActionListener(new ActionListener() {
+		rndbtnHomeProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerTelaCliente abrir = new ControllerTelaCliente();
-				abrir.AbrirTelaCliente();
+				abrir.AbrirTelaEstoque();
 				dispose();
 		
 			}
 		});
+		rndbtnHomeProdutos.setText("Produtos");
+		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeProdutos.setBackground(Color.RED);
+		
+		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
 
+
+		rndbtnHomeClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rndbtnHomeClientes.setText("Clientes");
 		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 15));
-		rndbtnHomeClientes.setBackground(Color.RED);
+		rndbtnHomeClientes.setBackground(Color.GRAY);
 		
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeVendas.addMouseListener(new MouseAdapter() {
@@ -184,11 +186,11 @@ public class TelaEstoque extends JFrame {
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cadastro de produto");
+		JLabel lblNewLabel_1 = new JLabel("Cadastro de cliente");
 		lblNewLabel_1.setBounds(185, 0, 182, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		JLabel lblNome = new JLabel("Nome do produto:");
+		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(9, 71, 116, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
@@ -196,40 +198,21 @@ public class TelaEstoque extends JFrame {
 		TextNome.setBounds(10, 104, 187, 24);
 		TextNome.setColumns(10);
 		
-		JLabel lblTipo = new JLabel("Tipo do produto:");
+		JLabel lblTipo = new JLabel("Sobrenome:");
 		lblTipo.setBounds(10, 139, 105, 18);
 		lblTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextTipo = new TextFielArredondada(15,20,20);
-		TextTipo.setBounds(10, 165, 187, 24);
-		TextTipo.setColumns(10);
+		TextFielArredondada TextSobrenome = new TextFielArredondada(15,20,20);
+		TextSobrenome.setBounds(10, 165, 187, 24);
+		TextSobrenome.setColumns(10);
 		
-		JLabel lblChegada = new JLabel("Data de chegada:");
+		JLabel lblChegada = new JLabel("CPF:");
 		lblChegada.setBounds(10, 200, 115, 18);
 		lblChegada.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextChegada = new TextFielArredondada(15,20,20);
-		TextChegada.setBounds(10, 229, 187, 24);
-		TextChegada.setColumns(10);
-		
-		JLabel lblPreco = new JLabel("Preço:");
-		lblPreco.setBounds(10, 264, 43, 18);
-		lblPreco.setFont(new Font("Arial", Font.PLAIN, 15));
-		
-		TextFielArredondada TextQntd = new TextFielArredondada(15, 20, 20);
-		TextQntd.setColumns(10);
-		TextQntd.setBounds(523, 293, 187, 24);
-		panel_2.add(TextQntd);
-		
-		JLabel lblQntd = new JLabel("Quantidade:");
-		lblQntd.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblQntd.setBounds(523, 264, 139, 18);
-		panel_2.add(lblQntd);
-
-		
-		TextFielArredondada TextPreco = new TextFielArredondada(15, 20, 20);
-		TextPreco.setBounds(10, 293, 187, 24);
-		TextPreco.setColumns(10);
+		TextFielArredondada TextCPF = new TextFielArredondada(15,20,20);
+		TextCPF.setBounds(10, 229, 187, 24);
+		TextCPF.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnExcluir.addMouseListener(new MouseAdapter() {
@@ -244,26 +227,26 @@ public class TelaEstoque extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        int selectedRow = table.getSelectedRow();
 		        if (selectedRow != -1) {
-		            int idProduto = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+		            int idcliente = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
 		            
-		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
 		            if (confirm == JOptionPane.YES_OPTION) {
 		                try {
-		                    boolean sucesso = produtoDAO.excluirProduto(idProduto);
+		                    boolean sucesso = ClienteDAO.excluircliente(idcliente);
 		                    if (sucesso) {
 		                 
 		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-		                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+		                        JOptionPane.showMessageDialog(null, "cliente excluído com sucesso!");
 		                    } else {
-		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
+		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o cliente.");
 		                    }
 		                } catch (SQLException ex) {
 		                    ex.printStackTrace();
-		                    JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
+		                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente: " + ex.getMessage());
 		                }
 		            }
 		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+		            JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");
 		        }
 		    }
 
@@ -272,9 +255,6 @@ public class TelaEstoque extends JFrame {
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
-		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
-		TextValidade.setBounds(255, 293, 187, 24);
-		TextValidade.setColumns(10);
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
@@ -292,19 +272,17 @@ public class TelaEstoque extends JFrame {
 
 
 		            String nome = table.getValueAt(selectedRow, 1).toString();
-		            String tipo = table.getValueAt(selectedRow, 2).toString();
-		            String chegada = table.getValueAt(selectedRow, 3).toString();
-		            String validade = table.getValueAt(selectedRow, 4).toString();
-		            double preco = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
-		            int quantidade = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
+		            String sobrenome = table.getValueAt(selectedRow, 2).toString();
+		            String CPF = table.getValueAt(selectedRow, 3).toString();
 
 
-		            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
+
+		            boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF);
 		            
 		            if (success) {
-		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+		                JOptionPane.showMessageDialog(null, "cliente atualizado com sucesso!");
 		            } else {
-		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.");
 		            }
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
@@ -317,10 +295,6 @@ public class TelaEstoque extends JFrame {
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnEditar.setBackground(Color.RED);
 		
-		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
-		lblValidadeDoProduto.setBounds(255, 264, 139, 18);
-		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
-		
 
 		
 		JPanel panel_3 = new JPanel();
@@ -328,7 +302,7 @@ public class TelaEstoque extends JFrame {
 		
 		
 
-		String[] columnNames = {"ID", "Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade", "Quantidade"};
+		String[] columnNames = {"ID", "Nome", "Sobrenome", "CPF",};
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
 
@@ -338,7 +312,7 @@ public class TelaEstoque extends JFrame {
 
 
 
-        buscarProdutos();
+        buscarClientes();
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setBounds(10, 396, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -354,39 +328,29 @@ public class TelaEstoque extends JFrame {
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	 if (TextNome.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo Nome", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextTipo.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
+	                if (TextSobrenome.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo Sobrenome", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextChegada.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
+	                if (TextCPF.getText().trim().isEmpty()) {
+	                    JOptionPane.showMessageDialog(null, "Preencha o campo CPF", "Erro", JOptionPane.ERROR_MESSAGE);
 	  
 	                }
-	                if (TextPreco.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	                if (TextValidade.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	                if (TextQntd.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
-	                } else {
+	                else {
 	             String nome = TextNome.getText();
-	                String tipo = TextTipo.getText();
-	                String dataChegada = TextChegada.getText();
-	                String preco = TextPreco.getText();
-	                String validade = TextValidade.getText();
-	                String qntd = TextQntd.getText();
+	                String Sobrenome = TextSobrenome.getText();
+	                String CPF = TextCPF.getText();
+	                
 	               
 	               
 	            
 	                try {
-	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
-	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-	                    buscarProdutos(); 
+	                    ClienteDAO.cadastrarCliente(nome, Sobrenome, CPF);
+	                    JOptionPane.showMessageDialog(null, "cliente cadastrado com sucesso!");
+	                    buscarClientes(); 
 	                } catch (SQLException ex) {
-	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
+	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente.");
 	                    ex.printStackTrace();
 	                }
 	                }
@@ -399,16 +363,12 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(lblNome);
 		panel_2.add(lblTipo);
 		panel_2.add(TextNome);
-		panel_2.add(TextTipo);
-		panel_2.add(TextChegada);
-		panel_2.add(lblPreco);
-		panel_2.add(TextPreco);
+		panel_2.add(TextSobrenome);
+		panel_2.add(TextCPF);
 		panel_2.add(lblChegada);
 		panel_2.add(rndbtnCadastrar);
 		panel_2.add(rndbtnExcluir);
 		panel_2.add(rndbtnEditar);
-		panel_2.add(lblValidadeDoProduto);
-		panel_2.add(TextValidade);
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
@@ -422,16 +382,16 @@ public class TelaEstoque extends JFrame {
 
 
 }
-	private void buscarProdutos() {
+	private void buscarClientes() {
         try {
-            List<Object[]> produtos = produtoDAO.buscarTodosProdutos();
+            List<Object[]> clientes = ClienteDAO.buscarTodosClientes();
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0);  
-            for (Object[] produto : produtos) {
-                model.addRow(produto); 
+            for (Object[] clientes1 : clientes) {
+                model.addRow(clientes1); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+            JOptionPane.showMessageDialog(null, "Erro ao buscar clientes.");
             e.printStackTrace();
         }
     }
