@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,6 +25,9 @@ import javax.swing.border.EmptyBorder;
 
 import Controle.ControleDeLogin;
 import Controle.ControllerCadastro;
+import Controle.ControllerEstoquista;
+import Controle.ControllerTelaCliente;
+import Controle.ControllerTelaVendas;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -82,7 +87,96 @@ public class Cadastro_Gerente extends JFrame {
 		
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
-		panel_1.add(imgLogo);
+		RoundedButton btnProduto = new RoundedButton("Produto", 30, 30);
+		btnProduto.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	btnProduto.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	btnProduto.setBackground(Color.RED);
+		    }
+		});
+		btnProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerEstoquista abrir = new ControllerEstoquista();
+				abrir.AbrirTelaEstoquista();
+				dispose();
+		
+			}
+		});
+		btnProduto.setText("Produtos");
+		btnProduto.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnProduto.setBackground(Color.RED);
+		
+		RoundedButton btnCliente = new RoundedButton("Cliente", 30, 30);
+		btnCliente.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	btnCliente.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	btnCliente.setBackground(Color.RED);
+		    }
+		});
+		btnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				abrir.AbrirTelaCliente();
+				dispose();
+		
+			}
+		});
+		btnCliente.setText("Clientes");
+		btnCliente.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnCliente.setBackground(Color.RED);
+		
+		RoundedButton btnVendas = new RoundedButton("Vendas", 30, 30);
+		btnVendas.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	btnVendas.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	btnVendas.setBackground(Color.RED);
+		    }
+		});
+		btnVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaVendas abrir = new ControllerTelaVendas();
+				abrir.AbrirTelaVendas();
+				dispose();
+		
+			}
+		});
+		btnVendas.setText("Vendas");
+		btnVendas.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnVendas.setBackground(Color.RED);
+		
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(5)
+							.addComponent(imgLogo))
+						.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(5)
+					.addComponent(imgLogo)
+					.addGap(18)
+					.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(249, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
@@ -218,7 +312,6 @@ public class Cadastro_Gerente extends JFrame {
 					JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
 					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
 				} 
@@ -266,7 +359,7 @@ public class Cadastro_Gerente extends JFrame {
 		lblEndereco.setBounds(431, 206, 106, 18);
 		panel_2.add(lblEndereco);
 		
-		RoundedButton Deslogar = new RoundedButton("Cadastrar", 30, 30); // deslogar
+		RoundedButton Deslogar = new RoundedButton("Log Off", 30, 30); // deslogar
 		Deslogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControleDeLogin login = new ControleDeLogin();
