@@ -215,11 +215,12 @@ public class Cadastro_Gerente extends JFrame {
                 try {
 					ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
 					System.out.println("Cadastrado"); 
+					JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					System.out.println("Erro ao Cadastrar");
+					JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
 				} 
 			}
 		});
