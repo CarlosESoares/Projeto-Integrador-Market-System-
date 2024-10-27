@@ -16,10 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Controle.ControleDeLogin;
 import Controle.ControllerCadastro;
 
 public class Cadastro_Gerente extends JFrame {
@@ -101,6 +103,7 @@ public class Cadastro_Gerente extends JFrame {
 		TextNome.setBounds(220, 66, 187, 24);
 		TextNome.setColumns(10);
 		
+		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setBounds(159, 113, 30, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -108,6 +111,7 @@ public class Cadastro_Gerente extends JFrame {
 		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
 		TextCpf.setBounds(220, 111, 187, 24);
 		TextCpf.setColumns(10);
+		
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(160, 163, 42, 18);
@@ -164,6 +168,38 @@ public class Cadastro_Gerente extends JFrame {
                 String salario = TextSalario.getText();
                 String endereco = TextEndereço.getText();
                 int op = comboFuncao.getSelectedIndex();
+                
+                boolean hasLetter = login.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter2 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter3 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
+                
+                //Campos para validação
+	            if (login.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo CPF não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (login.length() != 11) {
+	                JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (hasLetter) {
+	                JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (NomeFuncionario.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (senha.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (sobrenome.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (hasLetter2) {
+	                JOptionPane.showMessageDialog(null, "O Telefone deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (telefone.length() != 9) {
+	                JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (telefone.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo telefone não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (endereco.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (salario.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (hasLetter3) {
+	                JOptionPane.showMessageDialog(null, "O Salaeio deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }
+	            //Validação do comboBox
                 	if(op == 1) {
                 		tipo_funcionario = "Caixa";
                 	}else if(op == 2){
@@ -172,6 +208,7 @@ public class Cadastro_Gerente extends JFrame {
                 		tipo_funcionario = "Esqoquista";
                 	}else {
                 		tipo_funcionario = null;
+                		JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
                 	}
             
                 // testando ainda o cadastro, perdendo a cabeça
@@ -227,6 +264,20 @@ public class Cadastro_Gerente extends JFrame {
 		lblEndereco.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblEndereco.setBounds(431, 206, 106, 18);
 		panel_2.add(lblEndereco);
+		
+		RoundedButton Deslogar = new RoundedButton("Cadastrar", 30, 30); // deslogar
+		Deslogar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControleDeLogin login = new ControleDeLogin();
+            	login.iniciar();
+            	dispose();
+			}
+		});
+		Deslogar.setText("Log Off");
+		Deslogar.setFont(new Font("Arial", Font.PLAIN, 15));
+		Deslogar.setBackground(Color.RED);
+		Deslogar.setBounds(783, 7, 113, 26);
+		panel_2.add(Deslogar);
 		
 		
 	}
