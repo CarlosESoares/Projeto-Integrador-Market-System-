@@ -265,7 +265,7 @@ public class Cadastro_Gerente extends JFrame {
                 
                 boolean hasLetter = login.chars().anyMatch(ch -> !Character.isDigit(ch));
                 boolean hasLetter2 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
-                boolean hasLetter3 = salario.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter3 = salario.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',');
                 
                 //Campos para validação
 	            if (login.isEmpty()) {
