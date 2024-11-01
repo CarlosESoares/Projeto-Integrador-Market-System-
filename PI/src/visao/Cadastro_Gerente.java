@@ -265,7 +265,7 @@ public class Cadastro_Gerente extends JFrame {
                 
                 boolean hasLetter = login.chars().anyMatch(ch -> !Character.isDigit(ch));
                 boolean hasLetter2 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
-                boolean hasLetter3 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter3 = salario.chars().anyMatch(ch -> !Character.isDigit(ch));
                 
                 //Campos para validação
 	            if (login.isEmpty()) {
@@ -291,7 +291,17 @@ public class Cadastro_Gerente extends JFrame {
 	            }else if (salario.isEmpty()) {
 	                JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
 	            }else if (hasLetter3) {
-	                JOptionPane.showMessageDialog(null, "O Salaeio deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	                JOptionPane.showMessageDialog(null, "O Salario deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else {
+	            	try {
+						ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
+						System.out.println("Cadastrado"); 
+						JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
+						
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
+					} 
 	            }
 	            //Validação do comboBox
                 	if(op == 1) {
@@ -306,15 +316,7 @@ public class Cadastro_Gerente extends JFrame {
                 	}
             
                 // testando ainda o cadastro, perdendo a cabeça
-                try {
-					ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
-					System.out.println("Cadastrado"); 
-					JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
-					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
-				} 
+            
 			}
 		});
 		Cadastrar.setBounds(331, 277, 113, 26);
