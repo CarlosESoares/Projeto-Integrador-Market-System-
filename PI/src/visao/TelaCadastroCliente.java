@@ -322,16 +322,24 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	String CPF1 = TextCPF.getText();
+                boolean hasLetter = CPF1.chars().anyMatch(ch -> !Character.isDigit(ch));
 		    	 if (TextNome.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo Nome", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextSobrenome.getText().trim().isEmpty()) {
+		    	  if   (TextSobrenome.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo Sobrenome", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextCPF.getText().trim().isEmpty()) {
+	                 if   (TextCPF.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo CPF", "Erro", JOptionPane.ERROR_MESSAGE);
 	  
 	                }
+	           
+	                 else if  (CPF1.length() != 11) {
+		                JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+		            } else if   (hasLetter) {
+		                JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+		            }
 	                else {
 	             String nome = TextNome.getText();
 	                String Sobrenome = TextSobrenome.getText();

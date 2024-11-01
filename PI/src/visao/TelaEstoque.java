@@ -354,25 +354,48 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	 if (TextNome.getText().trim().isEmpty()) {
+		    	String validade1 = TextValidade.getText();
+		    	 String dataChegada1 = TextChegada.getText();
+		    	String qntd1 = TextQntd.getText();    	
+                boolean hasLetter = qntd1.chars().anyMatch(ch -> !Character.isDigit(ch));
+                String preco1 = TextPreco.getText();    	
+                boolean hasLetter1 = preco1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '.' && ch != ',');
+                boolean hasLetter2 = dataChegada1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '/');
+                boolean hasLetter3 = validade1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '/');
+                 if (TextNome.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextTipo.getText().trim().isEmpty()) {
+		    	  if (TextTipo.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
-	                if (TextChegada.getText().trim().isEmpty()) {
+	             
+	                 if (TextChegada.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
 	  
 	                }
+	                 if   (hasLetter2) {
+		                JOptionPane.showMessageDialog(null, "O campo data de chegada deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
+		            }
+	              
 	                if (TextPreco.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
+	                if   (hasLetter1) {
+		                JOptionPane.showMessageDialog(null, "O campo preço deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+		            }
 	                if (TextValidade.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
 	                }
+	                if   (hasLetter3) {
+		                JOptionPane.showMessageDialog(null, "O campo data de validade deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
+		            }
 	                if (TextQntd.getText().trim().isEmpty()) {
 	                    JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
-	                } else {
+	                }  
+            else if   (hasLetter) {
+                JOptionPane.showMessageDialog(null, "O campo quantidade deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+	                else {
 	             String nome = TextNome.getText();
 	                String tipo = TextTipo.getText();
 	                String dataChegada = TextChegada.getText();
