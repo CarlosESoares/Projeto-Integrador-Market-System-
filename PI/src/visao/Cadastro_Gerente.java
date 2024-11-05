@@ -20,22 +20,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controle.ControleDeLogin;
 import Controle.ControllerCadastro;
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import Modelo.CadastroFuncionarioDAO;
 
 public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String tipo_funcionario;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -202,62 +204,58 @@ public class Cadastro_Gerente extends JFrame {
 		lblNewLabel_1.setBounds(299, 7, 187, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		JLabel lblNewLabel = new JLabel("SVGEM");
-		lblNewLabel.setBounds(361, 35, 64, 22);
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(160, 68, 106, 18);
+		lblNome.setBounds(10, 43, 106, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(220, 66, 187, 24);
+		TextNome.setBounds(97, 41, 187, 24);
 		TextNome.setColumns(10);
 		
 		
 		JLabel lblCpf = new JLabel("CPF");
-		lblCpf.setBounds(159, 113, 30, 18);
+		lblCpf.setBounds(10, 163, 30, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
-		TextCpf.setBounds(220, 111, 187, 24);
+		TextCpf.setBounds(97, 161, 187, 24);
 		TextCpf.setColumns(10);
 		
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(160, 163, 42, 18);
+		lblSenha.setBounds(10, 209, 42, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
-		TextSenha.setBounds(220, 161, 187, 24);
+		TextSenha.setBounds(97, 207, 187, 24);
 		TextSenha.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
-		lblFuncao.setBounds(160, 206, 49, 18);
+		lblFuncao.setBounds(10, 248, 49, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSobrenome = new TextFielArredondada(15, 20, 20);
 		TextSobrenome.setColumns(10);
-		TextSobrenome.setBounds(522, 66, 187, 24);
+		TextSobrenome.setBounds(97, 83, 187, 24);
 		panel_2.add(TextSobrenome);
 		
 		TextFielArredondada TextTelefone = new TextFielArredondada(15, 20, 20);
 		TextTelefone.setColumns(10);
-		TextTelefone.setBounds(522, 114, 187, 24);
+		TextTelefone.setBounds(97, 118, 187, 24);
 		panel_2.add(TextTelefone);
 		
 		TextFielArredondada TextSalario = new TextFielArredondada(15, 20, 20);
 		TextSalario.setColumns(10);
-		TextSalario.setBounds(522, 161, 187, 24);
+		TextSalario.setBounds(97, 279, 187, 24);
 		panel_2.add(TextSalario);
 		
 		TextFielArredondada TextEndereço = new TextFielArredondada(15, 20, 20);
 		TextEndereço.setColumns(10);
-		TextEndereço.setBounds(522, 207, 187, 24);
+		TextEndereço.setBounds(97, 322, 187, 24);
 		panel_2.add(TextEndereço);
 		
 		JComboBox<Object> comboFuncao = new JComboBox<Object>();
-		comboFuncao.setBounds(220, 206, 187, 20);
+		comboFuncao.setBounds(97, 248, 187, 20);
 		comboFuncao.setModel(new DefaultComboBoxModel<Object>(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
@@ -337,12 +335,11 @@ public class Cadastro_Gerente extends JFrame {
             
 			}
 		});
-		Cadastrar.setBounds(331, 277, 113, 26);
+		Cadastrar.setBounds(373, 320, 113, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
 		panel_2.setLayout(null);
 		panel_2.add(lblNewLabel_1);
-		panel_2.add(lblNewLabel);
 		panel_2.add(lblNome);
 		panel_2.add(TextNome);
 		panel_2.add(lblCpf);
@@ -353,30 +350,24 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(comboFuncao);
 		panel_2.add(Cadastrar);
 		
-		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-132, 277, 1200, 355);
-		panel_2.add(imgOndinha);
-		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		imgOndinha.setIcon(resizedIcon);
-		
 		JLabel lblSobrenome = new JLabel("Sobrenome");
 		lblSobrenome.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSobrenome.setBounds(431, 68, 106, 18);
+		lblSobrenome.setBounds(10, 85, 106, 18);
 		panel_2.add(lblSobrenome);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblTelefone.setBounds(431, 113, 106, 18);
+		lblTelefone.setBounds(10, 120, 106, 18);
 		panel_2.add(lblTelefone);
 		
-		JLabel lblSalario = new JLabel("Salario");
+		JLabel lblSalario = new JLabel("Salário");
 		lblSalario.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSalario.setBounds(431, 163, 106, 18);
+		lblSalario.setBounds(10, 285, 106, 18);
 		panel_2.add(lblSalario);
 		
-		JLabel lblEndereco = new JLabel("Endereco");
+		JLabel lblEndereco = new JLabel("Endereço");
 		lblEndereco.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblEndereco.setBounds(431, 206, 106, 18);
+		lblEndereco.setBounds(10, 324, 106, 18);
 		panel_2.add(lblEndereco);
 		
 		RoundedButton Deslogar = new RoundedButton("Log Off", 30, 30); // deslogar
@@ -393,6 +384,97 @@ public class Cadastro_Gerente extends JFrame {
 		Deslogar.setBackground(Color.RED);
 		Deslogar.setBounds(731, 8, 113, 26);
 		panel_2.add(Deslogar);
+		
+		table = new JTable();
+		table.setBounds(333, 46, 511, 250);
+		panel_2.add(table);
+		
+		RoundedButton excluir = new RoundedButton("Excluir",30,30);
+		excluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            int id_Funcionario = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+		            
+		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionaio selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+		            if (confirm == JOptionPane.YES_OPTION) {
+		                try {
+		                    boolean sucesso = CadastroFuncionarioDAO.excluirFuncionario(id_Funcionario);
+		                    if (sucesso) {
+		                 
+		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+								JOptionPane.showMessageDialog(null, "Funcionáio demitido com sucesso!");
+		                    } else {
+		                        JOptionPane.showMessageDialog(null, "Falha ao demitir o produto.");
+		                    }
+		                } catch (SQLException ex) {
+		                    ex.printStackTrace();
+		                    JOptionPane.showMessageDialog(null, "Erro ao demitir o produto: " + ex.getMessage());
+		                }
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Selecione um Funcionário para demitir.");
+		        }
+			}
+		});
+		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
+		excluir.setForeground(new Color(255, 255, 255));
+		excluir.setBackground(new Color(255, 0, 0));
+		excluir.setBounds(528, 322, 113, 24);
+		panel_2.add(excluir);
+		
+		RoundedButton editar = new RoundedButton("Editar",30,30);
+		editar.setFont(new Font("Arial", Font.PLAIN, 15));
+		editar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+
+
+		            String NomeFuncionario = table.getValueAt(selectedRow, 1).toString();
+		            int login = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
+		            String senha = table.getValueAt(selectedRow, 3).toString();
+		            String tipo_funcionario = table.getValueAt(selectedRow, 4).toString();
+		            String sobrenome = table.getValueAt(selectedRow, 4).toString();
+		            double salario = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
+		            int telefone = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
+		            String endereco = table.getValueAt(selectedRow, 4).toString();
+		            int op = comboFuncao.getSelectedIndex();
+		            if(op == 1) {
+                		tipo_funcionario = "Caixa";
+                	}else if(op == 2){
+                		tipo_funcionario = "Gerente";
+                	}else if (op == 2) {
+                		tipo_funcionario = "Esqoquista";
+                	}else {
+                		tipo_funcionario = null;
+                		JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
+                	}
+
+
+		            boolean success = CadastroFuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+		            
+		            if (success) {
+		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+		        }
+		    }
+		});
+		editar.setForeground(new Color(255, 255, 255));
+		editar.setBackground(new Color(255, 0, 0));
+		editar.setBounds(695, 322, 113, 24);
+		panel_2.add(editar);
+		
+		JLabel imgOndinha = new JLabel("");
+		imgOndinha.setBounds(-142, 277, 1200, 355);
+		panel_2.add(imgOndinha);
+		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		imgOndinha.setIcon(resizedIcon);
 		
 		
 	}

@@ -52,17 +52,17 @@ public class CadastroFuncionarioDAO extends GenericDAO {
         
         return Funcionario;
     }
-    public boolean atualizarFuncionario(int id,String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco) {
+    public static boolean atualizarFuncionario(int id,String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
         String sql = "UPDATE funcionario SET NomeFuncionario = ?, login = ?, senha = ?, tipo_funcionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
         	 stmt.setString(1, NomeFuncionario);
-        	stmt.setString(2, login);
+        	stmt.setInt(2, login);
             stmt.setString(3, senha);
             stmt.setString(4, tipo_funcionario);
             stmt.setString(5, sobrenome);
-        	stmt.setString(6, salario);
-            stmt.setString(7, telefone);
+        	stmt.setDouble(6, salario);
+            stmt.setInt(7, telefone);
             stmt.setString(8, endereco);
             stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
@@ -72,7 +72,7 @@ public class CadastroFuncionarioDAO extends GenericDAO {
             return false;
         }
     }
-    public boolean excluirFuncionario(int id) throws SQLException {
+    public static boolean excluirFuncionario(int id) throws SQLException {
         String query = "DELETE FROM funcionario WHERE id_funcionario = ?";
         
         try (Connection connection = ConexaoBanco.conector();
