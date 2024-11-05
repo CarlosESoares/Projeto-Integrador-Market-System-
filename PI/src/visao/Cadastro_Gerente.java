@@ -271,54 +271,50 @@ public class Cadastro_Gerente extends JFrame {
 		Cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String NomeFuncionario = TextNome.getText();
-				String login = TextCpf.getText();
-                String senha = TextSenha.getText();
-                String sobrenome = TextSobrenome.getText();
-                String telefone = TextTelefone.getText();
-                String salario = TextSalario.getText();
-                String endereco = TextEndereço.getText();
-                int op = comboFuncao.getSelectedIndex();
-                
-                boolean hasLetter = login.chars().anyMatch(ch -> !Character.isDigit(ch));
-                boolean hasLetter2 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
-                boolean hasLetter3 = salario.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',');
-                
-                //Campos para validação
-	            if (login.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo CPF não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (login.length() != 11) {
-	                JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (hasLetter) {
-	                JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (NomeFuncionario.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (senha.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (sobrenome.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }else if (hasLetter2) {
-	                JOptionPane.showMessageDialog(null, "O Telefone deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (telefone.length() != 9) {
-	                JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }else if (telefone.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo telefone não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else if (endereco.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }else if (salario.isEmpty()) {
-	                JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            }else if (hasLetter3) {
-	                JOptionPane.showMessageDialog(null, "O Salario deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-	            } else {
-	            	try {
-						ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
-						System.out.println("Cadastrado"); 
-						JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
-						
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
-					} 
-	            }
+				String loginStr = TextCpf.getText();
+				String senha = TextSenha.getText();
+				String sobrenome = TextSobrenome.getText();
+				String telefoneStr = TextTelefone.getText();
+				String salarioStr = TextSalario.getText();
+				String endereco = TextEndereço.getText();
+				int op = comboFuncao.getSelectedIndex();
+
+				try {
+				    // Convert Strings to numbers
+				    int login = Integer.parseInt(loginStr);
+				    int telefone = Integer.parseInt(telefoneStr);
+				    double salario = Double.parseDouble(salarioStr);
+
+				    // Validation checks
+				    if (loginStr.isEmpty() || loginStr.length() != 11) {
+				        JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (NomeFuncionario.isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (senha.isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (sobrenome.isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (telefoneStr.isEmpty() || telefoneStr.length() != 9) {
+				        JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (endereco.isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else if (salarioStr.isEmpty()) {
+				        JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				    } else {
+		            	try {
+							ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
+							System.out.println("Cadastrado"); 
+							JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
+							
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
+						} 
+				    }
+
+				} catch (NumberFormatException e1) {
+				    JOptionPane.showMessageDialog(null, "Erro ao converter número. Verifique os campos CPF, telefone e salario.", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 	            //Validação do comboBox
                 	if(op == 1) {
                 		tipo_funcionario = "Caixa";
