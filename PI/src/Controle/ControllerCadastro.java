@@ -6,7 +6,7 @@ import Modelo.FuncionarioDAO;
 
 public class ControllerCadastro{
 
-	public static void Controle(String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco ) throws SQLException {
+	public static void Controle(String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco ) throws SQLException {
 		
 		FuncionarioDAO f = new FuncionarioDAO();
 		

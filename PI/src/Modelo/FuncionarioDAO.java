@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioDAO extends GenericDAO {
-	public void cadastroFuncionario(String NomeFuncionario, String login, String senha, String tipo_funcionario,String sobrenome, String salario,String telefone,String endereco) throws SQLException {
+	public void cadastroFuncionario(String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
         String query = "INSERT INTO funcionarios (NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, NomeFuncionario);
-            preparedStatement.setString(2, login);
+            preparedStatement.setInt(2, login);
             preparedStatement.setString(3, senha);
             preparedStatement.setString(4, tipo_funcionario);
             preparedStatement.setString(5, sobrenome);
-            preparedStatement.setString(6, salario);
-            preparedStatement.setString(7, telefone);
+            preparedStatement.setDouble(6, salario);
+            preparedStatement.setInt(7, telefone);
             preparedStatement.setString(8, endereco);
             
             preparedStatement.executeUpdate();
