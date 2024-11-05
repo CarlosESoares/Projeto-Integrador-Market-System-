@@ -1,7 +1,6 @@
 package Controle;
 
 import visao.Login;
-import visao.TelaVendas;
 import visao.telaInicial;
 
 public class ControllerTelaVendas {

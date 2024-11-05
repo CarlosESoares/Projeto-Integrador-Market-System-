@@ -105,6 +105,7 @@ public class TelaDoCaixa extends JFrame {
 		imgOndinha.setIcon(resizedIcon);
 		
 		RoundedButton btnNewButton = new RoundedButton("ABRIR CAIXA",30,30);
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			panel_2.setVisible(true);
@@ -130,6 +131,7 @@ public class TelaDoCaixa extends JFrame {
 		btnNewButton.setBackground(new Color(255, 0, 0));
 		
 		RoundedButton rndbtnFecharCaixa = new RoundedButton("ABRIR CAIXA", 30, 30);
+		rndbtnFecharCaixa.setForeground(new Color(255, 255, 255));
 		rndbtnFecharCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_2.setVisible(false);

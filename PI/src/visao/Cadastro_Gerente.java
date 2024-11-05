@@ -88,6 +88,7 @@ public class Cadastro_Gerente extends JFrame {
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		RoundedButton btnProduto = new RoundedButton("Produto", 30, 30);
+		btnProduto.setForeground(new Color(255, 255, 255));
 		btnProduto.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	btnProduto.setBackground(Color.LIGHT_GRAY);
@@ -109,6 +110,7 @@ public class Cadastro_Gerente extends JFrame {
 		btnProduto.setBackground(Color.RED);
 		
 		RoundedButton btnCliente = new RoundedButton("Cliente", 30, 30);
+		btnCliente.setForeground(new Color(255, 255, 255));
 		btnCliente.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	btnCliente.setBackground(Color.LIGHT_GRAY);
@@ -130,6 +132,7 @@ public class Cadastro_Gerente extends JFrame {
 		btnCliente.setBackground(Color.RED);
 		
 		RoundedButton btnVendas = new RoundedButton("Vendas", 30, 30);
+		btnVendas.setForeground(new Color(255, 255, 255));
 		btnVendas.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	btnVendas.setBackground(Color.LIGHT_GRAY);
@@ -244,6 +247,7 @@ public class Cadastro_Gerente extends JFrame {
 		comboFuncao.setModel(new DefaultComboBoxModel<Object>(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
+		Cadastrar.setForeground(new Color(255, 255, 255));
 		Cadastrar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	Cadastrar.setBackground(Color.LIGHT_GRAY);
