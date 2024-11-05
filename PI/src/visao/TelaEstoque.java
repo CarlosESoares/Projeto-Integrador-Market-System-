@@ -117,6 +117,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnHomeProdutos.setBackground(Color.GRAY);
 		
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeClientes.setForeground(new Color(255, 255, 255));
 		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnHomeClientes.setBackground(Color.GRAY); 
@@ -139,6 +140,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnHomeClientes.setBackground(Color.RED);
 		
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeVendas.setForeground(new Color(255, 255, 255));
 		rndbtnHomeVendas.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnHomeVendas.setBackground(Color.GRAY); 
@@ -233,6 +235,7 @@ public class TelaEstoque extends JFrame {
 		TextPreco.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnExcluir.setForeground(new Color(255, 255, 255));
 		rndbtnExcluir.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnExcluir.setBackground(Color.LIGHT_GRAY);
@@ -277,6 +280,7 @@ public class TelaEstoque extends JFrame {
 		TextValidade.setBounds(255, 293, 187, 24);
 		TextValidade.setColumns(10);
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnEditar.setForeground(new Color(255, 255, 255));
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnEditar.setBackground(Color.LIGHT_GRAY); 
@@ -341,6 +345,7 @@ public class TelaEstoque extends JFrame {
 
         buscarProdutos();
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
+		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
 		rndbtnCadastrar.setBounds(10, 396, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));

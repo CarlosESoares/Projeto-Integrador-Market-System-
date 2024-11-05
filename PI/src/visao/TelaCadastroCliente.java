@@ -96,6 +96,7 @@ public class TelaCadastroCliente extends JFrame {
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeProdutos.setForeground(new Color(255, 255, 255));
 		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnHomeProdutos.setBackground(Color.GRAY); 
@@ -128,6 +129,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnHomeClientes.setBackground(Color.GRAY);
 		
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeVendas.setForeground(new Color(255, 255, 255));
 		rndbtnHomeVendas.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnHomeVendas.setBackground(Color.GRAY); 
@@ -210,6 +212,7 @@ public class TelaCadastroCliente extends JFrame {
 		TextCPF.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnExcluir.setForeground(new Color(255, 255, 255));
 		rndbtnExcluir.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnExcluir.setBackground(Color.LIGHT_GRAY);
@@ -251,6 +254,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnEditar.setForeground(new Color(255, 255, 255));
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	rndbtnEditar.setBackground(Color.LIGHT_GRAY); 
@@ -309,6 +313,7 @@ public class TelaCadastroCliente extends JFrame {
 
         buscarClientes();
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
+		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
 		rndbtnCadastrar.setBounds(10, 396, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));

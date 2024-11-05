@@ -96,7 +96,8 @@ public class telaInicial extends JFrame {
 		imgOndinha.setIcon(resizedIcon);
 		
 		RoundedButton btnCliente = new RoundedButton("Tela_Cliente", 30, 30);
-		btnCliente.setForeground(new Color(0, 0, 0));
+		btnCliente.setText("Clientes");
+		btnCliente.setForeground(new Color(255, 255, 255));
 		btnCliente.setBackground(new Color(255, 0, 0));
 		btnCliente.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnCliente.addMouseListener(new MouseAdapter() {
@@ -122,6 +123,8 @@ public class telaInicial extends JFrame {
 		panel_2.add(Titulo);
 		
 		RoundedButton btnEstoque = new RoundedButton("Tela_Estoque",30,30);
+		btnEstoque.setForeground(new Color(255, 255, 255));
+		btnEstoque.setText("Estoque\r\n");
 		btnEstoque.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnEstoque.setBackground(new Color(255, 0, 0));
 		btnEstoque.addMouseListener(new MouseAdapter() {
@@ -144,6 +147,8 @@ public class telaInicial extends JFrame {
 		panel_2.add(btnEstoque);
 		
 		RoundedButton btnVendas = new RoundedButton("Tela_Vendas",30,30);
+		btnVendas.setText("Vendas");
+		btnVendas.setForeground(new Color(255, 255, 255));
 		btnVendas.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnVendas.setBackground(new Color(255, 0, 0));
 		btnVendas.addMouseListener(new MouseAdapter() {
@@ -165,6 +170,8 @@ public class telaInicial extends JFrame {
 		panel_2.add(btnVendas);
 		
 		RoundedButton btnCaixa = new RoundedButton("Tela_Caixa",30,30);
+		btnCaixa.setText("Caixa");
+		btnCaixa.setForeground(new Color(255, 255, 255));
 		btnCaixa.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnCaixa.setBackground(new Color(255, 0, 0));
 		btnCaixa.addMouseListener(new MouseAdapter() {
