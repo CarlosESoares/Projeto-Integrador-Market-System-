@@ -30,7 +30,7 @@ import Controle.ControllerCadastro;
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
-import Modelo.CadastroFuncionarioDAO;
+import Modelo.FuncionarioDAO;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -271,6 +271,7 @@ public class Cadastro_Gerente extends JFrame {
 		Cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String NomeFuncionario = TextNome.getText();
+<<<<<<< Updated upstream
 				String loginStr = TextCpf.getText();
 				String senha = TextSenha.getText();
 				String sobrenome = TextSobrenome.getText();
@@ -315,6 +316,63 @@ public class Cadastro_Gerente extends JFrame {
 				} catch (NumberFormatException e1) {
 				    JOptionPane.showMessageDialog(null, "Erro ao converter número. Verifique os campos CPF, telefone e salario.", "Erro", JOptionPane.ERROR_MESSAGE);
 				}
+=======
+				String login = TextCpf.getText();
+                String senha = TextSenha.getText();
+                String sobrenome = TextSobrenome.getText();
+                String telefone = TextTelefone.getText();
+                String salario = TextSalario.getText();
+                String endereco = TextEndereço.getText();
+                int op = comboFuncao.getSelectedIndex();
+                
+                boolean hasLetter = login.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter2 = telefone.chars().anyMatch(ch -> !Character.isDigit(ch));
+                boolean hasLetter3 = salario.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',');
+                
+                //Campos para validação
+	            if (login.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo CPF não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (login.length() != 11) {
+	                JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (hasLetter) {
+	                JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (NomeFuncionario.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (senha.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (sobrenome.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (hasLetter2) {
+	                JOptionPane.showMessageDialog(null, "O Telefone deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (telefone.length() != 9) {
+	                JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (telefone.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo telefone não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else if (endereco.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (salario.isEmpty()) {
+	                JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            }else if (hasLetter3) {
+	                JOptionPane.showMessageDialog(null, "O Salario deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+	            } else {
+	            	try {
+						ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
+						System.out.println("Cadastrado"); 
+						JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
+						TextNome.setText("");
+	                	TextSobrenome.setText(" ");
+	                	TextCpf.setText("");
+	                	TextEndereço.setText("");
+	                	TextSalario.setText("");
+	                	TextSenha.setText("");
+	                	TextTelefone.setText("");
+	                	
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
+					} 
+	            }
+>>>>>>> Stashed changes
 	            //Validação do comboBox
                 	if(op == 1) {
                 		tipo_funcionario = "Caixa";
@@ -327,7 +385,9 @@ public class Cadastro_Gerente extends JFrame {
                 		JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
                 	}
             
-                // testando ainda o cadastro, perdendo a cabeça
+                	
+                	
+                	// testando ainda o cadastro, perdendo a cabeça
             
 			}
 		});
@@ -395,7 +455,7 @@ public class Cadastro_Gerente extends JFrame {
 		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionaio selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
 		            if (confirm == JOptionPane.YES_OPTION) {
 		                try {
-		                    boolean sucesso = CadastroFuncionarioDAO.excluirFuncionario(id_Funcionario);
+		                    boolean sucesso = FuncionarioDAO.excluirFuncionario(id_Funcionario);
 		                    if (sucesso) {
 		                 
 		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
@@ -449,7 +509,7 @@ public class Cadastro_Gerente extends JFrame {
                 	}
 
 
-		            boolean success = CadastroFuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+		            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
 		            
 		            if (success) {
 		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");

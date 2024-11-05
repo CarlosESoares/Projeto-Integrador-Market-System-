@@ -414,6 +414,12 @@ public class TelaEstoque extends JFrame {
 	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
 	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 	                    buscarProdutos(); 
+	                    TextNome.setText("");
+	                    TextTipo.setText("");
+	                    TextChegada.setText("");
+	                    TextPreco.setText("");
+	                    TextValidade.setText("");
+	                    TextQntd.setText("");
 	                } catch (SQLException ex) {
 	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
 	                    ex.printStackTrace();

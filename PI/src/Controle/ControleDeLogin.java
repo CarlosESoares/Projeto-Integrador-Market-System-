@@ -54,7 +54,7 @@ public class ControleDeLogin extends GenericDAO{
 	            abrir.AbrirTelaCaixa();
 	        } else if (tipoFuncionario.equals("Gerente")) {
 	            ControllerGerente abrir = new ControllerGerente();
-	            abrir.AbrirTelaGerente();
+	            abrir.TelaInicial();
 	        } else {
 	            ControllerEstoquista abrir = new ControllerEstoquista();
 	            abrir.AbrirTelaEstoquista();

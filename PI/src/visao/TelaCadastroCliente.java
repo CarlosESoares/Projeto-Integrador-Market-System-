@@ -362,6 +362,10 @@ public class TelaCadastroCliente extends JFrame {
 	                    ex.printStackTrace();
 	                }
 	                }
+	                 // Limpa os campos
+	                 TextNome.setText("");
+	                 TextSobrenome.setText("");
+	                 TextCPF.setText("");
 	            }
 	        });
 
