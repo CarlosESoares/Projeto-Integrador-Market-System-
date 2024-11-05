@@ -28,6 +28,8 @@ import Controle.ControllerCadastro;
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -77,15 +79,10 @@ public class Cadastro_Gerente extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
-		
-		JLabel imgLogo = new JLabel("");
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
 		Image imageLogo = originalIconLogo.getImage(); // Obtenha a imagem do ImageIcon
 		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
 		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
-		imgLogo.setIcon(ImgRedimencionada);
-		
-		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
 		RoundedButton btnProduto = new RoundedButton("Produto", 30, 30);
 		btnProduto.setForeground(new Color(255, 255, 255));
@@ -153,31 +150,48 @@ public class Cadastro_Gerente extends JFrame {
 		btnVendas.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnVendas.setBackground(Color.RED);
 		
+		RoundedButton imgLogo = new RoundedButton("",1,1);
+		imgLogo.setBackground(new Color(192, 192, 192));
+		panel_1.add(imgLogo, "cell 0 0");
+		imgLogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				abrir.AbrirTelaInicial();
+				dispose();
+			}
+		});
+		imgLogo.setIcon(ImgRedimencionada);
+		
+		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(5)
-							.addComponent(imgLogo))
-						.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap()
+							.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(5)
-					.addComponent(imgLogo)
-					.addGap(18)
+					.addGap(24)
+					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(49)
 					.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(249, Short.MAX_VALUE))
+					.addContainerGap(276, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -366,6 +380,7 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(lblEndereco);
 		
 		RoundedButton Deslogar = new RoundedButton("Log Off", 30, 30); // deslogar
+		Deslogar.setForeground(new Color(255, 255, 255));
 		Deslogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControleDeLogin login = new ControleDeLogin();
@@ -376,7 +391,7 @@ public class Cadastro_Gerente extends JFrame {
 		Deslogar.setText("Log Off");
 		Deslogar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Deslogar.setBackground(Color.RED);
-		Deslogar.setBounds(783, 7, 113, 26);
+		Deslogar.setBounds(731, 8, 113, 26);
 		panel_2.add(Deslogar);
 		
 		
