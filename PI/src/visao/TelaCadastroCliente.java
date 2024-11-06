@@ -34,8 +34,6 @@ public class TelaCadastroCliente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private ClienteDAO clienteDAO;
-
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +60,7 @@ public class TelaCadastroCliente extends JFrame {
 		setBounds(100, 100, 950, 582);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		clienteDAO = new ClienteDAO();
+		new ClienteDAO();
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		

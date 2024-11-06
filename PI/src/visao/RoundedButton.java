@@ -6,7 +6,11 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RoundedButton extends JButton {
 
-    private int arcWidth;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int arcWidth;
     private int arcHeight;
 
     public RoundedButton(String text, int arcWidth, int arcHeight) {

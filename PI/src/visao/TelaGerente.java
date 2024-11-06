@@ -21,6 +21,10 @@ import Controle.ControllerTelaVendas;
 import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static TelaGerente frame = new TelaGerente();
 	private JPanel contentPane;
 

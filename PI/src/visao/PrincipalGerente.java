@@ -64,12 +64,6 @@ public class PrincipalGerente extends JFrame {
 		    setContentPane(contentPane);
 		    contentPane.setLayout(new BorderLayout(0, 0));
 
-		    // Carregar e redimensionar ícones
-		    ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
-		    Image image = originalIcon.getImage();
-		    Image newImage = image.getScaledInstance(1200, 200, Image.SCALE_SMOOTH);
-		    ImageIcon resizedIcon = new ImageIcon(newImage);
-
 		    // Configuração do panel_1 e adição ao contentPane
 		    JPanel panel_1 = new JPanel();
 		    panel_1.setBackground(Color.LIGHT_GRAY);

@@ -6,7 +6,11 @@ import java.awt.geom.RoundRectangle2D;
 
 public class TextFielArredondada extends JTextField {
     
-    private int arcWidth;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int arcWidth;
     private int arcHeight;
 
     public TextFielArredondada(int columns, int arcWidth, int arcHeight) {
