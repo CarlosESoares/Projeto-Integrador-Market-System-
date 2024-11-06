@@ -1,6 +1,5 @@
 package Controle;
 
-import visao.Login;
 import visao.TelaEstoque;
 import visao.telaInicial;
 
@@ -8,7 +7,7 @@ public class ControllerEstoquista {
 	public void AbrirTelaEstoquista() {
 		
 		
-		telaInicial tela = new telaInicial();
+		TelaEstoque tela = new TelaEstoque();
 		tela.setLocationRelativeTo(null);
 		tela.setVisible(true);
 		

@@ -15,7 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
+import Controle.ControllerTelaVendas;
 
 public class TelaGerente extends JFrame {
 	private static TelaGerente frame = new TelaGerente();
@@ -88,7 +90,7 @@ public class TelaGerente extends JFrame {
 		    	Btnfuncionarios.setBackground(Color.RED);
 		    }
 		});
-		Btnfuncionarios.setBounds(154, 144, 179, 32);
+		Btnfuncionarios.setBounds(154, 92, 179, 32);
 	
 		
 		Btnfuncionarios.setBackground(new Color(255, 0, 0));
@@ -105,11 +107,17 @@ public class TelaGerente extends JFrame {
 		imgOndinha.setBackground(Color.LIGHT_GRAY);
 		
 		RoundedButton Btnvendas = new RoundedButton("Entrar", 30, 30);
+		Btnvendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaVendas telas = new ControllerTelaVendas();
+				telas.AbrirTelaVendas();
+			}
+		});
 		Btnvendas.setText("Vendas");
 		Btnvendas.setForeground(Color.WHITE);
 		Btnvendas.setFont(new Font("Arial", Font.BOLD, 20));
 		Btnvendas.setBackground(Color.RED);
-		Btnvendas.setBounds(154, 198, 179, 32);
+		Btnvendas.setBounds(154, 135, 179, 32);
 		panel_2.add(Btnvendas);
 		Btnvendas.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
@@ -120,19 +128,49 @@ public class TelaGerente extends JFrame {
 		    }
 		});
 		
-		RoundedButton estoqueBtn = new RoundedButton("Entrar", 30, 30);
-		estoqueBtn.setText("Estoque");
-		estoqueBtn.setForeground(Color.WHITE);
-		estoqueBtn.setFont(new Font("Arial", Font.BOLD, 20));
-		estoqueBtn.setBackground(Color.RED);
-		estoqueBtn.setBounds(154, 247, 179, 32);
-		panel_2.add(estoqueBtn);
+		RoundedButton estoqueBtn = new RoundedButton("Estoque", 30, 30);
 		estoqueBtn.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		    	estoqueBtn.setBackground(Color.LIGHT_GRAY);
 		    }
 		    public void mouseExited(MouseEvent e) {
 		    	estoqueBtn.setBackground(Color.RED);
+		    }
+		});
+		estoqueBtn.addActionListener(new ActionListener() {
+			
+		    public void actionPerformed(ActionEvent e) {
+		        ControllerEstoquista abrir = new ControllerEstoquista();
+		        
+		        frame.dispose();
+		        abrir.AbrirTelaEstoquista();
+		    }
+		});
+		estoqueBtn.setForeground(Color.WHITE);
+		estoqueBtn.setFont(new Font("Arial", Font.BOLD, 20));
+		estoqueBtn.setBackground(Color.RED);
+		estoqueBtn.setBounds(154, 178, 179, 32);
+		panel_2.add(estoqueBtn);
+
+		RoundedButton telaInicialBTN = new RoundedButton("Tela Inicial", 30, 30);
+		telaInicialBTN.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        ControllerEstoquista tela = new ControllerEstoquista();
+		        tela.AbrirTelaInicial();
+		    }
+		});
+		telaInicialBTN.setForeground(Color.WHITE);
+		telaInicialBTN.setFont(new Font("Arial", Font.BOLD, 20));
+		telaInicialBTN.setBackground(Color.RED);
+		telaInicialBTN.setBounds(154, 221, 179, 32);
+		panel_2.add(telaInicialBTN);
+
+		telaInicialBTN.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		        telaInicialBTN.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		        telaInicialBTN.setBackground(Color.RED);
 		    }
 		});
 		}
