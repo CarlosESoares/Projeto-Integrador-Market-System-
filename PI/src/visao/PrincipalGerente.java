@@ -117,6 +117,11 @@ public class PrincipalGerente extends JFrame {
 		    });
 		    
 		    JButton btnCliente = new JButton("Clientes");
+		    btnCliente.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		
+		    	}
+		    });
 		    GroupLayout gl_panel = new GroupLayout(panel);
 		    gl_panel.setHorizontalGroup(
 		    	gl_panel.createParallelGroup(Alignment.LEADING)

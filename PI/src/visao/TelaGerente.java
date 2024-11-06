@@ -148,7 +148,7 @@ public class TelaGerente extends JFrame {
 		        ControllerEstoquista abrir = new ControllerEstoquista();
 		        
 		        frame.dispose();
-		        abrir.AbrirTelaEstoquista();
+		        abrir.AbrirTelaEstoque();
 		    }
 		});
 		estoqueBtn.setForeground(Color.WHITE);
