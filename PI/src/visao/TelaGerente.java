@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaVendas;
+import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
 	private static TelaGerente frame = new TelaGerente();
@@ -164,6 +165,10 @@ public class TelaGerente extends JFrame {
 		telaInicialBTN.setBackground(Color.RED);
 		telaInicialBTN.setBounds(154, 221, 179, 32);
 		panel_2.add(telaInicialBTN);
+		
+		JButton btnNewButton = new JButton("Resumo");
+		btnNewButton.setBounds(164, 271, 169, 37);
+		panel_2.add(btnNewButton);
 
 		telaInicialBTN.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {

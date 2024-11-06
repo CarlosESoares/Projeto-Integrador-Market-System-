@@ -27,7 +27,7 @@ public class ProdutoDAO {
         }
     }
 
-    public List<Object[]> buscarTodosProdutos() throws SQLException {
+    public static   List<Object[]> buscarTodosProdutos() throws SQLException {
         List<Object[]> produtos = new ArrayList<>();
         String query = "SELECT * FROM produtos";
         
