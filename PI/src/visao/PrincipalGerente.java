@@ -10,7 +10,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +25,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controle.ControllerEstoquista;
+import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
+import Modelo.ClienteDAO;
 import Modelo.ProdutoDAO;
 
 public class PrincipalGerente extends JFrame {
@@ -84,7 +90,6 @@ public class PrincipalGerente extends JFrame {
 
 		    RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		    imgLogo.setBackground(new Color(192, 192, 192));
-		    panel.add(imgLogo, "cell 0 0");
 		    imgLogo.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		            ControllerTelaCliente abrir = new ControllerTelaCliente();
@@ -94,6 +99,54 @@ public class PrincipalGerente extends JFrame {
 		    });
 		    imgLogo.setIcon(ImgRedimencionada);
 		    imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		    
+		    JButton btnFunciora = new JButton("Funcionarios");
+		    btnFunciora.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		ControllerGerente tela = new ControllerGerente();
+		    		tela.AbrirTelaFunfionario();
+		    	}
+		    });
+		    
+		    JButton btnProduto = new JButton("Produto");
+		    btnProduto.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		ControllerEstoquista tela = new ControllerEstoquista();
+		    		tela.AbrirTelaEstoque();
+		    	}
+		    });
+		    
+		    JButton btnCliente = new JButton("Clientes");
+		    GroupLayout gl_panel = new GroupLayout(panel);
+		    gl_panel.setHorizontalGroup(
+		    	gl_panel.createParallelGroup(Alignment.LEADING)
+		    		.addGroup(gl_panel.createSequentialGroup()
+		    			.addGap(5)
+		    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		    		.addGroup(gl_panel.createSequentialGroup()
+		    			.addContainerGap()
+		    			.addComponent(btnFunciora))
+		    		.addGroup(gl_panel.createSequentialGroup()
+		    			.addContainerGap()
+		    			.addComponent(btnProduto))
+		    		.addGroup(gl_panel.createSequentialGroup()
+		    			.addContainerGap()
+		    			.addComponent(btnCliente))
+		    );
+		    gl_panel.setVerticalGroup(
+		    	gl_panel.createParallelGroup(Alignment.LEADING)
+		    		.addGroup(gl_panel.createSequentialGroup()
+		    			.addGap(5)
+		    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		    			.addGap(18)
+		    			.addComponent(btnFunciora)
+		    			.addGap(18)
+		    			.addComponent(btnProduto)
+		    			.addGap(18)
+		    			.addComponent(btnCliente)
+		    			.addContainerGap(537, Short.MAX_VALUE))
+		    );
+		    panel.setLayout(gl_panel);
 
 		    // Outros painéis e componentes
 		    JPanel panel_2 = new JPanel();
@@ -142,7 +195,7 @@ public class PrincipalGerente extends JFrame {
 		panel_3.add(scrollPane_1);
 			
 
-		String[] columnNames = {"ID", "Nome do Produto", "Preço", "Quantidade"};
+		String[] columnNames = {"ID", "Nome", "Preço", "Quantidade"};
 		Object[][] data = {};
 		tableProdutos = new JTable(new DefaultTableModel(data, columnNames));
         buscarProdutos();
@@ -164,17 +217,10 @@ public class PrincipalGerente extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_2, 92, SpringLayout.EAST, scrollPane);
 		panel_3.add(scrollPane_2);
 		
-		tableClientes = new JTable();
-		buscarProdutos();
-
-		tableClientes.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Pre\u00E7o das parce\u00E7as", "Quantidade de parcelas"
-			}
-		));
-		
+		String[] columnNames2 = {"ID", "Nome", "Sobrenome", "CPF",};
+		Object[][] data2 = {};
+		tableClientes = new JTable(new DefaultTableModel(data2, columnNames2));
+		buscarClientes();
 		
 		
 		scrollPane_2.setViewportView(tableClientes);
@@ -200,4 +246,21 @@ public class PrincipalGerente extends JFrame {
 		        JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
 		        e.printStackTrace();
 		    }
-		}}
+		}
+		
+		private void buscarClientes() {
+	        try {
+	            List<Object[]> clientes = ClienteDAO.buscarTodosClientes();
+	            DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
+	            model.setRowCount(0);  
+	            for (Object[] clientes1 : clientes) {
+	                model.addRow(clientes1); 
+	            }
+	        } catch (SQLException e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao buscar clientes.");
+	            e.printStackTrace();
+	        }
+	    }
+
+
+}
