@@ -235,6 +235,9 @@ public class TelaCadastroCliente extends JFrame {
 		                 
 		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
 		                        JOptionPane.showMessageDialog(null, "cliente excluído com sucesso!");
+		                        TextNome.setText("");
+		   	                 TextSobrenome.setText("");
+		   	                 TextCPF.setText("");
 		                    } else {
 		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o cliente.");
 		                    }
@@ -263,26 +266,31 @@ public class TelaCadastroCliente extends JFrame {
 		    	rndbtnEditar.setBackground(Color.RED);
 		    }
 		});
+		
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        int selectedRow = table.getSelectedRow();
 		        if (selectedRow != -1) {
+
 		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-
-
-		            String nome = table.getValueAt(selectedRow, 1).toString();
-		            String sobrenome = table.getValueAt(selectedRow, 2).toString();
-		            String CPF = table.getValueAt(selectedRow, 3).toString();
-
-
+		            String nome = TextNome.getText();
+		            String sobrenome = TextSobrenome.getText();
+		            String CPF = TextCPF.getText();
 
 		            boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF);
-		            
-		            if (success) {
-		                JOptionPane.showMessageDialog(null, "cliente atualizado com sucesso!");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.");
-		            }
+
+					if (success) {
+					    table.setValueAt(nome, selectedRow, 1);
+					    table.setValueAt(sobrenome, selectedRow, 2);
+					    table.setValueAt(CPF, selectedRow, 3);
+					    JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+					    buscarClientes();
+					       TextNome.setText("");
+			                 TextSobrenome.setText("");
+			                 TextCPF.setText("");
+					} else {
+					    JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.");
+					}
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
 		        }
@@ -305,6 +313,16 @@ public class TelaCadastroCliente extends JFrame {
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
 
+		table.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
+		            TextSobrenome.setText(table.getValueAt(selectedRow, 2).toString());
+		            TextCPF.setText(table.getValueAt(selectedRow, 3).toString());
+		        }
+		    }
+		});
 		JScrollPane scrollPane = new JScrollPane(table);
 		panel_3.setLayout(new BorderLayout());
 		panel_3.add(scrollPane, BorderLayout.CENTER);
@@ -362,7 +380,7 @@ public class TelaCadastroCliente extends JFrame {
 	                    ex.printStackTrace();
 	                }
 	                }
-	                 // Limpa os campos
+
 	                 TextNome.setText("");
 	                 TextSobrenome.setText("");
 	                 TextCPF.setText("");

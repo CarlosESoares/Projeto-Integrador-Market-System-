@@ -98,6 +98,9 @@ public class TelaEstoque extends JFrame {
 				dispose();
 			}
 		});
+		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
+		TextValidade.setBounds(255, 293, 187, 24);
+		TextValidade.setColumns(10);
 		imgLogo.setBackground(Color.LIGHT_GRAY);
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
 		Image imageLogo = originalIconLogo.getImage(); 
@@ -258,6 +261,12 @@ public class TelaEstoque extends JFrame {
 		                 
 		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
 		                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+			                    TextNome.setText("");
+			                    TextTipo.setText("");
+			                    TextChegada.setText("");
+			                    TextPreco.setText("");
+			                    TextValidade.setText("");
+			                    TextQntd.setText("");
 		                    } else {
 		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
 		                    }
@@ -276,9 +285,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
-		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
-		TextValidade.setBounds(255, 293, 187, 24);
-		TextValidade.setColumns(10);
+		
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnEditar.setForeground(new Color(255, 255, 255));
 		rndbtnEditar.addMouseListener(new MouseAdapter() {
@@ -294,8 +301,6 @@ public class TelaEstoque extends JFrame {
 		        int selectedRow = table.getSelectedRow();
 		        if (selectedRow != -1) {
 		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-
-
 		            String nome = table.getValueAt(selectedRow, 1).toString();
 		            String tipo = table.getValueAt(selectedRow, 2).toString();
 		            String chegada = table.getValueAt(selectedRow, 3).toString();
@@ -303,14 +308,20 @@ public class TelaEstoque extends JFrame {
 		            double preco = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
 		            int quantidade = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
 
-
 		            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
-		            
-		            if (success) {
-		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
-		            }
+
+					if (success) {
+					    JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+					    buscarProdutos();
+	                    TextNome.setText("");
+	                    TextTipo.setText("");
+	                    TextChegada.setText("");
+	                    TextPreco.setText("");
+	                    TextValidade.setText("");
+	                    TextQntd.setText("");
+					} else {
+					    JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+					}
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
 		        }
@@ -340,7 +351,19 @@ public class TelaEstoque extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table);
 		panel_3.setLayout(new BorderLayout());
 		panel_3.add(scrollPane, BorderLayout.CENTER);
-
+		table.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
+		            TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
+		            TextChegada.setText(table.getValueAt(selectedRow, 3).toString());
+		            TextValidade.setText(table.getValueAt(selectedRow, 4).toString());
+		            TextPreco.setText(table.getValueAt(selectedRow, 5).toString());
+		            TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
+		        }
+		    }
+		});
 
 
         buscarProdutos();
