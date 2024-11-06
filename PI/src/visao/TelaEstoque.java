@@ -296,37 +296,42 @@ public class TelaEstoque extends JFrame {
 		    	rndbtnEditar.setBackground(Color.RED);
 		    }
 		});
-		rndbtnEditar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-		            String nome = table.getValueAt(selectedRow, 1).toString();
-		            String tipo = table.getValueAt(selectedRow, 2).toString();
-		            String chegada = table.getValueAt(selectedRow, 3).toString();
-		            String validade = table.getValueAt(selectedRow, 4).toString();
-		            double preco = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
-		            int quantidade = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
+		
+			rndbtnEditar.addActionListener(new ActionListener() {
+			    public void actionPerformed(ActionEvent e) {
+			        int selectedRow = table.getSelectedRow();
+			        if (selectedRow != -1) {
+			            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+			            String nome = TextNome.getText();
+			            String tipo = TextTipo.getText();
+			            String chegada = TextChegada.getText();
+			            String validade = TextValidade.getText();
+			            double preco = Double.parseDouble(TextPreco.getText());
+			            int quantidade = Integer.parseInt(TextQntd.getText());
 
-		            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
 
-					if (success) {
-					    JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-					    buscarProdutos();
-	                    TextNome.setText("");
-	                    TextTipo.setText("");
-	                    TextChegada.setText("");
-	                    TextPreco.setText("");
-	                    TextValidade.setText("");
-	                    TextQntd.setText("");
-					} else {
-					    JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
-					}
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
-		        }
-		    }
-		});
+			            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
+
+			            if (success) {
+			                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+			                buscarProdutos(); 
+
+			                    TextNome.setText("");
+			                    TextTipo.setText("");
+			                    TextChegada.setText("");
+			                    TextValidade.setText("");
+			                    TextPreco.setText("");
+			                    TextQntd.setText("");
+			                
+
+			            } else {
+			                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+			            }
+			        } else {
+			            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+			        }
+			    }
+			});
 
 		rndbtnEditar.setBounds(523, 396, 150, 26);
 		rndbtnEditar.setText("Editar");
@@ -358,8 +363,9 @@ public class TelaEstoque extends JFrame {
 		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
 		            TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
 		            TextChegada.setText(table.getValueAt(selectedRow, 3).toString());
-		            TextValidade.setText(table.getValueAt(selectedRow, 4).toString());
-		            TextPreco.setText(table.getValueAt(selectedRow, 5).toString());
+		            TextPreco.setText(table.getValueAt(selectedRow, 4).toString());
+		            TextValidade.setText(table.getValueAt(selectedRow, 5).toString());
+		           
 		            TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
 		        }
 		    }
@@ -493,4 +499,5 @@ public class TelaEstoque extends JFrame {
             e.printStackTrace();
         }
     }
+	
 }
