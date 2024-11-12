@@ -8,14 +8,27 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import visao.Cadastro_Gerente;
+
 public class FuncionarioDAO extends GenericDAO {
-	public void cadastroFuncionario(String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
-        String query = "INSERT INTO funcionarios (NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	public void cadastroFuncionario(String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
+		 try {
+	            
+             JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
+				
+			} catch (Exception e2) {
+				 JOptionPane.showMessageDialog(null, "Erro ao Cadastrar.", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
+		 
+		String query = "INSERT INTO funcionarios (NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, NomeFuncionario);
-            preparedStatement.setInt(2, login);
+            preparedStatement.setLong(2, login);
             preparedStatement.setString(3, senha);
             preparedStatement.setString(4, tipo_funcionario);
             preparedStatement.setString(5, sobrenome);
@@ -52,12 +65,28 @@ public class FuncionarioDAO extends GenericDAO {
         
         return Funcionario;
     }
-    public static boolean atualizarFuncionario(int id,String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
-        String sql = "UPDATE funcionario SET NomeFuncionario = ?, login = ?, senha = ?, tipo_funcionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
+    public static boolean atualizarFuncionario(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
+ 
+    	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
+        if (selectedRow != -1) {
+            id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+
+            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+            
+            if (success) {
+                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+        }
+    	
+    	String sql = "UPDATE funcionario SET NomeFuncionario = ?, login = ?, senha = ?, tipo_funcionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
         	 stmt.setString(1, NomeFuncionario);
-        	stmt.setInt(2, login);
+        	stmt.setLong(2, login);
             stmt.setString(3, senha);
             stmt.setString(4, tipo_funcionario);
             stmt.setString(5, sobrenome);
@@ -73,7 +102,31 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
     public static boolean excluirFuncionario(int id) throws SQLException {
-        String query = "DELETE FROM funcionario WHERE id_funcionario = ?";
+        
+    	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
+        if (selectedRow != -1) {
+            int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+            
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionaio selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                try {
+                    boolean sucesso = FuncionarioDAO.excluirFuncionario(id_Funcionario);
+                    if (sucesso) {
+                 
+                        ((DefaultTableModel) Cadastro_Gerente.table.getModel()).removeRow(selectedRow);
+						JOptionPane.showMessageDialog(null, "Funcionáio demitido com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Falha ao demitir o produto.");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro ao demitir o produto: " + ex.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Funcionário para demitir.");
+        }      
+    	String query = "DELETE FROM funcionario WHERE id_funcionario = ?";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {

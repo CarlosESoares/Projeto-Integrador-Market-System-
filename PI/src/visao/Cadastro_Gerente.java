@@ -26,8 +26,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControleDeLogin;
-import Controle.ControllerCadastro;
 import Controle.ControllerEstoquista;
+import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
 import Modelo.FuncionarioDAO;
@@ -37,7 +37,7 @@ public class Cadastro_Gerente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String tipo_funcionario;
-	private JTable table;
+	public static JTable table;
 
 	/**
 	 * Launch the application.
@@ -269,70 +269,16 @@ public class Cadastro_Gerente extends JFrame {
 		    }
 		});
 		Cadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String NomeFuncionario = TextNome.getText();
-				String loginStr = TextCpf.getText();
-				String senha = TextSenha.getText();
-				String sobrenome = TextSobrenome.getText();
-				String telefoneStr = TextTelefone.getText();
-				String salarioStr = TextSalario.getText();
-				String endereco = TextEndereço.getText();
-				int op = comboFuncao.getSelectedIndex();
-
-				try {
-				    // Convert Strings to numbers
-				    int login = Integer.parseInt(loginStr);
-				    int telefone = Integer.parseInt(telefoneStr);
-				    double salario = Double.parseDouble(salarioStr);
-
-				    // Validation checks
-				    if (loginStr.isEmpty() || loginStr.length() != 11) {
-				        JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (NomeFuncionario.isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (senha.isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (sobrenome.isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (telefoneStr.isEmpty() || telefoneStr.length() != 9) {
-				        JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (endereco.isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else if (salarioStr.isEmpty()) {
-				        JOptionPane.showMessageDialog(null, "O campo salario não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				    } else {
-		            	try {
-							ControllerCadastro.Controle(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
-							System.out.println("Cadastrado"); 
-							JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso", null, JOptionPane.PLAIN_MESSAGE);
-							
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-							JOptionPane.showMessageDialog(null, "Erro ao Cadastra.", "Erro", JOptionPane.ERROR_MESSAGE);
-						} 
-				    }
-
-				} catch (NumberFormatException e1) {
-				    JOptionPane.showMessageDialog(null, "Erro ao converter número. Verifique os campos CPF, telefone e salario.", "Erro", JOptionPane.ERROR_MESSAGE);
+		    public void actionPerformed(ActionEvent e) {
+		        int op = comboFuncao.getSelectedIndex();
+		    	try {
+					ControllerGerente.Cadastro(TextNome,TextSobrenome,TextTelefone,TextCpf,TextSenha,op,TextSalario,TextEndereço);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-	            //Validação do comboBox
-                	if(op == 1) {
-                		tipo_funcionario = "Caixa";
-                	}else if(op == 2){
-                		tipo_funcionario = "Gerente";
-                	}else if (op == 2) {
-                		tipo_funcionario = "Esqoquista";
-                	}else {
-                		tipo_funcionario = null;
-                		JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
-                	}
-            
-                	
-                	
-                	// testando ainda o cadastro, perdendo a cabeça
-            
-			}
-		});
+		    }
+		    });
 		Cadastrar.setBounds(373, 320, 113, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
@@ -390,29 +336,6 @@ public class Cadastro_Gerente extends JFrame {
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int id_Funcionario = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-		            
-		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionaio selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
-		            if (confirm == JOptionPane.YES_OPTION) {
-		                try {
-		                    boolean sucesso = FuncionarioDAO.excluirFuncionario(id_Funcionario);
-		                    if (sucesso) {
-		                 
-		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-								JOptionPane.showMessageDialog(null, "Funcionáio demitido com sucesso!");
-		                    } else {
-		                        JOptionPane.showMessageDialog(null, "Falha ao demitir o produto.");
-		                    }
-		                } catch (SQLException ex) {
-		                    ex.printStackTrace();
-		                    JOptionPane.showMessageDialog(null, "Erro ao demitir o produto: " + ex.getMessage());
-		                }
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione um Funcionário para demitir.");
-		        }
 			}
 		});
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -425,43 +348,7 @@ public class Cadastro_Gerente extends JFrame {
 		editar.setFont(new Font("Arial", Font.PLAIN, 15));
 		editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-
-
-		            String NomeFuncionario = table.getValueAt(selectedRow, 1).toString();
-		            int login = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
-		            String senha = table.getValueAt(selectedRow, 3).toString();
-		            String tipo_funcionario = table.getValueAt(selectedRow, 4).toString();
-		            String sobrenome = table.getValueAt(selectedRow, 4).toString();
-		            double salario = Double.parseDouble(table.getValueAt(selectedRow, 5).toString());
-		            int telefone = Integer.parseInt(table.getValueAt(selectedRow, 6).toString());
-		            String endereco = table.getValueAt(selectedRow, 4).toString();
-		            int op = comboFuncao.getSelectedIndex();
-		            if(op == 1) {
-                		tipo_funcionario = "Caixa";
-                	}else if(op == 2){
-                		tipo_funcionario = "Gerente";
-                	}else if (op == 2) {
-                		tipo_funcionario = "Esqoquista";
-                	}else {
-                		tipo_funcionario = null;
-                		JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
-                	}
-
-
-		            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
-		            
-		            if (success) {
-		                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
-		        }
-		    }
+			}
 		});
 		editar.setForeground(new Color(255, 255, 255));
 		editar.setBackground(new Color(255, 0, 0));
