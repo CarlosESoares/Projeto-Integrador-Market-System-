@@ -169,10 +169,6 @@ public class TelaGerente extends JFrame {
 		telaInicialBTN.setBackground(Color.RED);
 		telaInicialBTN.setBounds(154, 221, 179, 32);
 		panel_2.add(telaInicialBTN);
-		
-		JButton btnNewButton = new JButton("Resumo");
-		btnNewButton.setBounds(164, 271, 169, 37);
-		panel_2.add(btnNewButton);
 
 		telaInicialBTN.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {

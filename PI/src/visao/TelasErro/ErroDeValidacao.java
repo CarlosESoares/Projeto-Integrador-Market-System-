@@ -100,7 +100,7 @@ public class ErroDeValidacao extends JFrame {
 	panel_2.add(BtnEntrarLogin2);
 	
 	JLabel imgOndinha = new JLabel("");
-	imgOndinha.setBounds(-85, 50, 729, 342);
+	imgOndinha.setBounds(-99, 45, 729, 342);
 	panel_2.add(imgOndinha);
 	imgOndinha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png")));
 	imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));

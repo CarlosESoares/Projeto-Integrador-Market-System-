@@ -8,11 +8,10 @@ import javax.swing.JOptionPane;
 
 import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
-import Modelo.GenericDAO;
 import visao.Login;
 
 
-public class ControleDeLogin extends GenericDAO{
+public class ControleDeLogin  {
 
 	
 	private Login view;
@@ -57,7 +56,7 @@ public class ControleDeLogin extends GenericDAO{
 	            abrir.TelaInicial();
 	        } else {
 	            ControllerEstoquista abrir = new ControllerEstoquista();
-	            abrir.AbrirTelaEstoquista();
+	            abrir.AbrirTelaEstoque();
 	        }
 	        view.dispose();
 	    } else {
