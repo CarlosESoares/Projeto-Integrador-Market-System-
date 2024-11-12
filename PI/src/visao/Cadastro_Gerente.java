@@ -38,7 +38,7 @@ public class Cadastro_Gerente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String tipo_funcionario;
-	private JTable table;
+	public static JTable table;
 	private static Cadastro_Gerente frame;
 	/**
 	 * Launch the application.

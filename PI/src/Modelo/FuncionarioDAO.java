@@ -8,8 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import Controle.ControllerGerente;
+import visao.Cadastro_Gerente;
+
 public class FuncionarioDAO  {
-	public void cadastroFuncionario(String NomeFuncionario, int login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
+	public void cadastroFuncionario(String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
         String query = "INSERT INTO funcionarios (NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -53,7 +59,6 @@ public class FuncionarioDAO  {
         return Funcionario;
     }
     public static boolean atualizarFuncionario(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
- 
     	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
         if (selectedRow != -1) {
             id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
@@ -83,6 +88,7 @@ public class FuncionarioDAO  {
             stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
+            ControllerGerente.Tabela(id,NomeFuncionario,sobrenome,telefone,salario,endereco);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

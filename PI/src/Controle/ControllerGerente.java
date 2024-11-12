@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.FuncionarioDAO;
 import visao.Cadastro_Gerente;
-import visao.TelaGerente;
+import visao.TextFielArredondada;
 import visao.telaInicial;
 
 public class ControllerGerente {
@@ -31,14 +31,23 @@ public class ControllerGerente {
 		Cadastro_Gerente abrir = new Cadastro_Gerente();
 		abrir.setVisible(true);
 	}
-	public void TelaGerent() {
-		//Abrindo tela do gerente
-		TelaGerente abrir = new TelaGerente();
-		abrir.setVisible(true);
-		Cadastro_Gerente fechar = new Cadastro_Gerente();
-		fechar.setVisible(false);
-	}
-	
+	public static void Cadastro(TextFielArredondada textNome, TextFielArredondada textSobrenome, TextFielArredondada textTelefone, TextFielArredondada textCpf, TextFielArredondada textSenha, int op, TextFielArredondada textSalario, TextFielArredondada textEndereço) throws SQLException {
+        try {
+        	
+        	String NomeFuncionario = textNome.getText();
+            String loginStr = textCpf.getText();
+            String senha = textSenha.getText();
+            String sobrenome = textSobrenome.getText();
+            String telefoneStr = textTelefone.getText();
+            String salarioStr = textSalario.getText();
+            String endereco = textEndereço.getText();
+            String tipo_funcionario = null;
+            
+            
+        	boolean login2 = loginStr.chars().anyMatch(ch -> !Character.isDigit(ch));
+            boolean telefone2 = telefoneStr.chars().anyMatch(ch -> !Character.isDigit(ch));
+            boolean salario2 = salarioStr.chars().anyMatch(ch -> !Character.isDigit(ch));
+            
 
             // Validação dos campos
             if (loginStr.isEmpty()) {
@@ -105,8 +114,26 @@ public class ControllerGerente {
             JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
             e.printStackTrace();
         }
+		
     }
-	public static void excluir() {
-		FuncionarioDAO.excluirFuncionario();
+	
+	
+	public static void excluir(int id) {
+		try {
+			FuncionarioDAO.excluirFuncionario(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario, String endereco) {
+		
+		id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(id,1).toString());
+    	int NomeFuncionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(NomeFuncionario, 2).toString());
+        int Sobrenome = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Sobrenome, 3).toString());
+        telefone = Integer.parseInt(Cadastro_Gerente.table.getValueAt(telefone, 4).toString());
+        int Salario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Salario, 5).toString());
+        int Endereco = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Endereco, 6).toString());
+		
 	}
 }
