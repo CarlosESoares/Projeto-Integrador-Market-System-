@@ -10,24 +10,24 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerTelaCliente;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 
 public class RelatorioVenda extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-		private JTable table;
+		private JTable tableRelatorio;
 
 	/**
 	 * Launch the application.
@@ -92,7 +92,12 @@ public class RelatorioVenda extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Proxima Venda");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("relatorio");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -121,15 +126,15 @@ public class RelatorioVenda extends JFrame {
 					.addContainerGap(130, Short.MAX_VALUE))
 		);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID da venda", "id Funcionario", "Produtos", "valor","Quantidade","Total"
-			}
+		 tableRelatorio = new JTable();
+		tableRelatorio.setModel(new DefaultTableModel(
+		    new Object[][] {},
+		    new String[] {
+		        "ID da venda", "id Funcionario", "Produtos", "valor", "Quantidade", "Total"
+		    }
 		));
-		scrollPane.setViewportView(table);
+		
+		scrollPane.setViewportView(tableRelatorio);
 		panel_2.setLayout(gl_panel_2);
 	}
 

@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaVendas;
-import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
 	/**
