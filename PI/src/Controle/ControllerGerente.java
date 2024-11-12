@@ -1,6 +1,7 @@
 package Controle;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -74,17 +75,31 @@ public class ControllerGerente {
             	tipo_funcionario = null;
             	JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-            long login = Long.parseLong(loginStr);
-            int telefone = Integer.parseInt(telefoneStr);
-            double salario = Double.parseDouble(salarioStr);
-            
-            FuncionarioDAO f = new FuncionarioDAO();
-    		f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
+            	try {
+            		long login = Long.parseLong(loginStr);
+                    int telefone = Integer.parseInt(telefoneStr);
+                    double salario = Double.parseDouble(salarioStr);
+                    
+                    FuncionarioDAO f = new FuncionarioDAO();
+            		f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Erro ao enviar as informações cadastradas.", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
                 
-                }
+                
+        }
          catch (NumberFormatException e1) {
         	e1.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao Validar.", "Erro", JOptionPane.ERROR_MESSAGE);
          } 
+	}
+	public static void BuscarF() {
+		 try {
+				FuncionarioDAO.buscarFuncionario();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 	}
 }

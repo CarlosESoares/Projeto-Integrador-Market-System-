@@ -19,8 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -329,10 +329,6 @@ public class Cadastro_Gerente extends JFrame {
 		Deslogar.setBackground(Color.RED);
 		Deslogar.setBounds(731, 8, 113, 26);
 		panel_2.add(Deslogar);
-		
-		table = new JTable();
-		table.setBounds(333, 46, 511, 250);
-		panel_2.add(table);
 		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
 		excluir.addActionListener(new ActionListener() {
