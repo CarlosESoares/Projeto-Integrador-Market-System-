@@ -2,16 +2,8 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-
-
-import Modelo.ConexaoBanco;
-import visao.Login;
-
 public class ProcessoDeLogin {
     Connection conn = ConexaoBanco.conector();
     String sql = "SELECT * FROM funcionarios WHERE cpf = ? AND senha = ?";

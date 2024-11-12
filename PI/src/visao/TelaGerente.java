@@ -18,8 +18,13 @@ import javax.swing.border.EmptyBorder;
 import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaVendas;
+import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static TelaGerente frame = new TelaGerente();
 	private JPanel contentPane;
 
@@ -143,7 +148,7 @@ public class TelaGerente extends JFrame {
 		        ControllerEstoquista abrir = new ControllerEstoquista();
 		        
 		        frame.dispose();
-		        abrir.AbrirTelaEstoquista();
+		        abrir.AbrirTelaEstoque();
 		    }
 		});
 		estoqueBtn.setForeground(Color.WHITE);

@@ -6,13 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,14 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerGerente;
+import Controle.ControllerTelaCliente;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 
-public class TelaVendas extends JFrame {
+public class RelatorioVenda extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
-	private static TelaVendas frame;
+		private JTable table;
 
 	/**
 	 * Launch the application.
@@ -37,7 +36,7 @@ public class TelaVendas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					 frame = new TelaVendas();
+					RelatorioVenda frame = new RelatorioVenda();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,14 +48,7 @@ public class TelaVendas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendas() {
-		
-
-	    // Inicialização do contentPane
-	    contentPane = new JPanel();
-	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	    setContentPane(contentPane);
-	    contentPane.setLayout(new BorderLayout(0, 0));
+	public RelatorioVenda() {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
@@ -83,65 +75,50 @@ public class TelaVendas extends JFrame {
 		contentPane.add(panel, BorderLayout.WEST);
 		RoundedButton imgLogo = new RoundedButton("",1,1);
 		imgLogo.setBackground(new Color(192, 192, 192));
+		panel.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.TelaGerent();
-				frame.dispose();
+				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				abrir.AbrirTelaInicial();
+				dispose();
 			}
 		});
 		imgLogo.setIcon(ImgRedimencionada);
 		
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		
-		JButton btnNewButton = new JButton("Voltar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente tela = new ControllerGerente();
-				tela.TelaGerent();
-				frame.dispose();
-				
-			}
-		});
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(5)
-					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(5)
-					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnNewButton)
-					.addContainerGap(395, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
-		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		JButton btnNewButton = new JButton("New button");
+		
+		JLabel lblNewLabel = new JLabel("relatorio");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(208, Short.MAX_VALUE))
+					.addGap(306)
+					.addComponent(lblNewLabel)
+					.addGap(284)
+					.addComponent(btnNewButton)
+					.addContainerGap(113, Short.MAX_VALUE))
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 685, GroupLayout.PREFERRED_SIZE)
+					.addGap(137))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addContainerGap()
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(lblNewLabel))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(150, Short.MAX_VALUE))
+					.addContainerGap(130, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
@@ -149,25 +126,11 @@ public class TelaVendas extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID da venda", "id Funcionario", "valor", "Tipo do pagamento","New column"
+				"ID da venda", "id Funcionario", "Produtos", "valor","Quantidade","Total"
 			}
 		));
-		 // Adiciona um listener para cliques na tabela
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) { // clique simples
-                    int row = table.getSelectedRow(); // obtém a linha selecionada
-                    if (row != -1) {
-                        // A linha foi clicada - abre a tela de Relatório
-                        RelatorioVenda relatorioVenda = new RelatorioVenda();
-                        relatorioVenda.setVisible(true);
-                        dispose(); // opcional: fecha a TelaVendas
-                    }
-                }
-            }
-        });
 		scrollPane.setViewportView(table);
 		panel_2.setLayout(gl_panel_2);
 	}
+
 }

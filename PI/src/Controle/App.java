@@ -2,8 +2,6 @@ package Controle;
 
 import javax.swing.SwingUtilities;
 
-import visao.Login;
-
 public class App {
     public static void main(String[] args) {
         // Usando SwingUtilities para garantir que a GUI seja criada na thread de eventos

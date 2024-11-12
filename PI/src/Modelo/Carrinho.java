@@ -1,4 +1,4 @@
-package Controle;
+package Modelo;
 
 public class Carrinho {
 private int IdCarrinho;

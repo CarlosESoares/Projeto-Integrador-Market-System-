@@ -1,6 +1,6 @@
-package Controle;
+package Modelo;
 
-public class ControleCredito {
+public class Clientes {
 private String Parcela;
 private String Cpf;
 private String NomeCliente;

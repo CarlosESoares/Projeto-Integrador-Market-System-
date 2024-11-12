@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import Controle.ControleDeLogin;
 import Controle.ControllerCadastro;
 import Controle.ControllerEstoquista;
+import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
 import Modelo.FuncionarioDAO;
@@ -38,7 +40,7 @@ public class Cadastro_Gerente extends JFrame {
 	private JPanel contentPane;
 	private String tipo_funcionario;
 	private JTable table;
-
+	private static Cadastro_Gerente frame;
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +48,7 @@ public class Cadastro_Gerente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cadastro_Gerente frame = new Cadastro_Gerente();
+					 frame = new Cadastro_Gerente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,7 +101,7 @@ public class Cadastro_Gerente extends JFrame {
 		btnProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerEstoquista abrir = new ControllerEstoquista();
-				abrir.AbrirTelaEstoquista();
+				abrir.AbrirTelaEstoque();
 				dispose();
 		
 			}
@@ -473,6 +475,17 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerGerente tela = new ControllerGerente();
+				frame.dispose();
+				tela.TelaGerent();
+			}
+		});
+		btnNewButton.setBounds(632, 11, 89, 23);
+		panel_2.add(btnNewButton);
 		
 		
 	}
