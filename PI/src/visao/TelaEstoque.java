@@ -117,7 +117,7 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeProdutos.setText("Estoque");
-		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeProdutos.setBackground(Color.GRAY);
 
 		// Adicionando ícone ao botão Estoque
@@ -145,7 +145,7 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeClientes.setText("Clientes");
-		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeClientes.setBackground(Color.RED);
 
 		// Adicionando ícone ao botão Clientes
@@ -170,10 +170,10 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeVendas.setText("Vendas");
-		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeVendas.setBackground(Color.RED);
 
-		// Adicionando ícone ao botão Vendas
+		
 		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
 		Image imgVendas = iconVendas.getImage();
 		Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);

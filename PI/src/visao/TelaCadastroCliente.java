@@ -93,7 +93,7 @@ public class TelaCadastroCliente extends JFrame {
 		imgLogo.setIcon(ImgRedimencionada);
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 
-		// Botão Produtos
+
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeProdutos.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeProdutos.setForeground(new Color(255, 255, 255));
@@ -116,31 +116,30 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeProdutos.setBackground(Color.RED);
 
-		// Adicionando ícone ao botão Produtos
+
 		ImageIcon iconProdutos = new ImageIcon(getClass().getResource("/Imagens/box-open-solid.png"));
 		Image imgProdutos = iconProdutos.getImage();
 		Image novaImgProdutos = imgProdutos.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		rndbtnHomeProdutos.setIcon(new ImageIcon(novaImgProdutos));
 
-		// Botão Clientes
+
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeClientes.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Adicionar ação aqui
+
 		    }
 		});
 		rndbtnHomeClientes.setText("Clientes");
 		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeClientes.setBackground(Color.GRAY);
 
-		// Adicionando ícone ao botão Clientes
 		ImageIcon iconClientes = new ImageIcon(getClass().getResource("/Imagens/address-card-solid.png"));
 		Image imgClientes = iconClientes.getImage();
 		Image novaImgClientes = imgClientes.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		rndbtnHomeClientes.setIcon(new ImageIcon(novaImgClientes));
 
-		// Botão Vendas
+
 		RoundedButton rndbtnHomeVendas = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeVendas.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeVendas.setForeground(new Color(255, 255, 255));
@@ -154,14 +153,14 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        // Adicionar ação aqui
+
 		    }
 		});
 		rndbtnHomeVendas.setText("Vendas");
 		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeVendas.setBackground(Color.RED);
 
-		// Adicionando ícone ao botão Vendas
+
 		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
 		Image imgVendas = iconVendas.getImage();
 		Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
