@@ -331,8 +331,17 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(Deslogar);
 		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
+		excluir.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	excluir.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	excluir.setBackground(Color.RED);
+		    }
+		});
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControllerGerente.excluir();
 			}
 		});
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));

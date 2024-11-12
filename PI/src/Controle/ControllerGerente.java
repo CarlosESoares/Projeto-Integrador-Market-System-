@@ -94,12 +94,19 @@ public class ControllerGerente {
          } 
 	}
 	public static void BuscarF() {
-		 try {
-				FuncionarioDAO.buscarFuncionario();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+		try {
+            List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
+            DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
+            model.setRowCount(0);  
+            for (Object[] Funcionarios : Funcionario) {
+                model.addRow(Funcionarios); 
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+            e.printStackTrace();
+        }
+    }
+	public static void excluir() {
+		FuncionarioDAO.excluirFuncionario();
 	}
 }
