@@ -18,8 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -36,8 +36,8 @@ public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String tipo_funcionario;
 	public static JTable table;
+	public JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -329,10 +329,6 @@ public class Cadastro_Gerente extends JFrame {
 		Deslogar.setBounds(731, 8, 113, 26);
 		panel_2.add(Deslogar);
 		
-		table = new JTable();
-		table.setBounds(333, 46, 511, 250);
-		panel_2.add(table);
-		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -360,6 +356,36 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(364, 83, 462, 220);
+		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+				String[] columnNames = {"Nome", "Sobrenome ", "Telefone", "Salaio", "Endereço"};
+				Object[][] data = {};
+				panel_3.setLayout(new BorderLayout());
+				table = new JTable(new DefaultTableModel(data, columnNames));
+		panel_3.add(table, BorderLayout.CENTER);
+		table.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        int selectedRow = table.getSelectedRow();
+		        if (selectedRow != -1) {
+		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
+		            TextSobrenome.setText(table.getValueAt(selectedRow, 2).toString());
+		            TextTelefone.setText(table.getValueAt(selectedRow, 3).toString());
+		            TextSalario.setText(table.getValueAt(selectedRow, 4).toString());
+		            TextEndereço.setText(table.getValueAt(selectedRow, 5).toString());
+		        }
+		    }
+		});
+		ControllerGerente.BuscarF();
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		panel_3.add(scrollPane, BorderLayout.NORTH);
+		
+		table_1 = new JTable();
+		panel_3.add(table_1, BorderLayout.SOUTH);
 		
 		
 	}
