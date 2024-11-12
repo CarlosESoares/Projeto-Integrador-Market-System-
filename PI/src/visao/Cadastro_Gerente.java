@@ -38,6 +38,7 @@ public class Cadastro_Gerente extends JFrame {
 	private JPanel contentPane;
 	public static JTable table;
 	public JTable table_1;
+	private String Id;
 
 	/**
 	 * Launch the application.
@@ -330,8 +331,17 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(Deslogar);
 		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
+		excluir.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	excluir.setBackground(Color.LIGHT_GRAY);
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	excluir.setBackground(Color.RED);
+		    }
+		});
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControllerGerente.excluir();
 			}
 		});
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -362,7 +372,7 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-				String[] columnNames = {"Nome", "Sobrenome ", "Telefone", "Salaio", "Endereço"};
+				String[] columnNames = {"Id","Nome", "Sobrenome ", "Telefone", "Salaio", "Endereço"};
 				Object[][] data = {};
 				panel_3.setLayout(new BorderLayout());
 				table = new JTable(new DefaultTableModel(data, columnNames));
@@ -371,11 +381,12 @@ public class Cadastro_Gerente extends JFrame {
 		    public void mouseClicked(MouseEvent e) {
 		        int selectedRow = table.getSelectedRow();
 		        if (selectedRow != -1) {
-		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
-		            TextSobrenome.setText(table.getValueAt(selectedRow, 2).toString());
-		            TextTelefone.setText(table.getValueAt(selectedRow, 3).toString());
-		            TextSalario.setText(table.getValueAt(selectedRow, 4).toString());
-		            TextEndereço.setText(table.getValueAt(selectedRow, 5).toString());
+		            Id.setText(table.getValueAt(selectRow,1).toString());
+		        	TextNome.setText(table.getValueAt(selectedRow, 2).toString());
+		            TextSobrenome.setText(table.getValueAt(selectedRow, 3).toString());
+		            TextTelefone.setText(table.getValueAt(selectedRow, 4).toString());
+		            TextSalario.setText(table.getValueAt(selectedRow, 5).toString());
+		            TextEndereço.setText(table.getValueAt(selectedRow, 6).toString());
 		        }
 		    }
 		});
