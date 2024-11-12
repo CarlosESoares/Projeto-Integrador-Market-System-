@@ -91,20 +91,19 @@ public class telaInicial extends JFrame {
         imgOndinha.setBounds(0, 228, 1200, 355);
         imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
         imgOndinha.setIcon(resizedIcon);
-        
-        // Carregar a imagem do ícone do cliente
+
         ImageIcon clienteIcon = new ImageIcon(getClass().getResource("/Imagens/address-card-solid.png"));
         Image clienteImage = clienteIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon resizedClienteIcon = new ImageIcon(clienteImage);
 
-        // Criar o botão com o texto e o ícone do cliente
+
         RoundedButton btnCliente = new RoundedButton("Tela_Cliente", 30, 30);
         btnCliente.setHorizontalAlignment(SwingConstants.LEFT);
         btnCliente.setText("  Clientes");
         btnCliente.setForeground(new Color(255, 255, 255));
         btnCliente.setBackground(new Color(255, 0, 0));
         btnCliente.setFont(new Font("Arial", Font.PLAIN, 20));
-        btnCliente.setIcon(resizedClienteIcon); // Adiciona o ícone no botão
+        btnCliente.setIcon(resizedClienteIcon);
         btnCliente.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btnCliente.setBackground(Color.LIGHT_GRAY);
@@ -126,21 +125,18 @@ public class telaInicial extends JFrame {
         panel_2.add(btnCliente);
         panel_2.add(Titulo);
 
-        // Carregar a imagem do ícone de estoque
         ImageIcon estoqueIcon = new ImageIcon(getClass().getResource("/Imagens/box-open-solid.png"));
         Image estoqueImage = estoqueIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon resizedEstoqueIcon = new ImageIcon(estoqueImage);
 
-        // Criar o botão com o texto e o ícone de estoque
         RoundedButton btnEstoque = new RoundedButton("Tela_Estoque", 30, 30);
         btnEstoque.setHorizontalAlignment(SwingConstants.LEFT);
         btnEstoque.setForeground(Color.WHITE);
         btnEstoque.setText("  Estoque");
         btnEstoque.setFont(new Font("Arial", Font.PLAIN, 20));
         btnEstoque.setBackground(new Color(255, 0, 0));
-        btnEstoque.setIcon(resizedEstoqueIcon); // Adiciona o ícone no botão
+        btnEstoque.setIcon(resizedEstoqueIcon);
 
-        // Configurar o botão para alterar a cor ao passar o mouse
         btnEstoque.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btnEstoque.setBackground(Color.LIGHT_GRAY);
@@ -159,19 +155,17 @@ public class telaInicial extends JFrame {
         btnEstoque.setBounds(306, 122, 187, 66);
         panel_2.add(btnEstoque);
 
-        // Carregar a imagem do ícone de vendas
         ImageIcon vendasIcon = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
         Image vendasImage = vendasIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon resizedVendasIcon = new ImageIcon(vendasImage);
 
-        // Criar o botão com o texto e o ícone de vendas
         RoundedButton btnVendas = new RoundedButton("Tela_Vendas", 30, 30);
         btnVendas.setHorizontalAlignment(SwingConstants.LEFT);
         btnVendas.setText("  Vendas");
         btnVendas.setForeground(new Color(255, 255, 255));
         btnVendas.setFont(new Font("Arial", Font.PLAIN, 20));
         btnVendas.setBackground(new Color(255, 0, 0));
-        btnVendas.setIcon(resizedVendasIcon); // Adiciona o ícone no botão
+        btnVendas.setIcon(resizedVendasIcon); 
         btnVendas.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btnVendas.setBackground(Color.LIGHT_GRAY);
@@ -190,19 +184,17 @@ public class telaInicial extends JFrame {
         btnVendas.setBounds(306, 276, 187, 66);
         panel_2.add(btnVendas);
 
-        // Carregar a imagem do ícone de caixa
         ImageIcon caixaIcon = new ImageIcon(getClass().getResource("/Imagens/desktop-solid.png"));
         Image caixaImage = caixaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon resizedCaixaIcon = new ImageIcon(caixaImage);
 
-        // Criar o botão com o texto e o ícone de caixa
         RoundedButton btnCaixa = new RoundedButton("Tela_Caixa", 30, 30);
         btnCaixa.setHorizontalAlignment(SwingConstants.LEFT);
         btnCaixa.setText("  Caixa");
         btnCaixa.setForeground(new Color(255, 255, 255));
         btnCaixa.setFont(new Font("Arial", Font.PLAIN, 20));
         btnCaixa.setBackground(new Color(255, 0, 0));
-        btnCaixa.setIcon(resizedCaixaIcon); // Adiciona o ícone no botão
+        btnCaixa.setIcon(resizedCaixaIcon);
         btnCaixa.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btnCaixa.setBackground(Color.LIGHT_GRAY);
@@ -220,5 +212,20 @@ public class telaInicial extends JFrame {
         });
         btnCaixa.setBounds(306, 199, 187, 66);
         panel_2.add(btnCaixa);
+        RoundedButton rndbtnLo = new RoundedButton("Tela_Estoque", 30, 30);
+        rndbtnLo.setForeground(Color.WHITE);
+		rndbtnLo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControleDeLogin login = new ControleDeLogin();
+            	login.iniciar();
+            	dispose();
+			}
+		});
+		rndbtnLo.setText("Log off");
+		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnLo.setBackground(Color.RED);
+		rndbtnLo.setBounds(787, 13, 109, 24);
+		panel_2.add(rndbtnLo);
     }
+    
 }
