@@ -30,6 +30,8 @@ import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
 import Modelo.FuncionarioDAO;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -40,6 +42,7 @@ public class Cadastro_Gerente extends JFrame {
 	private static Cadastro_Gerente frame;
 	public int id;
 	public static JButton BtnGerente;
+	private JTable table_1;
 	/**
 	 * Launch the application.
 	 */
@@ -379,6 +382,20 @@ public class Cadastro_Gerente extends JFrame {
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(397, 83, 411, 190);
+		panel_2.add(scrollPane);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Id","Nome","Sobrenome","Telefone","Salário","Endereço"
+			}
+		));
+		scrollPane.setViewportView(table_1);
 		
 		JButton btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {

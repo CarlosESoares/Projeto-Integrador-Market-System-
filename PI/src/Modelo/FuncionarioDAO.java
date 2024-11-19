@@ -88,7 +88,6 @@ public class FuncionarioDAO  {
             stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
-            ControllerGerente.Tabela(id,NomeFuncionario,sobrenome,telefone,salario,endereco);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
