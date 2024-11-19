@@ -29,6 +29,7 @@ import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
+import Modelo.FuncionarioDAO;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -38,7 +39,7 @@ public class Cadastro_Gerente extends JFrame {
 	public static JTable table;
 	private static Cadastro_Gerente frame;
 	public int id;
-	public JButton BtnGerente;
+	public static JButton BtnGerente;
 	/**
 	 * Launch the application.
 	 */
@@ -286,7 +287,6 @@ public class Cadastro_Gerente extends JFrame {
 					ControllerGerente.Cadastro(TextNome,TextSobrenome,TextTelefone,TextCpf,TextSenha,op,TextSalario,TextEndereço);
 					// Verifica o tipo de funcionário e habilita o botão "Voltar" se for gerente
 		            String tipoFuncionario = comboFuncao.getSelectedItem().toString();
-		            habilitarBtnGerente(tipoFuncionario);  // Habilita ou desabilita o botão com base na função
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -388,48 +388,12 @@ public class Cadastro_Gerente extends JFrame {
 				tela.TelaInicial();
 			}
 		});
-		btnNewButton.setBounds(632, 11, 89, 23);
-		panel_2.add(btnNewButton);
-		 // Aqui, você configura o BtnGerente
-        BtnGerente = new JButton("Voltar");
-        BtnGerente.setEnabled(false);  // Inicialmente desabilitado
-        BtnGerente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ControllerGerente tela = new ControllerGerente();
-                frame.dispose();
-                tela.TelaGerente();
-            }
-        });
-        BtnGerente.setBounds(632, 11, 89, 23);
-        contentPane.add(BtnGerente);
-
-        // Verifique o tipo do funcionário e habilite o botão
-        String tipoFuncionario = getTipoFuncionario();
-        habilitarBtnGerente(tipoFuncionario);
-    }
+	
 		
 		
 		
 	
-// Método para habilitar/desabilitar o botão baseado no tipo de funcionário
-public void habilitarBtnGerente(String tipoFuncionario) {
-    if (tipoFuncionario != null && tipoFuncionario.equals("Gerente")) {
-        BtnGerente.setEnabled(true); // Habilita o botão se for gerente
-    } else {
-        BtnGerente.setEnabled(false); // Desabilita o botão caso contrário
-    }
+}
 }
 
-// Função para obter o tipo de funcionário (aqui você pode buscar do banco ou de uma variável global)
-private String getTipoFuncionario() {
-    String tipoFuncionario = ""; // Defina o valor padrão
-    try {
-        tipoFuncionario = FuncionarioDAO.buscarTipoFuncionarioDoUsuarioLogado(idFuncionarioLogado);
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return tipoFuncionario;
-}
-}
-}
 
