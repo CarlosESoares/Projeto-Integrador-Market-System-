@@ -212,8 +212,14 @@ public class telaInicial extends JFrame {
         });
         btnCaixa.setBounds(306, 199, 187, 66);
         panel_2.add(btnCaixa);
+        ImageIcon LogoutIcon = new ImageIcon(getClass().getResource("/Imagens/left-from-backet.png"));
+        Image LogoutImagem = LogoutIcon.getImage().getScaledInstance(25, 20, Image.SCALE_SMOOTH);
+        ImageIcon resizedLogoutIcon = new ImageIcon(LogoutImagem);
+        
         RoundedButton rndbtnLo = new RoundedButton("Tela_Estoque", 30, 30);
+        rndbtnLo.setHorizontalAlignment(SwingConstants.LEFT);
         rndbtnLo.setForeground(Color.WHITE);
+        rndbtnLo.setIcon(resizedLogoutIcon);
 		rndbtnLo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControleDeLogin login = new ControleDeLogin();
@@ -222,7 +228,7 @@ public class telaInicial extends JFrame {
 			}
 		});
 		rndbtnLo.setText("Log off");
-		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 12));
 		rndbtnLo.setBackground(Color.RED);
 		rndbtnLo.setBounds(787, 13, 109, 24);
 		panel_2.add(rndbtnLo);
