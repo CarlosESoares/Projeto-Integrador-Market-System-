@@ -19,11 +19,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controle.ControleDeLogin;
 import Controle.ControllerEstoquista;
@@ -32,9 +33,6 @@ import Controle.ControllerTelaCAIxa;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
 import Modelo.Funcionario;
-import Modelo.FuncionarioDAO;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -45,7 +43,6 @@ public class Cadastro_Gerente extends JFrame {
 	private static Cadastro_Gerente frame;
 	public int id;
 	public static JButton BtnGerente;
-	private JTable table_1;
 	public 		Funcionario f;
 
 	/**
@@ -397,18 +394,14 @@ public class Cadastro_Gerente extends JFrame {
 		imgOndinha.setIcon(resizedIcon);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(397, 83, 411, 190);
+		scrollPane.setBounds(299, 83, 545, 190);
 		panel_2.add(scrollPane);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Id","Nome","Sobrenome","Telefone","Salário","Endereço"
-			}
-		));
-		scrollPane.setViewportView(table_1);
+		table = new JTable();
+		String[] columnNames = {"Id","Nome","Sobrenome","Telefone","Salário","Endereço"};
+		Object[][] data = {};
+		table = new JTable(new DefaultTableModel(data, columnNames));
+		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {

@@ -53,7 +53,7 @@ public class FuncionarioDAO  {
                 String endereco = resultSet.getString("endereco");
 
                 Funcionario.add(new Object[] { id, NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco});
-                ControllerGerente.BuscarF(id, NomeFuncionario, sobrenome, telefone, salario, endereco);
+                ControllerGerente.Tabela(id, NomeFuncionario, sobrenome, telefone, salario, endereco);
             }
         }
         
