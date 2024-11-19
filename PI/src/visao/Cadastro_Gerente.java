@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -27,8 +28,10 @@ import javax.swing.border.EmptyBorder;
 import Controle.ControleDeLogin;
 import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
+import Controle.ControllerTelaCAIxa;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
+import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +45,12 @@ public class Cadastro_Gerente extends JFrame {
 	private static Cadastro_Gerente frame;
 	public int id;
 	public static JButton BtnGerente;
+<<<<<<< Updated upstream
 	private JTable table_1;
+=======
+	public 		Funcionario f;
+
+>>>>>>> Stashed changes
 	/**
 	 * Launch the application.
 	 */
@@ -172,9 +180,17 @@ public class Cadastro_Gerente extends JFrame {
 		panel_1.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerTelaCliente abrir = new ControllerTelaCliente();
-				abrir.AbrirTelaInicial();
-				dispose();
+			    String tipoFuncionario = f.getTipoFucionario();
+			    if (tipoFuncionario != null) {
+			    		System.out.println("erro");			    }
+			        if (tipoFuncionario.equals("Gerente")) {
+			        	 ControllerGerente abrir2 = new ControllerGerente();
+				            abrir2.TelaGerente();
+			        } else{
+			           
+			            ControllerTelaCAIxa abrir31 = new ControllerTelaCAIxa();
+			            abrir31.AbrirTelaCaixa();
+			        } 
 			}
 		});
 		imgLogo.setIcon(ImgRedimencionada);
