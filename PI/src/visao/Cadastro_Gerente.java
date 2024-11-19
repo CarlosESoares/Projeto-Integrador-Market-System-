@@ -20,18 +20,15 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import Controle.ControleDeLogin;
 import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
-import Modelo.FuncionarioDAO;
 
 public class Cadastro_Gerente extends JFrame {
 
@@ -40,6 +37,7 @@ public class Cadastro_Gerente extends JFrame {
 	private String tipo_funcionario;
 	public static JTable table;
 	private static Cadastro_Gerente frame;
+	public int id;
 	/**
 	 * Launch the application.
 	 */
@@ -341,7 +339,7 @@ public class Cadastro_Gerente extends JFrame {
 		});
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerGerente.excluir();
+				ControllerGerente.excluir(id);
 			}
 		});
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -372,7 +370,7 @@ public class Cadastro_Gerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente tela = new ControllerGerente();
 				frame.dispose();
-				tela.TelaGerent();
+				tela.TelaInicial();
 			}
 		});
 		btnNewButton.setBounds(632, 11, 89, 23);

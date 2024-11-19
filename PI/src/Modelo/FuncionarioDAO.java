@@ -63,7 +63,7 @@ public class FuncionarioDAO  {
         if (selectedRow != -1) {
             id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
 
-            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+            boolean success = FuncionarioDAO.atualizarFuncionario(selectedRow, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
             
             if (success) {
                 JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
@@ -88,7 +88,6 @@ public class FuncionarioDAO  {
             stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
-            ControllerGerente.Tabela(id,NomeFuncionario,sobrenome,telefone,salario,endereco);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

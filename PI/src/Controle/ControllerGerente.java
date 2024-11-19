@@ -102,6 +102,8 @@ public class ControllerGerente {
             JOptionPane.showMessageDialog(null, "Erro ao Validar.", "Erro", JOptionPane.ERROR_MESSAGE);
          } 
 	}
+	
+	
 	public static void BuscarF() {
 		try {
             List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
@@ -111,7 +113,7 @@ public class ControllerGerente {
                 model.addRow(Funcionarios); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
             e.printStackTrace();
         }
 		
@@ -119,6 +121,9 @@ public class ControllerGerente {
 	
 	
 	public static void excluir(int id) {
+		
+		BuscarF();
+		
 		try {
 			FuncionarioDAO.excluirFuncionario(id);
 		} catch (SQLException e) {
@@ -128,12 +133,21 @@ public class ControllerGerente {
 	}
 	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario, String endereco) {
 		
-		id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(id,1).toString());
-    	int NomeFuncionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(NomeFuncionario, 2).toString());
-        int Sobrenome = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Sobrenome, 3).toString());
-        telefone = Integer.parseInt(Cadastro_Gerente.table.getValueAt(telefone, 4).toString());
-        int Salario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Salario, 5).toString());
-        int Endereco = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Endereco, 6).toString());
+		int NomeFuncionario = Integer.parseInt(nomeFuncionario);
+		int Sobrenome = Integer.parseInt(sobrenome);
+		int Endereco = Integer.parseInt(endereco);
 		
+		
+		id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(id,1).toString());
+    	NomeFuncionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(NomeFuncionario, 2).toString());
+        Sobrenome = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Sobrenome, 3).toString());
+        telefone = Integer.parseInt(Cadastro_Gerente.table.getValueAt(telefone, 4).toString());
+        salario = Integer.parseInt(Cadastro_Gerente.table.getValueAt((int) salario, 5).toString());
+        Endereco = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Endereco, 6).toString());
+		
+	}
+	
+	public void editar(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
+		FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario, login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
 	}
 }
