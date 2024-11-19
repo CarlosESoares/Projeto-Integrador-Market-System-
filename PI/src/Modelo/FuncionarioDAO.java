@@ -63,7 +63,7 @@ public class FuncionarioDAO  {
         if (selectedRow != -1) {
             id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
 
-            boolean success = FuncionarioDAO.atualizarFuncionario(selectedRow, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
             
             if (success) {
                 JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
@@ -88,6 +88,7 @@ public class FuncionarioDAO  {
             stmt.setInt(9, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
+            ControllerGerente.Tabela(id,NomeFuncionario,sobrenome,telefone,salario,endereco);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -137,7 +138,7 @@ public class FuncionarioDAO  {
 	 ResultSet rs = null;
 
 
-	 public Funcionario autenticar(String resCPF, String ResSenha2) throws SQLException {
+	 public static Funcionario autenticar(String resCPF, String ResSenha2) throws SQLException {
 		    String sql = "SELECT * FROM funcionarios WHERE login = ? AND senha = ?";
 		    
 		    try (Connection conexao = ConexaoBanco.conector();
@@ -167,7 +168,30 @@ public class FuncionarioDAO  {
 		}
 
 		
-		
+	 public static String buscarTipoFuncionarioDoUsuarioLogado(int idFuncionarioLogado) throws SQLException {
+		    String tipoFuncionario = null;
+		    
+		    // Consulta SQL para buscar o tipo de funcionário pelo ID
+		    String sql = "SELECT tipo_funcionario FROM funcionarios WHERE id_funcionario = ?";
+		    
+		    try (Connection connection = ConexaoBanco.conector();
+		         PreparedStatement pst = connection.prepareStatement(sql)) {
+		        
+		        // Defina o ID do funcionário
+		        pst.setInt(1, idFuncionarioLogado);
+		        
+		        // Executa a consulta e recupera o tipo de funcionário
+		        try (ResultSet rs = pst.executeQuery()) {
+		            if (rs.next()) {
+		                tipoFuncionario = rs.getString("tipo_funcionario");
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    
+		    return tipoFuncionario; // Retorna o tipo do funcionário ou null se não encontrado
+		}
 	
 	
 	public void FecharConexao() {

@@ -40,8 +40,8 @@ public class ControllerGerente {
 		TelaVendas fechar = new TelaVendas();
 		fechar.dispose();
 	}
-}
-	}
+
+	
 	public static void Cadastro(TextFielArredondada textNome, TextFielArredondada textSobrenome, TextFielArredondada textTelefone, TextFielArredondada textCpf, TextFielArredondada textSenha, int op, TextFielArredondada textSalario, TextFielArredondada textEndereço) throws SQLException {
         try {
         	
