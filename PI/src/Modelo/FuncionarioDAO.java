@@ -11,7 +11,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerGerente;
 import visao.Cadastro_Gerente;
 
 public class FuncionarioDAO  {
@@ -53,7 +52,16 @@ public class FuncionarioDAO  {
                 String endereco = resultSet.getString("endereco");
 
                 Funcionario.add(new Object[] { id, NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco});
-                ControllerGerente.Tabela(id, NomeFuncionario, sobrenome, telefone, salario, endereco);
+                DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
+                int NumItem = model.getRowCount() +1;
+                model.addRow(new Object[] {
+                		id,
+                		NomeFuncionario,
+                		sobrenome,
+                		telefone,
+                		salario,
+                		endereco
+                });
             }
         }
         
