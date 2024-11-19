@@ -393,15 +393,14 @@ public class Cadastro_Gerente extends JFrame {
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(299, 83, 545, 190);
-		panel_2.add(scrollPane);
 		
 		table = new JTable();
 		String[] columnNames = {"Id","Nome","Sobrenome","Telefone","Salário","Endereço"};
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
-		scrollPane.setViewportView(table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(299, 83, 545, 190);
+		panel_2.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {

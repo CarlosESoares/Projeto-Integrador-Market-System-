@@ -182,6 +182,7 @@ public class ControllerGerente {
 	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario,
 			String endereco) {
 		
+		BuscarF();
 		int NomeFuncionario = Integer.parseInt(nomeFuncionario);
 		int Sobrenome = Integer.parseInt(sobrenome);
 		int Endereco = Integer.parseInt(endereco);
