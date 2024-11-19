@@ -45,12 +45,9 @@ public class Cadastro_Gerente extends JFrame {
 	private static Cadastro_Gerente frame;
 	public int id;
 	public static JButton BtnGerente;
-<<<<<<< Updated upstream
 	private JTable table_1;
-=======
 	public 		Funcionario f;
 
->>>>>>> Stashed changes
 	/**
 	 * Launch the application.
 	 */
