@@ -151,7 +151,8 @@ public class ControllerGerente {
 			}
 		}
 	
-	public static void BuscarF() {
+	public static void BuscarF(int id, String nomeFuncionario, String sobrenome, int telefone, double salario,
+			String endereco) {
 		try {
             List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
             DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
@@ -163,24 +164,6 @@ public class ControllerGerente {
             JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
             e.printStackTrace();
         }
-		
-    }
-	
-	
-	public static void excluir(int id) {
-		
-		BuscarF();
-		
-		try {
-			FuncionarioDAO.excluirFuncionario(id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario,
-			String endereco) {
-		
 		int NomeFuncionario = Integer.parseInt(nomeFuncionario);
 		int Sobrenome = Integer.parseInt(sobrenome);
 		int Endereco = Integer.parseInt(endereco);
@@ -193,6 +176,16 @@ public class ControllerGerente {
         salario = Integer.parseInt(Cadastro_Gerente.table.getValueAt((int) salario, 5).toString());
         Endereco = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Endereco, 6).toString());
 		
+    }
+	
+	
+	public static void excluir(int id) {
+		try {
+			FuncionarioDAO.excluirFuncionario(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void editar(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
