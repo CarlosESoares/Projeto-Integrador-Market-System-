@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.FuncionarioDAO;
 import visao.Cadastro_Gerente;
+import visao.TelaGerente;
+import visao.TelaVendas;
 import visao.TextFielArredondada;
 import visao.telaInicial;
 
@@ -30,6 +32,15 @@ public class ControllerGerente {
 		//abrindo tela do Cadastro
 		Cadastro_Gerente abrir = new Cadastro_Gerente();
 		abrir.setVisible(true);
+	}
+	public void TelaGerente() {
+		
+		visao.TelaGerente abrir = new TelaGerente();
+		abrir.setVisible(true);
+		TelaVendas fechar = new TelaVendas();
+		fechar.dispose();
+	}
+}
 	}
 	public static void Cadastro(TextFielArredondada textNome, TextFielArredondada textSobrenome, TextFielArredondada textTelefone, TextFielArredondada textCpf, TextFielArredondada textSenha, int op, TextFielArredondada textSalario, TextFielArredondada textEndereço) throws SQLException {
         try {

@@ -1,27 +1,28 @@
 	package visao;
 	
 	import java.awt.BorderLayout;
-	import java.awt.Color;
-	import java.awt.EventQueue;
-	import java.awt.Image;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import java.awt.event.MouseAdapter;
-	import java.awt.event.MouseEvent;
-	
-	import javax.swing.GroupLayout;
-	import javax.swing.GroupLayout.Alignment;
-	import javax.swing.ImageIcon;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JPanel;
-	import javax.swing.JScrollPane;
-	import javax.swing.JTable;
-	import javax.swing.SwingConstants;
-	import javax.swing.border.EmptyBorder;
-	import javax.swing.table.DefaultTableModel;
-	
-	import Controle.ControllerGerente;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Controle.ControllerEstoquista;
+import Controle.ControllerGerente;
 	
 	public class TelaVendas extends JFrame {
 	
@@ -79,40 +80,59 @@
 			    imgLogo.addActionListener(new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
 			            ControllerGerente abrir = new ControllerGerente();
-			            abrir.TelaGerent();
+			            abrir.TelaGerente();
 			            frame.dispose();
 			        }
 			    });
 			    imgLogo.setIcon(ImgRedimencionada);
 			    imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
-	
-			    JButton btnNewButton = new JButton("Voltar");
+			    
+			    JButton btnNewButton = new JButton("Funcionarios");
 			    btnNewButton.addActionListener(new ActionListener() {
-			        public void actionPerformed(ActionEvent e) {
-			            ControllerGerente tela = new ControllerGerente();
-			            tela.TelaGerent();
-			            frame.dispose();
-			        }
+			    	public void actionPerformed(ActionEvent e) {
+			    		ControllerGerente abrir = new ControllerGerente();
+			    		abrir.AbrirTelaFunfionario();
+			    		frame.dispose();
+			    	}
+			    });
+			    
+			    JButton btnNewButton_1 = new JButton("Vendas");
+			    	
+			    
+			    JButton btnNewButton_2 = new JButton("Estoque");
+			    btnNewButton_2.addActionListener(new ActionListener() {
+			    	public void actionPerformed(ActionEvent e) {
+			    		ControllerEstoquista abrir = new ControllerEstoquista();
+			    		abrir.AbrirTelaEstoque();
+			    		frame.dispose();
+			    	}
 			    });
 	
 			    GroupLayout gl_panel = new GroupLayout(panel);
 			    gl_panel.setHorizontalGroup(
-			        gl_panel.createParallelGroup(Alignment.LEADING)
-			            .addGroup(gl_panel.createSequentialGroup()
-			                .addGap(5)
-			                .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-			            .addGroup(gl_panel.createSequentialGroup()
-			                .addContainerGap()
-			                .addComponent(btnNewButton))
+			    	gl_panel.createParallelGroup(Alignment.LEADING)
+			    		.addGroup(gl_panel.createSequentialGroup()
+			    			.addGap(5)
+			    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+			    		.addGroup(gl_panel.createSequentialGroup()
+			    			.addContainerGap()
+			    			.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+			    				.addComponent(btnNewButton_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			    				.addComponent(btnNewButton_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			    				.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 			    );
 			    gl_panel.setVerticalGroup(
-			        gl_panel.createParallelGroup(Alignment.LEADING)
-			            .addGroup(gl_panel.createSequentialGroup()
-			                .addGap(5)
-			                .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-			                .addGap(18)
-			                .addComponent(btnNewButton)
-			                .addContainerGap(395, Short.MAX_VALUE))
+			    	gl_panel.createParallelGroup(Alignment.LEADING)
+			    		.addGroup(gl_panel.createSequentialGroup()
+			    			.addGap(5)
+			    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+			    			.addGap(18)
+			    			.addComponent(btnNewButton)
+			    			.addGap(18)
+			    			.addComponent(btnNewButton_1)
+			    			.addGap(18)
+			    			.addComponent(btnNewButton_2)
+			    			.addContainerGap(313, Short.MAX_VALUE))
 			    );
 			    panel.setLayout(gl_panel);
 	
@@ -163,5 +183,4 @@
 			    scrollPane.setViewportView(table);
 			    panel_2.setLayout(gl_panel_2);
 			}
-	
 	}
