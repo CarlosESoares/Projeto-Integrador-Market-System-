@@ -53,7 +53,7 @@ public class ControleDeLogin  {
 	            abrir.AbrirTelaCaixa();
 	        } else if (tipoFuncionario.equals("Gerente")) {
 	            ControllerGerente abrir = new ControllerGerente();
-	            abrir.TelaInicial();
+	            abrir.TelaGerente();
 	        } else {
 	            ControllerEstoquista abrir = new ControllerEstoquista();
 	            abrir.AbrirTelaEstoque();
