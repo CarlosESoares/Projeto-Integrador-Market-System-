@@ -42,17 +42,18 @@ public class FuncionarioDAO  {
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-            	String id = resultSet.getString("id_funcionario");
+            	int id = resultSet.getInt("id_funcionario");
             	String NomeFuncionario = resultSet.getString("NomeFuncionario");
-            	String login = resultSet.getString("login");
+            	long login = resultSet.getLong("login");
                 String senha = resultSet.getString("senha");
                 String tipo_funcionario = resultSet.getString("tipo_funcionario");
                 String sobrenome = resultSet.getString("Sobrenome");
-            	String salario = resultSet.getString("salario");
-                String telefone = resultSet.getString("telefone");
+            	double salario = resultSet.getDouble("salario");
+                int telefone = resultSet.getInt("telefone");
                 String endereco = resultSet.getString("endereco");
 
                 Funcionario.add(new Object[] { id, NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco});
+                ControllerGerente.Tabela(id, NomeFuncionario, sobrenome, telefone, salario, endereco);
             }
         }
         

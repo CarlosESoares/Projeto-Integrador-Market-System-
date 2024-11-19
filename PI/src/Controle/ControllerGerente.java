@@ -178,7 +178,8 @@ public class ControllerGerente {
 			e.printStackTrace();
 		}
 	}
-	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario, String endereco) {
+	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario,
+			String endereco) {
 		
 		int NomeFuncionario = Integer.parseInt(nomeFuncionario);
 		int Sobrenome = Integer.parseInt(sobrenome);
