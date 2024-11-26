@@ -18,10 +18,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Controle.ControleDeLogin;
-import Controle.ControllerEstoquista;
-import Controle.ControllerTelaCAIxa;
+import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Controle.ControllerTelaVendas;
+import Modelo.Funcionario;
 
 public class telaInicial extends JFrame {
 
@@ -35,7 +35,7 @@ public class telaInicial extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    telaInicial frame = new telaInicial();
+                    telaInicial frame = new telaInicial(null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,7 +47,7 @@ public class telaInicial extends JFrame {
     /**
      * Create the frame.
      */
-    public telaInicial() {
+    public telaInicial(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1042, 536);
@@ -148,8 +148,8 @@ public class telaInicial extends JFrame {
         });
         btnEstoque.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ControllerEstoquista abrir = new ControllerEstoquista();
-                abrir.AbrirTelaEstoque();
+            	ControllerGerente abrir = new ControllerGerente();
+                abrir.AbrirTelaEstoque(f);
                 dispose();
             }
         });
@@ -206,8 +206,8 @@ public class telaInicial extends JFrame {
         });
         btnCaixa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ControllerTelaCAIxa abrir = new ControllerTelaCAIxa();
-                abrir.AbrirCaixa();
+            	ControllerGerente abrir = new ControllerGerente();
+                abrir.AbrirTelaCaixa(f);
                 dispose();
             }
         });

@@ -15,18 +15,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaVendas;
+import Modelo.Funcionario;
 
 public class TelaGerente extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static TelaGerente frame = new TelaGerente();
+	private static TelaGerente frame = new TelaGerente(null);
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +43,7 @@ public class TelaGerente extends JFrame {
 	}
 
 	
-	public TelaGerente() {
+	public TelaGerente(Funcionario f) {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,12 +75,9 @@ public class TelaGerente extends JFrame {
 		Btnfuncionarios.setText("Funcionarios");
 		Btnfuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+								frame.dispose();
 				
-				ControllerGerente tela = new ControllerGerente();
-				
-				
-				frame.dispose();
-				tela.TelaCadastro();
+				ControllerGerente.TelaGerente(f);
 				
 
 			}
@@ -144,10 +140,10 @@ public class TelaGerente extends JFrame {
 		estoqueBtn.addActionListener(new ActionListener() {
 			
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerEstoquista abrir = new ControllerEstoquista();
+		    	ControllerGerente abrir = new ControllerGerente();
 		        
 		        frame.dispose();
-		        abrir.AbrirTelaEstoque();
+		        abrir.AbrirTelaEstoque(f);
 		    }
 		});
 		estoqueBtn.setForeground(Color.WHITE);
@@ -159,8 +155,7 @@ public class TelaGerente extends JFrame {
 		RoundedButton telaInicialBTN = new RoundedButton("Tela Inicial", 30, 30);
 		telaInicialBTN.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerEstoquista tela = new ControllerEstoquista();
-		        tela.AbrirTelaInicial();
+		        ControllerGerente.AbrirTelaInicial(f);
 		    }
 		});
 		telaInicialBTN.setForeground(Color.WHITE);

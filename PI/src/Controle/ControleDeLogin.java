@@ -16,7 +16,7 @@ public class ControleDeLogin  {
 	
 	private Login view;
     private FuncionarioDAO model;
-
+    private Funcionario f;
     public ControleDeLogin() {
         this.view = new Login(this); // Usar a instância passada como argumento
         this.model = new FuncionarioDAO();
@@ -26,7 +26,7 @@ public class ControleDeLogin  {
 		
 		String Login = cpf;
 		String senha =senha2;
-		Funcionario f;
+		
 		try {
 			f = model.autenticar(Login,senha);
 			
@@ -47,16 +47,20 @@ public class ControleDeLogin  {
 	}
 	public void ChamarTelas(Funcionario f) {
 	    String tipoFuncionario = f.getTipoFucionario();
+	    
+	    System.out.println(f.getNomeFuncionario());
+//	    ControllerGerente.tipo(f);
+	    
+	    
 	    if (tipoFuncionario != null) {
 	        if (tipoFuncionario.equals("Caixa")) {
-	            ControllerTelaCAIxa abrir = new ControllerTelaCAIxa();
-	            abrir.AbrirTelaCaixa();
+	        	ControllerGerente abrir = new ControllerGerente ();
+	            abrir.AbrirTelaCaixa(f);
 	        } else if (tipoFuncionario.equals("Gerente")) {
-	            ControllerGerente abrir = new ControllerGerente();
-	            abrir.TelaGerente();
+	            ControllerGerente.TelaGerente(f);
 	        } else {
-	            ControllerEstoquista abrir = new ControllerEstoquista();
-	            abrir.AbrirTelaEstoque();
+	        	ControllerGerente abrir = new ControllerGerente();
+	            abrir.AbrirTelaEstoque(f);
 	        }
 	        view.dispose();
 	    } else {
