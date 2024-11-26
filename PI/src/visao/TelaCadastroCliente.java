@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +35,9 @@ public class TelaCadastroCliente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	    public JTextField TextNome;
+		public JTextField TextSobrenome;
+		public JTextField TextCPF;
 	/**
 	 * Launch the application.
 	 */
@@ -241,34 +245,9 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnExcluir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int idcliente = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-		            
-		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
-		            if (confirm == JOptionPane.YES_OPTION) {
-		                try {
-		                    boolean sucesso = ClienteDAO.excluircliente(idcliente);
-		                    if (sucesso) {
-		                 
-		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-		                        JOptionPane.showMessageDialog(null, "cliente excluído com sucesso!");
-		                        TextNome.setText("");
-		   	                 TextSobrenome.setText("");
-		   	                 TextCPF.setText("");
-		                    } else {
-		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o cliente.");
-		                    }
-		                } catch (SQLException ex) {
-		                    ex.printStackTrace();
-		                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente: " + ex.getMessage());
-		                }
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");
-		        }
+		        ControllerTelaCliente controller = new ControllerTelaCliente();
+		        controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF);
 		    }
-
 		});
 		rndbtnExcluir.setBounds(255, 396, 150, 26);
 		rndbtnExcluir.setText("Excluir");
@@ -287,34 +266,10 @@ public class TelaCadastroCliente extends JFrame {
 		
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-
-		            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-		            String nome = TextNome.getText();
-		            String sobrenome = TextSobrenome.getText();
-		            String CPF = TextCPF.getText();
-
-		            boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF);
-
-					if (success) {
-					    table.setValueAt(nome, selectedRow, 1);
-					    table.setValueAt(sobrenome, selectedRow, 2);
-					    table.setValueAt(CPF, selectedRow, 3);
-					    JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
-					    buscarClientes();
-					       TextNome.setText("");
-			                 TextSobrenome.setText("");
-			                 TextCPF.setText("");
-					} else {
-					    JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.");
-					}
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
-		        }
+		        ControllerTelaCliente controller = new ControllerTelaCliente();
+		        controller.editarCliente(table, TextNome, TextSobrenome, TextCPF);
 		    }
 		});
-
 		rndbtnEditar.setBounds(523, 396, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -347,7 +302,8 @@ public class TelaCadastroCliente extends JFrame {
 
 
 
-        buscarClientes();
+		  ControllerTelaCliente controller = new ControllerTelaCliente();
+          controller.buscarClientes(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
 		rndbtnCadastrar.setBounds(10, 396, 150, 26);
@@ -361,49 +317,15 @@ public class TelaCadastroCliente extends JFrame {
 		    	rndbtnCadastrar.setBackground(Color.RED);
 		    }
 		});
-		rndbtnCadastrar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	String CPF1 = TextCPF.getText();
-                boolean hasLetter = CPF1.chars().anyMatch(ch -> !Character.isDigit(ch));
-		    	 if (TextNome.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo Nome", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-		    	  if   (TextSobrenome.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo Sobrenome", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	                 if   (TextCPF.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo CPF", "Erro", JOptionPane.ERROR_MESSAGE);
-	  
-	                }
-	           
-	                 else if  (CPF1.length() != 11) {
-		                JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
-		            } else if   (hasLetter) {
-		                JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-		            }
-	                else {
-	             String nome = TextNome.getText();
-	                String Sobrenome = TextSobrenome.getText();
-	                String CPF = TextCPF.getText();
-	                
-	               
-	               
-	            
-	                try {
-	                    ClienteDAO.cadastrarCliente(nome, Sobrenome, CPF);
-	                    JOptionPane.showMessageDialog(null, "cliente cadastrado com sucesso!");
-	                    buscarClientes(); 
-	                } catch (SQLException ex) {
-	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente.");
-	                    ex.printStackTrace();
-	                }
-	                }
+		 rndbtnCadastrar.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
 
-	                 TextNome.setText("");
-	                 TextSobrenome.setText("");
-	                 TextCPF.setText("");
+
+	                ControllerTelaCliente controller = new ControllerTelaCliente();
+	                controller.cadastrarCliente(table, TextNome, TextSobrenome, TextCPF);
 	            }
 	        });
+
 
 
 		panel_2.setLayout(null);
@@ -429,17 +351,4 @@ public class TelaCadastroCliente extends JFrame {
 
 
 }
-	private void buscarClientes() {
-        try {
-            List<Object[]> clientes = ClienteDAO.buscarTodosClientes();
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);  
-            for (Object[] clientes1 : clientes) {
-                model.addRow(clientes1); 
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar clientes.");
-            e.printStackTrace();
-        }
-    }
 }
