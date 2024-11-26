@@ -37,8 +37,6 @@ public class TelaDoCaixa extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTable table;
-
     // Componentes para exibir informações do produto
     private JLabel lblValorUnitario;
     private JLabel lblTotalItem;
@@ -154,14 +152,6 @@ public class TelaDoCaixa extends JFrame {
         rndbtnFecharCaixa.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rndbtnFecharCaixa.setBackground(Color.RED);
         panel_1.add(rndbtnFecharCaixa, "cell 0 8");
-
-        RoundedButton btnNewButton_1 = new RoundedButton("New button", 1, 1);
-        btnNewButton_1.setText("CÓDIGO DE BARRAS");
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
         // Adiciona o efeito de mudança de cor ao passar o mouse
         rndbtnFecharCaixa.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -172,13 +162,10 @@ public class TelaDoCaixa extends JFrame {
                 rndbtnFecharCaixa.setBackground(Color.RED); // Cor original
             }
         });
-        btnNewButton_1.setBackground(new Color(192, 192, 192));
-        btnNewButton_1.setBounds(47, 57, 155, 23);
-        panel_2.add(btnNewButton_1);
 
         JPanel panel_3_1 = new JPanel();
         panel_3_1.setBackground(Color.WHITE);
-        panel_3_1.setBounds(47, 152, 155, 23);
+        panel_3_1.setBounds(47, 78, 155, 23);
         panel_2.add(panel_3_1);
 
         JLabel lblNewLabel_1 = new JLabel("R$ 0,00");
@@ -188,22 +175,26 @@ public class TelaDoCaixa extends JFrame {
         RoundedButton btnNewButton_1_1 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_1.setText("VALOR UNITÁRIO");
         btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_1.setBounds(47, 131, 155, 23);
+        btnNewButton_1_1.setBounds(47, 57, 155, 23);
         panel_2.add(btnNewButton_1_1);
 
         JPanel panel_3_2 = new JPanel();
         panel_3_2.setBackground(Color.WHITE);
-        panel_3_2.setBounds(47, 227, 155, 23);
+        panel_3_2.setBounds(47, 153, 155, 23);
         panel_2.add(panel_3_2);
 
         JLabel lblNewLabel_2 = new JLabel("R$ 0,00");
         panel_3_2.add(lblNewLabel_2);
-        lblTotalItem = lblNewLabel_2; // Atribuindo para uso futuro
+        proco = lblNewLabel_2; // Atribuindo para uso futuro
 
         RoundedButton btnNewButton_1_2 = new RoundedButton("New button", 1, 1);
+        btnNewButton_1_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnNewButton_1_2.setText("TOTAL DO ITEM");
         btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_2.setBounds(47, 206, 155, 23);
+        btnNewButton_1_2.setBounds(47, 132, 155, 23);
         panel_2.add(btnNewButton_1_2);
 
         RoundedButton btnNewButton_1_3 = new RoundedButton("New button", 1, 1);
@@ -213,7 +204,7 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3.setText("CÓDIGO");
         btnNewButton_1_3.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3.setBounds(47, 278, 155, 23);
+        btnNewButton_1_3.setBounds(47, 204, 155, 23);
         panel_2.add(btnNewButton_1_3);
 
         RoundedButton btnNewButton_1_3_1 = new RoundedButton("New button", 1, 1);
@@ -274,26 +265,7 @@ public class TelaDoCaixa extends JFrame {
         panel_4.setBounds(247, 57, 582, 263);
         panel_2.add(panel_4);
 
-        String[] columnNames = { "N°item", "codigo", "Discriçao", "QTD", "valor.unitario", "total" };
-        Object[][] data = {};
         panel_4.setLayout(new BorderLayout());
-
-        HintTextField textfield = new HintTextField("000 00000 00000");
-        textfield.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_F2) { // Se quiser a tecla F2
-                    // evento
-                    System.out.println("F2 Pressionado no textfield!");
-                }
-            }
-        });
-        textfield.setHorizontalAlignment(SwingConstants.CENTER);
-
-        textfield.setBounds(47, 80, 155, 20);
-        panel_2.add(textfield);
-        textfield.setColumns(10);
 
         HintTextField textfield_1 = new HintTextField("00000");
         textfield_1.addKeyListener(new KeyAdapter() {
@@ -312,7 +284,7 @@ public class TelaDoCaixa extends JFrame {
         });
         textfield_1.setHorizontalAlignment(SwingConstants.CENTER);
         textfield_1.setColumns(10);
-        textfield_1.setBounds(47, 300, 155, 20);
+        textfield_1.setBounds(47, 226, 155, 20);
         panel_2.add(textfield_1);
        
         JScrollPane scrollPane = new JScrollPane(table_1);
@@ -324,7 +296,7 @@ public class TelaDoCaixa extends JFrame {
         	new Object[][] {
         	},
         	new String[] {
-        		"ID", "Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade", "Quantidade"
+        		"ID", "NDProduto", "Tipo", "DataChegada", "Preço", "Validade", "Quantidade"
         	}
         ));
         scrollPane.setViewportView(table_1);
@@ -332,7 +304,7 @@ public class TelaDoCaixa extends JFrame {
 
         JPanel panel_3 = new JPanel();
         panel_3.setBackground(new Color(192, 192, 192));
-        panel_3.setBounds(10, 350, 125, 120);
+        panel_3.setBounds(0, 379, 125, 107);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
@@ -351,12 +323,6 @@ public class TelaDoCaixa extends JFrame {
         JLabel lblNewLabel_8 = new JLabel("F4 - Limpar Campo");
         lblNewLabel_8.setBounds(10, 60, 107, 14);
         panel_3.add(lblNewLabel_8);
-
-        JPanel panel_5 = new JPanel();
-        panel_5.setBackground(new Color(192, 192, 192));
-        panel_5.setBounds(184, 350, 100, 120);
-        panel_2.add(panel_5);
-        panel_5.setLayout(null);
 
         /*-----------------------------------------------------*/
         
@@ -388,20 +354,19 @@ public class TelaDoCaixa extends JFrame {
 
     // Método para buscar o produto pelo ID no banco de dados
     private void buscarProdutoPeloId(String id_produto) {
-        String url = "jdbc:mysql://localhost:3306/mercado"; 
-        String user = "root"; 
-        String password = "aluno"; 
-        String query = "SELECT * FROM produtos WHERE id_produto = ?";
+        String url = "jdbc:mysql://localhost:3306/mercado";
+        String user = "root";
+        String password = "aluno";
+        String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
+        String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmtBusca = conn.prepareStatement(queryBusca);
+             PreparedStatement stmtAtualiza = conn.prepareStatement(queryAtualiza)) {
 
-            stmt.setInt(1, Integer.parseInt(id_produto));
-            ResultSet rs = stmt.executeQuery();
-            
-            	
-            
-            
+            stmtBusca.setInt(1, Integer.parseInt(id_produto));
+            ResultSet rs = stmtBusca.executeQuery();
+
             if (rs.next()) {
                 String nomeProduto = rs.getString("produto");
                 String tipoProduto = rs.getString("tipo_produto");
@@ -410,30 +375,27 @@ public class TelaDoCaixa extends JFrame {
                 int quantidade = rs.getInt("qntd");
                 String validade = rs.getString("validade_produto");
 
-                // Atualizar a interface com os dados do produto
-                System.out.println("Produto: " + nomeProduto);
-                System.out.println("Tipo: " + tipoProduto);
-                System.out.println("Data de Chegada: " + dataChegada);
-                System.out.println("Preço: R$ " + preco);
-                System.out.println("Quantidade: " + quantidade);
-                System.out.println("Validade: " + validade);
+                if (quantidade > 0) {
+                    // Atualizar quantidade
+                    int novaQuantidade = quantidade - 1;
+                    stmtAtualiza.setInt(1, novaQuantidade);
+                    stmtAtualiza.setInt(2, Integer.parseInt(id_produto));
+                    stmtAtualiza.executeUpdate();
 
-                // Atualiza os labels na interface
-                lblValorUnitario.setText(String.format("R$ %.2f", preco));
-                lblTotalItem.setText(String.format("R$ %.2f", preco * quantidade));
+                    System.out.println("Quantidade atualizada para: " + novaQuantidade);
 
-                // Opcional: Adicionar o produto à tabela
-                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-                int numeroItem = model.getRowCount() + 1;
-                model.addRow(new Object[] {
-                    numeroItem,
-                    id_produto,
-                    nomeProduto,
-                    quantidade,
-                    String.format("R$ %.2f", preco),
-                    String.format("R$ %.2f", preco * quantidade)
-                });
+                    // Atualiza a interface
+                    lblValorUnitario.setText(String.format("R$ %.2f", preco));
+                    lblTotalItem.setText(String.format("R$ %.2f", preco * novaQuantidade));
 
+                    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                    model.addRow(new Object[]{
+                        id_produto, nomeProduto, tipoProduto, dataChegada,
+                        String.format("R$ %.2f", preco), validade, novaQuantidade
+                    });
+                } else {
+                    System.out.println("Produto esgotado.");
+                }
             } else {
                 System.out.println("Produto não encontrado.");
             }
@@ -444,5 +406,8 @@ public class TelaDoCaixa extends JFrame {
             ex.printStackTrace();
             System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
         }
+    
     }
 }
+
+
