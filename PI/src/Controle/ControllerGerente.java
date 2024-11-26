@@ -25,6 +25,10 @@ public class ControllerGerente {
 		tela.setVisible(true);
 		
 	}
+	public static void TelaCadastro(Funcionario f) {
+		Cadastro_Gerente tela = new Cadastro_Gerente(f);
+		tela.setVisible(true);
+	}
 	
 	public void AbrirTelaEstoque(Funcionario f) {
 		TelaEstoque tela2 = new TelaEstoque();

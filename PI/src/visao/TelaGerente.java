@@ -77,7 +77,7 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 								frame.dispose();
 				
-				ControllerGerente.TelaGerente(f);
+				ControllerGerente.TelaCadastro(f);
 				
 
 			}

@@ -6,7 +6,7 @@ import visao.telaInicial;
 
 public class ControllerTelaCliente {
 	public void AbrirTelaCliente(){
-		TelaCadastroCliente Tela = new TelaCadastroCliente();
+		TelaCadastroCliente Tela = new TelaCadastroCliente(null);
 		Tela.setLocationRelativeTo(null);
 		Tela.setVisible(true);
 	}
@@ -18,7 +18,7 @@ public class ControllerTelaCliente {
 		
 	}
 	public void AbrirTelaInicial() {
-		telaInicial Tela = new telaInicial();
+		telaInicial Tela = new telaInicial(null);
 		Tela.setLocationRelativeTo(null);
 		Tela.setVisible(true);
 		
