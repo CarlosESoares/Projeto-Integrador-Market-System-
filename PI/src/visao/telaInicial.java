@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Controle.ControleDeLogin;
 import Controle.ControllerEstoquista;
 import Controle.ControllerTelaCAIxa;
 import Controle.ControllerTelaCliente;

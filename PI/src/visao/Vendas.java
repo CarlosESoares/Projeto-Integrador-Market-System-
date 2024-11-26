@@ -77,7 +77,7 @@ public class Vendas extends JFrame {
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.TelaGerent();
+				abrir.TelaGerente();
 				frame.dispose();
 			}
 		});
@@ -89,7 +89,7 @@ public class Vendas extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente tela = new ControllerGerente();
-				tela.TelaGerent();
+				tela.TelaGerente();
 				frame.dispose();
 
 			}

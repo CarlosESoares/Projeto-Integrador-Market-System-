@@ -22,6 +22,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import net.miginfocom.swing.MigLayout;
 
 public class TelaDoCaixa extends JFrame {
