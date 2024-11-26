@@ -136,6 +136,8 @@ public class ControllerGerente {
 			FuncionarioDAO f = new FuncionarioDAO();
 			f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
 			
+			JOptionPane.showMessageDialog(null, "Cadastrado com sucesso", "Erro", JOptionPane.ERROR_MESSAGE);
+			
 			} catch (NumberFormatException e1) {
 				// Captura de exceções de conversão numérica
 				JOptionPane.showMessageDialog(null, "Erro ao validar os dados numéricos. Verifique os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -149,6 +151,7 @@ public class ControllerGerente {
 				JOptionPane.showMessageDialog(null, "Erro inesperado: " + e3.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 				e3.printStackTrace();
 			}
+			BuscarF();
 		}
 	
 	public static void BuscarF() {

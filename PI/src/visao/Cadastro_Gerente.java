@@ -174,10 +174,10 @@ public class Cadastro_Gerente extends JFrame {
 		panel_1.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    String tipoFuncionario = f.getTipoFucionario();
-			    if (tipoFuncionario != null) {
+			    f.getTipoFucionario();
+			    if (f != null) {
 			    		System.out.println("erro");			    }
-			        if (tipoFuncionario.equals("Gerente")) {
+			        if (f.equals("Gerente")) {
 			        	 ControllerGerente abrir2 = new ControllerGerente();
 				            abrir2.TelaGerente();
 			        } else{
@@ -304,6 +304,7 @@ public class Cadastro_Gerente extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+		    	
 		    }
 		    });
 		Cadastrar.setBounds(373, 320, 113, 26);
