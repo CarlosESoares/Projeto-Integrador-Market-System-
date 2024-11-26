@@ -156,6 +156,12 @@ public class ControllerGerente {
 	
 	public static void BuscarF() {
 		try {
+			FuncionarioDAO.buscarFuncionario();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
             List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
             DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
             model.setRowCount(0);  
@@ -166,14 +172,9 @@ public class ControllerGerente {
             JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
             e.printStackTrace();
         }
-		
-		
-    }
-	
+	}
 	
 	public static void excluir(int id) {
-		
-		BuscarF();
 		
 		try {
 			FuncionarioDAO.excluirFuncionario(id);
@@ -181,26 +182,10 @@ public class ControllerGerente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	public static void Tabela(int id, String nomeFuncionario, String sobrenome, int telefone, double salario,
-			String endereco) {
-		
 		BuscarF();
-		int NomeFuncionario = Integer.parseInt(nomeFuncionario);
-		int Sobrenome = Integer.parseInt(sobrenome);
-		int Endereco = Integer.parseInt(endereco);
-		
-		
-		id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(id,1).toString());
-    	NomeFuncionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(NomeFuncionario, 2).toString());
-        Sobrenome = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Sobrenome, 3).toString());
-        telefone = Integer.parseInt(Cadastro_Gerente.table.getValueAt(telefone, 4).toString());
-        salario = Integer.parseInt(Cadastro_Gerente.table.getValueAt((int) salario, 5).toString());
-        Endereco = Integer.parseInt(Cadastro_Gerente.table.getValueAt(Endereco, 6).toString());
-		
 	}
 	
-	public void editar(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
-		FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario, login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+	public static void editar(int id,String NomeFuncionario,String sobrenome, double salario, int telefone, String endereco) {
+		FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario, sobrenome, salario, telefone, endereco);
 	}
 }

@@ -33,7 +33,7 @@ public class FuncionarioDAO  {
     }
 
     public static List<Object[]> buscarFuncionario() throws SQLException {
-        List<Object[]> Funcionario = new ArrayList<>();
+    	List<Object[]> Funcionario = new ArrayList<>();
         String query = "SELECT * FROM funcionarios";
         
         try (Connection connection = ConexaoBanco.conector();
@@ -51,9 +51,8 @@ public class FuncionarioDAO  {
                 int telefone = resultSet.getInt("telefone");
                 String endereco = resultSet.getString("endereco");
 
-                Funcionario.add(new Object[] { id, NomeFuncionario, login, senha, tipo_funcionario,sobrenome, salario, telefone, endereco});
+                Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
                 DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
-                int NumItem = model.getRowCount() +1;
                 model.addRow(new Object[] {
                 		id,
                 		NomeFuncionario,
@@ -63,16 +62,17 @@ public class FuncionarioDAO  {
                 		endereco
                 });
             }
+            
         }
         
         return Funcionario;
     }
-    public static boolean atualizarFuncionario(int id,String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) {
+    public static boolean atualizarFuncionario(int id,String NomeFuncionario, String sobrenome, double salario,int telefone,String endereco) {
     	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
         if (selectedRow != -1) {
             id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
 
-            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
+            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,sobrenome, salario, telefone, endereco);
             
             if (success) {
                 JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
@@ -87,14 +87,12 @@ public class FuncionarioDAO  {
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
         	 stmt.setString(1, NomeFuncionario);
-        	stmt.setLong(2, login);
-            stmt.setString(3, senha);
-            stmt.setString(4, tipo_funcionario);
-            stmt.setString(5, sobrenome);
+        	 stmt.setString(5, sobrenome);
         	stmt.setDouble(6, salario);
             stmt.setInt(7, telefone);
             stmt.setString(8, endereco);
             stmt.setInt(9, id);
+            
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {
@@ -124,10 +122,8 @@ public class FuncionarioDAO  {
                     JOptionPane.showMessageDialog(null, "Erro ao demitir o produto: " + ex.getMessage());
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Funcionário para demitir.");
-        }      
-    	String query = "DELETE FROM funcionario WHERE id_funcionario = ?";
+        }    
+    	String query = "DELETE FROM funcionarios WHERE id_funcionario = ?";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {

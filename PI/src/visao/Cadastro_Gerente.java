@@ -19,9 +19,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -66,11 +68,6 @@ public class Cadastro_Gerente extends JFrame {
 	 * Create the frame.
 	 */
 	public Cadastro_Gerente() {
-		
-		
-		
-		
-		
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,10 +171,10 @@ public class Cadastro_Gerente extends JFrame {
 		panel_1.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    f.getTipoFucionario();
-			    if (f != null) {
+			    String tipoFuncionario = f.getTipoFucionario();
+			    if (tipoFuncionario != null) {
 			    		System.out.println("erro");			    }
-			        if (f.equals("Gerente")) {
+			        if (tipoFuncionario.equals("Gerente")) {
 			        	 ControllerGerente abrir2 = new ControllerGerente();
 				            abrir2.TelaGerente();
 			        } else{
@@ -368,20 +365,166 @@ public class Cadastro_Gerente extends JFrame {
 		});
 		excluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerGerente.excluir(id);
-			}
-		});
+				JFrame Janelaexcluir = new JFrame("Demitir Funcionario");
+				 Janelaexcluir.setSize(300, 200);
+			     Janelaexcluir.setLocationRelativeTo(null);
+			     Janelaexcluir.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+			     JPanel painelExcluir = new JPanel();
+			        painelExcluir.setLayout(null);
+			        Janelaexcluir.add(painelExcluir);
+
+			     
+			        JLabel lblId = new JLabel("ID do Funcionário:");
+			        lblId.setBounds(10, 30, 150, 30);
+			        lblId.setFont(new Font("Arial", Font.PLAIN, 15));
+			        painelExcluir.add(lblId);
+
+			        TextFielArredondada textId = new TextFielArredondada(15, 20, 20);
+			        textId.setColumns(10);
+			        textId.setBounds(160, 30, 100, 30);
+			        painelExcluir.add(textId);
+
+			        RoundedButton btnExcluir = new RoundedButton("Excluir", 30, 30);
+			        btnExcluir.setBounds(90, 100, 120, 40);
+			        btnExcluir.setForeground(Color.WHITE);
+			        btnExcluir.setBackground(Color.RED);
+			        btnExcluir.addMouseListener(new MouseAdapter() {
+			            public void mouseEntered(MouseEvent e) {
+			                btnExcluir.setBackground(Color.LIGHT_GRAY);
+			            }
+
+			            public void mouseExited(MouseEvent e) {
+			                btnExcluir.setBackground(Color.RED);
+			            }
+			        });
+			        btnExcluir.addActionListener(new ActionListener() {
+			            public void actionPerformed(ActionEvent e) {
+			                try {
+			                	
+			                    int id = Integer.parseInt(textId.getText());
+			                    ControllerGerente.excluir(id);
+			                    Janelaexcluir.dispose();
+			                    JOptionPane.showMessageDialog(Janelaexcluir, "Funcionário excluído com sucesso!");            
+			                    
+			                } catch (NumberFormatException ex) {
+			                	
+			                    JOptionPane.showMessageDialog(Janelaexcluir, "Por favor, insira um ID válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+			                }
+			            }
+			        });
+			        painelExcluir.add(btnExcluir);
+			        Janelaexcluir.setVisible(true);
+			    }
+			});
+		
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		excluir.setForeground(new Color(255, 255, 255));
 		excluir.setBackground(new Color(255, 0, 0));
 		excluir.setBounds(528, 322, 113, 24);
 		panel_2.add(excluir);
 		
-		RoundedButton editar = new RoundedButton("Editar",30,30);
+		RoundedButton editar = new RoundedButton("Editar", 30, 30);
 		editar.setFont(new Font("Arial", Font.PLAIN, 15));
 		editar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        // Criando a janela de edição
+		        JFrame editarWindow = new JFrame("Editar Funcionário");
+		        editarWindow.setSize(400, 350);
+		        editarWindow.setLocationRelativeTo(null);  // Centraliza a janela
+		        editarWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		        // Painel para organizar os componentes
+		        JPanel painelEditar = new JPanel();
+		        painelEditar.setLayout(null);  // Layout personalizado
+		        editarWindow.getContentPane().add(painelEditar);
+
+		        // Rótulo e campo para Nome
+		        JLabel lblNome = new JLabel("Nome:");
+		        lblNome.setBounds(20, 20, 100, 25);
+		        lblNome.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblNome);
+
+		        JTextField tfNome = new JTextField();
+		        tfNome.setBounds(120, 20, 200, 25);
+		        painelEditar.add(tfNome);
+
+		        // Rótulo e campo para Sobrenome
+		        JLabel lblSobrenome = new JLabel("Sobrenome:");
+		        lblSobrenome.setBounds(20, 60, 100, 25);
+		        lblSobrenome.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblSobrenome);
+
+		        JTextField tfSobrenome = new JTextField();
+		        tfSobrenome.setBounds(120, 60, 200, 25);
+		        painelEditar.add(tfSobrenome);
+
+		        // Rótulo e campo para Telefone
+		        JLabel lblTelefone = new JLabel("Telefone:");
+		        lblTelefone.setBounds(20, 100, 100, 25);
+		        lblTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblTelefone);
+
+		        JTextField tfTelefone = new JTextField();
+		        tfTelefone.setBounds(120, 100, 200, 25);
+		        painelEditar.add(tfTelefone);
+
+		        // Rótulo e campo para Salário
+		        JLabel lblSalario = new JLabel("Salário:");
+		        lblSalario.setBounds(20, 140, 100, 25);
+		        lblSalario.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblSalario);
+
+		        JTextField tfSalario = new JTextField();
+		        tfSalario.setBounds(120, 140, 200, 25);
+		        painelEditar.add(tfSalario);
+
+		        // Rótulo e campo para Endereço
+		        JLabel lblEndereco = new JLabel("Endereço:");
+		        lblEndereco.setBounds(20, 180, 100, 25);
+		        lblEndereco.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblEndereco);
+
+		        JTextField tfEndereco = new JTextField();
+		        tfEndereco.setBounds(120, 180, 200, 25);
+		        painelEditar.add(tfEndereco);
+
+		        // Botão para Salvar as alterações
+		        RoundedButton btnSalvar = new RoundedButton("Salvar", 30, 30);
+		        btnSalvar.setBounds(120, 220, 100, 40);
+		        btnSalvar.setForeground(Color.WHITE);
+		        btnSalvar.setBackground(Color.GREEN);
+		        btnSalvar.addMouseListener(new MouseAdapter() {
+		            public void mouseEntered(MouseEvent e) {
+		                btnSalvar.setBackground(Color.LIGHT_GRAY);
+		            }
+
+		            public void mouseExited(MouseEvent e) {
+		                btnSalvar.setBackground(Color.GREEN);
+		            }
+		        });
+
+		        btnSalvar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                // Captura os dados dos campos de texto
+		                String nome = tfNome.getText();
+		                String sobrenome = tfSobrenome.getText();
+		                int telefone = Integer.parseInt(tfTelefone.getSelectedText());
+		                double salario = Double.parseDouble(tfSalario.getText());
+		                String endereco = tfEndereco.getText();
+
+		                ControllerGerente.editar(id, nome, sobrenome, salario, telefone, endereco);
+		              
+		                editarWindow.dispose(); // Fecha a janela após salvar
+		            }
+
+		        });
+
+		        painelEditar.add(btnSalvar);
+
+		        // Torna a janela visível
+		        editarWindow.setVisible(true);
+		    }
 		});
 		editar.setForeground(new Color(255, 255, 255));
 		editar.setBackground(new Color(255, 0, 0));
@@ -411,11 +554,7 @@ public class Cadastro_Gerente extends JFrame {
 				tela.TelaInicial();
 			}
 		});
-	
-		
-		
-		
-	
+ControllerGerente.BuscarF();
 }
 }
 
