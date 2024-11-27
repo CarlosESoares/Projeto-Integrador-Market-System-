@@ -12,9 +12,7 @@ public class VendaDAO {
 
     public void buscarVendas(JTable table) {
         try {
-            // Estabelecendo a conexão com o banco de dados
-            ConexaoBanco conexaoBanco = new ConexaoBanco();
-            this.connection = conexaoBanco.conector();
+            this.connection = ConexaoBanco.conector();
 
             if (connection != null) {
                 // Criando a instrução SQL

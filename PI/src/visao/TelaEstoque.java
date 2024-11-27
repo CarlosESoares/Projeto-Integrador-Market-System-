@@ -126,7 +126,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnHomeClientes.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente abrir = new ControllerGerente();
-		        abrir.AbrirTelaCliente();
+		        abrir.AbrirTelaCliente(f);
 		        dispose();
 		    }
 		});

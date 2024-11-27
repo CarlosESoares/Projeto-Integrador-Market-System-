@@ -101,8 +101,7 @@ public class TelaResumo extends JFrame {
 		    JButton btnFunciora = new JButton("Funcionarios");
 		    btnFunciora.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		    		ControllerGerente tela = new ControllerGerente();
-		    		tela.TelaGerente(null);
+		    		ControllerGerente.TelaGerente(null);
 		    	}
 		    });
 		    

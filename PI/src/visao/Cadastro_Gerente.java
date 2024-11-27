@@ -279,8 +279,6 @@ public	String tipoFunci;
 		        int op = comboFuncao.getSelectedIndex();
 		    	try {
 					ControllerGerente.Cadastro(TextNome,TextSobrenome,TextTelefone,TextCpf,TextSenha,op,TextSalario,TextEndereço);
-					// Verifica o tipo de funcionário e habilita o botão "Voltar" se for gerente
-		            String tipoFuncionario = comboFuncao.getSelectedItem().toString();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

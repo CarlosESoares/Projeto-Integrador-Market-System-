@@ -15,11 +15,10 @@ public class ControleDeLogin  {
 
 	
 	private Login view;
-    private FuncionarioDAO model;
     private Funcionario f;
     public ControleDeLogin() {
         this.view = new Login(this); // Usar a instância passada como argumento
-        this.model = new FuncionarioDAO();
+        new FuncionarioDAO();
     }
 	
 	public void logar(String cpf, String senha2 ) {
@@ -28,7 +27,7 @@ public class ControleDeLogin  {
 		String senha =senha2;
 		
 		try {
-			f = model.autenticar(Login,senha);
+			f = FuncionarioDAO.autenticar(Login,senha);
 			
 			if(f!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");

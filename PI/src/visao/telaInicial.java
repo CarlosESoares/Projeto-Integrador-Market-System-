@@ -21,7 +21,7 @@ import Controle.ControleDeLogin;
 import Controle.ControllerGerente;
 
 import Modelo.Funcionario;
-import javax.swing.JButton;
+
 
 public class telaInicial extends JFrame {
 
@@ -87,11 +87,6 @@ public class telaInicial extends JFrame {
 		btnNewButton.setIcon(ImgRedimencionada2);
 
         panel_1.add(btnNewButton);
-        ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
-        Image imageLogo = originalIconLogo.getImage();
-        Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
-        
         JPanel panel_2 = new JPanel();
         contentPane.add(panel_2, BorderLayout.CENTER);
         
@@ -127,7 +122,7 @@ public class telaInicial extends JFrame {
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaCliente();
+                abrir.AbrirTelaCliente(f);
                 dispose();
             }
         });

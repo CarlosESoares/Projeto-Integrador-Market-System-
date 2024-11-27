@@ -44,10 +44,7 @@ public class FuncionarioDAO  {
             while (resultSet.next()) {
             	int id = resultSet.getInt("id_funcionario");
             	String NomeFuncionario = resultSet.getString("NomeFuncionario");
-            	long login = resultSet.getLong("login");
-                String senha = resultSet.getString("senha");
-                String tipo_funcionario = resultSet.getString("tipo_funcionario");
-                String sobrenome = resultSet.getString("Sobrenome");
+            	String sobrenome = resultSet.getString("Sobrenome");
             	double salario = resultSet.getDouble("salario");
                 int telefone = resultSet.getInt("telefone");
                 String endereco = resultSet.getString("endereco");
@@ -79,10 +76,7 @@ public class FuncionarioDAO  {
             while (resultSet.next()) {
             	int id = resultSet.getInt("id_funcionario");
             	String NomeFuncionario = resultSet.getString("NomeFuncionario");
-            	long login = resultSet.getLong("login");
-                String senha = resultSet.getString("senha");
-                String tipo_funcionario = resultSet.getString("tipo_funcionario");
-                String sobrenome = resultSet.getString("Sobrenome");
+            	String sobrenome = resultSet.getString("Sobrenome");
             	double salario = resultSet.getDouble("salario");
                 int telefone = resultSet.getInt("telefone");
                 String endereco = resultSet.getString("endereco");

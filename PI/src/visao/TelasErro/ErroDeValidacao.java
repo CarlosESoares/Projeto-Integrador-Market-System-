@@ -11,13 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Controle.ControleDeLogin;
 import visao.Login;
 import visao.RoundedButton;
-import visao.TextFielArredondada;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

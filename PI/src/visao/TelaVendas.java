@@ -79,8 +79,7 @@ import Modelo.Funcionario;
 			    imgLogo.setBackground(new Color(192, 192, 192));
 			    imgLogo.addActionListener(new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
-			            ControllerGerente abrir = new ControllerGerente();
-			            abrir.TelaGerente(f);
+			            ControllerGerente.TelaGerente(f);
 			            dispose();
 			        }
 			    });
@@ -90,8 +89,7 @@ import Modelo.Funcionario;
 			    JButton btnNewButton = new JButton("Funcionarios");
 			    btnNewButton.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
-			    		ControllerGerente abrir = new ControllerGerente();
-			    		abrir.TelaGerente(f);
+			    		ControllerGerente.TelaGerente(f);
 			    		frame.dispose();
 			    	}
 			    });

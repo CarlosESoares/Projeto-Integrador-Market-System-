@@ -2,7 +2,6 @@ package visao;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,7 +63,7 @@ public class RelatorioVenda extends JFrame {
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaInicial();
+				abrir.TelaInicial();
 				dispose();
 			}
 		});
