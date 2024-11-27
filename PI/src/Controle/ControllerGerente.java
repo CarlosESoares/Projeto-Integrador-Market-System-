@@ -198,10 +198,11 @@ VendaDAO dao = new VendaDAO();
 				JOptionPane.showMessageDialog(null, "Erro inesperado: " + e3.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 				e3.printStackTrace();
 			}
-			BuscarF();
+			BuscarF(Cadastro_Gerente.table);
+			
 		}
 	
-	public static void BuscarF() {
+	public static void BuscarF(JTable table) {
 		try {
 			FuncionarioDAO.buscarFuncionario();
 		} catch (SQLException e) {
@@ -229,12 +230,45 @@ VendaDAO dao = new VendaDAO();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		BuscarF();
+		BuscarF(Cadastro_Gerente.table);
 	}
 	
-	public static void editar(int id,String NomeFuncionario,String sobrenome, double salario, int telefone, String endereco) {
-		FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario, sobrenome, salario, telefone, endereco);
-	}
+	 public static void editar(int id, JTextField TextNome, JTextField TextSobrenome, JTextField Textsalario, JTextField Texttelefone, JTextField Textendereco) {
+	        int selectedRow = Cadastro_Gerente.table.getSelectedRow();
+	        
+	        if (selectedRow != -1) {
+	            id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+	            String nome = TextNome.getText();
+	            String sobrenome = TextSobrenome.getText();
+	            double salario = Double.parseDouble(Textsalario.getText());
+	            int telefone = Integer.parseInt(Texttelefone.getText());
+	            String endereco = Textendereco.getText();
+
+	            boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
+
+	            if (success) {
+	            	Cadastro_Gerente.table.setValueAt(nome, selectedRow, 1);
+	            	Cadastro_Gerente.table.setValueAt(sobrenome, selectedRow, 2);
+	            	Cadastro_Gerente.table.setValueAt(salario, selectedRow, 3);
+	            	Cadastro_Gerente.table.setValueAt(telefone, selectedRow, 4);
+	            	Cadastro_Gerente.table.setValueAt(endereco, selectedRow, 5);
+	                JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso!");
+	                BuscarF(Cadastro_Gerente.table);  
+	                limparCamposFuncionario(TextNome, TextSobrenome, Textsalario, Texttelefone, Textendereco);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Erro ao atualizar o Funcionario.");
+	            }
+	        }
+	      
+	    }
+	 
+	 public static void limparCamposFuncionario(JTextField TextNome, JTextField TextSobrenome, JTextField Textsalario, JTextField Texttelefone, JTextField Textendereco) {
+	        TextNome.setText("");
+	        TextSobrenome.setText("");
+	        Textsalario.setText("");
+	        Texttelefone.setText("");
+	        Textendereco.setText("");
+	    }
 	
 	
 	

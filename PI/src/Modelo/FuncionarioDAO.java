@@ -68,30 +68,15 @@ public class FuncionarioDAO  {
         return Funcionario;
     }
     public static boolean atualizarFuncionario(int id,String NomeFuncionario, String sobrenome, double salario,int telefone,String endereco) {
-    	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
-        if (selectedRow != -1) {
-            id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
-
-            boolean success = FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario,sobrenome, salario, telefone, endereco);
-            
-            if (success) {
-                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
-        }
-    	
-    	String sql = "UPDATE funcionario SET NomeFuncionario = ?, login = ?, senha = ?, tipo_funcionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
+    	String sql = "UPDATE funcionarios SET NomeFuncionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
         	 stmt.setString(1, NomeFuncionario);
-        	 stmt.setString(5, sobrenome);
-        	stmt.setDouble(6, salario);
-            stmt.setInt(7, telefone);
-            stmt.setString(8, endereco);
-            stmt.setInt(9, id);
+        	 stmt.setString(2, sobrenome);
+        	stmt.setDouble(3, salario);
+            stmt.setInt(4, telefone);
+            stmt.setString(5, endereco);
+            stmt.setInt(6, id);
             
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
@@ -176,7 +161,7 @@ public class FuncionarioDAO  {
 		    String tipoFuncionario = null;
 		    
 		    // Consulta SQL para buscar o tipo de funcionário pelo ID
-		    String sql = "SELECT tipo_funcionario FROM funcionarios WHERE id_funcionario = ?";
+		    String sql = "SELECT tipo_funcionarios FROM funcionarios WHERE id_funcionario = ?";
 		    
 		    try (Connection connection = ConexaoBanco.conector();
 		         PreparedStatement pst = connection.prepareStatement(sql)) {

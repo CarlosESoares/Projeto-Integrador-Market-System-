@@ -414,7 +414,7 @@ public	String tipoFunci;
 		    public void actionPerformed(ActionEvent e) {
 		        // Criando a janela de edição
 		        JFrame editarWindow = new JFrame("Editar Funcionário");
-		        editarWindow.setSize(400, 350);
+		        editarWindow.setSize(400, 400);  // Aumentei o tamanho para acomodar todos os campos
 		        editarWindow.setLocationRelativeTo(null);  // Centraliza a janela
 		        editarWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -423,61 +423,74 @@ public	String tipoFunci;
 		        painelEditar.setLayout(null);  // Layout personalizado
 		        editarWindow.getContentPane().add(painelEditar);
 
+		        // Rótulo e campo para ID do Funcionário
+		        JLabel lblId = new JLabel("ID do Funcionário:");
+		        lblId.setBounds(20, 20, 150, 30);  // Posicionei o ID no topo
+		        lblId.setFont(new Font("Arial", Font.PLAIN, 14));
+		        painelEditar.add(lblId);
+		        
+		        TextFielArredondada textId = new TextFielArredondada(15, 20, 20);  // Assumindo que seja uma classe personalizada
+		        textId.setColumns(10);
+		        textId.setBounds(160, 20, 100, 30);  // Ajustei a posição para não sobrepor outros campos
+		        painelEditar.add(textId);
+
 		        // Rótulo e campo para Nome
 		        JLabel lblNome = new JLabel("Nome:");
-		        lblNome.setBounds(20, 20, 100, 25);
+		        lblNome.setBounds(20, 70, 100, 25);  // Ajustei a posição para deixar espaço
 		        lblNome.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblNome);
 
 		        JTextField tfNome = new JTextField();
-		        tfNome.setBounds(120, 20, 200, 25);
+		        tfNome.setBounds(120, 70, 200, 25);
 		        painelEditar.add(tfNome);
 
 		        // Rótulo e campo para Sobrenome
 		        JLabel lblSobrenome = new JLabel("Sobrenome:");
-		        lblSobrenome.setBounds(20, 60, 100, 25);
+		        lblSobrenome.setBounds(20, 110, 100, 25);
 		        lblSobrenome.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblSobrenome);
 
 		        JTextField tfSobrenome = new JTextField();
-		        tfSobrenome.setBounds(120, 60, 200, 25);
+		        tfSobrenome.setBounds(120, 110, 200, 25);
 		        painelEditar.add(tfSobrenome);
 
 		        // Rótulo e campo para Telefone
 		        JLabel lblTelefone = new JLabel("Telefone:");
-		        lblTelefone.setBounds(20, 100, 100, 25);
+		        lblTelefone.setBounds(20, 150, 100, 25);
 		        lblTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblTelefone);
 
 		        JTextField tfTelefone = new JTextField();
-		        tfTelefone.setBounds(120, 100, 200, 25);
+		        tfTelefone.setBounds(120, 150, 200, 25);
 		        painelEditar.add(tfTelefone);
 
 		        // Rótulo e campo para Salário
 		        JLabel lblSalario = new JLabel("Salário:");
-		        lblSalario.setBounds(20, 140, 100, 25);
+		        lblSalario.setBounds(20, 190, 100, 25);
 		        lblSalario.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblSalario);
 
 		        JTextField tfSalario = new JTextField();
-		        tfSalario.setBounds(120, 140, 200, 25);
+		        tfSalario.setBounds(120, 190, 200, 25);
 		        painelEditar.add(tfSalario);
 
 		        // Rótulo e campo para Endereço
 		        JLabel lblEndereco = new JLabel("Endereço:");
-		        lblEndereco.setBounds(20, 180, 100, 25);
+		        lblEndereco.setBounds(20, 230, 100, 25);
 		        lblEndereco.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblEndereco);
 
 		        JTextField tfEndereco = new JTextField();
-		        tfEndereco.setBounds(120, 180, 200, 25);
+		        tfEndereco.setBounds(120, 230, 200, 25);
 		        painelEditar.add(tfEndereco);
 
 		        // Botão para Salvar as alterações
 		        RoundedButton btnSalvar = new RoundedButton("Salvar", 30, 30);
-		        btnSalvar.setBounds(120, 220, 100, 40);
+		        btnSalvar.setBounds(120, 270, 100, 40);
 		        btnSalvar.setForeground(Color.WHITE);
 		        btnSalvar.setBackground(Color.GREEN);
+		        
+		        // Alteração de cor ao passar o mouse sobre o botão
 		        btnSalvar.addMouseListener(new MouseAdapter() {
 		            public void mouseEntered(MouseEvent e) {
 		                btnSalvar.setBackground(Color.LIGHT_GRAY);
@@ -490,18 +503,11 @@ public	String tipoFunci;
 
 		        btnSalvar.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
-		                // Captura os dados dos campos de texto
-		                String nome = tfNome.getText();
-		                String sobrenome = tfSobrenome.getText();
-		                int telefone = Integer.parseInt(tfTelefone.getSelectedText());
-		                double salario = Double.parseDouble(tfSalario.getText());
-		                String endereco = tfEndereco.getText();
-
-		                ControllerGerente.editar(id, nome, sobrenome, salario, telefone, endereco);
-		              
+		                int id = Integer.parseInt(textId.getText());  // Obtém o ID inserido no campo de texto    
+		                
+		                ControllerGerente.editar(id,tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 		                editarWindow.dispose(); // Fecha a janela após salvar
 		            }
-
 		        });
 
 		        painelEditar.add(btnSalvar);
