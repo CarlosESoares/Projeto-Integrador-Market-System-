@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import visao.Cadastro_Gerente;
+import visao.TelaResumo;
 
 public class FuncionarioDAO  {
 	public void cadastroFuncionario(String NomeFuncionario, long login, String senha, String tipo_funcionario,String sobrenome, double salario,int telefone,String endereco) throws SQLException {
@@ -53,6 +54,41 @@ public class FuncionarioDAO  {
 
                 Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
                 DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
+                model.addRow(new Object[] {
+                		id,
+                		NomeFuncionario,
+                		sobrenome,
+                		telefone,
+                		salario,
+                		endereco
+                });
+            }
+            
+        }
+        
+        return Funcionario;
+    }
+    public static List<Object[]> buscarFuncionarioR() throws SQLException {
+    	List<Object[]> Funcionario = new ArrayList<>();
+        String query = "SELECT * FROM funcionarios";
+        
+        try (Connection connection = ConexaoBanco.conector();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+            	int id = resultSet.getInt("id_funcionario");
+            	String NomeFuncionario = resultSet.getString("NomeFuncionario");
+            	long login = resultSet.getLong("login");
+                String senha = resultSet.getString("senha");
+                String tipo_funcionario = resultSet.getString("tipo_funcionario");
+                String sobrenome = resultSet.getString("Sobrenome");
+            	double salario = resultSet.getDouble("salario");
+                int telefone = resultSet.getInt("telefone");
+                String endereco = resultSet.getString("endereco");
+
+                Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
+                DefaultTableModel model = (DefaultTableModel) TelaResumo.tableFuncionario.getModel();
                 model.addRow(new Object[] {
                 		id,
                 		NomeFuncionario,

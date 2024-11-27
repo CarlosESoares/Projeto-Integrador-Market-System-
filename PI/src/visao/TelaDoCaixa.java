@@ -130,7 +130,7 @@ public class TelaDoCaixa extends JFrame {
         imgLogo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaInicial();
+                abrir.TelaInicial();
                 dispose();
             }
         });

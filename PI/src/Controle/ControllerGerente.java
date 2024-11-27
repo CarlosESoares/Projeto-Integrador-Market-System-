@@ -18,6 +18,7 @@ import visao.TelaCadastroCliente;
 import visao.TelaDoCaixa;
 import visao.TelaEstoque;
 import visao.TelaGerente;
+import visao.TelaResumo;
 import visao.TelaVendas;
 import visao.TextFielArredondada;
 import visao.telaInicial;
@@ -206,6 +207,20 @@ VendaDAO dao = new VendaDAO();
 		try {
             List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
             DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
+            model.setRowCount(0);  
+            for (Object[] Funcionarios : Funcionario) {
+                model.addRow(Funcionarios); 
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
+            e.printStackTrace();
+        }
+	}
+	
+	public static void BuscarFR(JTable table) {
+		try {
+            List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionarioR();
+            DefaultTableModel model = (DefaultTableModel) TelaResumo.tableFuncionario.getModel();
             model.setRowCount(0);  
             for (Object[] Funcionarios : Funcionario) {
                 model.addRow(Funcionarios); 

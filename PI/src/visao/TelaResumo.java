@@ -27,17 +27,16 @@ import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
 import Modelo.ClienteDAO;
-import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
 public class TelaResumo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable tableFuncionario;
-	private JTable tableProdutos;
-	private JTable tableClientes;
-	 static TelaResumo frame = new TelaResumo();
+	public static JTable tableFuncionario;
+	public JTable tableProdutos;
+	public JTable tableClientes;
+
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +44,7 @@ public class TelaResumo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
+					TelaResumo frame = new TelaResumo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -172,19 +171,15 @@ public class TelaResumo extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane, 364, SpringLayout.WEST, panel_3);
 		panel_3.add(scrollPane);
 		
-		tableFuncionario = new JTable();
-		tableFuncionario.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Sobrenome", "Telefone", "Cargo"
-			}
-			
-		));
-		ControllerGerente p=new ControllerGerente();
+		String[] columnNames2={"Nome", "Sobrenome", "Telefone", "Cargo"};
+
+		Object[][] data1 = {};
+
+		tableFuncionario = new JTable(new DefaultTableModel(data1,columnNames2));
 		scrollPane.setViewportView(tableFuncionario);
 		
-		ControllerGerente.BuscarF(Cadastro_Gerente.table);
+		
+		ControllerGerente.BuscarFR(tableFuncionario);
 		
 		JLabel Funcio = new JLabel("Funcionarios");
 		sl_panel_3.putConstraint(SpringLayout.NORTH, Funcio, -56, SpringLayout.NORTH, scrollPane);
@@ -224,9 +219,9 @@ public class TelaResumo extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_2, 92, SpringLayout.EAST, scrollPane);
 		panel_3.add(scrollPane_2);
 		
-		String[] columnNames2 = {"ID", "Nome", "Sobrenome", "CPF",};
+		String[] columnNames3 = {"ID", "Nome", "Sobrenome", "CPF",};
 		Object[][] data2 = {};
-		tableClientes = new JTable(new DefaultTableModel(data2, columnNames2));
+		tableClientes = new JTable(new DefaultTableModel(data2, columnNames3));
 		buscarClientes();
 		
 		
