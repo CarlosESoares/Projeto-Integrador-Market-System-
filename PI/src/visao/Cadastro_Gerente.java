@@ -40,13 +40,14 @@ public class Cadastro_Gerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String tipo_funcionario;
 	public static JTable table;
 	private static Cadastro_Gerente frame;
 	public int id;
 	public static JButton BtnGerente;
-	public 		Funcionario f;
-
+//	public 		Funcionario f;
+	public ControllerGerente tipo = new ControllerGerente();
+public	String tipoFunci;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +55,7 @@ public class Cadastro_Gerente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					 frame = new Cadastro_Gerente();
+					 frame = new Cadastro_Gerente(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +68,7 @@ public class Cadastro_Gerente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Cadastro_Gerente() {
+	public Cadastro_Gerente(Funcionario f) {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,14 +78,11 @@ public class Cadastro_Gerente extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		
-		 
-	
-		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
+		
+
 		ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
 		Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
 		Image newImage = image.getScaledInstance(1200, 200, Image.SCALE_SMOOTH); // Redimensione a imagem
@@ -112,8 +110,8 @@ public class Cadastro_Gerente extends JFrame {
 		});
 		btnProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerEstoquista abrir = new ControllerEstoquista();
-				abrir.AbrirTelaEstoque();
+				ControllerGerente abrir = new ControllerGerente();
+				abrir.AbrirTelaEstoque(null);
 				dispose();
 		
 			}
@@ -171,19 +169,9 @@ public class Cadastro_Gerente extends JFrame {
 		panel_1.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    String tipoFuncionario = f.getTipoFucionario();
-			    if (tipoFuncionario != null) {
-			    		System.out.println("erro");			    }
-			        if (tipoFuncionario.equals("Gerente")) {
-			        	 ControllerGerente abrir2 = new ControllerGerente();
-				            abrir2.TelaGerente();
-			        } else{
-			           
-			            ControllerTelaCAIxa abrir31 = new ControllerTelaCAIxa();
-			            abrir31.AbrirTelaCaixa();
-			        } 
-			}
-		});
+			ControllerGerente.tipo(f);
+			
+		}});
 		imgLogo.setIcon(ImgRedimencionada);
 		
 		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);

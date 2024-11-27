@@ -26,9 +26,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerEstoquista;
+import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Modelo.ClienteDAO;
+import Modelo.Funcionario;
 
 public class TelaCadastroCliente extends JFrame {
 
@@ -45,7 +46,7 @@ public class TelaCadastroCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroCliente frame = new TelaCadastroCliente();
+					TelaCadastroCliente frame = new TelaCadastroCliente(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +59,7 @@ public class TelaCadastroCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroCliente() {
+	public TelaCadastroCliente(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 582);
@@ -81,8 +82,7 @@ public class TelaCadastroCliente extends JFrame {
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerEstoquista abrir = new ControllerEstoquista();
-		        abrir.AbrirTelaInicial();
+		        ControllerGerente.AbrirTelaInicial(f);
 		        dispose();
 		    }
 		});

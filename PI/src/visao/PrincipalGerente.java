@@ -29,6 +29,7 @@ import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
 import Controle.ControllerTelaCliente;
 import Modelo.ClienteDAO;
+import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
 public class PrincipalGerente extends JFrame {
@@ -104,15 +105,15 @@ public class PrincipalGerente extends JFrame {
 		    btnFunciora.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		ControllerGerente tela = new ControllerGerente();
-		    		tela.AbrirTelaFunfionario();
+		    		tela.TelaGerente(null);
 		    	}
 		    });
 		    
 		    JButton btnProduto = new JButton("Produto");
 		    btnProduto.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		    		ControllerEstoquista tela = new ControllerEstoquista();
-		    		tela.AbrirTelaEstoque();
+		    		ControllerGerente tela = new ControllerGerente();
+		    		tela.AbrirTelaEstoque(null);
 		    	}
 		    });
 		    

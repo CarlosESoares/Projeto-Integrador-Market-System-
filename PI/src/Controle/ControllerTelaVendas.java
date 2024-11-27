@@ -10,7 +10,7 @@ public class ControllerTelaVendas {
 	
 	public void AbrirTelaVendas(){
 
-		TelaVendas tela = new TelaVendas();
+		TelaVendas tela = new TelaVendas(null);
 		tela.setLocationRelativeTo(null);
 		tela.setVisible(true);
 	

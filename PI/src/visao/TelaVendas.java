@@ -21,8 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
+import Modelo.Funcionario;
 	
 	public class TelaVendas extends JFrame {
 	
@@ -38,7 +38,7 @@ import Controle.ControllerGerente;
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						 frame = new TelaVendas();
+						 frame = new TelaVendas(null);
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -51,7 +51,7 @@ import Controle.ControllerGerente;
 		 * Create the frame.
 		 */
 			
-			public TelaVendas() {
+			public TelaVendas(Funcionario f) {
 			    // Configurações da janela
 			    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			    setBounds(100, 100, 1000, 598);
@@ -80,7 +80,7 @@ import Controle.ControllerGerente;
 			    imgLogo.addActionListener(new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
 			            ControllerGerente abrir = new ControllerGerente();
-			            abrir.TelaGerente();
+			            abrir.TelaGerente(f);
 			            frame.dispose();
 			        }
 			    });
@@ -91,7 +91,7 @@ import Controle.ControllerGerente;
 			    btnNewButton.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
 			    		ControllerGerente abrir = new ControllerGerente();
-			    		abrir.AbrirTelaFunfionario();
+			    		abrir.TelaGerente(f);
 			    		frame.dispose();
 			    	}
 			    });
@@ -102,8 +102,8 @@ import Controle.ControllerGerente;
 			    JButton btnNewButton_2 = new JButton("Estoque");
 			    btnNewButton_2.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
-			    		ControllerEstoquista abrir = new ControllerEstoquista();
-			    		abrir.AbrirTelaEstoque();
+			    		ControllerGerente abrir = new ControllerGerente();
+			    		abrir.AbrirTelaEstoque(f);
 			    		frame.dispose();
 			    	}
 			    });

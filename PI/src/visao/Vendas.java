@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
+import Modelo.Funcionario;
 
 public class Vendas extends JFrame {
 
@@ -49,7 +50,7 @@ public class Vendas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Vendas() {
+	public Vendas(Funcionario f) {
 		
 		setContentPane(contentPane);
 
@@ -76,8 +77,7 @@ public class Vendas extends JFrame {
 		imgLogo.setBackground(new Color(192, 192, 192));
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.TelaGerente();
+				ControllerGerente.TelaGerente(f);
 				frame.dispose();
 			}
 		});
@@ -88,8 +88,7 @@ public class Vendas extends JFrame {
 		JButton btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerGerente tela = new ControllerGerente();
-				tela.TelaGerente();
+				ControllerGerente.TelaGerente(f);
 				frame.dispose();
 
 			}
@@ -139,6 +138,10 @@ public class Vendas extends JFrame {
 		});
 		scrollPane.setViewportView(table);
 		panel_2.setLayout(gl_panel_2);
+	}
+
+	public Vendas() {
+		// TODO Auto-generated constructor stub
 	}
 	}
 

@@ -6,10 +6,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
 import visao.Cadastro_Gerente;
+import visao.TelaEstoque;
 import visao.TelaGerente;
-import visao.TelaVendas;
 import visao.TextFielArredondada;
 import visao.telaInicial;
 
@@ -19,28 +20,42 @@ public class ControllerGerente {
 
 	public void TelaInicial() {
 
-		telaInicial tela = new telaInicial();
+		telaInicial tela = new telaInicial(null);
 		
 		tela.setVisible(true);
 		
 	}
-	public void AbrirTelaFunfionario() {
-		//Abrindo tela do funcionario
-		Cadastro_Gerente tela = new Cadastro_Gerente();
+	public static void TelaCadastro(Funcionario f) {
+		Cadastro_Gerente tela = new Cadastro_Gerente(f);
 		tela.setVisible(true);
+	}
+	
+	public void AbrirTelaEstoque(Funcionario f) {
+		TelaEstoque tela2 = new TelaEstoque();
+		tela2.setLocationRelativeTo(null);
+		tela2.setVisible(true);
 		
 	}
-	public void TelaCadastro() {
-		//abrindo tela do Cadastro
-		Cadastro_Gerente abrir = new Cadastro_Gerente();
-		abrir.setVisible(true);
-	}
-	public void TelaGerente() {
+	public static void TelaGerente(Funcionario f) {
 		
-		visao.TelaGerente abrir = new TelaGerente();
+		visao.TelaGerente abrir = new TelaGerente(f);
 		abrir.setVisible(true);
-		TelaVendas fechar = new TelaVendas();
-		fechar.dispose();
+		
+		
+	}
+	public static void AbrirTelaInicial(Funcionario f) {
+		telaInicial Tela = new telaInicial(f);
+		Tela.setLocationRelativeTo(null);
+		Tela.setVisible(true);
+		
+	}
+	
+	public void AbrirTelaCaixa(Funcionario f){
+
+		telaInicial tela = new telaInicial(f);
+		tela.setLocationRelativeTo(null);
+		tela.setVisible(true);
+	
 	}
 
 	
@@ -57,7 +72,7 @@ public class ControllerGerente {
 			String telefoneStr = textTelefone.getText();
 			String salarioStr = textSalario.getText();
 			String endereco = textEndereço.getText();
-			String tipo_funcionario = null;
+			String tipo_funcionario ="" ;
 
 			// Declaração das variáveis de validação
 			boolean login2 = loginStr.chars().anyMatch(ch -> !Character.isDigit(ch));
@@ -187,5 +202,19 @@ public class ControllerGerente {
 	
 	public static void editar(int id,String NomeFuncionario,String sobrenome, double salario, int telefone, String endereco) {
 		FuncionarioDAO.atualizarFuncionario(id, NomeFuncionario, sobrenome, salario, telefone, endereco);
+	}
+	
+	
+	
+	public static  void tipo(Funcionario f) {
+		System.out.println(f.tipoFucionario);
+		
+		if (f.tipoFucionario.equals("Gerente")) {
+			TelaGerente(f);		}else {
+				AbrirTelaInicial(f);
+			}
+				
+		
+		
 	}
 }
