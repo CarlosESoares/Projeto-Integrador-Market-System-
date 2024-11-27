@@ -119,7 +119,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnCliente.setBounds(306, 45, 187, 66);
+        btnCliente.setBounds(306, 122, 187, 66);
         panel_2.setLayout(null);
         panel_2.add(imgOndinha);
         panel_2.add(btnCliente);
@@ -152,7 +152,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnEstoque.setBounds(306, 122, 187, 66);
+        btnEstoque.setBounds(306, 45, 187, 66);
         panel_2.add(btnEstoque);
 
         ImageIcon vendasIcon = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
@@ -227,6 +227,14 @@ public class telaInicial extends JFrame {
             	dispose();
 			}
 		});
+		rndbtnLo.addMouseListener(new MouseAdapter() {
+	            public void mouseEntered(MouseEvent e) {
+	            	rndbtnLo.setBackground(Color.LIGHT_GRAY);
+	            }
+	            public void mouseExited(MouseEvent e) {
+	            	rndbtnLo.setBackground(Color.RED);
+	            }
+	        });
 		rndbtnLo.setText("Log off");
 		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 12));
 		rndbtnLo.setBackground(Color.RED);
