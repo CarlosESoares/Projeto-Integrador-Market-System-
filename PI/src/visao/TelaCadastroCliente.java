@@ -81,8 +81,7 @@ public class TelaCadastroCliente extends JFrame {
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerGerente.AbrirTelaInicial(f);
-		        dispose();
+		    	ControllerGerente.tipo(f);
 		    }
 		});
 		imgLogo.setBackground(Color.LIGHT_GRAY);

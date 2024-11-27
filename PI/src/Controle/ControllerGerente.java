@@ -40,7 +40,7 @@ public class ControllerGerente {
 	}
 	
 	public void AbrirTelaEstoque(Funcionario f) {
-		TelaEstoque tela2 = new TelaEstoque();
+		TelaEstoque tela2 = new TelaEstoque(f);
 		tela2.setLocationRelativeTo(null);
 		tela2.setVisible(true);
 		
@@ -67,24 +67,13 @@ public class ControllerGerente {
 	
 	}
 	
-	public void AbrirTelaCliente(){
-		TelaCadastroCliente Tela = new TelaCadastroCliente(null);
+	public void AbrirTelaCliente(Funcionario f){
+		TelaCadastroCliente Tela = new TelaCadastroCliente(f);
 		Tela.setLocationRelativeTo(null);
 		Tela.setVisible(true);
 	}
 
-	public void AbrirTelaEstoque() {
-		TelaEstoque Tela = new TelaEstoque();
-		Tela.setLocationRelativeTo(null);
-		Tela.setVisible(true);
-		
-	}
-	public void AbrirTelaInicial() {
-		telaInicial Tela = new telaInicial(null);
-		Tela.setLocationRelativeTo(null);
-		Tela.setVisible(true);
-		
-	}
+	
 	
 VendaDAO dao = new VendaDAO();
 	

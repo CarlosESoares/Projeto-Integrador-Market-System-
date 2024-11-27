@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
+import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
 public class TelaEstoque extends JFrame {
@@ -34,6 +35,8 @@ public class TelaEstoque extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private ProdutoDAO produtoDAO;
+	static Funcionario f;
+	static TelaEstoque frame = new TelaEstoque(f);
 
 	/**
 	 * Launch the application.
@@ -42,7 +45,7 @@ public class TelaEstoque extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEstoque frame = new TelaEstoque();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +58,7 @@ public class TelaEstoque extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEstoque() {
+	public TelaEstoque(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 582);
@@ -78,9 +81,7 @@ public class TelaEstoque extends JFrame {
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	ControllerGerente abrir = new ControllerGerente();
-		        abrir.AbrirTelaInicial();
-		        dispose();
+		    	ControllerGerente.tipo(f);
 		    }
 		});
 		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
@@ -491,6 +492,8 @@ public class TelaEstoque extends JFrame {
 
 
 }
+	
+
 	private void buscarProdutos() {
         try {
             List<Object[]> produtos = ProdutoDAO.buscarTodosProdutos();

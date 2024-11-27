@@ -21,6 +21,7 @@ import Controle.ControleDeLogin;
 import Controle.ControllerGerente;
 
 import Modelo.Funcionario;
+import javax.swing.JButton;
 
 public class telaInicial extends JFrame {
 
@@ -70,15 +71,26 @@ public class telaInicial extends JFrame {
         panel_1.setBackground(Color.LIGHT_GRAY);
         contentPane.add(panel_1, BorderLayout.WEST);
         
-        JLabel imgLogo = new JLabel("");
+        
+		RoundedButton btnNewButton = new RoundedButton("",1,1);
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+		    	ControllerGerente.tipo(f);	
+        	}
+        });
+        
+        btnNewButton.setBackground(Color.LIGHT_GRAY);
+		ImageIcon originalIconLogo2 = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
+		Image imageLogo2 = originalIconLogo2.getImage(); 
+		Image NovaLogo2 = imageLogo2.getScaledInstance(100, 100, Image.SCALE_SMOOTH); 
+		ImageIcon ImgRedimencionada2 = new ImageIcon(NovaLogo2);
+		btnNewButton.setIcon(ImgRedimencionada2);
+
+        panel_1.add(btnNewButton);
         ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
         Image imageLogo = originalIconLogo.getImage();
         Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
-        imgLogo.setIcon(ImgRedimencionada);
-        
-        imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
-        panel_1.add(imgLogo);
         
         JPanel panel_2 = new JPanel();
         contentPane.add(panel_2, BorderLayout.CENTER);
@@ -241,5 +253,4 @@ public class telaInicial extends JFrame {
 		rndbtnLo.setBounds(787, 13, 109, 24);
 		panel_2.add(rndbtnLo);
     }
-    
 }
