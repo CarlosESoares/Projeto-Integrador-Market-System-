@@ -251,6 +251,8 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
+		
+		
 		RoundedButton rndbtnEditar = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnEditar.setForeground(new Color(255, 255, 255));
 		rndbtnEditar.addMouseListener(new MouseAdapter() {

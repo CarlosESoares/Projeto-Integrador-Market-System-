@@ -204,12 +204,6 @@ VendaDAO dao = new VendaDAO();
 	
 	public static void BuscarF(JTable table) {
 		try {
-			FuncionarioDAO.buscarFuncionario();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
             List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
             DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
             model.setRowCount(0);  
@@ -233,18 +227,18 @@ VendaDAO dao = new VendaDAO();
 		BuscarF(Cadastro_Gerente.table);
 	}
 	
-	 public static void editar(int id, JTextField TextNome, JTextField TextSobrenome, JTextField Textsalario, JTextField Texttelefone, JTextField Textendereco) {
-	        int selectedRow = Cadastro_Gerente.table.getSelectedRow();
+	 public static void editar(JTable table, int id, JTextField tfNome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
+	        int selectedRow = table.getSelectedRow();
 	        
 	        if (selectedRow != -1) {
 	            id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
-	            String nome = TextNome.getText();
-	            String sobrenome = TextSobrenome.getText();
-	            double salario = Double.parseDouble(Textsalario.getText());
-	            int telefone = Integer.parseInt(Texttelefone.getText());
-	            String endereco = Textendereco.getText();
-
+	            String nome = tfNome.getText();
+        	    String sobrenome = tfSobrenome.getText();
+        	    double salario = Double.parseDouble(tfSalario.getText());
+        	    int telefone = Integer.parseInt(tfTelefone.getText());
+        	    String endereco = tfEndereco.getText();
 	            boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
+	            System.out.println("Chegou aq");
 
 	            if (success) {
 	            	Cadastro_Gerente.table.setValueAt(nome, selectedRow, 1);
@@ -253,8 +247,9 @@ VendaDAO dao = new VendaDAO();
 	            	Cadastro_Gerente.table.setValueAt(telefone, selectedRow, 4);
 	            	Cadastro_Gerente.table.setValueAt(endereco, selectedRow, 5);
 	                JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso!");
+	                System.out.println("Chegou aq tb, deveria ter mensagem bonitinha");
 	                BuscarF(Cadastro_Gerente.table);  
-	                limparCamposFuncionario(TextNome, TextSobrenome, Textsalario, Texttelefone, Textendereco);
+	                limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 	            } else {
 	                JOptionPane.showMessageDialog(null, "Erro ao atualizar o Funcionario.");
 	            }
@@ -262,14 +257,14 @@ VendaDAO dao = new VendaDAO();
 	      
 	    }
 	 
-	 public static void limparCamposFuncionario(JTextField TextNome, JTextField TextSobrenome, JTextField Textsalario, JTextField Texttelefone, JTextField Textendereco) {
-	        TextNome.setText("");
-	        TextSobrenome.setText("");
-	        Textsalario.setText("");
-	        Texttelefone.setText("");
-	        Textendereco.setText("");
-	    }
-	
+	 public static void limparCamposFuncionario( JTextField Nome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
+		    // Limpa os campos de texto
+		    Nome.setText("");
+		    tfSobrenome.setText("");
+		    tfSalario.setText("");
+		    tfTelefone.setText("");
+		    tfEndereco.setText("");
+		}
 	
 	
 	public static  void tipo(Funcionario f) {

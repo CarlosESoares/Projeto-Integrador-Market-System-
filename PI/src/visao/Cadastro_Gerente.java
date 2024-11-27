@@ -505,7 +505,7 @@ public	String tipoFunci;
 		            public void actionPerformed(ActionEvent e) {
 		                int id = Integer.parseInt(textId.getText());  // Obtém o ID inserido no campo de texto    
 		                
-		                ControllerGerente.editar(id,tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
+		                ControllerGerente.editar(table,id,tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 		                editarWindow.dispose(); // Fecha a janela após salvar
 		            }
 		        });
@@ -544,7 +544,7 @@ public	String tipoFunci;
 				tela.TelaInicial();
 			}
 		});
-ControllerGerente.BuscarF(Cadastro_Gerente.table);
+			ControllerGerente.BuscarF(Cadastro_Gerente.table);
 }
 }
 
