@@ -108,7 +108,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnHomeProdutos.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        ControllerGerente abrir = new ControllerGerente();
-		        abrir.AbrirTelaEstoque();
+		        abrir.AbrirTelaEstoque(f);
 		        dispose();
 		    }
 		});
@@ -153,7 +153,9 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-
+		    	ControllerGerente abrir = new ControllerGerente();
+                abrir.AbrirTelaVendas();    
+                dispose();
 		    }
 		});
 		rndbtnHomeVendas.setText("Vendas");
@@ -265,7 +267,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente controller = new ControllerGerente();
-		    	controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF);
+		    	controller.editarCliente(table, TextNome, TextSobrenome, TextCPF);
 		    }
 		});
 		rndbtnEditar.setBounds(523, 396, 150, 26);
