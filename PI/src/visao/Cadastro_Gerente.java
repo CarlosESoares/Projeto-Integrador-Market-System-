@@ -129,7 +129,7 @@ public	String tipoFunci;
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaCliente();
+				abrir.AbrirTelaCliente(f);
 				dispose();
 		
 			}
@@ -544,7 +544,7 @@ public	String tipoFunci;
 				tela.TelaInicial();
 			}
 		});
-ControllerGerente.BuscarF();
+ControllerGerente.BuscarF(Cadastro_Gerente.table);
 }
 }
 

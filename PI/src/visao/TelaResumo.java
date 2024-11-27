@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
 import Modelo.ClienteDAO;
+import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
 public class TelaResumo extends JFrame {
@@ -36,7 +37,7 @@ public class TelaResumo extends JFrame {
 	private JTable tableFuncionario;
 	private JTable tableProdutos;
 	private JTable tableClientes;
-
+	 static TelaResumo frame = new TelaResumo();
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +45,7 @@ public class TelaResumo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaResumo frame = new TelaResumo();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -91,7 +92,7 @@ public class TelaResumo extends JFrame {
 		    imgLogo.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		            ControllerGerente abrir = new ControllerGerente();
-		            abrir.AbrirTelaInicial();
+		            abrir.TelaInicial();
 		            dispose();
 		        }
 		    });
@@ -156,7 +157,6 @@ public class TelaResumo extends JFrame {
 		    contentPane.add(panel_2, BorderLayout.CENTER);
 		    panel_2.setLayout(new BorderLayout(0, 0));
 
-		    // Continuação do código para configurar o restante da interface...
 		
 
 		
@@ -179,8 +179,12 @@ public class TelaResumo extends JFrame {
 			new String[] {
 				"Nome", "Sobrenome", "Telefone", "Cargo"
 			}
+			
 		));
+		ControllerGerente p=new ControllerGerente();
 		scrollPane.setViewportView(tableFuncionario);
+		
+		ControllerGerente.BuscarF(Cadastro_Gerente.table);
 		
 		JLabel Funcio = new JLabel("Funcionarios");
 		sl_panel_3.putConstraint(SpringLayout.NORTH, Funcio, -56, SpringLayout.NORTH, scrollPane);
