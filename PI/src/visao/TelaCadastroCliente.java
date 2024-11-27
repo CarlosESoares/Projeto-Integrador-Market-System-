@@ -27,7 +27,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
-import Controle.ControllerTelaCliente;
 import Modelo.ClienteDAO;
 import Modelo.Funcionario;
 
@@ -109,7 +108,7 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnHomeProdutos.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerTelaCliente abrir = new ControllerTelaCliente();
+		        ControllerGerente abrir = new ControllerGerente();
 		        abrir.AbrirTelaEstoque();
 		        dispose();
 		    }
@@ -245,7 +244,7 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		rndbtnExcluir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerTelaCliente controller = new ControllerTelaCliente();
+		    	ControllerGerente controller = new ControllerGerente();
 		        controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF);
 		    }
 		});
@@ -266,8 +265,8 @@ public class TelaCadastroCliente extends JFrame {
 		
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerTelaCliente controller = new ControllerTelaCliente();
-		        controller.editarCliente(table, TextNome, TextSobrenome, TextCPF);
+		    	ControllerGerente controller = new ControllerGerente();
+		    	controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF);
 		    }
 		});
 		rndbtnEditar.setBounds(523, 396, 150, 26);
@@ -302,7 +301,7 @@ public class TelaCadastroCliente extends JFrame {
 
 
 
-		  ControllerTelaCliente controller = new ControllerTelaCliente();
+		  ControllerGerente controller = new ControllerGerente();
           controller.buscarClientes(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
@@ -321,7 +320,7 @@ public class TelaCadastroCliente extends JFrame {
 	            public void actionPerformed(ActionEvent e) {
 
 
-	                ControllerTelaCliente controller = new ControllerTelaCliente();
+	            	ControllerGerente controller = new ControllerGerente();
 	                controller.cadastrarCliente(table, TextNome, TextSobrenome, TextCPF);
 	            }
 	        });

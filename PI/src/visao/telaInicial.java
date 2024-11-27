@@ -19,8 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controle.ControleDeLogin;
 import Controle.ControllerGerente;
-import Controle.ControllerTelaCliente;
-import Controle.ControllerTelaVendas;
+
 import Modelo.Funcionario;
 
 public class telaInicial extends JFrame {
@@ -115,7 +114,7 @@ public class telaInicial extends JFrame {
         });
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ControllerTelaCliente abrir = new ControllerTelaCliente();
+            	ControllerGerente abrir = new ControllerGerente();
                 abrir.AbrirTelaCliente();
                 dispose();
             }
@@ -177,7 +176,7 @@ public class telaInicial extends JFrame {
         });
         btnVendas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ControllerTelaVendas abrir = new ControllerTelaVendas();
+            	ControllerGerente abrir = new ControllerGerente();
                 abrir.AbrirTelaVendas();    
                 dispose();
             }

@@ -25,14 +25,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
-import Controle.ControllerTelaCliente;
 import Modelo.ClienteDAO;
-import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
-public class PrincipalGerente extends JFrame {
+public class TelaResumo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -47,7 +44,7 @@ public class PrincipalGerente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrincipalGerente frame = new PrincipalGerente();
+					TelaResumo frame = new TelaResumo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +57,7 @@ public class PrincipalGerente extends JFrame {
 	 * Create the frame.
 	 */
 
-		public PrincipalGerente() {
+		public TelaResumo() {
 		    // Configuração básica da janela
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setBounds(100, 100, 1078, 822);
@@ -93,7 +90,7 @@ public class PrincipalGerente extends JFrame {
 		    imgLogo.setBackground(new Color(192, 192, 192));
 		    imgLogo.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
-		            ControllerTelaCliente abrir = new ControllerTelaCliente();
+		            ControllerGerente abrir = new ControllerGerente();
 		            abrir.AbrirTelaInicial();
 		            dispose();
 		        }

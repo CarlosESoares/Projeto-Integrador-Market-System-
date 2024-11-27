@@ -21,33 +21,18 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerTelaCliente;
+import Controle.ControllerGerente;
 
 public class RelatorioVenda extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 		private JTable tableRelatorio;
-
+		static RelatorioVenda frame = new RelatorioVenda();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RelatorioVenda frame = new RelatorioVenda();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public RelatorioVenda() {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
@@ -78,7 +63,7 @@ public class RelatorioVenda extends JFrame {
 		panel.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				ControllerGerente abrir = new ControllerGerente();
 				abrir.AbrirTelaInicial();
 				dispose();
 			}

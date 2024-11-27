@@ -10,7 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerTelaCliente;
+import Controle.ControllerGerente;
+import Modelo.Funcionario;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -41,7 +42,7 @@ public class TelaDoCaixa extends JFrame {
     private JLabel lblValorUnitario;
     private JLabel lblTotalItem;
     private JTable table_1;
-
+    static TelaDoCaixa frame = new TelaDoCaixa();
     /**
      * Launch the application.
      */
@@ -49,7 +50,7 @@ public class TelaDoCaixa extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    TelaDoCaixa frame = new TelaDoCaixa();
+                    
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -60,8 +61,9 @@ public class TelaDoCaixa extends JFrame {
 
     /**
      * Create the frame.
+     * @param f 
      */
-    public TelaDoCaixa() {
+    public TelaDoCaixa(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1042, 536);
@@ -127,7 +129,7 @@ public class TelaDoCaixa extends JFrame {
         panel_1.add(imgLogo, "cell 0 0");
         imgLogo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ControllerTelaCliente abrir = new ControllerTelaCliente();
+            	ControllerGerente abrir = new ControllerGerente();
                 abrir.AbrirTelaInicial();
                 dispose();
             }
@@ -185,7 +187,7 @@ public class TelaDoCaixa extends JFrame {
 
         JLabel lblNewLabel_2 = new JLabel("R$ 0,00");
         panel_3_2.add(lblNewLabel_2);
-        proco = lblNewLabel_2; // Atribuindo para uso futuro
+       // proco = lblNewLabel_2; // Atribuindo para uso futuro
 
         RoundedButton btnNewButton_1_2 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_2.addActionListener(new ActionListener() {
@@ -352,7 +354,11 @@ public class TelaDoCaixa extends JFrame {
         // Adicionado dentro da classe TelaDoCaixa
     }
 
-    // Método para buscar o produto pelo ID no banco de dados
+    public TelaDoCaixa() {
+		// TODO Auto-generated constructor stub
+	}
+
+	// Método para buscar o produto pelo ID no banco de dados
     private void buscarProdutoPeloId(String id_produto) {
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";

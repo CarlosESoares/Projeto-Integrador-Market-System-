@@ -29,11 +29,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControleDeLogin;
-import Controle.ControllerEstoquista;
 import Controle.ControllerGerente;
-import Controle.ControllerTelaCAIxa;
-import Controle.ControllerTelaCliente;
-import Controle.ControllerTelaVendas;
 import Modelo.Funcionario;
 
 public class Cadastro_Gerente extends JFrame {
@@ -132,7 +128,7 @@ public	String tipoFunci;
 		});
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerTelaCliente abrir = new ControllerTelaCliente();
+				ControllerGerente abrir = new ControllerGerente();
 				abrir.AbrirTelaCliente();
 				dispose();
 		
@@ -154,7 +150,7 @@ public	String tipoFunci;
 		});
 		btnVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerTelaVendas abrir = new ControllerTelaVendas();
+				ControllerGerente abrir = new ControllerGerente();
 				abrir.AbrirTelaVendas();
 				dispose();
 		

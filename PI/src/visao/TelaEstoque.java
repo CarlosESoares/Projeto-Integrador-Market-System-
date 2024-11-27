@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controle.ControllerTelaCliente;
+import Controle.ControllerGerente;
 import Modelo.ProdutoDAO;
 
 public class TelaEstoque extends JFrame {
@@ -78,7 +78,7 @@ public class TelaEstoque extends JFrame {
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerTelaCliente abrir = new ControllerTelaCliente();
+		    	ControllerGerente abrir = new ControllerGerente();
 		        abrir.AbrirTelaInicial();
 		        dispose();
 		    }
@@ -124,7 +124,7 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnHomeClientes.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerTelaCliente abrir = new ControllerTelaCliente();
+		    	ControllerGerente abrir = new ControllerGerente();
 		        abrir.AbrirTelaCliente();
 		        dispose();
 		    }

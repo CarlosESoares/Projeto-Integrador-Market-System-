@@ -81,7 +81,7 @@ import Modelo.Funcionario;
 			        public void actionPerformed(ActionEvent e) {
 			            ControllerGerente abrir = new ControllerGerente();
 			            abrir.TelaGerente(f);
-			            frame.dispose();
+			            dispose();
 			        }
 			    });
 			    imgLogo.setIcon(ImgRedimencionada);

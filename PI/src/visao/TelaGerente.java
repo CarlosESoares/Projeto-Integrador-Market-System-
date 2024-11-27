@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controle.ControllerGerente;
-import Controle.ControllerTelaVendas;
 import Modelo.Funcionario;
 
 public class TelaGerente extends JFrame {
@@ -109,7 +108,7 @@ public class TelaGerente extends JFrame {
 		RoundedButton Btnvendas = new RoundedButton("Entrar", 30, 30);
 		Btnvendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControllerTelaVendas telas = new ControllerTelaVendas();
+				ControllerGerente telas = new ControllerGerente();
 				telas.AbrirTelaVendas();
 			}
 		});
