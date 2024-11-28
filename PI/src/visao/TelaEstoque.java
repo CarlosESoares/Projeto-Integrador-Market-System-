@@ -255,37 +255,9 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnExcluir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int idProduto = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-		            
-		            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
-		            if (confirm == JOptionPane.YES_OPTION) {
-		                try {
-		                    boolean sucesso = produtoDAO.excluirProduto(idProduto);
-		                    if (sucesso) {
-		                 
-		                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-		                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
-			                    TextNome.setText("");
-			                    TextTipo.setText("");
-			                    TextChegada.setText("");
-			                    TextPreco.setText("");
-			                    TextValidade.setText("");
-			                    TextQntd.setText("");
-		                    } else {
-		                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
-		                    }
-		                } catch (SQLException ex) {
-		                    ex.printStackTrace();
-		                    JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
-		                }
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-		        }
+		    	ProdutoDAO produtoDAO = new ProdutoDAO();
+		    	ControllerGerente.excluirProduto(table, produtoDAO);
 		    }
-
 		});
 		rndbtnExcluir.setBounds(255, 396, 150, 26);
 		rndbtnExcluir.setText("Excluir");
@@ -303,41 +275,12 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		
-			rndbtnEditar.addActionListener(new ActionListener() {
-			    public void actionPerformed(ActionEvent e) {
-			        int selectedRow = table.getSelectedRow();
-			        if (selectedRow != -1) {
-			            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-			            String nome = TextNome.getText();
-			            String tipo = TextTipo.getText();
-			            String chegada = TextChegada.getText();
-			            String validade = TextValidade.getText();
-			            double preco = Double.parseDouble(TextPreco.getText());
-			            int quantidade = Integer.parseInt(TextQntd.getText());
-
-
-			            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
-
-			            if (success) {
-			                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
-			                buscarProdutos(); 
-
-			                    TextNome.setText("");
-			                    TextTipo.setText("");
-			                    TextChegada.setText("");
-			                    TextValidade.setText("");
-			                    TextPreco.setText("");
-			                    TextQntd.setText("");
-			                
-
-			            } else {
-			                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
-			            }
-			        } else {
-			            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
-			        }
-			    }
-			});
+		rndbtnEditar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        ControllerGerente.editarProduto(table, produtoDAO, TextNome, TextTipo, TextChegada, TextValidade, TextPreco, TextQntd);
+		        ControllerGerente.buscarProdutos(table);
+		    }
+		});
 
 		rndbtnEditar.setBounds(523, 396, 150, 26);
 		rndbtnEditar.setText("Editar");
@@ -378,7 +321,7 @@ public class TelaEstoque extends JFrame {
 		});
 
 
-        buscarProdutos();
+		ControllerGerente.buscarProdutos(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
 		rndbtnCadastrar.setBounds(10, 396, 150, 26);
@@ -394,74 +337,9 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	String validade1 = TextValidade.getText();
-		    	 String dataChegada1 = TextChegada.getText();
-		    	String qntd1 = TextQntd.getText();    	
-                boolean hasLetter = qntd1.chars().anyMatch(ch -> !Character.isDigit(ch));
-                String preco1 = TextPreco.getText();    	
-                boolean hasLetter1 = preco1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '.' && ch != ',');
-                boolean hasLetter2 = dataChegada1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '/');
-                boolean hasLetter3 = validade1.chars().anyMatch(ch -> !Character.isDigit(ch)&& ch != '/');
-                 if (TextNome.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-		    	  if (TextTipo.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	             
-	                 if (TextChegada.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
-	  
-	                }
-	                 if   (hasLetter2) {
-		                JOptionPane.showMessageDialog(null, "O campo data de chegada deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
-		            }
-	              
-	                if (TextPreco.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	                if   (hasLetter1) {
-		                JOptionPane.showMessageDialog(null, "O campo preço deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-		            }
-	                if (TextValidade.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }
-	                if   (hasLetter3) {
-		                JOptionPane.showMessageDialog(null, "O campo data de validade deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
-		            }
-	                if (TextQntd.getText().trim().isEmpty()) {
-	                    JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
-	                }  
-            else if   (hasLetter) {
-                JOptionPane.showMessageDialog(null, "O campo quantidade deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-	                else {
-	             String nome = TextNome.getText();
-	                String tipo = TextTipo.getText();
-	                String dataChegada = TextChegada.getText();
-	                String preco = TextPreco.getText();
-	                String validade = TextValidade.getText();
-	                String qntd = TextQntd.getText();
-	               
-	               
-	            
-	                try {
-	                    produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
-	                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-	                    buscarProdutos(); 
-	                    TextNome.setText("");
-	                    TextTipo.setText("");
-	                    TextChegada.setText("");
-	                    TextPreco.setText("");
-	                    TextValidade.setText("");
-	                    TextQntd.setText("");
-	                } catch (SQLException ex) {
-	                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
-	                    ex.printStackTrace();
-	                }
-	                }
-	            }
-	        });
+		        ControllerGerente.cadastrarProduto(table, produtoDAO, TextNome, TextTipo, TextChegada, TextValidade, TextPreco, TextQntd);
+		    }
+		});
 
 
 		panel_2.setLayout(null);
@@ -494,18 +372,6 @@ public class TelaEstoque extends JFrame {
 }
 	
 
-	private void buscarProdutos() {
-        try {
-            List<Object[]> produtos = ProdutoDAO.buscarTodosProdutos();
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);  
-            for (Object[] produto : produtos) {
-                model.addRow(produto); 
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
-            e.printStackTrace();
-        }
-    }
+
 	
 }

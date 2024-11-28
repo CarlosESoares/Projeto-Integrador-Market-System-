@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.ClienteDAO;
 import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
+import Modelo.ProdutoDAO;
 import Modelo.VendaDAO;
 import visao.Cadastro_Gerente;
 import visao.RelatorioVenda;
@@ -409,5 +410,147 @@ VendaDAO dao = new VendaDAO();
         TextSobrenome.setText("");
         TextCPF.setText("");
     }
-    
+    public static void excluirProduto(JTable table, ProdutoDAO produtoDAO) {
+        if (produtoDAO == null) {
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o DAO do produto.");
+            return;
+        }
+
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            int idProduto = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto \"" + table.getValueAt(selectedRow, 1) + "\"?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                try {
+                    boolean sucesso = produtoDAO.excluirProduto(idProduto);
+                    if (sucesso) {
+                        ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        }
+    }
+    public static void editarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextValidade, JTextField TextPreco, JTextField TextQntd) {
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
+            String nome = TextNome.getText();
+            String tipo = TextTipo.getText();
+            String chegada = TextChegada.getText();
+            String validade = TextValidade.getText();
+            double preco = Double.parseDouble(TextPreco.getText());
+            int quantidade = Integer.parseInt(TextQntd.getText());
+
+            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
+
+            if (success) {
+                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+                buscarProdutos(table);
+
+                TextNome.setText("");
+                TextTipo.setText("");
+                TextChegada.setText("");
+                TextValidade.setText("");
+                TextPreco.setText("");
+                TextQntd.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+        }
+    }
+
+    public static void buscarProdutos(JTable table) {
+        try {
+            List<Object[]> produtos = ProdutoDAO.buscarTodosProdutos();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);  
+            for (Object[] produto : produtos) {
+                model.addRow(produto); 
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+            e.printStackTrace();
+        }
+    }
+    public static void cadastrarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextValidade, JTextField TextPreco, JTextField TextQntd) {
+        String validade1 = TextValidade.getText();
+        String dataChegada1 = TextChegada.getText();
+        String qntd1 = TextQntd.getText();
+        boolean hasLetter = qntd1.chars().anyMatch(ch -> !Character.isDigit(ch));
+        String preco1 = TextPreco.getText();
+        boolean hasLetter1 = preco1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',');
+        boolean hasLetter2 = dataChegada1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '/');
+        boolean hasLetter3 = validade1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '/');
+
+        if (TextNome.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (TextTipo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (TextChegada.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (hasLetter2) {
+            JOptionPane.showMessageDialog(null, "O campo data de chegada deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (TextPreco.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (hasLetter1) {
+            JOptionPane.showMessageDialog(null, "O campo preço deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (TextValidade.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (hasLetter3) {
+            JOptionPane.showMessageDialog(null, "O campo data de validade deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (TextQntd.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (hasLetter) {
+            JOptionPane.showMessageDialog(null, "O campo quantidade deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String nome = TextNome.getText();
+            String tipo = TextTipo.getText();
+            String dataChegada = TextChegada.getText();
+            String preco = TextPreco.getText();
+            String validade = TextValidade.getText();
+            String qntd = TextQntd.getText();
+
+            try {
+                produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+                buscarProdutos(table); 
+
+                TextNome.setText("");
+                TextTipo.setText("");
+                TextChegada.setText("");
+                TextPreco.setText("");
+                TextValidade.setText("");
+                TextQntd.setText("");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
+                ex.printStackTrace();
+            }
+        }
+    }
+    public static void PreencherTabela(JTable table, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextPreco, JTextField TextValidade, JTextField TextQntd) {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
+            TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
+            TextChegada.setText(table.getValueAt(selectedRow, 3).toString());
+            TextPreco.setText(table.getValueAt(selectedRow, 4).toString());
+            TextValidade.setText(table.getValueAt(selectedRow, 5).toString());
+            TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
+        }
+    }
 }
+
+
+
