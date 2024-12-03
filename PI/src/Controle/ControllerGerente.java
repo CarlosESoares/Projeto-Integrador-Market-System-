@@ -14,6 +14,7 @@ import Modelo.FuncionarioDAO;
 import Modelo.ProdutoDAO;
 import Modelo.VendaDAO;
 import visao.Cadastro_Gerente;
+import visao.MensagemView;
 import visao.RelatorioVenda;
 import visao.TelaCadastroCliente;
 import visao.TelaDoCaixa;
@@ -213,7 +214,7 @@ VendaDAO dao = new VendaDAO();
                 model.addRow(Funcionarios); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
+        	new MensagemView("Erro ao buscar Funcionario.", 1);
             e.printStackTrace();
         }
 	}
@@ -227,7 +228,8 @@ VendaDAO dao = new VendaDAO();
                 model.addRow(Funcionarios); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Funcionaio.");
+        	new MensagemView("Erro ao buscar Funcionario.", 1);
+
             e.printStackTrace();
         }
 	}
@@ -262,12 +264,14 @@ VendaDAO dao = new VendaDAO();
 	            	Cadastro_Gerente.table.setValueAt(salario, selectedRow, 3);
 	            	Cadastro_Gerente.table.setValueAt(telefone, selectedRow, 4);
 	            	Cadastro_Gerente.table.setValueAt(endereco, selectedRow, 5);
-	                JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso!");
+	            	new MensagemView("Funcionario atualizado com sucesso!", 1);
+	                
 	                System.out.println("Chegou aq tb, deveria ter mensagem bonitinha");
 	                BuscarF(Cadastro_Gerente.table);  
 	                limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Erro ao atualizar o Funcionario.");
+	            	new MensagemView("Erro ao atualizar o Funcionario.", 1);
+	               
 	            }
 	        }
 	      
@@ -302,24 +306,31 @@ VendaDAO dao = new VendaDAO();
         if (selectedRow != -1) {
             int idcliente = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
             
-            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
+            MensagemView mv = new MensagemView("Tem certeza que deseja excluir o cliente selecionado?");
+    		int confirmacao = mv.getResposta();
+           
+    		if (confirmacao == 1) {
+  
                 try {
                     boolean sucesso = ClienteDAO.excluircliente(idcliente);
                     if (sucesso) {
                         ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-                        JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
+                        new MensagemView("Cliente excluído com sucesso!", 1);
+                        
                         limparCampos(TextNome, TextSobrenome, TextCPF);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Falha ao excluir o cliente.");
+                    	new MensagemView("Falha ao excluir o cliente.", 1);
+                        
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o cliente: " + ex.getMessage());
+                    new MensagemView("Erro ao excluir o cliente."+ ex.getMessage(), 1);
+           
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir.");
+        	new MensagemView("Selecione um cliente para excluir.", 1);
+     
         }
     }
 
@@ -338,14 +349,17 @@ VendaDAO dao = new VendaDAO();
                 table.setValueAt(nome, selectedRow, 1);
                 table.setValueAt(sobrenome, selectedRow, 2);
                 table.setValueAt(CPF, selectedRow, 3);
-                JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
+        
+                new MensagemView("Cliente atualizado com sucesso!", 1);
                 buscarClientes(table);  
                 limparCampos(TextNome, TextSobrenome, TextCPF);
             } else {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar o cliente.");
+            	new MensagemView("Erro ao atualizar o cliente.", 1);
+
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+        	new MensagemView("Selecione uma linha para editar.", 1);
+
         }
     }
 
@@ -360,34 +374,37 @@ VendaDAO dao = new VendaDAO();
         boolean hasLetter = CPF1.chars().anyMatch(ch -> !Character.isDigit(ch));
         
         if (nome.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo Nome", "Erro", JOptionPane.ERROR_MESSAGE);
+            new MensagemView("Preencha o campo Nome", 1);
             return;
         }
         if (sobrenome.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo Sobrenome", "Erro", JOptionPane.ERROR_MESSAGE);
+            new MensagemView("Preencha o campo Sobrenome", 1);
             return;
         }
         if (CPF.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo CPF", "Erro", JOptionPane.ERROR_MESSAGE);
+            new MensagemView("Preencha o campo CPF", 1);
             return;
-        } else if (CPF1.length() != 11) {
-            JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        if (CPF1.length() != 11) {
+            new MensagemView("O CPF deve conter 11 dígitos.", 1);
             return;
-        } else if (hasLetter) {
-            JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        if (hasLetter) {
+            new MensagemView("O CPF deve conter apenas números.", 1);
             return;
         }
 
 
         try {
             ClienteDAO.cadastrarCliente(nome, sobrenome, CPF);
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            new MensagemView("Cliente cadastrado com sucesso!", 1);
             
 
             limparCampos(TextNome, TextSobrenome, TextCPF);
             buscarClientes(table);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente.");
+        	new MensagemView("Erro ao cadastrar o cliente.", 1);
+
             ex.printStackTrace();
         }
     }
@@ -401,7 +418,8 @@ VendaDAO dao = new VendaDAO();
                 model.addRow(cliente); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar clientes.");
+        	new MensagemView("Erro ao buscar clientes.", 1);
+
             e.printStackTrace();
         }
     }
@@ -412,31 +430,34 @@ VendaDAO dao = new VendaDAO();
     }
     public static void excluirProduto(JTable table, ProdutoDAO produtoDAO) {
         if (produtoDAO == null) {
-            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o DAO do produto.");
+        	new MensagemView("Não foi possível encontrar o DAO do produto.", 1);
+     
             return;
         }
 
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) {
             int idProduto = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
-
-            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o produto \"" + table.getValueAt(selectedRow, 1) + "\"?", "Confirmação", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
+            MensagemView mv = new MensagemView("Tem certeza que deseja excluir o produto?");
+    		int confirmacao = mv.getResposta();
+           
+    		if (confirmacao == 1) {
                 try {
                     boolean sucesso = produtoDAO.excluirProduto(idProduto);
                     if (sucesso) {
                         ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+                        new MensagemView("Produto excluído com sucesso!", 1);
+                        
                     } else {
-                        JOptionPane.showMessageDialog(null, "Falha ao excluir o produto.");
+                    	new MensagemView("Falha ao excluir o produto.", 1);
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
+                    new MensagemView("Falha ao excluir o produto." + ex.getMessage(), 1);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        	new MensagemView("Selecione um produto para excluir", 1);
         }
     }
     public static void editarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextValidade, JTextField TextPreco, JTextField TextQntd) {
@@ -454,7 +475,8 @@ VendaDAO dao = new VendaDAO();
             boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
 
             if (success) {
-                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso!");
+            	new MensagemView("Produto atualizado com sucesso!", 1);
+       
                 buscarProdutos(table);
 
                 TextNome.setText("");
@@ -464,10 +486,10 @@ VendaDAO dao = new VendaDAO();
                 TextPreco.setText("");
                 TextQntd.setText("");
             } else {
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar o produto.");
+            	new MensagemView("Erro ao atualizar o produto.", 1);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar.");
+        	new MensagemView("Selecione uma linha para editar.", 1);
         }
     }
 
@@ -480,7 +502,8 @@ VendaDAO dao = new VendaDAO();
                 model.addRow(produto); 
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar produtos.");
+        	new MensagemView("Erro ao buscar produtos.", 1);
+     
             e.printStackTrace();
         }
     }
@@ -495,25 +518,25 @@ VendaDAO dao = new VendaDAO();
         boolean hasLetter3 = validade1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '/');
 
         if (TextNome.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo produto", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (TextTipo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo tipo do produto", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (TextChegada.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo data de chegada", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (hasLetter2) {
-            JOptionPane.showMessageDialog(null, "O campo data de chegada deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (TextPreco.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo preço", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (hasLetter1) {
-            JOptionPane.showMessageDialog(null, "O campo preço deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (TextValidade.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo validade", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (hasLetter3) {
-            JOptionPane.showMessageDialog(null, "O campo data de validade deve conter apenas datas.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (TextQntd.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o campo quantidade", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (hasLetter) {
-            JOptionPane.showMessageDialog(null, "O campo quantidade deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+            new MensagemView("Preencha o campo produto", 1);
+        }  if (TextTipo.getText().trim().isEmpty()) {
+            new MensagemView("Preencha o campo tipo do produto", 1);
+        }  if (TextChegada.getText().trim().isEmpty()) {
+            new MensagemView("Preencha o campo data de chegada", 1);
+        }  if (hasLetter2) {
+            new MensagemView("O campo data de chegada deve conter apenas datas.", 1);
+        }  if (TextPreco.getText().trim().isEmpty()) {
+            new MensagemView("Preencha o campo preço", 1);
+        }  if (hasLetter1) {
+            new MensagemView("O campo preço deve conter apenas números.", 1);
+        }  if (TextValidade.getText().trim().isEmpty()) {
+            new MensagemView("Preencha o campo validade", 1);
+        }  if (hasLetter3) {
+            new MensagemView("O campo data de validade deve conter apenas datas.", 1);
+        }  if (TextQntd.getText().trim().isEmpty()) {
+            new MensagemView("Preencha o campo quantidade", 1);
+        }  if (hasLetter) {
+            new MensagemView("O campo quantidade deve conter apenas números.", 1);
         } else {
             String nome = TextNome.getText();
             String tipo = TextTipo.getText();
@@ -524,7 +547,8 @@ VendaDAO dao = new VendaDAO();
 
             try {
                 produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
-                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+                new MensagemView("Produto cadastrado com sucesso!", 1);
+            
                 buscarProdutos(table); 
 
                 TextNome.setText("");
@@ -534,7 +558,8 @@ VendaDAO dao = new VendaDAO();
                 TextValidade.setText("");
                 TextQntd.setText("");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto.");
+            	new MensagemView("Erro ao cadastrar o produto.", 1);
+   
                 ex.printStackTrace();
             }
         }
