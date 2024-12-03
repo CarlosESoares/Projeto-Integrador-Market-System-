@@ -75,7 +75,9 @@ public class telaInicial extends JFrame {
 		RoundedButton btnNewButton = new RoundedButton("",1,1);
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-		    	ControllerGerente.tipo(f);	
+        		ControllerGerente abrir = new ControllerGerente();
+                abrir.TelaInicial();
+                dispose();	
         	}
         });
         

@@ -79,8 +79,9 @@ import Modelo.Funcionario;
 			    imgLogo.setBackground(new Color(192, 192, 192));
 			    imgLogo.addActionListener(new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
-			            ControllerGerente.TelaGerente(f);
-			            dispose();
+			        	ControllerGerente abrir = new ControllerGerente();
+		                abrir.TelaInicial();
+		                dispose();
 			        }
 			    });
 			    imgLogo.setIcon(ImgRedimencionada);

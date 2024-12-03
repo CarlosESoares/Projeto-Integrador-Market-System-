@@ -79,7 +79,9 @@ public class TelaEstoque extends JFrame {
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	ControllerGerente.tipo(f);
+		    	ControllerGerente abrir = new ControllerGerente();
+                abrir.TelaInicial();
+                dispose();
 		    }
 		});
 		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);

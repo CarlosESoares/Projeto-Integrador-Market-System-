@@ -165,7 +165,10 @@ public	String tipoFunci;
 		panel_1.add(imgLogo, "cell 0 0");
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			ControllerGerente.tipo(f);
+				ControllerGerente abrir = new ControllerGerente();
+                abrir.TelaInicial();
+                dispose();
+            
 			
 		}});
 		imgLogo.setIcon(ImgRedimencionada);

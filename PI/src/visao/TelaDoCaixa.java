@@ -42,7 +42,6 @@ public class TelaDoCaixa extends JFrame {
     private JLabel lblValorUnitario;
     private JLabel lblTotalItem;
     private JTable table_1;
-    static TelaDoCaixa frame = new TelaDoCaixa();
     /**
      * Launch the application.
      */
@@ -50,7 +49,7 @@ public class TelaDoCaixa extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    
+                	TelaDoCaixa frame = new TelaDoCaixa(null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -354,9 +353,6 @@ public class TelaDoCaixa extends JFrame {
         // Adicionado dentro da classe TelaDoCaixa
     }
 
-    public TelaDoCaixa() {
-		// TODO Auto-generated constructor stub
-	}
 
 	// Método para buscar o produto pelo ID no banco de dados
     private void buscarProdutoPeloId(String id_produto) {
