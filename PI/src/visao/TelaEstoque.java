@@ -153,6 +153,9 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	ControllerGerente abrir = new ControllerGerente();
+                abrir.AbrirTelaVendas();    
+                dispose();
 		    }
 		});
 		rndbtnHomeVendas.setText("Vendas");
