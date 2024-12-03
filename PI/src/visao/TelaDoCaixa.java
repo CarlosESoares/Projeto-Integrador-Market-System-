@@ -38,9 +38,6 @@ public class TelaDoCaixa extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    // Componentes para exibir informações do produto
-    private JLabel lblValorUnitario;
-    private JLabel lblTotalItem;
     private JTable table_1;
     /**
      * Launch the application.
@@ -171,8 +168,6 @@ public class TelaDoCaixa extends JFrame {
 
         JLabel lblNewLabel_1 = new JLabel("R$ 0,00");
         panel_3_1.add(lblNewLabel_1);
-        lblValorUnitario = lblNewLabel_1; // Atribuindo para uso futuro
-
         RoundedButton btnNewButton_1_1 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_1.setText("VALOR UNITÁRIO");
         btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
@@ -386,9 +381,8 @@ public class TelaDoCaixa extends JFrame {
 
                     System.out.println("Quantidade atualizada para: " + novaQuantidade);
 
-                    // Atualiza a interface
-                    lblValorUnitario.setText(String.format("R$ %.2f", preco));
-                    lblTotalItem.setText(String.format("R$ %.2f", preco * novaQuantidade));
+      
+          
 
                     DefaultTableModel model = (DefaultTableModel) table_1.getModel();
                     model.addRow(new Object[]{
