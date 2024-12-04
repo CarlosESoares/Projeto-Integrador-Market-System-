@@ -120,8 +120,9 @@ public class FuncionarioDAO  {
         
     	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
         if (selectedRow != -1) {
-        	MensagemView mv = new MensagemView("Tem certeza que deseja demitir o Funcionaio selecionado?");
-        	int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+            int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+            
+            MensagemView mv = new MensagemView("Tem certeza que deseja demitir o Funcionaio selecionado?");
             int confirm = mv.getResposta();
             
             if (confirm == 1) {

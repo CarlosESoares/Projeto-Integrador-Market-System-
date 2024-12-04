@@ -255,8 +255,7 @@ VendaDAO dao = new VendaDAO();
         	    int telefone = Integer.parseInt(tfTelefone.getText());
         	    String endereco = tfEndereco.getText();
 	            boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
-	            System.out.println("Chegou aq");
-
+	          
 	            if (success) {
 	            	Cadastro_Gerente.table.setValueAt(nome, selectedRow, 1);
 	            	Cadastro_Gerente.table.setValueAt(sobrenome, selectedRow, 2);
@@ -265,7 +264,7 @@ VendaDAO dao = new VendaDAO();
 	            	Cadastro_Gerente.table.setValueAt(endereco, selectedRow, 5);
 	            	new MensagemView("Funcionario atualizado com sucesso!", 1);
 	                
-	                System.out.println("Chegou aq tb, deveria ter mensagem bonitinha");
+	                
 	                BuscarF(Cadastro_Gerente.table);  
 	                limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 	            } else {
