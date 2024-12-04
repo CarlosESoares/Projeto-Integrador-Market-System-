@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
 import visao.Login;
+import visao.MensagemView;
 
 
 public class ControleDeLogin  {
@@ -30,10 +31,10 @@ public class ControleDeLogin  {
 			f = FuncionarioDAO.autenticar(Login,senha);
 			
 			if(f!= null) {
-			JOptionPane.showMessageDialog(null, "Usuario pode assecar o sistema");
+			new MensagemView("Usuario pode acessar o sistema",0);
 			ChamarTelas(f);
 		}else {
-			JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos ou os 2");
+			new MensagemView( "Usuario ou senha invalidos ",0);
 			
 		}
 		} catch (SQLException e) {
@@ -63,7 +64,7 @@ public class ControleDeLogin  {
 	        }
 	        view.dispose();
 	    } else {
-	        JOptionPane.showMessageDialog(null, "Tipo de funcionário não definido.");
+	      new MensagemView( "Tipo de funcionário não definido.");
 	    }
 	
 	}

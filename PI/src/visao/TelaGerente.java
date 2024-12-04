@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
+import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
 	/**
@@ -99,7 +100,7 @@ public class TelaGerente extends JFrame {
 		panel_2.add(Btnfuncionarios);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-81, 305, 729, 342);
+		imgOndinha.setBounds(-86, 314, 729, 342);
 		panel_2.add(imgOndinha);
 		imgOndinha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png")));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -162,6 +163,20 @@ public class TelaGerente extends JFrame {
 		telaInicialBTN.setBackground(Color.RED);
 		telaInicialBTN.setBounds(154, 221, 179, 32);
 		panel_2.add(telaInicialBTN);
+		
+		RoundedButton btnNewButton = new RoundedButton("Re", 30,30);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerGerente abrir = new ControllerGerente();
+				abrir.abrirTelaResumo();
+			}
+		});
+		btnNewButton.setText("Resumo");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(255, 0, 0));
+		btnNewButton.setBounds(154, 265, 179, 38);
+		panel_2.add(btnNewButton);
 
 		telaInicialBTN.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
