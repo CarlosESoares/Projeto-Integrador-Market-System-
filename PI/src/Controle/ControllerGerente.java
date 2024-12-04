@@ -574,6 +574,11 @@ VendaDAO dao = new VendaDAO();
             TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
         }
     }
+	public void abrirTelaResumo() {
+		TelaResumo abrir = new TelaResumo();
+		abrir.setVisible(true);
+		
+	}
 }
 
 

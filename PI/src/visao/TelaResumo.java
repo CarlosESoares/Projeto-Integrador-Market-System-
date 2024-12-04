@@ -98,14 +98,18 @@ public class TelaResumo extends JFrame {
 		    imgLogo.setIcon(ImgRedimencionada);
 		    imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		    
-		    JButton btnFunciora = new JButton("Funcionarios");
+		    RoundedButton btnFunciora = new RoundedButton("Funcionarios",30,30);
+		    btnFunciora.setForeground(new Color(255, 255, 255));
+		    btnFunciora.setBackground(new Color(255, 0, 0));
 		    btnFunciora.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		ControllerGerente.TelaGerente(null);
 		    	}
 		    });
 		    
-		    JButton btnProduto = new JButton("Produto");
+		    RoundedButton btnProduto = new RoundedButton("Produto",30,30);
+		    btnProduto.setForeground(new Color(255, 255, 255));
+		    btnProduto.setBackground(new Color(255, 0, 0));
 		    btnProduto.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		ControllerGerente tela = new ControllerGerente();
@@ -113,10 +117,13 @@ public class TelaResumo extends JFrame {
 		    	}
 		    });
 		    
-		    JButton btnCliente = new JButton("Clientes");
+		    RoundedButton btnCliente = new RoundedButton("Clientes",30,30);
+		    btnCliente.setForeground(new Color(255, 255, 255));
+		    btnCliente.setBackground(new Color(255, 0, 0));
 		    btnCliente.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		    		
+		    		ControllerGerente abrir = new ControllerGerente();
+		    		abrir.AbrirTelaCliente(null);
 		    	}
 		    });
 		    GroupLayout gl_panel = new GroupLayout(panel);
@@ -127,13 +134,10 @@ public class TelaResumo extends JFrame {
 		    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		    		.addGroup(gl_panel.createSequentialGroup()
 		    			.addContainerGap()
-		    			.addComponent(btnFunciora))
-		    		.addGroup(gl_panel.createSequentialGroup()
-		    			.addContainerGap()
-		    			.addComponent(btnProduto))
-		    		.addGroup(gl_panel.createSequentialGroup()
-		    			.addContainerGap()
-		    			.addComponent(btnCliente))
+		    			.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+		    				.addComponent(btnCliente, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		    				.addComponent(btnProduto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		    				.addComponent(btnFunciora, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		    );
 		    gl_panel.setVerticalGroup(
 		    	gl_panel.createParallelGroup(Alignment.LEADING)
@@ -141,12 +145,12 @@ public class TelaResumo extends JFrame {
 		    			.addGap(5)
 		    			.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		    			.addGap(18)
-		    			.addComponent(btnFunciora)
+		    			.addComponent(btnFunciora, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		    			.addGap(18)
-		    			.addComponent(btnProduto)
+		    			.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		    			.addGap(18)
-		    			.addComponent(btnCliente)
-		    			.addContainerGap(537, Short.MAX_VALUE))
+		    			.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		    			.addContainerGap(540, Short.MAX_VALUE))
 		    );
 		    panel.setLayout(gl_panel);
 
@@ -215,7 +219,7 @@ public class TelaResumo extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_2, 59, SpringLayout.SOUTH, scrollPane);
 		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_2, 59, SpringLayout.WEST, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_2, -127, SpringLayout.SOUTH, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_2, 92, SpringLayout.EAST, scrollPane);
+		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_2, 14, SpringLayout.EAST, scrollPane);
 		panel_3.add(scrollPane_2);
 		
 		String[] columnNames3 = {"ID", "Nome", "Sobrenome", "CPF",};
