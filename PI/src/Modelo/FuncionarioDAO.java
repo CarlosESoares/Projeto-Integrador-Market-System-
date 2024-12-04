@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import visao.Cadastro_Gerente;
+import visao.MensagemView;
 import visao.TelaResumo;
 
 public class FuncionarioDAO  {
@@ -119,22 +120,23 @@ public class FuncionarioDAO  {
         
     	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
         if (selectedRow != -1) {
-            int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+        	MensagemView mv = new MensagemView("Tem certeza que deseja demitir o Funcionaio selecionado?");
+        	int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
+            int confirm = mv.getResposta();
             
-            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionaio selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
+            if (confirm == 1) {
                 try {
                     boolean sucesso = FuncionarioDAO.excluirFuncionario(id_Funcionario);
                     if (sucesso) {
                  
                         ((DefaultTableModel) Cadastro_Gerente.table.getModel()).removeRow(selectedRow);
-						JOptionPane.showMessageDialog(null, "Funcionáio demitido com sucesso!");
+                        new MensagemView("Funcionáio demitido com sucesso!",1);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Falha ao demitir o produto.");
+                    	new MensagemView("Falha ao demitir o Funcionario.",1);
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Erro ao demitir o produto: " + ex.getMessage());
+                    new MensagemView("Erro ao demitir o Funcionario: " + ex.getMessage(),1);
                 }
             }
         }    

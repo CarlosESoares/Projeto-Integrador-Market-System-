@@ -116,52 +116,51 @@ VendaDAO dao = new VendaDAO();
 			
 			// Validação dos campos
 			if (loginStr.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo CPF não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
-				return;
+				new MensagemView("O campo CPF não pode estar vazio.",1);
 			} else if (loginStr.length() != 11) {
-				JOptionPane.showMessageDialog(null, "O CPF deve conter 11 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O CPF deve conter 11 dígitos.",1);
 				return;
 			} else if (login2) {
-				JOptionPane.showMessageDialog(null, "O CPF deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O CPF deve conter apenas números.",1);
 				return;
 			}
 			
 			if (NomeFuncionario.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo Nome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo Nome não pode estar vazio.",1);
 				return;
 			}
 			
 			if (senha.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo senha não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo senha não pode estar vazio.",1);
 				return;
 			}
 			
 			if (sobrenome.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo sobrenome não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo sobrenome não pode estar vazio.",1);
 				return;
 			}
 			
 			if (telefoneStr.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo telefone não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo telefone não pode estar vazio.",1);
 				return;
 			} else if (telefoneStr.length() != 9) {
-				JOptionPane.showMessageDialog(null, "O telefone deve conter 9 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O telefone deve conter 9 dígitos.",1);
 				return;
 			} else if (telefone2) {
-				JOptionPane.showMessageDialog(null, "O Telefone deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O Telefone deve conter apenas números.",1);
 				return;
 			}
 			
 			if (endereco.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo endereço não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo endereço não pode estar vazio.",1);
 				return;
 			}
 			
 			if (salarioStr.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo salário não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O campo salário não pode estar vazio.",1);
 				return;
 			} else if (salario2) {
-				JOptionPane.showMessageDialog(null, "O Salário deve conter apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("O Salário deve conter apenas números.",1);
 				return;
 			}
 
@@ -173,7 +172,7 @@ VendaDAO dao = new VendaDAO();
 			} else if (op == 3) {
 				tipo_funcionario = "Estoquista";
 			} else if (op == 0) {
-				JOptionPane.showMessageDialog(null, "Precisa escolher uma das opções", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("Precisa escolher uma das opções",1);
 				return;
 			}
 
@@ -186,19 +185,19 @@ VendaDAO dao = new VendaDAO();
 			FuncionarioDAO f = new FuncionarioDAO();
 			f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
 			
-			JOptionPane.showMessageDialog(null, "Cadastrado com sucesso", "Erro", JOptionPane.ERROR_MESSAGE);
+			new MensagemView("Cadastrado com sucesso", 1);
 			
 			} catch (NumberFormatException e1) {
 				// Captura de exceções de conversão numérica
-				JOptionPane.showMessageDialog(null, "Erro ao validar os dados numéricos. Verifique os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("Erro ao validar os dados numéricos. Verifique os campos.",1);
 				e1.printStackTrace();
 			} catch (SQLException e2) {
 				// Captura de exceções de banco de dados
-				JOptionPane.showMessageDialog(null, "Erro ao enviar as informações para o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("Erro ao enviar as informações para o banco de dados.",1);
 				e2.printStackTrace();
 			} catch (Exception e3) {
 				// Captura de exceções gerais
-				JOptionPane.showMessageDialog(null, "Erro inesperado: " + e3.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+				new MensagemView("Erro inesperado: " + e3.getMessage());
 				e3.printStackTrace();
 			}
 			BuscarF(Cadastro_Gerente.table);
@@ -378,7 +377,7 @@ VendaDAO dao = new VendaDAO();
             return;
         }
         if (sobrenome.trim().isEmpty()) {
-            new MensagemView("Preencha o campo Sobrenome", 1);
+            new MensagemView("Preencha o campo Sobrenome", 0);
             return;
         }
         if (CPF.trim().isEmpty()) {
