@@ -39,7 +39,11 @@ public class TelaDoCaixa extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable table_1;
+    public HintTextField quantidade_produto;
+    public JLabel lblSubTotal;
+    
     /**
+     * 
      * Launch the application.
      */
     public static void main(String[] args) {
@@ -212,8 +216,8 @@ public class TelaDoCaixa extends JFrame {
         panel_3_3_1.setBounds(294, 354, 486, 23);
         panel_2.add(panel_3_3_1);
 
-        JLabel lblNewLabel_4 = new JLabel("R$:0,00");
-        panel_3_3_1.add(lblNewLabel_4);
+         lblSubTotal = new JLabel("R$:0,00");
+        panel_3_3_1.add(lblSubTotal);
 
         RoundedButton btnNewButton_1_3_1_1 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_3_1_1.addActionListener(new ActionListener() {
@@ -258,20 +262,20 @@ public class TelaDoCaixa extends JFrame {
         panel_4.setLayout(new BorderLayout());
 
         HintTextField textfield_1 = new HintTextField("00000");
-        textfield_1.addKeyListener(new KeyAdapter() {
+      // textfield_1.addKeyListener(new KeyAdapter() {
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_F2) { // Se quiser a tecla F2
-                    // evento
-                    System.out.println("F2 Pressionado no textfield_1!");
-                    
-                    String cod = textfield_1.getText();
-                    buscarProdutoPeloId(cod);    
-                    
-                }
-            }
-        });
+          //  @Override
+//            public void keyPressed(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_F2) { // Se quiser a tecla F2
+//                    // evento
+//                    System.out.println("F2 Pressionado no textfield_1!");
+//                    
+//                    String cod = textfield_1.getText();
+//                    buscarProdutoPeloId(cod,null);    
+//                    
+//                }
+//            }
+//        });
         textfield_1.setHorizontalAlignment(SwingConstants.CENTER);
         textfield_1.setColumns(10);
         textfield_1.setBounds(47, 226, 155, 20);
@@ -337,45 +341,57 @@ public class TelaDoCaixa extends JFrame {
         btnNewButton_1_3_2.setBounds(47, 269, 155, 23);
         panel_2.add(btnNewButton_1_3_2);
         
-        HintTextField quantidade_de_venda = new HintTextField("00000");
-        quantidade_de_venda.setHorizontalAlignment(SwingConstants.CENTER);
-        quantidade_de_venda.setColumns(10);
-        quantidade_de_venda.setBounds(47, 291, 155, 20);
-        panel_2.add(quantidade_de_venda);
+         quantidade_produto= new HintTextField("1");
+         quantidade_produto.setHorizontalAlignment(SwingConstants.CENTER);
+         quantidade_produto.setColumns(10);
+         quantidade_produto.setBounds(47, 291, 155, 20);
+        panel_2.add(         quantidade_produto);
         
         
                
         
        
-
-        // Adiciona um KeyListener ao botão btnNewButton_1_3 para detectar a tecla F2
-        btnNewButton_1_3.addKeyListener(new KeyAdapter() {
+        textfield_1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_F2) { // Se a tecla pressionada for F2
                     String idProduto = textfield_1.getText(); // Obtém o ID do produto do textfield_1
-                    if (!idProduto.isEmpty()) {
-                        buscarProdutoPeloId(idProduto);
+                    
+                    // Obtém o texto do HintTextField e tenta convertê-lo para Integer
+                    Integer quantida = 0;
+                    String quantidadeText = quantidade_produto.getText();  // Aqui você usa getText() para pegar o valor do HintTextField
+                    if (!quantidadeText.isEmpty()) {
+                        try {
+                            quantida = Integer.parseInt(quantidadeText);  // Converte para Integer
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Quantidade inválida: " + ex.getMessage());
+                        }
                     } else {
-                        System.out.println("O campo de ID do produto está vazio!");
+                        System.out.println("Campo de quantidade vazio.");
+                    }
+
+                    if (!idProduto.isEmpty() && quantida > 0) {
+                        buscarProdutoPeloId(idProduto, quantidadeText);
+                    } else {
+                        System.out.println("O campo de ID do produto ou quantidade está vazio ou inválido!");
                     }
                 }
             }
         });
 
-        // Método para buscar o produto pelo ID no banco de dados
-        // Adicionado dentro da classe TelaDoCaixa
     }
 
 
 	// Método para buscar o produto pelo ID no banco de dados
-    private void buscarProdutoPeloId(String id_produto) {
+    private void buscarProdutoPeloId(String id_produto, String quantTxt) {
+    	System.out.println(quantTxt);
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";
         String password = "aluno";
         String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
         String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
-
+        int quantV = Integer.parseInt(quantTxt);
+        
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmtBusca = conn.prepareStatement(queryBusca);
              PreparedStatement stmtAtualiza = conn.prepareStatement(queryAtualiza)) {
@@ -383,46 +399,53 @@ public class TelaDoCaixa extends JFrame {
             stmtBusca.setInt(1, Integer.parseInt(id_produto));
             ResultSet rs = stmtBusca.executeQuery();
 
+         
             if (rs.next()) {
                 String nomeProduto = rs.getString("produto");
                 String tipoProduto = rs.getString("tipo_produto");
                 String dataChegada = rs.getString("data_chegada");
                 double preco = rs.getDouble("preco");
-                int quantidade = rs.getInt("qntd");
                 String validade = rs.getString("validade_produto");
+                int quantidade = rs.getInt("qntd");  // Aqui você pega a quantidade do banco
 
-                if (quantidade > 0) {
+                double subT = 0;
+                
+                subT = (subT+(preco*quantV));
+                String subTv = String.valueOf(subT);
+                lblSubTotal.setText(subTv);
+                // Verifica se a quantidade é maior que zero e quantTxt é válido
+                if (quantidade > 0 && quantV > 0) {
                     // Atualizar quantidade
-                    int novaQuantidade = quantidade - 1;
+                    int novaQuantidade = quantidade - quantV;
                     stmtAtualiza.setInt(1, novaQuantidade);
                     stmtAtualiza.setInt(2, Integer.parseInt(id_produto));
                     stmtAtualiza.executeUpdate();
-
+                    
+                    
+                    
                     System.out.println("Quantidade atualizada para: " + novaQuantidade);
-
-      
-          
 
                     DefaultTableModel model = (DefaultTableModel) table_1.getModel();
                     model.addRow(new Object[]{
                         id_produto, nomeProduto, tipoProduto, dataChegada,
-                        String.format("R$ %.2f", preco), validade, novaQuantidade
+                        String.format("R$ %.2f", preco*quantV), validade, quantV
+                        
+                        
                     });
+                    
                 } else {
-                    System.out.println("Produto esgotado.");
+                    System.out.println("Produto esgotado ou quantidade inválida.");
                 }
             } else {
                 System.out.println("Produto não encontrado.");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("ID do produto inválido: " + e.getMessage());
+            System.out.println("ID do produto ou quantidade inválida: " + e.getMessage());
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
-        }
-    
-    }
+        }}
 }
 
 
