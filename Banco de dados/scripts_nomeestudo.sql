@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS clientes (
   nome VARCHAR(45) NOT NULL,
   sobrenome VARCHAR(45) NOT NULL,
 cpf_cliente VARCHAR(45) NOT NULL,
-credito double primary key
+credito double
 
 );
 
