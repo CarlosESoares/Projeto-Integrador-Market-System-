@@ -207,6 +207,15 @@ public class TelaCadastroCliente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Cadastro de cliente");
 		lblNewLabel_1.setBounds(185, 0, 182, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		TextFielArredondada TextLimite = new TextFielArredondada(15, 20, 20);
+		TextLimite.setColumns(10);
+		TextLimite.setBounds(9, 293, 187, 24);
+		panel_2.add(TextLimite);
+		
+		JLabel lblLimiteDeCrdito = new JLabel("Limite de crédito");
+		lblLimiteDeCrdito.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblLimiteDeCrdito.setBounds(9, 264, 115, 18);
+		panel_2.add(lblLimiteDeCrdito);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(9, 71, 116, 18);
@@ -245,7 +254,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnExcluir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente controller = new ControllerGerente();
-		        controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF);
+		        controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF,TextLimite);
 		    }
 		});
 		rndbtnExcluir.setBounds(255, 396, 150, 26);
@@ -268,7 +277,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente controller = new ControllerGerente();
-		    	controller.editarCliente(table, TextNome, TextSobrenome, TextCPF);
+		    	controller.editarCliente(table, TextNome, TextSobrenome, TextCPF,TextLimite);
 		    }
 		});
 		rndbtnEditar.setBounds(523, 396, 150, 26);
@@ -283,7 +292,7 @@ public class TelaCadastroCliente extends JFrame {
 		
 		
 
-		String[] columnNames = {"ID", "Nome", "Sobrenome", "CPF",};
+		String[] columnNames = {"ID", "Nome", "Sobrenome", "CPF","Limite de crédito"};
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
 
@@ -294,6 +303,7 @@ public class TelaCadastroCliente extends JFrame {
 		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
 		            TextSobrenome.setText(table.getValueAt(selectedRow, 2).toString());
 		            TextCPF.setText(table.getValueAt(selectedRow, 3).toString());
+		            TextLimite.setText(table.getValueAt(selectedRow, 4).toString());
 		        }
 		    }
 		});
@@ -323,7 +333,7 @@ public class TelaCadastroCliente extends JFrame {
 
 
 	            	ControllerGerente controller = new ControllerGerente();
-	                controller.cadastrarCliente(table, TextNome, TextSobrenome, TextCPF);
+	                controller.cadastrarCliente(table, TextNome, TextSobrenome, TextCPF,TextLimite);
 	            }
 	        });
 
@@ -348,6 +358,8 @@ public class TelaCadastroCliente extends JFrame {
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
+		
+
 		
 
 

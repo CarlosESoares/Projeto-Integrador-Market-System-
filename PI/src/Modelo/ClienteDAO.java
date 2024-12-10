@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ClienteDAO {
 
-    public static void cadastrarCliente(String nome, String sobrenome, String CPF) throws SQLException {
-        String query = "INSERT INTO clientes (nome, sobrenome, cpf_cliente) VALUES (?, ?, ?)";
+    public static void cadastrarCliente(String nome, String sobrenome, String CPF, String Limite) throws SQLException {
+        String query = "INSERT INTO clientes (nome, sobrenome, cpf_cliente, credito) VALUES (?, ?, ?, ?)";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -19,6 +19,7 @@ public class ClienteDAO {
             preparedStatement.setString(1, nome);
             preparedStatement.setString(2, sobrenome);
             preparedStatement.setString(3, CPF);
+            preparedStatement.setString(4, Limite);
 
             
             preparedStatement.executeUpdate();
@@ -38,21 +39,23 @@ public class ClienteDAO {
                 String nome = resultSet.getString("nome");
                 String sobrenome = resultSet.getString("sobrenome");
                 String CPF = resultSet.getString("cpf_cliente");
+                String Limite = resultSet.getString("credito");
 
-                clientes.add(new Object[] { id, nome, sobrenome, CPF});
+                clientes.add(new Object[] { id, nome, sobrenome, CPF, Limite});
             }
         }
         
         return clientes;
     }
-    public static boolean atualizarcliente(int id, String nome, String sobrenome, String CPF) {
-        String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, cpf_cliente = ? WHERE id_cliente = ?";
+    public static boolean atualizarcliente(int id, String nome, String sobrenome, String CPF, String Limite) {
+        String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, cpf_cliente = ?, credito = ? WHERE id_cliente = ?";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, nome);
             stmt.setString(2, sobrenome);
             stmt.setString(3, CPF);
-            stmt.setInt(4, id);
+            stmt.setString(4, Limite);
+            stmt.setInt(5, id);
             int rowsUpdated = stmt.executeUpdate();
             return rowsUpdated > 0;
         } catch (SQLException e) {

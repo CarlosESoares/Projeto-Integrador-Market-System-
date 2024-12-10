@@ -298,7 +298,7 @@ VendaDAO dao = new VendaDAO();
 	}
 	
 
-    public void excluirCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF) {
+    public void excluirCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF, JTextField textLimite) {
         int selectedRow = table.getSelectedRow();
         
         if (selectedRow != -1) {
@@ -315,7 +315,7 @@ VendaDAO dao = new VendaDAO();
                         ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
                         new MensagemView("Cliente excluído com sucesso!", 1);
                         
-                        limparCampos(TextNome, TextSobrenome, TextCPF);
+                        limparCampos(TextNome, TextSobrenome, TextCPF, textLimite);
                     } else {
                     	new MensagemView("Falha ao excluir o cliente.", 1);
                         
@@ -332,7 +332,7 @@ VendaDAO dao = new VendaDAO();
         }
     }
 
-    public void editarCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF) {
+    public void editarCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF, JTextField textLimite) {
         int selectedRow = table.getSelectedRow();
         
         if (selectedRow != -1) {
@@ -340,17 +340,19 @@ VendaDAO dao = new VendaDAO();
             String nome = TextNome.getText();
             String sobrenome = TextSobrenome.getText();
             String CPF = TextCPF.getText();
+            String Limite = textLimite.getText();
 
-            boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF);
+            boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF, Limite);
 
             if (success) {
                 table.setValueAt(nome, selectedRow, 1);
                 table.setValueAt(sobrenome, selectedRow, 2);
                 table.setValueAt(CPF, selectedRow, 3);
+                table.setValueAt(Limite, selectedRow, 4);
         
                 new MensagemView("Cliente atualizado com sucesso!", 1);
                 buscarClientes(table);  
-                limparCampos(TextNome, TextSobrenome, TextCPF);
+                limparCampos(TextNome, TextSobrenome, TextCPF, textLimite);
             } else {
             	new MensagemView("Erro ao atualizar o cliente.", 1);
 
@@ -364,11 +366,12 @@ VendaDAO dao = new VendaDAO();
 
 
     
-    public void cadastrarCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF) {
+    public void cadastrarCliente(JTable table, JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF, JTextField textLimite) {
         String nome = TextNome.getText();
         String sobrenome = TextSobrenome.getText();
         String CPF = TextCPF.getText();
         String CPF1 = CPF;
+        String Limite = textLimite.getText();
         boolean hasLetter = CPF1.chars().anyMatch(ch -> !Character.isDigit(ch));
         
         if (nome.trim().isEmpty()) {
@@ -394,11 +397,11 @@ VendaDAO dao = new VendaDAO();
 
 
         try {
-            ClienteDAO.cadastrarCliente(nome, sobrenome, CPF);
+            ClienteDAO.cadastrarCliente(nome, sobrenome, CPF, Limite);
             new MensagemView("Cliente cadastrado com sucesso!", 1);
             
 
-            limparCampos(TextNome, TextSobrenome, TextCPF);
+            limparCampos(TextNome, TextSobrenome, TextCPF, textLimite );
             buscarClientes(table);
         } catch (SQLException ex) {
         	new MensagemView("Erro ao cadastrar o cliente.", 1);
@@ -421,10 +424,11 @@ VendaDAO dao = new VendaDAO();
             e.printStackTrace();
         }
     }
-    public void limparCampos(JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF) {
+    public void limparCampos(JTextField TextNome, JTextField TextSobrenome, JTextField TextCPF,JTextField TextLimite ) {
         TextNome.setText("");
         TextSobrenome.setText("");
         TextCPF.setText("");
+        TextLimite.setText("");
     }
     public static void excluirProduto(JTable table, ProdutoDAO produtoDAO) {
         if (produtoDAO == null) {
