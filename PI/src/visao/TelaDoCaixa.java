@@ -319,6 +319,18 @@ public class TelaDoCaixa extends JFrame {
         JLabel lblNewLabel_8 = new JLabel("F4 - Limpar Campo");
         lblNewLabel_8.setBounds(10, 60, 107, 14);
         panel_3.add(lblNewLabel_8);
+        
+        RoundedButton btnDoCliente = new RoundedButton("New button", 1, 1);
+        btnDoCliente.setText("Cpf do cliente");
+        btnDoCliente.setBackground(Color.LIGHT_GRAY);
+        btnDoCliente.setBounds(47, 267, 155, 23);
+        panel_2.add(btnDoCliente);
+        
+        HintTextField textfield_1_1 = new HintTextField("00000");
+        textfield_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+        textfield_1_1.setColumns(10);
+        textfield_1_1.setBounds(47, 289, 155, 20);
+        panel_2.add(textfield_1_1);
 
         /*-----------------------------------------------------*/
         
