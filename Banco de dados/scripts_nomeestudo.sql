@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS clientes (
   id_cliente INT  primary key auto_increment,
   nome VARCHAR(45) NOT NULL,
   sobrenome VARCHAR(45) NOT NULL,
-  cpf_cliente VARCHAR(45) NOT NULL
+cpf_cliente VARCHAR(45) NOT NULL,
+credito double primary key
+
 );
 
 -- -----------------------------------------------------
@@ -50,18 +52,7 @@ CREATE TABLE IF NOT EXISTS vendas (
   FOREIGN KEY (cliente_id_cliente) REFERENCES clientes (id_cliente)
 );
 
--- -----------------------------------------------------
--- Table creditos
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS creditos (
-  id_credito INT primary key auto_increment,
-  num_total_parcelas INT NOT NULL,
-  preco_parcela INT NOT NULL,
-  vendas_Id_venda INT NOT NULL,
-  limite_divida DOUBLE NOT NULL,
-  qtd_parcelas_pagas INT NULL,
-  FOREIGN KEY (vendas_Id_venda) REFERENCES vendas (id_venda)
-);
+
 
 -- -----------------------------------------------------
 -- Table produtos
@@ -76,9 +67,7 @@ CREATE TABLE IF NOT EXISTS produtos (
   qntd INT NOT NULL
 );
 
--- -----------------------------------------------------
--- Table carrinho
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS carrinho (
   id_venda INT NULL,
   produtos_Id_produto INT NOT NULL,
