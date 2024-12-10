@@ -93,12 +93,6 @@ public class TelaDoCaixa extends JFrame {
         contentPane.add(panel_2, BorderLayout.CENTER);
         panel_2.setLayout(null);
 
-        JLabel imgOndinha = new JLabel("");
-        imgOndinha.setBounds(-132, 456, 1200, 355);
-        panel_2.add(imgOndinha);
-        imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        imgOndinha.setIcon(resizedIcon);
-
         // Botão "ABRIR CAIXA"
         RoundedButton btnNewButton = new RoundedButton("ABRIR CAIXA", 30, 30);
         btnNewButton.setText("  ABRIR CAIXA  ");
@@ -300,41 +294,54 @@ public class TelaDoCaixa extends JFrame {
 
         JPanel panel_3 = new JPanel();
         panel_3.setBackground(new Color(192, 192, 192));
-        panel_3.setBounds(0, 379, 125, 107);
+        panel_3.setBounds(0, 369, 125, 117);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("F3 - Excluir item");
-        lblNewLabel.setBounds(10, 35, 95, 14);
+        lblNewLabel.setBounds(10, 36, 95, 14);
         panel_3.add(lblNewLabel);
 
         JLabel lblNewLabel_3 = new JLabel("F5 - Nova Venda");
-        lblNewLabel_3.setBounds(10, 85, 95, 14);
+        lblNewLabel_3.setBounds(10, 86, 95, 14);
         panel_3.add(lblNewLabel_3);
 
         JLabel lblNewLabel_7 = new JLabel("F2 - Puxar Dados");
-        lblNewLabel_7.setBounds(10, 10, 107, 14);
+        lblNewLabel_7.setBounds(10, 11, 107, 14);
         panel_3.add(lblNewLabel_7);
 
         JLabel lblNewLabel_8 = new JLabel("F4 - Limpar Campo");
-        lblNewLabel_8.setBounds(10, 60, 107, 14);
+        lblNewLabel_8.setBounds(10, 61, 107, 14);
         panel_3.add(lblNewLabel_8);
         
+
         RoundedButton btnDoCliente = new RoundedButton("New button", 1, 1);
         btnDoCliente.setText("Cpf do cliente");
         btnDoCliente.setBackground(Color.LIGHT_GRAY);
-        btnDoCliente.setBounds(47, 267, 155, 23);
+        btnDoCliente.setBounds(135, 331, 155, 23);
         panel_2.add(btnDoCliente);
         
         HintTextField textfield_1_1 = new HintTextField("00000");
         textfield_1_1.setHorizontalAlignment(SwingConstants.CENTER);
         textfield_1_1.setColumns(10);
-        textfield_1_1.setBounds(47, 289, 155, 20);
+        textfield_1_1.setBounds(135, 353, 155, 20);
         panel_2.add(textfield_1_1);
-
-        /*-----------------------------------------------------*/
         
+        RoundedButton btnNewButton_1_3_2 = new RoundedButton("New button", 1, 1);
+        btnNewButton_1_3_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton_1_3_2.setText("Quantidade");
+        btnNewButton_1_3_2.setBackground(Color.LIGHT_GRAY);
+        btnNewButton_1_3_2.setBounds(47, 269, 155, 23);
+        panel_2.add(btnNewButton_1_3_2);
         
+        HintTextField quantidade_de_venda = new HintTextField("00000");
+        quantidade_de_venda.setHorizontalAlignment(SwingConstants.CENTER);
+        quantidade_de_venda.setColumns(10);
+        quantidade_de_venda.setBounds(47, 291, 155, 20);
+        panel_2.add(quantidade_de_venda);
         
         
                
