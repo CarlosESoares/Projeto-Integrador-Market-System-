@@ -38,7 +38,11 @@ public class ControllerGerente {
 		
 	}
 	public static void TelaCadastro(Funcionario f) {
+
+
 		Cadastro_Gerente tela = new Cadastro_Gerente(f);
+		tela.setLocationRelativeTo(null);
+
 		tela.setVisible(true);
 	}
 	
@@ -51,6 +55,7 @@ public class ControllerGerente {
 	public static void TelaGerente(Funcionario f) {
 		
 		visao.TelaGerente abrir = new TelaGerente(f);
+		abrir.setLocationRelativeTo(null);
 		abrir.setVisible(true);
 		
 		
