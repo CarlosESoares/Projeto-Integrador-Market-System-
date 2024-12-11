@@ -1,8 +1,11 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,13 +59,13 @@ public class VendaDAO {
     }
 
 	public static void BuscarProdutoIDCaixa(String idProduto2, String quantidade, JTable tabela) {
-		System.out.println(quantTxt);
+		System.out.println(quantidade);
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";
         String password = "aluno";
         String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
         String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
-        int quantV = Integer.parseInt(quantTxt);
+        int quantV = Integer.parseInt(quantidade);
         
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmtBusca = conn.prepareStatement(queryBusca);
@@ -117,7 +120,7 @@ public class VendaDAO {
             ex.printStackTrace();
             System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
         }}
-    public void calcularSubtotal(double preco, int quantidade) {b    
+    public static void calcularSubtotal(double preco, int quantidade) {b    
         double totalItem = preco * quantidade;
 
         valoresItens.add(totalItem);
@@ -125,6 +128,7 @@ public class VendaDAO {
         double subtotal = valoresItens.stream().mapToDouble(Double::doubleValue).sum();
 
         lblSubTotal.setText(String.format("Subtotal: R$ %.2f", subtotal));
+        return subtotl1;
     		
 	}
 }
