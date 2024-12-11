@@ -587,6 +587,12 @@ VendaDAO dao = new VendaDAO();
 		abrir.setVisible(true);
 		
 	}
+	public static void buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText,JTable tabela) {
+			String idProduto2 = idProduto;
+			String Quantidade = quantidadeText;
+			
+			VendaDAO.BuscarProdutoIDCaixa(idProduto2,Quantidade,tabela);
+	}
 }
 
 

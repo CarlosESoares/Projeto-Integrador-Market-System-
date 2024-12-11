@@ -52,5 +52,79 @@ public class VendaDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
     }
+
+	public static void BuscarProdutoIDCaixa(String idProduto2, String quantidade, JTable tabela) {
+		System.out.println(quantTxt);
+        String url = "jdbc:mysql://localhost:3306/mercado";
+        String user = "root";
+        String password = "aluno";
+        String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
+        String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
+        int quantV = Integer.parseInt(quantTxt);
+        
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement stmtBusca = conn.prepareStatement(queryBusca);
+             PreparedStatement stmtAtualiza = conn.prepareStatement(queryAtualiza)) {
+
+            stmtBusca.setInt(1, Integer.parseInt(id_produto));
+            ResultSet rs = stmtBusca.executeQuery();
+
+         
+            if (rs.next()) {
+                String nomeProduto = rs.getString("produto");
+                String tipoProduto = rs.getString("tipo_produto");
+                String dataChegada = rs.getString("data_chegada");
+                double preco = rs.getDouble("preco");
+                String validade = rs.getString("validade_produto");
+                int quantidade = rs.getInt("qntd");  // Aqui você pega a quantidade do banco
+                	
+                int quantCalc = Integer.valueOf(quantidade_produto.getText());
+                
+                
+               calcularSubtotal(preco,quantCalc);
+                // Verifica se a quantidade é maior que zero e quantTxt é válido
+                if (quantidade > 0 && quantV > 0) {
+                    // Atualizar quantidade
+                    int novaQuantidade = quantidade - quantV;
+                    stmtAtualiza.setInt(1, novaQuantidade);
+                    stmtAtualiza.setInt(2, Integer.parseInt(id_produto));
+                    stmtAtualiza.executeUpdate();
+                    
+                    
+                    
+                    System.out.println("Quantidade atualizada para: " + novaQuantidade);
+
+                    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                    model.addRow(new Object[]{
+                        id_produto, nomeProduto, tipoProduto, dataChegada,
+                        String.format("R$ %.2f", preco*quantV), validade, quantV
+                        
+                        
+                    });
+                    
+                } else {
+                    System.out.println("Produto esgotado ou quantidade inválida.");
+                }
+            } else {
+                System.out.println("Produto não encontrado.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("ID do produto ou quantidade inválida: " + e.getMessage());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
+        }}
+    public void calcularSubtotal(double preco, int quantidade) {b    
+        double totalItem = preco * quantidade;
+
+        valoresItens.add(totalItem);
+
+        double subtotal = valoresItens.stream().mapToDouble(Double::doubleValue).sum();
+
+        lblSubTotal.setText(String.format("Subtotal: R$ %.2f", subtotal));
+    		
+	}
 }
