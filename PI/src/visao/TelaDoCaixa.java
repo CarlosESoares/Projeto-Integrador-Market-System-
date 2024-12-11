@@ -10,8 +10,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
+import Modelo.Produto;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -33,6 +36,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class TelaDoCaixa extends JFrame {
 
@@ -41,7 +45,10 @@ public class TelaDoCaixa extends JFrame {
     private JTable table_1;
     public HintTextField quantidade_produto;
     public JLabel lblSubTotal;
-    
+    public double subT;
+    private ArrayList<Double> valoresItens = new ArrayList<>();
+
+    public String subtV;
     /**
      * 
      * Launch the application.
@@ -407,12 +414,11 @@ public class TelaDoCaixa extends JFrame {
                 double preco = rs.getDouble("preco");
                 String validade = rs.getString("validade_produto");
                 int quantidade = rs.getInt("qntd");  // Aqui você pega a quantidade do banco
-
-                double subT = 0;
+                	
+                int quantCalc = Integer.valueOf(quantidade_produto.getText());
                 
-                subT = (subT+(preco*quantV));
-                String subTv = String.valueOf(subT);
-                lblSubTotal.setText(subTv);
+                
+               calcularSubtotal(preco,quantCalc);
                 // Verifica se a quantidade é maior que zero e quantTxt é válido
                 if (quantidade > 0 && quantV > 0) {
                     // Atualizar quantidade
@@ -446,6 +452,15 @@ public class TelaDoCaixa extends JFrame {
             ex.printStackTrace();
             System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
         }}
+    public void calcularSubtotal(double preco, int quantidade) {
+        double totalItem = preco * quantidade;
+
+        valoresItens.add(totalItem);
+
+        double subtotal = valoresItens.stream().mapToDouble(Double::doubleValue).sum();
+
+        lblSubTotal.setText(String.format("Subtotal: R$ %.2f", subtotal));
+    }
 }
 
 
