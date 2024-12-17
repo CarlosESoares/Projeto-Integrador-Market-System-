@@ -247,7 +247,7 @@ public class telaInicial extends JFrame {
 		rndbtnLo.setText("Log off");
 		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 12));
 		rndbtnLo.setBackground(Color.RED);
-		rndbtnLo.setBounds(787, 13, 109, 24);
+		rndbtnLo.setBounds(743, 17, 109, 24);
 		panel_2.add(rndbtnLo);
     }
 }
