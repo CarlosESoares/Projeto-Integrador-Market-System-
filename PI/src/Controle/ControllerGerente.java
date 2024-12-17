@@ -587,11 +587,16 @@ VendaDAO dao = new VendaDAO();
 		abrir.setVisible(true);
 		
 	}
-	public static void buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText,JTable tabela) {
+	public static void buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText,JTable tabela,double preco) {
 			String idProduto2 = idProduto;
-			String Quantidade = quantidadeText;
-			
-			VendaDAO.BuscarProdutoIDCaixa(idProduto2,Quantidade,tabela);
+			String BuscIdQuantidade = quantidadeText;
+			int CalcTotalQuantidade = Integer.valueOf(quantidadeText);
+			VendaDAO busc = new VendaDAO();
+			busc.BuscarProdutoIDCaixa(idProduto2,BuscIdQuantidade,tabela);
+			Integer valor = Integer.valueOf(VendaDAO.calcularSubtotal(preco, CalcTotalQuantidade));
+			TelaDoCaixa add = new TelaDoCaixa(null);
+			String valorString = String.valueOf(valor);
+			add.lblSubTotal.setText(valorString);
 	}
 }
 

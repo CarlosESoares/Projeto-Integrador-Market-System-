@@ -40,11 +40,10 @@ public class TelaDoCaixa extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTable table_1;
+    public static JTable table_1;
     public HintTextField quantidade_produto;
     public JLabel lblSubTotal;
     public double subT;
-    private ArrayList<Double> valoresItens = new ArrayList<>();
 
     public String subtV;
     /**
@@ -179,7 +178,7 @@ public class TelaDoCaixa extends JFrame {
         panel_3_2.setBounds(47, 153, 155, 23);
         panel_2.add(panel_3_2);
 
-        JLabel lblNewLabel_2 = new JLabel("R$ 0,00");
+        JLabel lblNewLabel_2 = new JLabel("0.00");
         panel_3_2.add(lblNewLabel_2);
        // proco = lblNewLabel_2; // Atribuindo para uso futuro
 
@@ -360,6 +359,7 @@ public class TelaDoCaixa extends JFrame {
                     String idProduto = textfield_1.getText(); 
                     Integer quantida = 0;
                     String quantidadeText = quantidade_produto.getText();  
+                    double preco = Double.valueOf(lblNewLabel_2.getText());
                     if (!quantidadeText.isEmpty()) {
                         try {
                             quantida = Integer.parseInt(quantidadeText);  
@@ -371,9 +371,9 @@ public class TelaDoCaixa extends JFrame {
                     }
 
                     if (!idProduto.isEmpty() && quantida > 0) {
-                        ControllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText,table_1);
+                        ControllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText,table_1,preco);
                     } else {
-                        System.out.println("O campo de ID do produto ou quantidade está vazio ou inválido!");
+                       new MensagemView("O campo de ID do produto ou quantidade está vazio ou inválido!",0);
                     }
                 }
             }
