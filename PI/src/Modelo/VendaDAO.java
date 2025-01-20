@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import visao.MensagemView;
 import visao.TelaDoCaixa;
 
 public class VendaDAO {
 
     private Connection connection;
-
+    int quantCalc;
+    double preco;
     public void buscarVendas(JTable table) {
 
         try {
@@ -62,15 +62,14 @@ public class VendaDAO {
         
     }
 
-	public void BuscarProdutoIDCaixa(String idProduto2, String quantidade, JTable tabela) {
-		System.out.println(quantidade);
+    public  double BuscarProdutoIDCaixa(String idProduto2, String quantidade,Double total) {
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";
-        String password = "aluno";
+        String password = "Aluno";
         String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
         String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
         int quantV = Integer.parseInt(quantidade);
-        
+
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmtBusca = conn.prepareStatement(queryBusca);
              PreparedStatement stmtAtualiza = conn.prepareStatement(queryAtualiza)) {
@@ -78,39 +77,38 @@ public class VendaDAO {
             stmtBusca.setInt(1, Integer.parseInt(idProduto2));
             ResultSet rs = stmtBusca.executeQuery();
 
-         
+
             if (rs.next()) {
-                String nomeProduto = rs.getString("produto");
+            	String nomeProduto = rs.getString("produto");
                 String tipoProduto = rs.getString("tipo_produto");
                 String dataChegada = rs.getString("data_chegada");
-                double preco = rs.getDouble("preco");
                 String validade = rs.getString("validade_produto");
-                int quantidade1 = rs.getInt("qntd");  // Aqui você pega a quantidade do banco
-                	
-                int quantCalc = Integer.valueOf(quantidade);
+                 preco = rs.getDouble("preco");
+                int quantidade2 = rs.getInt("qntd");  
+                System.out.println("chego aqui2");
+                 quantCalc = Integer.valueOf(quantidade);
                 
                 
-               calcularSubtotal(preco,quantCalc);
                 // Verifica se a quantidade é maior que zero e quantTxt é válido
-                if (quantidade1 > 0 && quantV > 0) {
+                if (quantidade2 > 0 && quantV > 0) {
                     // Atualizar quantidade
-                    int novaQuantidade = quantidade1 - quantV;
+                    int novaQuantidade = quantidade2 - quantV;
                     stmtAtualiza.setInt(1, novaQuantidade);
                     stmtAtualiza.setInt(2, Integer.parseInt(idProduto2));
                     stmtAtualiza.executeUpdate();
-                    
-                    
-                    
+
+
+
                     System.out.println("Quantidade atualizada para: " + novaQuantidade);
 
                     DefaultTableModel model = (DefaultTableModel) TelaDoCaixa.table_1.getModel();
                     model.addRow(new Object[]{
                         idProduto2, nomeProduto, tipoProduto, dataChegada,
                         String.format("R$ %.2f", preco*quantV), validade, quantV
-                        
-                        
+
+
                     });
-                    
+
                 } else {
                     System.out.println("Produto esgotado ou quantidade inválida.");
                 }
@@ -119,22 +117,22 @@ public class VendaDAO {
             }
 
         } catch (NumberFormatException e) {
-            new MensagemView("ID do produto ou quantidade inválida: ",0);
+            System.out.println("ID do produto ou quantidade inválida: " + e.getMessage());
         } catch (Exception ex) {
             ex.printStackTrace();
-           new MensagemView("Erro ao acessar o banco de dados: ",1);
-        }}
-    public static  String calcularSubtotal(double preco, int quantidade) {
-        ArrayList<Double> valoresItens = new ArrayList<>();
-        int quant = Integer.valueOf(quantidade);
-        double totalItem = preco * quant;
-    	
+            System.out.println("Erro ao acessar o banco de dados: " + ex.getMessage());
+        }
+        return calcularSubtotal(preco,quantCalc);
+    
+    }
+    public double calcularSubtotal(double preco, int quantidade) {  
+        double totalItem = preco * quantidade;
+    	ArrayList<Double>valoresItens = new ArrayList<>();
         valoresItens.add(totalItem);
 
         double subtotal = valoresItens.stream().mapToDouble(Double::doubleValue).sum();
+        
+        return subtotal;
 
-        String valor = (String.format("Subtotal: R$ %.2f", subtotal));
-        return valor;
-    		
 	}
 }

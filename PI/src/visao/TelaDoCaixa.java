@@ -42,8 +42,9 @@ public class TelaDoCaixa extends JFrame {
     private JPanel contentPane;
     public static JTable table_1;
     public HintTextField quantidade_produto;
-    public JLabel lblSubTotal;
+    public static JLabel lblSubTotal;
     public double subT;
+    
 
     public String subtV;
     /**
@@ -291,7 +292,7 @@ public class TelaDoCaixa extends JFrame {
         	new Object[][] {
         	},
         	new String[] {
-        		"ID", "NDProduto", "Tipo", "DataChegada", "Preço", "Validade", "Quantidade"
+        		"ID", "NDProduto", "Tipo", "DataChegada", "Pre\u00E7o", "Validade", "Quantidade"
         	}
         ));
         scrollPane.setViewportView(table_1);
@@ -359,7 +360,9 @@ public class TelaDoCaixa extends JFrame {
                     String idProduto = textfield_1.getText(); 
                     Integer quantida = 0;
                     String quantidadeText = quantidade_produto.getText();  
+                    int quantiInt = Integer.valueOf(quantidadeText);
                     double preco = Double.valueOf(lblNewLabel_2.getText());
+                    
                     if (!quantidadeText.isEmpty()) {
                         try {
                             quantida = Integer.parseInt(quantidadeText);  
@@ -371,17 +374,21 @@ public class TelaDoCaixa extends JFrame {
                     }
 
                     if (!idProduto.isEmpty() && quantida > 0) {
-                        ControllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText,table_1,preco);
+                        ControllerGerente controllerGerente = new ControllerGerente();
+						subtV =String.valueOf(controllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText, preco, subT));
+						lblSubTotal.setText(subtV);
                     } else {
                        new MensagemView("O campo de ID do produto ou quantidade está vazio ou inválido!",0);
-                    }
+                    }ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1, textfield_1_1);
                 }
             }
         });
 
+        
     }
 
 
+   
 
 }
 

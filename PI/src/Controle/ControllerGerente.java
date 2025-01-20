@@ -582,21 +582,32 @@ VendaDAO dao = new VendaDAO();
             TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
         }
     }
+    public static void PreencherTabelaDoCaixa(String id,String quantidade,JTable table, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextPreco, JTextField TextValidade, JTextField TextQntd) {
+        int selectedRow = table.getSelectedRow();
+        int Idproduto;
+        Idproduto=Integer.valueOf(id);
+		VendaDAO vendaDAO = new VendaDAO();
+		vendaDAO.BuscarProdutoIDCaixa(id,null,null);
+        if (selectedRow != -1) {
+            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
+            TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
+            TextChegada.setText(table.getValueAt(selectedRow, 3).toString());
+            TextPreco.setText(table.getValueAt(selectedRow, 4).toString());
+            TextValidade.setText(table.getValueAt(selectedRow, 5).toString());
+            TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
+        }
+    }
 	public void abrirTelaResumo() {
 		TelaResumo abrir = new TelaResumo();
 		abrir.setVisible(true);
 		
 	}
-	public static void buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText,JTable tabela,double preco) {
-			String idProduto2 = idProduto;
-			String BuscIdQuantidade = quantidadeText;
-			int CalcTotalQuantidade = Integer.valueOf(quantidadeText);
-			VendaDAO busc = new VendaDAO();
-			busc.BuscarProdutoIDCaixa(idProduto2,BuscIdQuantidade,tabela);
-			Integer valor = Integer.valueOf(VendaDAO.calcularSubtotal(preco, CalcTotalQuantidade));
-			TelaDoCaixa add = new TelaDoCaixa(null);
-			String valorString = String.valueOf(valor);
-			add.lblSubTotal.setText(valorString);
+		public  double buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText, Double preco, Double Total) {
+			VendaDAO vendaDAO = new VendaDAO();
+			return vendaDAO.BuscarProdutoIDCaixa(idProduto, quantidadeText,Total);
+			
+			
+			
 	}
 }
 
