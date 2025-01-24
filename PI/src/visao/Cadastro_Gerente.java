@@ -430,6 +430,7 @@ public	String tipoFunci;
 		        lblId.setFont(new Font("Arial", Font.PLAIN, 14));
 		        painelEditar.add(lblId);
 		        
+		        
 		        TextFielArredondada textId = new TextFielArredondada(15, 20, 20);  // Assumindo que seja uma classe personalizada
 		        textId.setColumns(10);
 		        textId.setBounds(160, 20, 100, 30);  // Ajustei a posição para não sobrepor outros campos
@@ -484,6 +485,20 @@ public	String tipoFunci;
 		        JTextField tfEndereco = new JTextField();
 		        tfEndereco.setBounds(120, 230, 200, 25);
 		        painelEditar.add(tfEndereco);
+		        
+		        RoundedButton btnBuscar = new RoundedButton("Buscar", 30, 30);
+		        btnBuscar.setBounds(270, 20, 100, 30);
+		        btnBuscar.setForeground(Color.WHITE);
+		        btnBuscar.setBackground(Color.BLUE);
+
+		        btnBuscar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                int id = Integer.parseInt(textId.getText());  // Obtém o ID inserido no campo de texto
+		                ControllerGerente.buscarFuncionarioPorId(id, tfNome, tfSobrenome, tfTelefone, tfSalario, tfEndereco);
+		            }
+		        });
+
+		        painelEditar.add(btnBuscar);
 
 		        // Botão para Salvar as alterações
 		        RoundedButton btnSalvar = new RoundedButton("Salvar", 30, 30);
@@ -506,7 +521,7 @@ public	String tipoFunci;
 		            public void actionPerformed(ActionEvent e) {
 		                int id = Integer.parseInt(textId.getText());  // Obtém o ID inserido no campo de texto    
 		                
-		                ControllerGerente.editar(table,id,tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
+		                ControllerGerente.editar(id,tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 		                editarWindow.dispose(); // Fecha a janela após salvar
 		            }
 		        });

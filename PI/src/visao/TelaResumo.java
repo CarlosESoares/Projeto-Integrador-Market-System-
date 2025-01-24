@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -182,7 +181,7 @@ public class TelaResumo extends JFrame {
 		scrollPane.setViewportView(tableFuncionario);
 		
 		
-		ControllerGerente.BuscarFR(tableFuncionario);
+		ControllerGerente.BuscarFR(TelaResumo.tableFuncionario);
 		
 		JLabel Funcio = new JLabel("Funcionarios");
 		sl_panel_3.putConstraint(SpringLayout.NORTH, Funcio, -56, SpringLayout.NORTH, scrollPane);

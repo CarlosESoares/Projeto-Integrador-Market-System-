@@ -211,7 +211,7 @@ VendaDAO dao = new VendaDAO();
 	
 	public static void BuscarF(JTable table) {
 		try {
-            List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionario();
+            List<Object[]> Funcionario = FuncionarioDAO.buscarFuncionarioL();
             DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
             model.setRowCount(0);  
             for (Object[] Funcionarios : Funcionario) {
@@ -239,46 +239,74 @@ VendaDAO dao = new VendaDAO();
 	}
 	
 	public static void excluir(int id) {
-		
-		try {
-			FuncionarioDAO.excluirFuncionario(id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BuscarF(Cadastro_Gerente.table);
+	    int response = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja demitir o Funcionário selecionado?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+
+	    if (response == JOptionPane.YES_OPTION) {
+	        try {
+	            boolean sucesso = FuncionarioDAO.excluirFuncionario(id);
+	            if (sucesso) {
+	                JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!");
+	                BuscarF(Cadastro_Gerente.table);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Falha ao excluir o Funcionário.");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            JOptionPane.showMessageDialog(null, "Erro ao excluir o Funcionário: " + e.getMessage());
+	        }
+	    }else if(response == JOptionPane.NO_OPTION) {
+	    	JOptionPane.showMessageDialog(null, "Processo interrompido com Sucesso");
+	    }
 	}
 	
-	 public static void editar(JTable table, int id, JTextField tfNome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
-	        int selectedRow = table.getSelectedRow();
-	        
-	        if (selectedRow != -1) {
-	            id = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
-	            String nome = tfNome.getText();
-        	    String sobrenome = tfSobrenome.getText();
-        	    double salario = Double.parseDouble(tfSalario.getText());
-        	    int telefone = Integer.parseInt(tfTelefone.getText());
-        	    String endereco = tfEndereco.getText();
-	            boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
-	          
-	            if (success) {
-	            	Cadastro_Gerente.table.setValueAt(nome, selectedRow, 1);
-	            	Cadastro_Gerente.table.setValueAt(sobrenome, selectedRow, 2);
-	            	Cadastro_Gerente.table.setValueAt(salario, selectedRow, 3);
-	            	Cadastro_Gerente.table.setValueAt(telefone, selectedRow, 4);
-	            	Cadastro_Gerente.table.setValueAt(endereco, selectedRow, 5);
-	            	new MensagemView("Funcionario atualizado com sucesso!", 1);
-	                
-	                
-	                BuscarF(Cadastro_Gerente.table);  
-	                limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
-	            } else {
-	            	new MensagemView("Erro ao atualizar o Funcionario.", 1);
-	               
-	            }
-	        }
-	      
+	public static void editar(int id, JTextField tfNome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
+	    // Coletar valores dos campos de texto
+	    String nome = tfNome.getText().trim();
+	    String sobrenome = tfSobrenome.getText().trim();
+	    String salarioTexto = tfSalario.getText().trim();
+	    String telefoneTexto = tfTelefone.getText().trim();
+	    String endereco = tfEndereco.getText().trim();
+
+	    // Validações
+	    if (nome.isEmpty() || sobrenome.isEmpty() || salarioTexto.isEmpty() || telefoneTexto.isEmpty() || endereco.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.");
+	        return;
 	    }
+
+	    double salario;
+	    int telefone;
+
+	    try {
+	        salario = Double.parseDouble(salarioTexto);
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(null, "Salário deve ser um número.");
+	        return;
+	    }
+
+	    try {
+	        telefone = Integer.parseInt(telefoneTexto);
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(null, "Telefone deve ser um número válido.");
+	        return;
+	    }
+
+	    if (telefoneTexto.length() != 9) {
+	        JOptionPane.showMessageDialog(null, "O telefone deve ter exatamente 9 dígitos.");
+	        return;
+	    }
+
+	    // Chama o método para atualizar o banco de dados
+	    boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
+	    
+	    if (success) {
+	        JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso!");
+	        limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Erro ao atualizar o Funcionário.");
+	    }
+	    BuscarF(Cadastro_Gerente.table);
+	}
+
 	 
 	 public static void limparCamposFuncionario( JTextField Nome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
 		    // Limpa os campos de texto
@@ -584,9 +612,7 @@ VendaDAO dao = new VendaDAO();
     }
     public static void PreencherTabelaDoCaixa(String id,String quantidade,JTable table, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextPreco, JTextField TextValidade, JTextField TextQntd) {
         int selectedRow = table.getSelectedRow();
-        int Idproduto;
-        Idproduto=Integer.valueOf(id);
-		VendaDAO vendaDAO = new VendaDAO();
+        VendaDAO vendaDAO = new VendaDAO();
 		vendaDAO.BuscarProdutoIDCaixa(id,null,null);
         if (selectedRow != -1) {
             TextNome.setText(table.getValueAt(selectedRow, 1).toString());
@@ -609,7 +635,30 @@ VendaDAO dao = new VendaDAO();
 			
 			
 	}
+		public static Funcionario buscarFuncionarioPorId(int id, JTextField tfNome, JTextField tfSobrenome,
+                JTextField tfTelefone, JTextField tfSalario, JTextField tfEndereco) {
+    Funcionario funcionario = null;
+    try {
+        funcionario = FuncionarioDAO.buscarFuncionario(id);
+        if (funcionario != null) {
+            tfNome.setText(funcionario.getNomeFuncionario());
+            tfSobrenome.setText(funcionario.getSobrenomeFuncionario());
+            tfTelefone.setText(String.valueOf(funcionario.getTelefoneFuncionario()));
+            tfSalario.setText(String.valueOf(funcionario.getSalario()));
+            tfEndereco.setText(funcionario.getEndereco());
+        } else {
+            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // ou exibir uma mensagem de erro adequada na interface gráfica
+        JOptionPane.showMessageDialog(null, "Erro ao buscar funcionário: " + e.getMessage());
+    }
+    return funcionario;
 }
+		
+}
+
+	
 
 
 

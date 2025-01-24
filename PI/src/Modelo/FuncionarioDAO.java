@@ -8,11 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import visao.Cadastro_Gerente;
-import visao.MensagemView;
 import visao.TelaResumo;
 
 public class FuncionarioDAO  {
@@ -34,38 +32,29 @@ public class FuncionarioDAO  {
         }
     }
 
-    public static List<Object[]> buscarFuncionario() throws SQLException {
-    	List<Object[]> Funcionario = new ArrayList<>();
-        String query = "SELECT * FROM funcionarios";
-        
-        try (Connection connection = ConexaoBanco.conector();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+	public static Funcionario buscarFuncionario(int id) throws SQLException {
+	    Funcionario funcionario = null;
+	    String query = "SELECT * FROM funcionarios WHERE id_funcionario = ?";
+	    
+	    try (Connection connection = ConexaoBanco.conector();
+	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            while (resultSet.next()) {
-            	int id = resultSet.getInt("id_funcionario");
-            	String NomeFuncionario = resultSet.getString("NomeFuncionario");
-            	String sobrenome = resultSet.getString("Sobrenome");
-            	double salario = resultSet.getDouble("salario");
-                int telefone = resultSet.getInt("telefone");
-                String endereco = resultSet.getString("endereco");
+	        preparedStatement.setInt(1, id);
+	        ResultSet resultSet = preparedStatement.executeQuery();
 
-                Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
-                DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
-                model.addRow(new Object[] {
-                		id,
-                		NomeFuncionario,
-                		sobrenome,
-                		telefone,
-                		salario,
-                		endereco
-                });
-            }
-            
-        }
-        
-        return Funcionario;
-    }
+	        if (resultSet.next()) {
+	            funcionario = new Funcionario();
+	            funcionario.setIdFuncionario(resultSet.getInt("id_funcionario"));
+	            funcionario.setNomeFuncionario(resultSet.getString("NomeFuncionario"));
+	            funcionario.setSobrenomeFuncionario(resultSet.getString("Sobrenome"));
+	            funcionario.setTelefoneFuncionario(resultSet.getInt("telefone"));
+	            funcionario.setSalario(resultSet.getDouble("salario"));
+	            funcionario.setEndereco(resultSet.getString("endereco"));
+	        }
+	    }
+	    return funcionario;
+	}
+	
     public static List<Object[]> buscarFuncionarioR() throws SQLException {
     	List<Object[]> Funcionario = new ArrayList<>();
         String query = "SELECT * FROM funcionarios";
@@ -98,13 +87,46 @@ public class FuncionarioDAO  {
         
         return Funcionario;
     }
-    public static boolean atualizarFuncionario(int id,String NomeFuncionario, String sobrenome, double salario,int telefone,String endereco) {
-    	String sql = "UPDATE funcionarios SET NomeFuncionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ? ";
+    public static List<Object[]> buscarFuncionarioL() throws SQLException {
+    	List<Object[]> Funcionario = new ArrayList<>();
+        String query = "SELECT * FROM funcionarios";
+        
         try (Connection connection = ConexaoBanco.conector();
-        	PreparedStatement stmt = connection.prepareStatement(sql)) {
-        	 stmt.setString(1, NomeFuncionario);
-        	 stmt.setString(2, sobrenome);
-        	stmt.setDouble(3, salario);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+            	int id = resultSet.getInt("id_funcionario");
+            	String NomeFuncionario = resultSet.getString("NomeFuncionario");
+            	String sobrenome = resultSet.getString("Sobrenome");
+            	double salario = resultSet.getDouble("salario");
+                int telefone = resultSet.getInt("telefone");
+                String endereco = resultSet.getString("endereco");
+
+                Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
+                DefaultTableModel model = (DefaultTableModel) Cadastro_Gerente.table.getModel();
+                model.addRow(new Object[] {
+                		id,
+                		NomeFuncionario,
+                		sobrenome,
+                		telefone,
+                		salario,
+                		endereco
+                });
+            }
+            
+        }
+        
+        return Funcionario;
+    }
+    public static boolean atualizarFuncionario(int id, String nomeFuncionario, String sobrenome, double salario, int telefone, String endereco) {
+        String sql = "UPDATE funcionarios SET NomeFuncionario = ?, sobrenome = ?, salario = ?, telefone = ?, endereco = ? WHERE id_funcionario = ?";
+        
+        try (Connection connection = ConexaoBanco.conector();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, nomeFuncionario);
+            stmt.setString(2, sobrenome);
+            stmt.setDouble(3, salario);
             stmt.setInt(4, telefone);
             stmt.setString(5, endereco);
             stmt.setInt(6, id);
@@ -117,39 +139,18 @@ public class FuncionarioDAO  {
         }
     }
     public static boolean excluirFuncionario(int id) throws SQLException {
-        
-    	int selectedRow = Cadastro_Gerente.table.getSelectedRow();
-        if (selectedRow != -1) {
-            int id_Funcionario = Integer.parseInt(Cadastro_Gerente.table.getValueAt(selectedRow, 0).toString());
-            
-            MensagemView mv = new MensagemView("Tem certeza que deseja demitir o Funcionaio selecionado?");
-            int confirm = mv.getResposta();
-            
-            if (confirm == 1) {
-                try {
-                    boolean sucesso = FuncionarioDAO.excluirFuncionario(id_Funcionario);
-                    if (sucesso) {
-                 
-                        ((DefaultTableModel) Cadastro_Gerente.table.getModel()).removeRow(selectedRow);
-                        new MensagemView("Funcionáio demitido com sucesso!",1);
-                    } else {
-                    	new MensagemView("Falha ao demitir o Funcionario.",1);
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    new MensagemView("Erro ao demitir o Funcionario: " + ex.getMessage(),1);
-                }
-            }
-        }    
-    	String query = "DELETE FROM funcionarios WHERE id_funcionario = ?";
+        String query = "DELETE FROM funcionarios WHERE id_funcionario = ?";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-             
+                 
             preparedStatement.setInt(1, id);
             
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
     
