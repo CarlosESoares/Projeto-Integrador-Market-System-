@@ -489,7 +489,7 @@ public	String tipoFunci;
 		        RoundedButton btnBuscar = new RoundedButton("Buscar", 30, 30);
 		        btnBuscar.setBounds(270, 20, 100, 30);
 		        btnBuscar.setForeground(Color.WHITE);
-		        btnBuscar.setBackground(Color.BLUE);
+		        btnBuscar.setBackground(Color.RED);
 
 		        btnBuscar.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
@@ -504,7 +504,7 @@ public	String tipoFunci;
 		        RoundedButton btnSalvar = new RoundedButton("Salvar", 30, 30);
 		        btnSalvar.setBounds(120, 270, 100, 40);
 		        btnSalvar.setForeground(Color.WHITE);
-		        btnSalvar.setBackground(Color.GREEN);
+		        btnSalvar.setBackground(Color.RED);
 		        
 		        // Alteração de cor ao passar o mouse sobre o botão
 		        btnSalvar.addMouseListener(new MouseAdapter() {

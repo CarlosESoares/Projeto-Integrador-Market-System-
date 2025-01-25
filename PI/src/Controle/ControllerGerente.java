@@ -245,17 +245,17 @@ VendaDAO dao = new VendaDAO();
 	        try {
 	            boolean sucesso = FuncionarioDAO.excluirFuncionario(id);
 	            if (sucesso) {
-	                JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!");
+	                new MensagemView("Funcionário excluído com sucesso!",1);
 	                BuscarF(Cadastro_Gerente.table);
 	            } else {
-	                JOptionPane.showMessageDialog(null, "Falha ao excluir o Funcionário.");
+	            	new MensagemView("Falha ao excluir o Funcionário.",1);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	            JOptionPane.showMessageDialog(null, "Erro ao excluir o Funcionário: " + e.getMessage());
 	        }
 	    }else if(response == JOptionPane.NO_OPTION) {
-	    	JOptionPane.showMessageDialog(null, "Processo interrompido com Sucesso");
+	    	new MensagemView("Processo interrompido com Sucesso",1);
 	    }
 	}
 	
@@ -279,19 +279,19 @@ VendaDAO dao = new VendaDAO();
 	    try {
 	        salario = Double.parseDouble(salarioTexto);
 	    } catch (NumberFormatException e) {
-	        JOptionPane.showMessageDialog(null, "Salário deve ser um número.");
+	    	new MensagemView("Salário deve ser um número.",1);
 	        return;
 	    }
 
 	    try {
 	        telefone = Integer.parseInt(telefoneTexto);
 	    } catch (NumberFormatException e) {
-	        JOptionPane.showMessageDialog(null, "Telefone deve ser um número válido.");
+	    	new MensagemView("Telefone deve ser um número válido.",1);
 	        return;
 	    }
 
 	    if (telefoneTexto.length() != 9) {
-	        JOptionPane.showMessageDialog(null, "O telefone deve ter exatamente 9 dígitos.");
+	    	new MensagemView("O telefone deve ter exatamente 9 dígitos.",1);
 	        return;
 	    }
 
@@ -299,10 +299,10 @@ VendaDAO dao = new VendaDAO();
 	    boolean success = FuncionarioDAO.atualizarFuncionario(id, nome, sobrenome, salario, telefone, endereco);
 	    
 	    if (success) {
-	        JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso!");
+	    	new MensagemView("Funcionário atualizado com sucesso!",1);
 	        limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
 	    } else {
-	        JOptionPane.showMessageDialog(null, "Erro ao atualizar o Funcionário.");
+	    	new MensagemView("Erro ao atualizar o Funcionário.",1);
 	    }
 	    BuscarF(Cadastro_Gerente.table);
 	}
@@ -637,7 +637,8 @@ VendaDAO dao = new VendaDAO();
 	}
 		public static Funcionario buscarFuncionarioPorId(int id, JTextField tfNome, JTextField tfSobrenome,
                 JTextField tfTelefone, JTextField tfSalario, JTextField tfEndereco) {
-    Funcionario funcionario = null;
+    
+			Funcionario funcionario = null;
     try {
         funcionario = FuncionarioDAO.buscarFuncionario(id);
         if (funcionario != null) {
@@ -647,11 +648,11 @@ VendaDAO dao = new VendaDAO();
             tfSalario.setText(String.valueOf(funcionario.getSalario()));
             tfEndereco.setText(funcionario.getEndereco());
         } else {
-            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!");
+        	new MensagemView("Funcionário não encontrado!",1);
         }
     } catch (SQLException e) {
-        e.printStackTrace(); // ou exibir uma mensagem de erro adequada na interface gráfica
-        JOptionPane.showMessageDialog(null, "Erro ao buscar funcionário: " + e.getMessage());
+        e.printStackTrace(); 
+        new MensagemView("Erro ao buscar funcionário: ",1);
     }
     return funcionario;
 }
