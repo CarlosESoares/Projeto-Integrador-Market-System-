@@ -128,7 +128,9 @@ public class VendaDAO {
     public double calcularSubtotal(double preco, int quantidade) {  
         double totalItem = preco * quantidade;
     	ArrayList<Double>valoresItens = new ArrayList<>();
-        valoresItens.add(totalItem);
+    	double TotalCompra = 0;
+    	TotalCompra = totalItem+ TotalCompra;
+        valoresItens.add(TotalCompra);
 
         double subtotal = valoresItens.stream().mapToDouble(Double::doubleValue).sum();
         

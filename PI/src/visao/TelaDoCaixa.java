@@ -376,14 +376,20 @@ public class TelaDoCaixa extends JFrame {
                     if (!idProduto.isEmpty() && quantida > 0) {
                         ControllerGerente controllerGerente = new ControllerGerente();
 						subtV =String.valueOf(controllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText, preco, subT));
-						lblSubTotal.setText(subtV);
+						lblSubTotal.setText("R$:"+subtV);
                     } else {
                        new MensagemView("O campo de ID do produto ou quantidade está vazio ou inválido!",0);
                     }ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1, textfield_1_1);
                 }
             }
         });
-
+        //@Override
+       /* public void keyPressed(KeyEvent e) {
+        	if (e.getKeyCode() == KeyEvent.VK_F4) {
+        		
+        	}
+        }
+*/
         
     }
 
