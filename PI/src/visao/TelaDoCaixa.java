@@ -166,8 +166,8 @@ public class TelaDoCaixa extends JFrame {
         panel_3_1.setBounds(47, 78, 155, 23);
         panel_2.add(panel_3_1);
 
-        JLabel lblNewLabel_1 = new JLabel("R$ 0,00");
-        panel_3_1.add(lblNewLabel_1);
+        JLabel LblCalorUnitario = new JLabel("R$ 0,00");
+        panel_3_1.add(LblCalorUnitario);
         RoundedButton btnNewButton_1_1 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_1.setText("VALOR UNITÁRIO");
         btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
@@ -179,8 +179,8 @@ public class TelaDoCaixa extends JFrame {
         panel_3_2.setBounds(47, 153, 155, 23);
         panel_2.add(panel_3_2);
 
-        JLabel lblNewLabel_2 = new JLabel("0.00");
-        panel_3_2.add(lblNewLabel_2);
+        JLabel lblTotal = new JLabel("0.00");
+        panel_3_2.add(lblTotal);
        // proco = lblNewLabel_2; // Atribuindo para uso futuro
 
         RoundedButton btnNewButton_1_2 = new RoundedButton("New button", 1, 1);
@@ -236,8 +236,8 @@ public class TelaDoCaixa extends JFrame {
         panel_3_3_1_1.setBounds(345, 422, 181, 23);
         panel_2.add(panel_3_3_1_1);
 
-        JLabel lblNewLabel_5 = new JLabel("R$:0,00");
-        panel_3_3_1_1.add(lblNewLabel_5);
+        JLabel TxtTotalRecebido = new JLabel("R$:0,00");
+        panel_3_3_1_1.add(TxtTotalRecebido);
 
         RoundedButton btnNewButton_1_3_1_1_1 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_3_1_1_1.addActionListener(new ActionListener() {
@@ -254,8 +254,8 @@ public class TelaDoCaixa extends JFrame {
         panel_3_3_1_1_1.setBounds(536, 422, 186, 23);
         panel_2.add(panel_3_3_1_1_1);
 
-        JLabel lblNewLabel_6 = new JLabel("R$:0,00");
-        panel_3_3_1_1_1.add(lblNewLabel_6);
+        JLabel lblTroco = new JLabel("R$:0,00");
+        panel_3_3_1_1_1.add(lblTroco);
 
         JPanel panel_4 = new JPanel();
         panel_4.setBounds(247, 57, 582, 263);
@@ -263,7 +263,7 @@ public class TelaDoCaixa extends JFrame {
 
         panel_4.setLayout(new BorderLayout());
 
-        HintTextField textfield_1 = new HintTextField("00000");
+        HintTextField TxtCodigoProduto = new HintTextField("00000");
       // textfield_1.addKeyListener(new KeyAdapter() {
 
           //  @Override
@@ -278,10 +278,10 @@ public class TelaDoCaixa extends JFrame {
 //                }
 //            }
 //        });
-        textfield_1.setHorizontalAlignment(SwingConstants.CENTER);
-        textfield_1.setColumns(10);
-        textfield_1.setBounds(47, 226, 155, 20);
-        panel_2.add(textfield_1);
+        TxtCodigoProduto.setHorizontalAlignment(SwingConstants.CENTER);
+        TxtCodigoProduto.setColumns(10);
+        TxtCodigoProduto.setBounds(47, 226, 155, 20);
+        panel_2.add(TxtCodigoProduto);
        
         JScrollPane scrollPane = new JScrollPane(table_1);
         panel_4.add(scrollPane, BorderLayout.CENTER);
@@ -327,11 +327,11 @@ public class TelaDoCaixa extends JFrame {
         btnDoCliente.setBounds(135, 331, 155, 23);
         panel_2.add(btnDoCliente);
         
-        HintTextField textfield_1_1 = new HintTextField("00000");
-        textfield_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-        textfield_1_1.setColumns(10);
-        textfield_1_1.setBounds(135, 353, 155, 20);
-        panel_2.add(textfield_1_1);
+        HintTextField TxtCPF = new HintTextField("00000");
+        TxtCPF.setHorizontalAlignment(SwingConstants.CENTER);
+        TxtCPF.setColumns(10);
+        TxtCPF.setBounds(135, 353, 155, 20);
+        panel_2.add(TxtCPF);
         
         RoundedButton btnNewButton_1_3_2 = new RoundedButton("New button", 1, 1);
         btnNewButton_1_3_2.addActionListener(new ActionListener() {
@@ -353,15 +353,15 @@ public class TelaDoCaixa extends JFrame {
                
         
        
-        textfield_1.addKeyListener(new KeyAdapter() {
+        TxtCodigoProduto.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_F2) { 
-                    String idProduto = textfield_1.getText(); 
+                    String idProduto = TxtCodigoProduto.getText(); 
                     Integer quantida = 0;
                     String quantidadeText = quantidade_produto.getText();  
                     int quantiInt = Integer.valueOf(quantidadeText);
-                    double preco = Double.valueOf(lblNewLabel_2.getText());
+                    double preco = Double.valueOf(lblTotal.getText());
                     
                     if (!quantidadeText.isEmpty()) {
                         try {
@@ -379,23 +379,10 @@ public class TelaDoCaixa extends JFrame {
 						lblSubTotal.setText("R$:"+subtV);
                     } else {
                        new MensagemView("O campo de ID do produto ou quantidade está vazio ou inválido!",0);
-                    }ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1_1, textfield_1, textfield_1_1);
+                    }ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, TxtCPF, TxtCPF, TxtCPF, TxtCPF, TxtCodigoProduto, TxtCPF);
                 }
             }
-        });
-        //@Override
-       /* public void keyPressed(KeyEvent e) {
-        	if (e.getKeyCode() == KeyEvent.VK_F4) {
-        		
-        	}
-        }
-*/
-        
-    }
-
-
-   
-
+        });}
 }
 
 
