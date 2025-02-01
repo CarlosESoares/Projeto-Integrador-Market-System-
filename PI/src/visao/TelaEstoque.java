@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
+import javax.swing.JComboBox;
 
 public class TelaEstoque extends JFrame {
 
@@ -84,9 +85,6 @@ public class TelaEstoque extends JFrame {
                 dispose();
 		    }
 		});
-		TextFielArredondada TextValidade = new TextFielArredondada(15, 20, 20);
-		TextValidade.setBounds(255, 293, 187, 24);
-		TextValidade.setColumns(10);
 		imgLogo.setBackground(Color.LIGHT_GRAY);
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
 		Image imageLogo = originalIconLogo.getImage(); 
@@ -102,6 +100,7 @@ public class TelaEstoque extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		    }
 		});
+
 		rndbtnHomeProdutos.setText("Estoque");
 		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeProdutos.setBackground(Color.GRAY);
@@ -198,37 +197,74 @@ public class TelaEstoque extends JFrame {
 
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
+		JComboBox<Integer> combodia_1 = new JComboBox<>();
+        combodia_1.setBounds(252, 294, 43, 21);
+        for (int i = 1; i <= 31; i++) {
+            combodia_1.addItem(i);
+        }
+        panel_2.add(combodia_1);
+
+        JComboBox<Integer> combomes_1 = new JComboBox<>();
+        combomes_1.setBounds(305, 294, 43, 21);
+        for (int i = 1; i <= 12; i++) {
+            combomes_1.addItem(i);
+        }
+        panel_2.add(combomes_1);
+
+        JComboBox<Integer> comboano_1 = new JComboBox<>();
+        comboano_1.setBounds(358, 294, 57, 21);
+        for (int i = 2024; i <= 2050; i++) {
+            comboano_1.addItem(i);
+        }
+        panel_2.add(comboano_1);
+        
+		JComboBox<Integer> combodia = new JComboBox<Integer>();
+		combodia.setBounds(9, 294, 43, 21);
+        for (int i = 1; i <= 31; i++) {
+        	combodia.addItem(i);
+        }
+		panel_2.add(combodia);
+		
+		JComboBox<Integer> combomes = new JComboBox<Integer>();
+		combomes.setBounds(62, 294, 43, 21);
+	     for (int i = 1; i <= 12; i++) {
+	    	 combomes.addItem(i);
+	        }
+		panel_2.add(combomes);
+		
+		JComboBox<Integer> comboano = new JComboBox<Integer>();
+		comboano.setBounds(115, 294, 57, 21);
+	     for (int i = 2024; i <= 2050; i++) {
+	    	 comboano.addItem(i);
+	        }
+		panel_2.add(comboano);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro de produto");
 		lblNewLabel_1.setBounds(185, 0, 182, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNome = new JLabel("Nome do produto:");
-		lblNome.setBounds(9, 71, 116, 18);
+		lblNome.setBounds(9, 71, 131, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(10, 104, 187, 24);
+		TextNome.setBounds(9, 99, 188, 24);
 		TextNome.setColumns(10);
 		
 		JLabel lblTipo = new JLabel("Tipo do produto:");
-		lblTipo.setBounds(10, 139, 105, 18);
+		lblTipo.setBounds(10, 139, 130, 18);
 		lblTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextTipo = new TextFielArredondada(15,20,20);
-		TextTipo.setBounds(10, 165, 187, 24);
+		TextTipo.setBounds(9, 165, 188, 24);
 		TextTipo.setColumns(10);
 		
 		JLabel lblChegada = new JLabel("Data de chegada:");
-		lblChegada.setBounds(10, 200, 115, 18);
+		lblChegada.setBounds(10, 264, 150, 18);
 		lblChegada.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		TextFielArredondada TextChegada = new TextFielArredondada(15,20,20);
-		TextChegada.setBounds(10, 229, 187, 24);
-		TextChegada.setColumns(10);
-		
 		JLabel lblPreco = new JLabel("Preço:");
-		lblPreco.setBounds(10, 264, 43, 18);
+		lblPreco.setBounds(9, 199, 111, 18);
 		lblPreco.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextQntd = new TextFielArredondada(15, 20, 20);
@@ -243,8 +279,9 @@ public class TelaEstoque extends JFrame {
 
 		
 		TextFielArredondada TextPreco = new TextFielArredondada(15, 20, 20);
-		TextPreco.setBounds(10, 293, 187, 24);
+		TextPreco.setBounds(9, 227, 188, 24);
 		TextPreco.setColumns(10);
+		TextPreco.setText("R$:");
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnExcluir.setForeground(new Color(255, 255, 255));
@@ -280,7 +317,19 @@ public class TelaEstoque extends JFrame {
 		
 		rndbtnEditar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerGerente.editarProduto(table, produtoDAO, TextNome, TextTipo, TextChegada, TextValidade, TextPreco, TextQntd);
+		    	int dia = (int) combodia.getSelectedItem();
+                int mes = (int) combomes.getSelectedItem();
+                int ano = (int) comboano.getSelectedItem();
+
+                // Formata a data no formato dd/mm/yyyy
+                String dataChegada = String.format("%02d/%02d/%04d", dia, mes, ano);
+		    	int dia1 = (int) combodia_1.getSelectedItem();
+                int mes1 = (int) combomes_1.getSelectedItem();
+                int ano1 = (int) comboano_1.getSelectedItem();
+
+                // Formata a data no formato dd/mm/yyyy
+                String validade = String.format("%02d/%02d/%04d", dia1, mes1, ano1);
+		        ControllerGerente.editarProduto(table, produtoDAO, TextNome, TextTipo, dataChegada, validade, TextPreco, TextQntd);
 		        ControllerGerente.buscarProdutos(table);
 		    }
 		});
@@ -291,7 +340,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnEditar.setBackground(Color.RED);
 		
 		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
-		lblValidadeDoProduto.setBounds(255, 264, 139, 18);
+		lblValidadeDoProduto.setBounds(255, 264, 187, 18);
 		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 
@@ -301,28 +350,47 @@ public class TelaEstoque extends JFrame {
 		
 		
 
-		String[] columnNames = {"ID", "Nome do Produto", "Tipo", "Data de Chegada", "Preço", "Validade", "Quantidade"};
-		Object[][] data = {};
-		table = new JTable(new DefaultTableModel(data, columnNames));
+		String[] NomeColunas = {"ID", "Produto", "Tipo", "Chegada", "Preço", "Validade", "Quantidade"};
+		Object[][] dados = {};
+		table = new JTable(new DefaultTableModel(dados, NomeColunas));
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		panel_3.setLayout(new BorderLayout());
 		panel_3.add(scrollPane, BorderLayout.CENTER);
+
 		table.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
-		        int selectedRow = table.getSelectedRow();
-		        if (selectedRow != -1) {
-		            TextNome.setText(table.getValueAt(selectedRow, 1).toString());
-		            TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
-		            TextChegada.setText(table.getValueAt(selectedRow, 3).toString());
-		            TextPreco.setText(table.getValueAt(selectedRow, 4).toString());
-		            TextValidade.setText(table.getValueAt(selectedRow, 5).toString());
-		           
-		            TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
+		        int linhaSelecionada = table.getSelectedRow();
+		        if (linhaSelecionada != -1) {
+		            TextNome.setText(table.getValueAt(linhaSelecionada, 1).toString());
+		            TextTipo.setText(table.getValueAt(linhaSelecionada, 2).toString());
+		            TextPreco.setText(table.getValueAt(linhaSelecionada, 4).toString());
+		            TextQntd.setText(table.getValueAt(linhaSelecionada, 6).toString());
+
+		            // Data de Chegada
+		            String dataChegada = table.getValueAt(linhaSelecionada, 3).toString();
+		            if (!dataChegada.isEmpty()) {
+		                String[] partesChegada = dataChegada.split("/");
+		                if (partesChegada.length == 3) {
+		                    combodia.setSelectedItem(Integer.parseInt(partesChegada[0]));
+		                    combomes.setSelectedItem(Integer.parseInt(partesChegada[1]));
+		                    comboano.setSelectedItem(Integer.parseInt(partesChegada[2]));
+		                }
+		            }
+
+		            // Validade
+		            String validade = table.getValueAt(linhaSelecionada, 5).toString();
+		            if (!validade.isEmpty()) {
+		                String[] partesValidade = validade.split("/");
+		                if (partesValidade.length == 3) {
+		                    combodia_1.setSelectedItem(Integer.parseInt(partesValidade[0]));
+		                    combomes_1.setSelectedItem(Integer.parseInt(partesValidade[1]));
+		                    comboano_1.setSelectedItem(Integer.parseInt(partesValidade[2]));
+		                }
+		            }
 		        }
 		    }
 		});
-
 
 		ControllerGerente.buscarProdutos(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
@@ -340,7 +408,20 @@ public class TelaEstoque extends JFrame {
 		});
 		rndbtnCadastrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        ControllerGerente.cadastrarProduto(table, produtoDAO, TextNome, TextTipo, TextChegada, TextValidade, TextPreco, TextQntd);
+		    	int dia = (int) combodia.getSelectedItem();
+                int mes = (int) combomes.getSelectedItem();
+                int ano = (int) comboano.getSelectedItem();
+
+                // Formata a data no formato dd/mm/yyyy
+                String dataChegada = String.format("%02d/%02d/%04d", dia, mes, ano);
+		    	int dia1 = (int) combodia_1.getSelectedItem();
+                int mes1 = (int) combomes_1.getSelectedItem();
+                int ano1 = (int) comboano_1.getSelectedItem();
+
+                // Formata a data no formato dd/mm/yyyy
+                String validade = String.format("%02d/%02d/%04d", dia1, mes1, ano1);
+
+		        ControllerGerente.cadastrarProduto(table, produtoDAO, TextNome, TextTipo, dataChegada, validade, TextPreco, TextQntd);
 		    }
 		});
 
@@ -351,7 +432,6 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(lblTipo);
 		panel_2.add(TextNome);
 		panel_2.add(TextTipo);
-		panel_2.add(TextChegada);
 		panel_2.add(lblPreco);
 		panel_2.add(TextPreco);
 		panel_2.add(lblChegada);
@@ -359,7 +439,6 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(rndbtnExcluir);
 		panel_2.add(rndbtnEditar);
 		panel_2.add(lblValidadeDoProduto);
-		panel_2.add(TextValidade);
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
@@ -370,11 +449,10 @@ public class TelaEstoque extends JFrame {
 		imgOndinha.setIcon(resizedIcon);
 		
 
+	
+
+
 
 
 }
-	
-
-
-	
 }

@@ -495,36 +495,34 @@ VendaDAO dao = new VendaDAO();
         	new MensagemView("Selecione um produto para excluir", 1);
         }
     }
-    public static void editarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextValidade, JTextField TextPreco, JTextField TextQntd) {
+    public static void editarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, String chegada, String validade, JTextField TextPreco, JTextField TextQntd) {
         int selectedRow = table.getSelectedRow();
 
         if (selectedRow != -1) {
             int id = Integer.parseInt(table.getValueAt(selectedRow, 0).toString());
             String nome = TextNome.getText();
             String tipo = TextTipo.getText();
-            String chegada = TextChegada.getText();
-            String validade = TextValidade.getText();
-            double preco = Double.parseDouble(TextPreco.getText());
+
+            
+            String precoStr = TextPreco.getText().replaceAll("[R$:]", "").replace(',', '.');
+            double preco = Double.parseDouble(precoStr);
             int quantidade = Integer.parseInt(TextQntd.getText());
 
-            boolean success = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
+            boolean sucesso = produtoDAO.atualizarProduto(id, nome, tipo, chegada, validade, preco, quantidade);
 
-            if (success) {
-            	new MensagemView("Produto atualizado com sucesso!", 1);
-       
+            if (sucesso) {
+                new MensagemView("Produto atualizado com sucesso!", 1);
                 buscarProdutos(table);
 
                 TextNome.setText("");
                 TextTipo.setText("");
-                TextChegada.setText("");
-                TextValidade.setText("");
                 TextPreco.setText("");
                 TextQntd.setText("");
             } else {
-            	new MensagemView("Erro ao atualizar o produto.", 1);
+                new MensagemView("Erro ao atualizar o produto.", 1);
             }
         } else {
-        	new MensagemView("Selecione uma linha para editar.", 1);
+            new MensagemView("Selecione uma linha para editar.", 1);
         }
     }
 
@@ -542,59 +540,46 @@ VendaDAO dao = new VendaDAO();
             e.printStackTrace();
         }
     }
-    public static void cadastrarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextValidade, JTextField TextPreco, JTextField TextQntd) {
-        String validade1 = TextValidade.getText();
-        String dataChegada1 = TextChegada.getText();
+    public static void cadastrarProduto(JTable table, ProdutoDAO produtoDAO, JTextField TextNome, JTextField TextTipo, String dataChegada, String validade, JTextField TextPreco, JTextField TextQntd) {
+
         String qntd1 = TextQntd.getText();
         boolean hasLetter = qntd1.chars().anyMatch(ch -> !Character.isDigit(ch));
         String preco1 = TextPreco.getText();
-        boolean hasLetter1 = preco1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',');
-        boolean hasLetter2 = dataChegada1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '/');
-        boolean hasLetter3 = validade1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '/');
+        boolean hasLetter1 = preco1.chars().anyMatch(ch -> !Character.isDigit(ch) && ch != '.' && ch != ',' && ch != 'R' && ch != '$' && ch != ':');
 
         if (TextNome.getText().trim().isEmpty()) {
             new MensagemView("Preencha o campo produto", 1);
-        }  if (TextTipo.getText().trim().isEmpty()) {
+        } else if (TextTipo.getText().trim().isEmpty()) {
             new MensagemView("Preencha o campo tipo do produto", 1);
-        }  if (TextChegada.getText().trim().isEmpty()) {
-            new MensagemView("Preencha o campo data de chegada", 1);
-        }  if (hasLetter2) {
-            new MensagemView("O campo data de chegada deve conter apenas datas.", 1);
-        }  if (TextPreco.getText().trim().isEmpty()) {
+        } else if (TextPreco.getText().trim().isEmpty()) {
             new MensagemView("Preencha o campo preço", 1);
-        }  if (hasLetter1) {
-            new MensagemView("O campo preço deve conter apenas números.", 1);
-        }  if (TextValidade.getText().trim().isEmpty()) {
-            new MensagemView("Preencha o campo validade", 1);
-        }  if (hasLetter3) {
-            new MensagemView("O campo data de validade deve conter apenas datas.", 1);
-        }  if (TextQntd.getText().trim().isEmpty()) {
+        } else if (hasLetter1) {
+            new MensagemView("O campo preço deve conter apenas números, pontos ou vírgulas.", 1);
+        } else if (TextQntd.getText().trim().isEmpty()) {
             new MensagemView("Preencha o campo quantidade", 1);
-        }  if (hasLetter) {
+        } else if (hasLetter) {
             new MensagemView("O campo quantidade deve conter apenas números.", 1);
         } else {
             String nome = TextNome.getText();
             String tipo = TextTipo.getText();
-            String dataChegada = TextChegada.getText();
-            String preco = TextPreco.getText();
-            String validade = TextValidade.getText();
+
+            // Remove "R$:" from the price and convert "," to "."
+            String preco = TextPreco.getText().replaceAll("[R$:]", "").replace(',', '.');
+
             String qntd = TextQntd.getText();
 
             try {
                 produtoDAO.cadastrarProduto(nome, tipo, dataChegada, preco, validade, qntd);
                 new MensagemView("Produto cadastrado com sucesso!", 1);
-            
+                
                 buscarProdutos(table); 
 
                 TextNome.setText("");
                 TextTipo.setText("");
-                TextChegada.setText("");
-                TextPreco.setText("");
-                TextValidade.setText("");
+                TextPreco.setText("R$:");
                 TextQntd.setText("");
             } catch (SQLException ex) {
-            	new MensagemView("Erro ao cadastrar o produto.", 1);
-   
+                new MensagemView("Erro ao cadastrar o produto.", 1);
                 ex.printStackTrace();
             }
         }
@@ -656,7 +641,7 @@ VendaDAO dao = new VendaDAO();
     }
     return funcionario;
 }
-		
+
 }
 
 	

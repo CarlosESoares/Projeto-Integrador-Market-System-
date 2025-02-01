@@ -40,11 +40,13 @@ public class ProdutoDAO {
                 String nome = resultSet.getString("produto");
                 String tipo = resultSet.getString("tipo_produto");
                 String dataChegada = resultSet.getString("data_chegada");
+                
                 String preco = resultSet.getString("preco");
+                
                 String validade = resultSet.getString("validade_produto");
                 String qntd = resultSet.getString("qntd");
                 double preco1 = Double.parseDouble(preco);
-                produtos.add(new Object[] { id, nome, tipo, dataChegada,  preco1, validade, qntd });
+                produtos.add(new Object[] { id, nome, tipo, dataChegada,   "R$:" + String.format("%.2f", preco1), validade, qntd });
             }
         }
         
