@@ -240,7 +240,7 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(comboano);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro de produto");
-		lblNewLabel_1.setBounds(185, 0, 182, 24);
+		lblNewLabel_1.setBounds(185, 0, 230, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNome = new JLabel("Nome do produto:");

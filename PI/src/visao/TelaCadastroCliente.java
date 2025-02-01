@@ -210,6 +210,7 @@ public class TelaCadastroCliente extends JFrame {
 		TextFielArredondada TextLimite = new TextFielArredondada(15, 20, 20);
 		TextLimite.setColumns(10);
 		TextLimite.setBounds(9, 293, 187, 24);
+		TextLimite.setText("R$:");
 		panel_2.add(TextLimite);
 		
 		JLabel lblLimiteDeCrdito = new JLabel("Limite de crédito");

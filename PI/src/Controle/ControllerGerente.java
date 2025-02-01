@@ -373,7 +373,7 @@ VendaDAO dao = new VendaDAO();
             String nome = TextNome.getText();
             String sobrenome = TextSobrenome.getText();
             String CPF = TextCPF.getText();
-            String Limite = textLimite.getText();
+            String Limite = textLimite.getText().replaceAll("[R$:]", "").replace(',', '.');
 
             boolean success = ClienteDAO.atualizarcliente(id, nome, sobrenome, CPF, Limite);
 
@@ -404,7 +404,8 @@ VendaDAO dao = new VendaDAO();
         String sobrenome = TextSobrenome.getText();
         String CPF = TextCPF.getText();
         String CPF1 = CPF;
-        String Limite = textLimite.getText();
+        String Limite = textLimite.getText().replaceAll("[R$:]", "").replace(',', '.');
+        
         boolean hasLetter = CPF1.chars().anyMatch(ch -> !Character.isDigit(ch));
         
         if (nome.trim().isEmpty()) {
@@ -461,7 +462,7 @@ VendaDAO dao = new VendaDAO();
         TextNome.setText("");
         TextSobrenome.setText("");
         TextCPF.setText("");
-        TextLimite.setText("");
+        TextLimite.setText("R$:");
     }
     public static void excluirProduto(JTable table, ProdutoDAO produtoDAO) {
         if (produtoDAO == null) {
@@ -516,7 +517,7 @@ VendaDAO dao = new VendaDAO();
 
                 TextNome.setText("");
                 TextTipo.setText("");
-                TextPreco.setText("");
+                TextPreco.setText("R$:");
                 TextQntd.setText("");
             } else {
                 new MensagemView("Erro ao atualizar o produto.", 1);

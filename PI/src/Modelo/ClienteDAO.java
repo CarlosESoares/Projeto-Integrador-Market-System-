@@ -40,8 +40,8 @@ public class ClienteDAO {
                 String sobrenome = resultSet.getString("sobrenome");
                 String CPF = resultSet.getString("cpf_cliente");
                 String Limite = resultSet.getString("credito");
-
-                clientes.add(new Object[] { id, nome, sobrenome, CPF, Limite});
+                double Limite1 = Double.parseDouble(Limite);
+                clientes.add(new Object[] { id, nome, sobrenome, CPF, "R$:" + String.format("%.2f", Limite1)});
             }
         }
         
