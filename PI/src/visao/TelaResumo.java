@@ -285,7 +285,7 @@ public class TelaResumo extends JFrame {
 		panel_3.add(scrollPane_3);
 		
 		table = new JTable();
-		String[] columnNames4 = {"Id", "Produtos", "Funcionario", "cliente",};
+		String[] columnNames4 = {"Id", "Preço", "ID Funcionario", "ID Cliente",};
 		Object[][] data3 = {};
 		table= new JTable(new DefaultTableModel(data3,columnNames4));
 		BuscarVendas();
@@ -312,7 +312,7 @@ public class TelaResumo extends JFrame {
 		
 		private void buscarProdutos() {
 		    try {
-		        List<Object[]> produtos = ProdutoDAO.buscarTodosProdutos();  // Recupera a lista de produtos
+		        List<Object[]> produtos = ProdutoDAO.buscarTodosProdutosR();  // Recupera a lista de produtos
 		        DefaultTableModel model = (DefaultTableModel) tableProdutos.getModel();
 		        model.setRowCount(0);  // Limpa a tabela antes de adicionar novos dados
 		        
@@ -328,7 +328,7 @@ public class TelaResumo extends JFrame {
 		
 		private void buscarClientes() {
 	        try {
-	            List<Object[]> clientes = ClienteDAO.buscarTodosClientes();
+	            List<Object[]> clientes = ClienteDAO.buscarTodosClientesR();
 	            DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
 	            model.setRowCount(0);  
 	            for (Object[] clientes1 : clientes) {

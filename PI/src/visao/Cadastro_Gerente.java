@@ -158,22 +158,7 @@ public	String tipoFunci;
 		    	btnVendas.setBackground(Color.RED);
 		    }
 		});
-		btnVendas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaVendas(f);
-				dispose();
 		
-			}
-		});
-		btnVendas.setText("Vendas");
-		btnVendas.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnVendas.setBackground(Color.RED);
-		
-		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
-		Image imgVendas = iconVendas.getImage();
-		Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		btnVendas.setIcon(new ImageIcon(novaImgVendas));
 		
 		RoundedButton imgLogo = new RoundedButton("",1,1);
 		imgLogo.setBackground(new Color(192, 192, 192));

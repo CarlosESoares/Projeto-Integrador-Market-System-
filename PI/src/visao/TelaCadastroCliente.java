@@ -150,16 +150,7 @@ public class TelaCadastroCliente extends JFrame {
 		        rndbtnHomeVendas.setBackground(Color.RED);
 		    }
 		});
-		rndbtnHomeVendas.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaVendas(f);    
-                dispose();
-		    }
-		});
-		rndbtnHomeVendas.setText("Vendas");
-		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 15));
-		rndbtnHomeVendas.setBackground(Color.RED);
+		
 
 
 		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));

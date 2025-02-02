@@ -184,15 +184,7 @@ public class telaInicial extends JFrame {
                 btnVendas.setBackground(Color.RED);
             }
         });
-        btnVendas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaVendas(f);    
-                dispose();
-            }
-        });
-        btnVendas.setBounds(37, 45, 187, 66);
-        panel_2.add(btnVendas);
+       
 
         ImageIcon caixaIcon = new ImageIcon(getClass().getResource("/Imagens/desktop-solid.png"));
         Image caixaImage = caixaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);

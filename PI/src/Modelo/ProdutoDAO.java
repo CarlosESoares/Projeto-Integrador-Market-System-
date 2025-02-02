@@ -52,6 +52,31 @@ public class ProdutoDAO {
         
         return produtos;
     }
+    public static   List<Object[]> buscarTodosProdutosR() throws SQLException {
+        List<Object[]> produtos = new ArrayList<>();
+        String query = "SELECT * FROM produtos";
+        
+        try (Connection connection = ConexaoBanco.conector();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+            	String id = resultSet.getString("id_produto");
+                String nome = resultSet.getString("produto");
+                String tipo = resultSet.getString("tipo_produto");
+                String dataChegada = resultSet.getString("data_chegada");
+                
+                String preco = resultSet.getString("preco");
+                
+                String validade = resultSet.getString("validade_produto");
+                String qntd = resultSet.getString("qntd");
+                double preco1 = Double.parseDouble(preco);
+                produtos.add(new Object[] { id, nome, "R$:" + String.format("%.2f", preco1), qntd });
+            }
+        }
+        
+        return produtos;
+    }
     public boolean atualizarProduto(int id, String nome, String tipo, String chegada, String validade, double preco, int quantidade) {
         String sql = "UPDATE produtos SET produto = ?, tipo_produto = ?, data_chegada = ?, validade_produto = ?, preco = ?, qntd = ? WHERE id_produto = ?";
         try (Connection connection = ConexaoBanco.conector();

@@ -105,27 +105,6 @@ public class TelaGerente extends JFrame {
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setBackground(Color.LIGHT_GRAY);
 		
-		RoundedButton Btnvendas = new RoundedButton("Entrar", 30, 30);
-		Btnvendas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente telas = new ControllerGerente();
-				telas.AbrirTelaVendas(f);
-			}
-		});
-		Btnvendas.setText("Vendas");
-		Btnvendas.setForeground(Color.WHITE);
-		Btnvendas.setFont(new Font("Arial", Font.BOLD, 20));
-		Btnvendas.setBackground(Color.RED);
-		Btnvendas.setBounds(154, 135, 179, 32);
-		panel_2.add(Btnvendas);
-		Btnvendas.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-		    	Btnvendas.setBackground(Color.LIGHT_GRAY);
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	Btnvendas.setBackground(Color.RED);
-		    }
-		});
 		
 		RoundedButton estoqueBtn = new RoundedButton("Estoque", 30, 30);
 		estoqueBtn.addMouseListener(new MouseAdapter() {

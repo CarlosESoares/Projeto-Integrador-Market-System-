@@ -21,7 +21,6 @@ import visao.TelaDoCaixa;
 import visao.TelaEstoque;
 import visao.TelaGerente;
 import visao.TelaResumo;
-import visao.TelaVendas;
 import visao.TextFielArredondada;
 import visao.telaInicial;
 
@@ -95,15 +94,7 @@ public class ControllerGerente {
 	
 VendaDAO dao = new VendaDAO();
 	
-	public void AbrirTelaVendas(Funcionario f){
-    	System.out.println(f.getTipoFucionario());
-
-		TelaVendas tela = new TelaVendas(null);
-		tela.setLocationRelativeTo(null);
-		tela.setVisible(true);
 	
-		
-	}
 	public void Relatorio(Funcionario f){
     	System.out.println(f.getTipoFucionario());
 

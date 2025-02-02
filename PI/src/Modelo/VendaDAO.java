@@ -80,10 +80,7 @@ public class VendaDAO {
                 Statement statement = connection.createStatement();
 
                 // Consulta SQL para buscar as vendas e seus detalhes
-                String sql = "SELECT v.id_venda, v.funcionario_id_funcionario, v.cliente_id_cliente, p.produto, p.preco, c.quantidade, (p.preco * c.quantidade) AS total "
-                           + "FROM vendas v "
-                           + "JOIN carrinho c ON v.id_venda = c.id_venda "
-                           + "JOIN produtos p ON c.produtos_Id_produto = p.id_produto";
+                String sql = "SELECT * FROM mercado.vendas;";
 
                 // Executa a consulta e obtém os resultados
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -101,7 +98,7 @@ public class VendaDAO {
                     double preco = resultSet.getDouble("preco");
                     int quantidade = resultSet.getInt("quantidade");
                     double total = resultSet.getDouble("total");
-                    vendas.add(new Object[] { idVenda, idFuncionario, idCliente, produto,   "R$:" + String.format("%.2f", preco), quantidade, total });
+                    vendas.add(new Object[] { idVenda, "R$:" + String.format("%.2f", total), idFuncionario, idCliente,   "R$:" + String.format("%.2f", preco), quantidade, total });
 
                     // Adiciona os dados na tabela
                     model.addRow(new Object[]{idVenda,produto, idFuncionario, idCliente});

@@ -70,8 +70,9 @@ public class FuncionarioDAO  {
             	double salario = resultSet.getDouble("salario");
                 int telefone = resultSet.getInt("telefone");
                 String endereco = resultSet.getString("endereco");
+                String cargo = resultSet.getString("tipo_funcionario");
 
-                Funcionario.add(new Object[] { id, NomeFuncionario,sobrenome, telefone, salario, endereco});
+                Funcionario.add(new Object[] { NomeFuncionario, sobrenome, cargo});
                 DefaultTableModel model = (DefaultTableModel) TelaResumo.tableFuncionario.getModel();
                 model.addRow(new Object[] {
                 		id,

@@ -47,6 +47,27 @@ public class ClienteDAO {
         
         return clientes;
     }
+    public static List<Object[]> buscarTodosClientesR() throws SQLException {
+        List<Object[]> clientes = new ArrayList<>();
+        String query = "SELECT * FROM clientes";
+        
+        try (Connection connection = ConexaoBanco.conector();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+            	String id = resultSet.getString("id_cliente");
+                String nome = resultSet.getString("nome");
+                String sobrenome = resultSet.getString("sobrenome");
+                String CPF = resultSet.getString("cpf_cliente");
+                String Limite = resultSet.getString("credito");
+                double Limite1 = Double.parseDouble(Limite);
+                clientes.add(new Object[] { id, nome, sobrenome, CPF});
+            }
+        }
+        
+        return clientes;
+    }
     
     public static List<Object[]> buscarCliente(long cpfCliente) throws SQLException {
         List<Object[]> clientes = new ArrayList<>();
