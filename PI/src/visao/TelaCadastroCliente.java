@@ -153,7 +153,7 @@ public class TelaCadastroCliente extends JFrame {
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaVendas();    
+                abrir.AbrirTelaVendas(f);    
                 dispose();
 		    }
 		});

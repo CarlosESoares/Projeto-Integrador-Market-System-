@@ -392,7 +392,9 @@ public class TelaDoCaixa extends JFrame {
                 for (Object[] row : tabelaDados) {
                     System.out.println(Arrays.toString(row));
                 }
-            }
+             }
+             limparTabela();
+             new MensagemView("Venda finalizada com sucesso",0);
         }});
         	
         
@@ -446,8 +448,12 @@ public class TelaDoCaixa extends JFrame {
                     ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, TextNome, TextTipo,TextChegada,TextPreco,TextValidade,TextQntd);
                 }
             }
-        });
+        });}
+        private void limparTabela() {
+            DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+            model.setRowCount(0);  // Remove todas as linhas da tabela
+        }
         
-}}
+}
 
 

@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
 import Modelo.ClienteDAO;
+import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
 
 public class TelaResumo extends JFrame {
@@ -35,6 +36,7 @@ public class TelaResumo extends JFrame {
 	public static JTable tableFuncionario;
 	public JTable tableProdutos;
 	public JTable tableClientes;
+	static TelaResumo frame = new TelaResumo(null);
 
 	/**
 	 * Launch the application.
@@ -43,7 +45,6 @@ public class TelaResumo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaResumo frame = new TelaResumo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +57,7 @@ public class TelaResumo extends JFrame {
 	 * Create the frame.
 	 */
 
-		public TelaResumo() {
+		public TelaResumo(Funcionario f) {
 		    // Configuração básica da janela
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setBounds(100, 100, 1078, 822);
@@ -90,7 +91,7 @@ public class TelaResumo extends JFrame {
 		    imgLogo.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		            ControllerGerente abrir = new ControllerGerente();
-		            abrir.TelaInicial();
+		            abrir.TelaInicial(f);
 		            dispose();
 		        }
 		    });

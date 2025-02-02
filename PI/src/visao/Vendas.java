@@ -1,4 +1,4 @@
-/*package visao;
+package visao;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,7 +34,7 @@ public class Vendas extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,7 +50,7 @@ public class Vendas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	/*public Vendas(Funcionario f) {
+	public Vendas(Funcionario f) {
 		
 		setContentPane(contentPane);
 
@@ -141,9 +141,7 @@ public class Vendas extends JFrame {
 	}
 
 	public Vendas() {
-		// TODO Auto-generated constructor stub
 	}
 	}
 
 
-*/

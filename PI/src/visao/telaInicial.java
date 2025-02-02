@@ -76,7 +76,7 @@ public class telaInicial extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial();
+                abrir.TelaInicial(f);
                 dispose();	
         	}
         });
@@ -186,7 +186,7 @@ public class telaInicial extends JFrame {
         btnVendas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaVendas();    
+                abrir.AbrirTelaVendas(f);    
                 dispose();
             }
         });

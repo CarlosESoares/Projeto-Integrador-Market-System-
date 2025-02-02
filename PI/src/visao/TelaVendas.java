@@ -80,7 +80,7 @@ import Modelo.Funcionario;
 			    imgLogo.addActionListener(new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
 			        	ControllerGerente abrir = new ControllerGerente();
-		                abrir.TelaInicial();
+		                abrir.TelaInicial(f);
 		                dispose();
 			        }
 			    });

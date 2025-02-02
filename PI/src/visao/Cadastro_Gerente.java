@@ -151,7 +151,7 @@ public	String tipoFunci;
 		btnVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaVendas();
+				abrir.AbrirTelaVendas(f);
 				dispose();
 		
 			}
@@ -166,7 +166,7 @@ public	String tipoFunci;
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial();
+                abrir.TelaInicial(f);
                 dispose();
             
 			
@@ -557,7 +557,7 @@ public	String tipoFunci;
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente tela = new ControllerGerente();
 				frame.dispose();
-				tela.TelaInicial();
+				tela.TelaInicial(f);
 			}
 		});
 			ControllerGerente.BuscarF(Cadastro_Gerente.table);
