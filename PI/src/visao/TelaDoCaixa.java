@@ -3,20 +3,15 @@ package visao;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
-
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -24,22 +19,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import net.miginfocom.swing.MigLayout;
-
-// Importações JDBC
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.JToolBar;
 
 public class TelaDoCaixa extends JFrame {
 
@@ -86,11 +71,6 @@ public class TelaDoCaixa extends JFrame {
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.SOUTH);
 
-        ImageIcon originalIcon = new ImageIcon(Login.class.getResource("/Imagens/Ondinha23.png"));
-        Image image = originalIcon.getImage(); // Obtenha a imagem do ImageIcon
-        Image newImage = image.getScaledInstance(1200, 200, Image.SCALE_SMOOTH); // Redimensione a imagem
-
-        ImageIcon resizedIcon = new ImageIcon(newImage);
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();

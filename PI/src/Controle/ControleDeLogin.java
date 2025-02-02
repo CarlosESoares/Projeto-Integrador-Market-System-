@@ -3,9 +3,6 @@ package Controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-
 import Modelo.Funcionario;
 import Modelo.FuncionarioDAO;
 import visao.Login;

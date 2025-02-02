@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
-import javax.swing.JButton;
 
 public class TelaGerente extends JFrame {
 	/**
