@@ -148,5 +148,10 @@ public class MensagemView extends JDialog {
     public int getResposta() {
         return resposta;
     }
+
+	public int mostrarMensagem() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }

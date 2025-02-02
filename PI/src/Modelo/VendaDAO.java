@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,54 +24,7 @@ public class VendaDAO {
 	ArrayList<Double>valoresItens = new ArrayList<>();
 
     double preco;
-    public static List<Object[]> buscarVendas(JTable table) {
-        List<Object[]> vendas = new ArrayList<>();
-
-        try {
-            connection = ConexaoBanco.conector();
-            if (connection != null) {
-                // Criando a instrução SQL
-                Statement statement = connection.createStatement();
-
-                // Consulta SQL para buscar as vendas e seus detalhes
-                String sql = "SELECT v.id_venda, v.funcionario_id_funcionario, v.cliente_id_cliente, p.produto, p.preco, c.quantidade, (p.preco * c.quantidade) AS total "
-                           + "FROM vendas v "
-                           + "JOIN carrinho c ON v.id_venda = c.id_venda "
-                           + "JOIN produtos p ON c.produtos_Id_produto = p.id_produto";
-
-                // Executa a consulta e obtém os resultados
-                ResultSet resultSet = statement.executeQuery(sql);
-
-                // Limpa as linhas atuais da tabela antes de adicionar novas
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.setRowCount(0);
-
-                // Itera sobre os resultados e adiciona cada linha na tabela
-                while (resultSet.next()) {
-                    int idVenda = resultSet.getInt("id_venda");
-                    int idFuncionario = resultSet.getInt("funcionario_id_funcionario");
-                    int idCliente = resultSet.getInt("cliente_id_cliente");
-                    String produto = resultSet.getString("produto");
-                    double preco = resultSet.getDouble("preco");
-                    int quantidade = resultSet.getInt("quantidade");
-                    double total = resultSet.getDouble("total");
-                    vendas.add(new Object[] { idVenda, idFuncionario, idCliente, produto,   "R$:" + String.format("%.2f", preco), quantidade, total });
-
-                    // Adiciona os dados na tabela
-                    model.addRow(new Object[]{idVenda, idFuncionario, idCliente, produto, preco, quantidade, total});
-                }
-
-                // Fecha a conexão com o banco de dados
-                connection.close();
-            }
-           
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-		return vendas;
-        
-    }
+   
     public static List<Object[]> buscarVendasReduzindas(JTable table) {
         List<Object[]> vendas = new ArrayList<>();
 
@@ -80,7 +35,10 @@ public class VendaDAO {
                 Statement statement = connection.createStatement();
 
                 // Consulta SQL para buscar as vendas e seus detalhes
-                String sql = "SELECT * FROM mercado.vendas;";
+                String sql = "SELECT v.id_venda, v.funcionario_id_funcionario, v.cliente_id_cliente, p.produto, p.preco, c.quantidade, (p.preco * c.quantidade) AS total "
+                        + "FROM vendas v "
+                        + "JOIN carrinho c ON v.id_venda = c.id_venda "
+                        + "JOIN produtos p ON c.produtos_Id_produto = p.id_produto";
 
                 // Executa a consulta e obtém os resultados
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -161,7 +119,8 @@ public class VendaDAO {
                     double preco = Double.parseDouble(precoString);
                     String validade = model.getValueAt(i, 5).toString();  // Validade
                     int quantidade = Integer.parseInt(model.getValueAt(i, 6).toString());  // Quantidade
-
+                    
+                    double total = preco*quantidade;
                     // Inserir produto no carrinho
                     String sqlCarrinho = "INSERT INTO carrinho (id_venda, produtos_Id_produto, quantidade, preco, data_chegada, tipo, validade) "
                             + "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -176,10 +135,10 @@ public class VendaDAO {
                     statementCarrinho.setString(7, validade);
 
                     statementCarrinho.executeUpdate();
+                    finalizarCompra(idVenda, idCliente, total);
+                    
+                    
                 }
-
-                new MensagemView("Venda cadastrada com sucesso!", 1);
-                connection.close();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -261,4 +220,74 @@ public class VendaDAO {
         return subtotal;
 
 	}
+    public static void finalizarCompra(int idVenda, long idCliente, double totalCompra) {
+        try {
+            connection = ConexaoBanco.conector();
+            
+            if (connection != null) {
+                // 1. Exibir mensagem para perguntar se deseja usar crédito
+            	MensagemView mv = new MensagemView("Usar credito do cliente? ");
+                int confirmacao = mv.getResposta();
+
+               
+               
+
+                if (confirmacao == 1) { // Sim, usar crédito
+                    PreparedStatement stmt = connection.prepareStatement("SELECT credito FROM clientes WHERE id_cliente = ?");
+                    stmt.setFloat(1, idCliente);
+                    ResultSet rs = stmt.executeQuery();
+
+                    if (rs.next()) {
+                        double creditoAtual = rs.getDouble("credito");
+
+                        if (creditoAtual >= totalCompra) {
+                            // Subtrai o valor total do crédito
+                            double novoCredito = creditoAtual - totalCompra;
+
+                            PreparedStatement updateCredito = connection.prepareStatement("UPDATE clientes SET credito = ? WHERE id_cliente = ?");
+                            updateCredito.setDouble(1, novoCredito);
+                            updateCredito.setFloat(2, idCliente);
+                            updateCredito.executeUpdate();
+
+                            // Registra a venda como "paga com crédito"
+                            PreparedStatement updateVenda = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = 'Crédito Cliente' WHERE id_venda = ?");
+                            updateVenda.setInt(1, idVenda);
+                            updateVenda.executeUpdate();
+
+                            new MensagemView("Compra finalizada usando crédito do cliente!",0);
+                        } else {
+                        	new MensagemView( "Crédito insuficiente! Escolha outro método de pagamento.",0);
+                            selecionarMetodoPagamento(idVenda);
+                        }
+                    }
+                } else {
+                    // Perguntar qual será o método de pagamento
+                    selecionarMetodoPagamento(idVenda);
+                }
+
+                connection.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void selecionarMetodoPagamento(int idVenda) {
+        String[] opcoes = {"Dinheiro", "Cartão", "Pix"};
+        String metodo = (String) JOptionPane.showInputDialog(null, "Escolha o método de pagamento:", "Pagamento", JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+
+        if (metodo != null) {
+            try {
+                PreparedStatement stmt = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = ? WHERE id_venda = ?");
+                stmt.setString(1, metodo);
+                stmt.setInt(2, idVenda);
+                stmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Compra finalizada com pagamento via " + metodo);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

@@ -354,17 +354,10 @@ public class TelaDoCaixa extends JFrame {
                     System.out.println(Arrays.toString(row));
                 }
              }
-             String dinheiro =TxtTroco.getText() ;
-             double ValorCompra = SubSoma;
-             double ValorCompraN =Double.valueOf(ValorCompra);
-             double dinheiroN =0;
-             dinheiroN = Double.valueOf(dinheiro);
-            lblTroco.setText("R$" + CalculcularTroco(dinheiroN, ValorCompraN));
-             
+            
+            
              new MensagemView("Venda finalizada com sucesso",0);
         }});
-        	
-        
         BtnFecharVenda.setBounds(135, 369, 130, 24);
         panel_2.add(BtnFecharVenda);
         BtnFecharVenda.setText("Fechar Venda");

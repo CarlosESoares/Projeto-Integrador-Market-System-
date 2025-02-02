@@ -19,7 +19,6 @@ import visao.RelatorioVenda;
 import visao.TelaCadastroCliente;
 import visao.TelaDoCaixa;
 import visao.TelaEstoque;
-import visao.TelaGerente;
 import visao.TelaResumo;
 import visao.TextFielArredondada;
 import visao.telaInicial;
@@ -29,7 +28,7 @@ public class ControllerGerente {
 	public boolean salario2;
 
 	
-	public void TelaInicial(Funcionario f) {
+	public static void TelaInicial(Funcionario f) {
 
 		telaInicial tela = new telaInicial(null);
     	System.out.println(f.getTipoFucionario());
