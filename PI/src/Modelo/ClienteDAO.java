@@ -11,7 +11,7 @@ import java.util.List;
 public class ClienteDAO {
 
     public static void cadastrarCliente(String nome, String sobrenome, String CPF, String Limite) throws SQLException {
-        String query = "INSERT INTO clientes (nome, sobrenome, cpf_cliente, credito) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO mercado.clientes (nome, sobrenome, cpf_cliente, credito) VALUES (?, ?, ?, ?)";
         
         try (Connection connection = ConexaoBanco.conector();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -47,8 +47,40 @@ public class ClienteDAO {
         
         return clientes;
     }
+    
+    public static List<Object[]> buscarCliente(long cpfCliente) throws SQLException {
+        List<Object[]> clientes = new ArrayList<>();
+        
+        // Corrigindo a consulta SQL e utilizando PreparedStatement
+        String query = "SELECT * FROM mercado.clientes WHERE cpf_cliente = ?";
+
+        try (Connection connection = ConexaoBanco.conector();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Substitui o parâmetro do CPF na consulta
+        	preparedStatement.setString(1, String.valueOf(cpfCliente));
+
+            // Executa a consulta
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // Itera sobre o resultado e adiciona os dados na lista
+                while (resultSet.next()) {
+                    String id = resultSet.getString("id_cliente");
+                    String nome = resultSet.getString("nome");
+                    String sobrenome = resultSet.getString("sobrenome");
+                    String CPF = resultSet.getString("cpf_cliente");
+                    String limite = resultSet.getString("credito");
+
+                    // Adiciona os dados à lista de resultados
+                    clientes.add(new Object[] { id, nome, sobrenome, CPF, limite });
+                }
+            }
+        }
+        
+        return clientes;
+    }
+
     public static boolean atualizarcliente(int id, String nome, String sobrenome, String CPF, String Limite) {
-        String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, cpf_cliente = ?, credito = ? WHERE id_cliente = ?";
+        String sql = "UPDATE mercado.clientes SET nome = ?, sobrenome = ?, cpf_cliente = ?, credito = ? WHERE id_cliente = ?";
         try (Connection connection = ConexaoBanco.conector();
         	PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, nome);

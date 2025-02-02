@@ -81,7 +81,7 @@ public class TelaEstoque extends JFrame {
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial();
+                abrir.TelaInicial(f);
                 dispose();
 		    }
 		});
@@ -153,7 +153,7 @@ public class TelaEstoque extends JFrame {
 		rndbtnHomeVendas.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente abrir = new ControllerGerente();
-                abrir.AbrirTelaVendas();    
+                abrir.AbrirTelaVendas(f);    
                 dispose();
 		    }
 		});

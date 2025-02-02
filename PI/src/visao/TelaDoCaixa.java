@@ -16,12 +16,15 @@ import Modelo.Funcionario;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -35,6 +38,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JToolBar;
 
 public class TelaDoCaixa extends JFrame {
 
@@ -44,6 +49,9 @@ public class TelaDoCaixa extends JFrame {
     public HintTextField quantidade_produto;
     public static JLabel lblSubTotal;
     public double subT;
+    public double  SubSoma;
+    public double SubValor1;
+    private DefaultTableModel model;
     
 
     public String subtV;
@@ -56,7 +64,7 @@ public class TelaDoCaixa extends JFrame {
             public void run() {
                 try {
                 	TelaDoCaixa frame = new TelaDoCaixa(null);
-                    frame.setVisible(true);
+  frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -126,7 +134,7 @@ public class TelaDoCaixa extends JFrame {
         imgLogo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial();
+                abrir.TelaInicial(f);
                 dispose();
             }
         });
@@ -264,38 +272,27 @@ public class TelaDoCaixa extends JFrame {
         panel_4.setLayout(new BorderLayout());
 
         HintTextField TxtCodigoProduto = new HintTextField("00000");
-      // textfield_1.addKeyListener(new KeyAdapter() {
-
-          //  @Override
-//            public void keyPressed(KeyEvent e) {
-//                if (e.getKeyCode() == KeyEvent.VK_F2) { // Se quiser a tecla F2
-//                    // evento
-//                    System.out.println("F2 Pressionado no textfield_1!");
-//                    
-//                    String cod = textfield_1.getText();
-//                    buscarProdutoPeloId(cod,null);    
-//                    
-//                }
-//            }
-//        });
+     
         TxtCodigoProduto.setHorizontalAlignment(SwingConstants.CENTER);
         TxtCodigoProduto.setColumns(10);
         TxtCodigoProduto.setBounds(47, 226, 155, 20);
         panel_2.add(TxtCodigoProduto);
        
-        JScrollPane scrollPane = new JScrollPane(table_1);
-        panel_4.add(scrollPane, BorderLayout.CENTER);
+
         
         
+        // Tabela de produtos
         table_1 = new JTable();
-        table_1.setModel(new DefaultTableModel(
-        	new Object[][] {
-        	},
-        	new String[] {
-        		"ID", "NDProduto", "Tipo", "DataChegada", "Pre\u00E7o", "Validade", "Quantidade"
-        	}
-        ));
-        scrollPane.setViewportView(table_1);
+        model = new DefaultTableModel(
+            new Object[][] {},
+            new String[] {
+                "ID", "NDProduto", "Tipo", "DataChegada", "Preço", "Validade", "Quantidade"
+            }
+        );
+        table_1.setModel(model);
+        JScrollPane scrollPane = new JScrollPane(table_1);
+        scrollPane.setBounds(50, 50, 700, 250);
+        panel_4.add(scrollPane);
         
 
         JPanel panel_3 = new JPanel();
@@ -308,7 +305,7 @@ public class TelaDoCaixa extends JFrame {
         lblNewLabel.setBounds(10, 36, 95, 14);
         panel_3.add(lblNewLabel);
 
-        JLabel lblNewLabel_3 = new JLabel("F5 - Nova Venda");
+        JLabel lblNewLabel_3 = new JLabel("F5 - Fechar venda");
         lblNewLabel_3.setBounds(10, 86, 95, 14);
         panel_3.add(lblNewLabel_3);
 
@@ -349,6 +346,63 @@ public class TelaDoCaixa extends JFrame {
          quantidade_produto.setBounds(47, 291, 155, 20);
         panel_2.add(         quantidade_produto);
         
+        RoundedButton BtnFecharVenda = new RoundedButton("ABRIR CAIXA", 30, 30);
+        BtnFecharVenda.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	BtnFecharVenda.setBackground(Color.LIGHT_GRAY);
+		    }});
+        BtnFecharVenda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowCount = model.getRowCount();
+                int colCount = model.getColumnCount();
+
+                Object[][] tabelaDados = new Object[rowCount][colCount];
+
+                // Capturando os dados da tabela
+                for (int i = 0; i < rowCount; i++) {
+                    for (int j = 0; j < colCount; j++) {
+                        tabelaDados[i][j] = model.getValueAt(i, j);
+                    }
+                }
+               
+                long CpfCliente = 0;
+
+             // Verifica se o valor inserido é o valor de ajuda
+             if (!TxtCPF.getText().trim().equals("00000")) {
+            	 try {
+            		    String cpfTexto = TxtCPF.getText().trim().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos
+
+            		    if (cpfTexto.isEmpty()) {
+            		        System.out.println("Erro: O campo CPF está vazio.");
+            		    } else {
+            		        CpfCliente = Long.parseLong(cpfTexto);
+            		        System.out.println("CPF válido: " + CpfCliente);
+            		    }
+            		} catch (NumberFormatException e1) {
+            		    System.out.println("Erro: CPF inválido. Digite apenas números.");
+            		}
+                
+                
+                
+                ControllerGerente controller = new ControllerGerente();
+               
+                controller.CadastrarVenda(table_1,CpfCliente,f);
+                // Exibindo os dados no console
+                for (Object[] row : tabelaDados) {
+                    System.out.println(Arrays.toString(row));
+                }
+            }
+        }});
+        	
+        
+        BtnFecharVenda.setBounds(185, 397, 105, 24);
+        panel_2.add(BtnFecharVenda);
+        BtnFecharVenda.setText("FecharVEnda");
+        BtnFecharVenda.setForeground(Color.WHITE);
+        BtnFecharVenda.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        BtnFecharVenda.setBackground(Color.RED);
+        
         
                
         
@@ -360,7 +414,6 @@ public class TelaDoCaixa extends JFrame {
                     String idProduto = TxtCodigoProduto.getText(); 
                     Integer quantida = 0;
                     String quantidadeText = quantidade_produto.getText();  
-                    int quantiInt = Integer.valueOf(quantidadeText);
                     double preco = Double.valueOf(lblTotal.getText());
                     
                     if (!quantidadeText.isEmpty()) {
@@ -376,13 +429,25 @@ public class TelaDoCaixa extends JFrame {
                     if (!idProduto.isEmpty() && quantida > 0) {
                         ControllerGerente controllerGerente = new ControllerGerente();
 						subtV =String.valueOf(controllerGerente.buscarProdutoPeloIdCaixa(idProduto, quantidadeText, preco, subT));
-						lblSubTotal.setText("R$:"+subtV);
+						SubValor1 = Double.valueOf(subtV);
+						SubSoma=SubValor1 + SubSoma;
+						lblSubTotal.setText("R$:"+SubSoma);
                     } else {
                        new MensagemView("O campo de ID do produto ou quantidade está vazio ou inválido!",0);
-                    }ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, TxtCPF, TxtCPF, TxtCPF, TxtCPF, TxtCodigoProduto, TxtCPF);
+                    }
+                  
+                    JTextField  TextNome = new JTextField();
+                    JTextField TextTipo= new JTextField();
+                    JTextField TextChegada= new JTextField();
+                    JTextField TextPreco= new JTextField(); 
+                    JTextField TextValidade= new JTextField();
+                    JTextField TextQntd= new JTextField();
+                    
+                    ControllerGerente.PreencherTabelaDoCaixa(idProduto,quantidadeText,table_1, TextNome, TextTipo,TextChegada,TextPreco,TextValidade,TextQntd);
                 }
             }
-        });}
-}
+        });
+        
+}}
 
 

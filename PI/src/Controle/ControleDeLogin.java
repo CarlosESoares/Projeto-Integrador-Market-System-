@@ -49,7 +49,7 @@ public class ControleDeLogin  {
 	    String tipoFuncionario = f.getTipoFucionario();
 	    
 	    System.out.println(f.getNomeFuncionario());
-//	    ControllerGerente.tipo(f);
+	    ControllerGerente.tipo(f);
 	    
 	    
 	    if (tipoFuncionario != null) {

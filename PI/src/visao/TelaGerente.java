@@ -110,7 +110,7 @@ public class TelaGerente extends JFrame {
 		Btnvendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente telas = new ControllerGerente();
-				telas.AbrirTelaVendas();
+				telas.AbrirTelaVendas(f);
 			}
 		});
 		Btnvendas.setText("Vendas");

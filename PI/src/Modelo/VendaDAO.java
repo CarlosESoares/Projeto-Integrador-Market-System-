@@ -4,18 +4,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Controle.ControllerGerente;
+import visao.MensagemView;
 import visao.TelaDoCaixa;
 
 public class VendaDAO {
 
     private Connection connection;
     int quantCalc;
+	ArrayList<Double>valoresItens = new ArrayList<>();
+
     double preco;
     public void buscarVendas(JTable table) {
 
@@ -61,8 +66,80 @@ public class VendaDAO {
         }
         
     }
+    public void CadastrarVenda(JTable table, Funcionario f, long cpfCliente) {
+    	System.out.println(f.getTipoFucionario());
+        int idFuncionario = f.getIdFuncionario();
+        ControllerGerente geral = new ControllerGerente();
+        // Buscando o idCliente a partir do CPF
+        long idCliente =  geral.BuscarClientePorCPF(cpfCliente);
+        if (idCliente == -1) {
+            return;  // Retorna caso o cliente não tenha sido encontrado
+        }
+        String idClienteString =String.valueOf(idCliente);
+        try {
+            this.connection = ConexaoBanco.conector();
+            if (connection != null) {
+                // Criar a venda e obter o ID da venda
+                String sqlVenda = "INSERT INTO vendas (funcionario_id_funcionario, cliente_id_cliente) VALUES (?, ?)";
+                PreparedStatement statementVenda = connection.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS);
+                statementVenda.setInt(1, idFuncionario);
+                statementVenda.setString(2,idClienteString);
+                int rowsAffectedVenda = statementVenda.executeUpdate();
 
-    public  double BuscarProdutoIDCaixa(String idProduto2, String quantidade,Double total) {
+                int idVenda = -1;
+                if (rowsAffectedVenda > 0) {
+                    ResultSet generatedKeys = statementVenda.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        idVenda = generatedKeys.getInt(1);  // Obtendo o ID da venda gerada
+                    }
+                }
+
+                if (idVenda == -1) {
+                    new MensagemView("Erro ao criar venda", 0);
+                    return;
+                }
+
+                // Percorrer as linhas da JTable e inserir os produtos no carrinho
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    int idProduto = Integer.parseInt(model.getValueAt(i, 0).toString());  // ID do produto
+                    String nomeProduto = model.getValueAt(i, 1).toString();  // Nome/descrição do produto
+                    String tipo = model.getValueAt(i, 2).toString();  // Tipo do produto
+                    String dataChegada = model.getValueAt(i, 3).toString();  // Data de chegada
+                    
+                    String precoString =String.valueOf(model.getValueAt(i, 4).toString());
+                    precoString = precoString.replace("R$", "").trim();  // Remove "R$"
+                    precoString = precoString.replace(",", ".");  // Substitui vírgula por ponto
+                    double preco = Double.parseDouble(precoString);
+                    String validade = model.getValueAt(i, 5).toString();  // Validade
+                    int quantidade = Integer.parseInt(model.getValueAt(i, 6).toString());  // Quantidade
+
+                    // Inserir produto no carrinho
+                    String sqlCarrinho = "INSERT INTO carrinho (id_venda, produtos_Id_produto, quantidade, preco, data_chegada, tipo, validade) "
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+                    PreparedStatement statementCarrinho = connection.prepareStatement(sqlCarrinho);
+                    statementCarrinho.setInt(1, idVenda);
+                    statementCarrinho.setInt(2, idProduto);
+                    statementCarrinho.setInt(3, quantidade);
+                    statementCarrinho.setDouble(4, preco);
+                    statementCarrinho.setString(5, dataChegada);
+                    statementCarrinho.setString(6, tipo);
+                    statementCarrinho.setString(7, validade);
+
+                    statementCarrinho.executeUpdate();
+                }
+
+                new MensagemView("Venda cadastrada com sucesso!", 1);
+                connection.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            new MensagemView("Erro ao cadastrar venda", 0);
+        }
+    }
+
+    public  double ColocarProdutoNaTabela(String idProduto2, String quantidade,Double total) {
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";
         String password = "Aluno";
@@ -127,7 +204,6 @@ public class VendaDAO {
     }
     public double calcularSubtotal(double preco, int quantidade) {  
         double totalItem = preco * quantidade;
-    	ArrayList<Double>valoresItens = new ArrayList<>();
     	double TotalCompra = 0;
     	TotalCompra = totalItem+ TotalCompra;
         valoresItens.add(TotalCompra);

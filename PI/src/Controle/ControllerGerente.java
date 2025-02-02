@@ -1,6 +1,7 @@
 package Controle;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -30,10 +31,11 @@ public class ControllerGerente {
 	public boolean salario2;
 
 	
-	public void TelaInicial() {
+	public void TelaInicial(Funcionario f) {
 
 		telaInicial tela = new telaInicial(null);
-		
+    	System.out.println(f.getTipoFucionario());
+
 		tela.setVisible(true);
 		
 	}
@@ -42,6 +44,7 @@ public class ControllerGerente {
 
 		Cadastro_Gerente tela = new Cadastro_Gerente(f);
 		tela.setLocationRelativeTo(null);
+    	System.out.println(f.getTipoFucionario());
 
 		tela.setVisible(true);
 	}
@@ -49,11 +52,14 @@ public class ControllerGerente {
 	public void AbrirTelaEstoque(Funcionario f) {
 		TelaEstoque tela2 = new TelaEstoque(f);
 		tela2.setLocationRelativeTo(null);
+    	System.out.println(f.getTipoFucionario());
+
 		tela2.setVisible(true);
 		
 	}
 	public static void TelaGerente(Funcionario f) {
-		
+    	System.out.println(f.getTipoFucionario());
+
 		visao.TelaGerente abrir = new TelaGerente(f);
 		abrir.setLocationRelativeTo(null);
 		abrir.setVisible(true);
@@ -63,11 +69,14 @@ public class ControllerGerente {
 	public static void AbrirTelaInicial(Funcionario f) {
 		telaInicial Tela = new telaInicial(f);
 		Tela.setLocationRelativeTo(null);
+    	System.out.println(f.getTipoFucionario());
+
 		Tela.setVisible(true);
 		
 	}
 	
 	public void AbrirTelaCaixa(Funcionario f){
+    	System.out.println(f.getTipoFucionario());
 
 		TelaDoCaixa tela = new TelaDoCaixa(f);
 		tela.setLocationRelativeTo(null);
@@ -77,6 +86,8 @@ public class ControllerGerente {
 	
 	public void AbrirTelaCliente(Funcionario f){
 		TelaCadastroCliente Tela = new TelaCadastroCliente(f);
+    	System.out.println(f.getTipoFucionario());
+
 		Tela.setLocationRelativeTo(null);
 		Tela.setVisible(true);
 	}
@@ -85,7 +96,8 @@ public class ControllerGerente {
 	
 VendaDAO dao = new VendaDAO();
 	
-	public void AbrirTelaVendas(){
+	public void AbrirTelaVendas(Funcionario f){
+    	System.out.println(f.getTipoFucionario());
 
 		TelaVendas tela = new TelaVendas(null);
 		tela.setLocationRelativeTo(null);
@@ -93,7 +105,9 @@ VendaDAO dao = new VendaDAO();
 	
 		
 	}
-	public void Relatorio(){
+	public void Relatorio(Funcionario f){
+    	System.out.println(f.getTipoFucionario());
+
 		RelatorioVenda abrir = new RelatorioVenda();
 		abrir.setLocationRelativeTo(null);
 		abrir.setVisible(true);
@@ -598,8 +612,6 @@ VendaDAO dao = new VendaDAO();
     }
     public static void PreencherTabelaDoCaixa(String id,String quantidade,JTable table, JTextField TextNome, JTextField TextTipo, JTextField TextChegada, JTextField TextPreco, JTextField TextValidade, JTextField TextQntd) {
         int selectedRow = table.getSelectedRow();
-        VendaDAO vendaDAO = new VendaDAO();
-		vendaDAO.BuscarProdutoIDCaixa(id,null,null);
         if (selectedRow != -1) {
             TextNome.setText(table.getValueAt(selectedRow, 1).toString());
             TextTipo.setText(table.getValueAt(selectedRow, 2).toString());
@@ -609,6 +621,12 @@ VendaDAO dao = new VendaDAO();
             TextQntd.setText(table.getValueAt(selectedRow, 6).toString());
         }
     }
+    public double CadastrarVenda(JTable tabelaDados,long cpfCliente,Funcionario f) {
+    	VendaDAO dao = new VendaDAO();
+    	
+    	dao.CadastrarVenda(tabelaDados,f,cpfCliente );
+    	return 0;
+    }
 	public void abrirTelaResumo() {
 		TelaResumo abrir = new TelaResumo();
 		abrir.setVisible(true);
@@ -616,10 +634,7 @@ VendaDAO dao = new VendaDAO();
 	}
 		public  double buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText, Double preco, Double Total) {
 			VendaDAO vendaDAO = new VendaDAO();
-			return vendaDAO.BuscarProdutoIDCaixa(idProduto, quantidadeText,Total);
-			
-			
-			
+			return vendaDAO.ColocarProdutoNaTabela(idProduto, quantidadeText,Total);
 	}
 		public static Funcionario buscarFuncionarioPorId(int id, JTextField tfNome, JTextField tfSobrenome,
                 JTextField tfTelefone, JTextField tfSalario, JTextField tfEndereco) {
@@ -642,7 +657,20 @@ VendaDAO dao = new VendaDAO();
     }
     return funcionario;
 }
+		public int BuscarClientePorCPF(long cpfCliente) {
+		    List<Object[]> clientes = null;
+		    try {
+		        clientes = ClienteDAO.buscarCliente(cpfCliente);
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		     System.err.println("chegou");
+		        new MensagemView("Cliente não encontrado", 0);
+		        return -1;  // Retorna -1 se não encontrar o cliente
+		    }
 
+		    return Integer.parseInt(clientes.get(0)[0].toString());  // A primeira posição contém o id_cliente
+		}
+		
 }
 
 	
