@@ -73,13 +73,7 @@ public class telaInicial extends JFrame {
         
         
 		RoundedButton btnNewButton = new RoundedButton("",1,1);
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial(f);
-                dispose();	
-        	}
-        });
+        
         
         btnNewButton.setBackground(Color.LIGHT_GRAY);
 		ImageIcon originalIconLogo2 = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));

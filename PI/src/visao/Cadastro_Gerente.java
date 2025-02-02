@@ -107,7 +107,7 @@ public	String tipoFunci;
 		btnProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaEstoque(null);
+				abrir.AbrirTelaEstoque(f);
 				dispose();
 		
 			}

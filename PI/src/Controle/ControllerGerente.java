@@ -632,7 +632,7 @@ VendaDAO dao = new VendaDAO();
 		abrir.setVisible(true);
 		
 	}
-		public  double buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText, Double preco, Double Total) {
+		public  double buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText, Double Total) {
 			VendaDAO vendaDAO = new VendaDAO();
 			return vendaDAO.ColocarProdutoNaTabela(idProduto, quantidadeText,Total);
 	}

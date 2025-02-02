@@ -105,7 +105,7 @@ public class TelaResumo extends JFrame {
 		    btnFunciora.setBackground(new Color(255, 0, 0));
 		    btnFunciora.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		    		ControllerGerente.TelaGerente(null);
+		    		ControllerGerente.TelaGerente(f);
 		    	}
 		    });
 		    
@@ -115,7 +115,7 @@ public class TelaResumo extends JFrame {
 		    btnProduto.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		ControllerGerente tela = new ControllerGerente();
-		    		tela.AbrirTelaEstoque(null);
+		    		tela.AbrirTelaEstoque(f);
 		    	}
 		    });
 		    
@@ -125,7 +125,7 @@ public class TelaResumo extends JFrame {
 		    btnCliente.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		ControllerGerente abrir = new ControllerGerente();
-		    		abrir.AbrirTelaCliente(null);
+		    		abrir.AbrirTelaCliente(f);
 		    	}
 		    });
 		    GroupLayout gl_panel = new GroupLayout(panel);

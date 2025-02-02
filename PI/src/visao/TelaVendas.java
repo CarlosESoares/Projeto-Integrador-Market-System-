@@ -96,6 +96,10 @@ import Modelo.Funcionario;
 			    });
 			    
 			    JButton btnNewButton_1 = new JButton("Vendas");
+			    btnNewButton_1.addActionListener(new ActionListener() {
+			    	public void actionPerformed(ActionEvent e) {
+			    	}
+			    });
 			    	
 			    
 			    JButton btnNewButton_2 = new JButton("Estoque");
