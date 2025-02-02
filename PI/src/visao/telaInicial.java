@@ -73,6 +73,10 @@ public class telaInicial extends JFrame {
         
         
 		RoundedButton btnNewButton = new RoundedButton("",1,1);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
         
         
         btnNewButton.setBackground(Color.LIGHT_GRAY);
@@ -91,7 +95,7 @@ public class telaInicial extends JFrame {
         Titulo.setFont(new Font("Arial", Font.PLAIN, 20));
         
         JLabel imgOndinha = new JLabel("");
-        imgOndinha.setBounds(0, 228, 1200, 355);
+        imgOndinha.setBounds(-12, 260, 1200, 355);
         imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
         imgOndinha.setIcon(resizedIcon);
 
@@ -101,6 +105,7 @@ public class telaInicial extends JFrame {
 
 
         RoundedButton btnCliente = new RoundedButton("Tela_Cliente", 30, 30);
+        btnCliente.setVisible(false);
         btnCliente.setHorizontalAlignment(SwingConstants.LEFT);
         btnCliente.setText("  Clientes");
         btnCliente.setForeground(new Color(255, 255, 255));
@@ -122,7 +127,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnCliente.setBounds(306, 122, 187, 66);
+        btnCliente.setBounds(306, 45, 187, 66);
         panel_2.setLayout(null);
         panel_2.add(imgOndinha);
         panel_2.add(btnCliente);
@@ -133,6 +138,7 @@ public class telaInicial extends JFrame {
         ImageIcon resizedEstoqueIcon = new ImageIcon(estoqueImage);
 
         RoundedButton btnEstoque = new RoundedButton("Tela_Estoque", 30, 30);
+        btnEstoque.setVisible(false);
         btnEstoque.setHorizontalAlignment(SwingConstants.LEFT);
         btnEstoque.setForeground(Color.WHITE);
         btnEstoque.setText("  Estoque");
@@ -155,7 +161,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnEstoque.setBounds(306, 45, 187, 66);
+        btnEstoque.setBounds(37, 171, 187, 66);
         panel_2.add(btnEstoque);
 
         ImageIcon vendasIcon = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
@@ -163,6 +169,7 @@ public class telaInicial extends JFrame {
         ImageIcon resizedVendasIcon = new ImageIcon(vendasImage);
 
         RoundedButton btnVendas = new RoundedButton("Tela_Vendas", 30, 30);
+        btnVendas.setVisible(false);
         btnVendas.setHorizontalAlignment(SwingConstants.LEFT);
         btnVendas.setText("  Vendas");
         btnVendas.setForeground(new Color(255, 255, 255));
@@ -184,7 +191,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnVendas.setBounds(306, 276, 187, 66);
+        btnVendas.setBounds(37, 45, 187, 66);
         panel_2.add(btnVendas);
 
         ImageIcon caixaIcon = new ImageIcon(getClass().getResource("/Imagens/desktop-solid.png"));
@@ -192,6 +199,7 @@ public class telaInicial extends JFrame {
         ImageIcon resizedCaixaIcon = new ImageIcon(caixaImage);
 
         RoundedButton btnCaixa = new RoundedButton("Tela_Caixa", 30, 30);
+        btnCaixa.setVisible(false);
         btnCaixa.setHorizontalAlignment(SwingConstants.LEFT);
         btnCaixa.setText("  Caixa");
         btnCaixa.setForeground(new Color(255, 255, 255));
@@ -213,7 +221,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnCaixa.setBounds(306, 199, 187, 66);
+        btnCaixa.setBounds(306, 171, 187, 66);
         panel_2.add(btnCaixa);
         ImageIcon LogoutIcon = new ImageIcon(getClass().getResource("/Imagens/left-from-backet.png"));
         Image LogoutImagem = LogoutIcon.getImage().getScaledInstance(25, 20, Image.SCALE_SMOOTH);
@@ -243,5 +251,92 @@ public class telaInicial extends JFrame {
 		rndbtnLo.setBackground(Color.RED);
 		rndbtnLo.setBounds(743, 17, 109, 24);
 		panel_2.add(rndbtnLo);
+		
+		RoundedButton btnFuncionários = new RoundedButton("Tela_Vendas", 30, 30);
+		btnFuncionários.setIcon(resizedClienteIcon);
+		btnFuncionários.setVisible(false);
+		btnFuncionários.addMouseListener(new MouseAdapter() {
+	            public void mouseEntered(MouseEvent e) {
+	            	btnFuncionários.setBackground(Color.LIGHT_GRAY);
+	            }
+	            public void mouseExited(MouseEvent e) {
+	            	btnFuncionários.setBackground(Color.RED);
+	            }
+	        });
+		btnFuncionários.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								dispose();
+				
+				ControllerGerente.TelaCadastro(f);
+				
+
+			}
+		});
+		 
+
+		
+			
+		btnFuncionários.setText("Funcionários");
+		btnFuncionários.setHorizontalAlignment(SwingConstants.LEFT);
+		btnFuncionários.setForeground(Color.WHITE);
+		btnFuncionários.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnFuncionários.setBackground(Color.RED);
+		btnFuncionários.setBounds(563, 45, 187, 66);
+		panel_2.add(btnFuncionários);
+		
+		
+		ImageIcon ResumoIcon = new ImageIcon(getClass().getResource("/Imagens/book-solid.png"));
+        Image ResumoImagem = ResumoIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon resizedResumoIcon = new ImageIcon(ResumoImagem);
+		RoundedButton rndbtnResumo = new RoundedButton("Tela_Vendas", 30, 30);
+		
+		rndbtnResumo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		rndbtnResumo.setText("Resumo");
+		rndbtnResumo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+            	rndbtnResumo.setBackground(Color.LIGHT_GRAY);
+            }
+            public void mouseExited(MouseEvent e) {
+            	rndbtnResumo.setBackground(Color.RED);
+            }
+        });
+		rndbtnResumo.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnResumo.setForeground(Color.WHITE);
+		rndbtnResumo.setIcon(resizedResumoIcon);
+		rndbtnResumo.setFont(new Font("Arial", Font.PLAIN, 20));
+		rndbtnResumo.setBackground(Color.RED);
+		rndbtnResumo.setBounds(563, 171, 187, 66);
+		rndbtnResumo.setVisible(false);
+		panel_2.add(rndbtnResumo);
+		
+		
+		
+		String tipoFuncionario = f.getTipoFucionario();
+		
+		   if (tipoFuncionario != null) {
+	            if (tipoFuncionario.equals("Caixa")) {
+	            	btnCaixa.setVisible(true);
+	            	btnCliente.setVisible(true);
+	            } else if (tipoFuncionario.equals("Gerente")) {
+	            	btnCaixa.setVisible(true);
+	            	btnCliente.setVisible(true);
+	            	btnEstoque.setVisible(true);
+	            	btnVendas.setVisible(true);
+	            	btnFuncionários.setVisible(true);
+	            	rndbtnResumo.setVisible(true);
+	            } else {
+	               
+	                btnEstoque.setVisible(true);
+	                btnVendas.setVisible(true);
+	            }
+	            
+	        }
+
+	    
     }
+    
+ 
 }
