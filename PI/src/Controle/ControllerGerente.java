@@ -627,8 +627,8 @@ VendaDAO dao = new VendaDAO();
     	dao.CadastrarVenda(tabelaDados,f,cpfCliente );
     	return 0;
     }
-	public void abrirTelaResumo() {
-		TelaResumo abrir = new TelaResumo(null);
+	public void abrirTelaResumo(Funcionario f) {
+		TelaResumo abrir = new TelaResumo(f);
 		abrir.setVisible(true);
 		
 	}
