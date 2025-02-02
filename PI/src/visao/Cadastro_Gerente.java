@@ -112,9 +112,14 @@ public	String tipoFunci;
 		
 			}
 		});
-		btnProduto.setText("Produtos");
+		btnProduto.setText("Estoque");
 		btnProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnProduto.setBackground(Color.RED);
+		
+		ImageIcon iconProdutos = new ImageIcon(getClass().getResource("/Imagens/box-open-solid.png"));
+		Image imgProdutos = iconProdutos.getImage();
+		Image novaImgProdutos = imgProdutos.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		btnProduto.setIcon(new ImageIcon(novaImgProdutos));
 		
 		RoundedButton btnCliente = new RoundedButton("Cliente", 30, 30);
 		btnCliente.setForeground(new Color(255, 255, 255));
@@ -138,6 +143,11 @@ public	String tipoFunci;
 		btnCliente.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnCliente.setBackground(Color.RED);
 		
+		ImageIcon iconClientes = new ImageIcon(getClass().getResource("/Imagens/address-card-solid.png"));
+		Image imgClientes = iconClientes.getImage();
+		Image novaImgClientes = imgClientes.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		btnCliente.setIcon(new ImageIcon(novaImgClientes));
+		
 		RoundedButton btnVendas = new RoundedButton("Vendas", 30, 30);
 		btnVendas.setForeground(new Color(255, 255, 255));
 		btnVendas.addMouseListener(new MouseAdapter() {
@@ -159,6 +169,11 @@ public	String tipoFunci;
 		btnVendas.setText("Vendas");
 		btnVendas.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnVendas.setBackground(Color.RED);
+		
+		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
+		Image imgVendas = iconVendas.getImage();
+		Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		btnVendas.setIcon(new ImageIcon(novaImgVendas));
 		
 		RoundedButton imgLogo = new RoundedButton("",1,1);
 		imgLogo.setBackground(new Color(192, 192, 192));
@@ -357,7 +372,7 @@ public	String tipoFunci;
 				
 			     JPanel painelExcluir = new JPanel();
 			        painelExcluir.setLayout(null);
-			        Janelaexcluir.add(painelExcluir);
+			        Janelaexcluir.getContentPane().add(painelExcluir);
 
 			     
 			        JLabel lblId = new JLabel("ID do Funcionário:");

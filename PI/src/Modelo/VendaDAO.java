@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +129,7 @@ public class VendaDAO {
         }
         String idClienteString =String.valueOf(idCliente);
         try {
-            this.connection = ConexaoBanco.conector();
+            VendaDAO.connection = ConexaoBanco.conector();
             if (connection != null) {
                 // Criar a venda e obter o ID da venda
                 String sqlVenda = "INSERT INTO vendas (funcionario_id_funcionario, cliente_id_cliente) VALUES (?, ?)";
@@ -156,7 +155,6 @@ public class VendaDAO {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 for (int i = 0; i < model.getRowCount(); i++) {
                     int idProduto = Integer.parseInt(model.getValueAt(i, 0).toString());  // ID do produto
-                    String nomeProduto = model.getValueAt(i, 1).toString();  // Nome/descrição do produto
                     String tipo = model.getValueAt(i, 2).toString();  // Tipo do produto
                     String dataChegada = model.getValueAt(i, 3).toString();  // Data de chegada
                     

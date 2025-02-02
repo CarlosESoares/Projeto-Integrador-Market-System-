@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
 import Modelo.Funcionario;
+import java.awt.Font;
 	
 	public class TelaVendas extends JFrame {
 	
@@ -87,7 +87,20 @@ import Modelo.Funcionario;
 			    imgLogo.setIcon(ImgRedimencionada);
 			    imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 			    
-			    JButton btnNewButton = new JButton("Funcionarios");
+			    RoundedButton btnNewButton = new RoundedButton("Funcionarios",30,30);
+			    btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
+			    btnNewButton.setForeground(Color.WHITE);
+			    btnNewButton.setBackground(Color.RED);
+			    
+			    btnNewButton.addMouseListener(new MouseAdapter() {
+				    public void mouseEntered(MouseEvent e) {
+				    	btnNewButton.setBackground(Color.GRAY); 
+				    }
+				    public void mouseExited(MouseEvent e) {
+				    	btnNewButton.setBackground(Color.RED); 
+				    }
+				});
+			    
 			    btnNewButton.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
 			    		ControllerGerente.TelaGerente(f);
@@ -95,14 +108,52 @@ import Modelo.Funcionario;
 			    	}
 			    });
 			    
+<<<<<<< HEAD
 			    JButton btnNewButton_1 = new JButton("Vendas");
 			    btnNewButton_1.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
 			    	}
 			    });
+=======
+			    RoundedButton btnNewButton_1 = new RoundedButton("Vendas",30,30);
+			    btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
+			    btnNewButton_1.setForeground(Color.WHITE);
+			    btnNewButton_1.setBackground(Color.RED);
+			    btnNewButton_1.addMouseListener(new MouseAdapter() {
+				    public void mouseEntered(MouseEvent e) {
+				    	btnNewButton_1.setBackground(Color.GRAY); 
+				    }
+				    public void mouseExited(MouseEvent e) {
+				    	btnNewButton_1.setBackground(Color.RED); 
+				    }
+				});
+			    
+			    btnNewButton_1.addActionListener(new ActionListener() {
+			    	public void actionPerformed(ActionEvent e) {
+			    		ControllerGerente.TelaGerente(f);
+			    		frame.dispose();
+			    	}
+			    });
+			    
+			    ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
+				Image imgVendas = iconVendas.getImage();
+				Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				btnNewButton_1.setIcon(new ImageIcon(novaImgVendas));
+>>>>>>> origin/main
 			    	
 			    
-			    JButton btnNewButton_2 = new JButton("Estoque");
+			    RoundedButton btnNewButton_2 = new RoundedButton("Estoque",30,30);
+			    btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 15));
+			    btnNewButton_2.setForeground(Color.WHITE);
+			    btnNewButton_2.setBackground(Color.RED);
+			    btnNewButton_2.addMouseListener(new MouseAdapter() {
+				    public void mouseEntered(MouseEvent e) {
+				    	btnNewButton_2.setBackground(Color.GRAY); 
+				    }
+				    public void mouseExited(MouseEvent e) {
+				    	btnNewButton_2.setBackground(Color.RED); 
+				    }
+				});
 			    btnNewButton_2.addActionListener(new ActionListener() {
 			    	public void actionPerformed(ActionEvent e) {
 			    		ControllerGerente abrir = new ControllerGerente();
@@ -110,6 +161,11 @@ import Modelo.Funcionario;
 			    		frame.dispose();
 			    	}
 			    });
+			    
+			    ImageIcon iconProdutos = new ImageIcon(getClass().getResource("/Imagens/box-open-solid.png"));
+				Image imgProdutos = iconProdutos.getImage();
+				Image novaImgProdutos = imgProdutos.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+				btnNewButton_2.setIcon(new ImageIcon(novaImgProdutos));
 	
 			    GroupLayout gl_panel = new GroupLayout(panel);
 			    gl_panel.setHorizontalGroup(
