@@ -96,13 +96,22 @@ public class TelaEstoque extends JFrame {
 
 		// Botão Estoque
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		    	rndbtnHomeProdutos.setBackground(Color.GRAY); 
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	rndbtnHomeProdutos.setBackground(Color.RED); 
+		    }
+		});
 		rndbtnHomeProdutos.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    }
 		});
+		
 
 		rndbtnHomeProdutos.setText("Estoque");
-		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnHomeProdutos.setBackground(Color.GRAY);
 
 		// Adicionando ícone ao botão Estoque
@@ -130,7 +139,7 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeClientes.setText("Clientes");
-		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnHomeClientes.setBackground(Color.RED);
 
 		// Adicionando ícone ao botão Clientes
@@ -158,7 +167,7 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeVendas.setText("Vendas");
-		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnHomeVendas.setBackground(Color.RED);
 
 		
@@ -169,29 +178,29 @@ public class TelaEstoque extends JFrame {
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-		    gl_panel_1.createParallelGroup(Alignment.LEADING)
-		        .addGroup(gl_panel_1.createSequentialGroup()
-		            .addContainerGap()
-		            .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-		                .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 101, Short.MAX_VALUE)
-		                .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-		                    .addComponent(rndbtnHomeVendas, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(rndbtnHomeProdutos, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
-		            .addContainerGap())
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 101, Short.MAX_VALUE)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(rndbtnHomeProdutos, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(rndbtnHomeClientes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(rndbtnHomeVendas, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
-		    gl_panel_1.createParallelGroup(Alignment.LEADING)
-		        .addGroup(gl_panel_1.createSequentialGroup()
-		            .addContainerGap()
-		            .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		            .addGap(24)
-		            .addComponent(rndbtnHomeProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		            .addGap(18)
-		            .addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-		            .addGap(18)
-		            .addComponent(rndbtnHomeVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-		            .addContainerGap(276, Short.MAX_VALUE))
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(24)
+					.addComponent(rndbtnHomeProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rndbtnHomeVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(276, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 
