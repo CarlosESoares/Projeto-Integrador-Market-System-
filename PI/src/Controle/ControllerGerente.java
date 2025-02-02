@@ -108,7 +108,7 @@ VendaDAO dao = new VendaDAO();
 	public void Relatorio(Funcionario f){
     	System.out.println(f.getTipoFucionario());
 
-		RelatorioVenda abrir = new RelatorioVenda();
+		RelatorioVenda abrir = new RelatorioVenda(f);
 		abrir.setLocationRelativeTo(null);
 		abrir.setVisible(true);
 	}
@@ -628,7 +628,7 @@ VendaDAO dao = new VendaDAO();
     	return 0;
     }
 	public void abrirTelaResumo() {
-		TelaResumo abrir = new TelaResumo();
+		TelaResumo abrir = new TelaResumo(null);
 		abrir.setVisible(true);
 		
 	}
