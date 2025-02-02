@@ -167,7 +167,7 @@ public class TelaGerente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.abrirTelaResumo();
+				abrir.abrirTelaResumo(f);
 			}
 		});
 		btnNewButton.setText("Resumo");

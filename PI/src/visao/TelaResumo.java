@@ -28,6 +28,7 @@ import Controle.ControllerGerente;
 import Modelo.ClienteDAO;
 import Modelo.Funcionario;
 import Modelo.ProdutoDAO;
+import Modelo.VendaDAO;
 
 public class TelaResumo extends JFrame {
 
@@ -37,6 +38,7 @@ public class TelaResumo extends JFrame {
 	public JTable tableProdutos;
 	public JTable tableClientes;
 	static TelaResumo frame = new TelaResumo(null);
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -236,7 +238,39 @@ public class TelaResumo extends JFrame {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
 		panel_3.add(lblNewLabel_1);
 		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_3, 59, SpringLayout.SOUTH, scrollPane_1);
+		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_3, 35, SpringLayout.EAST, scrollPane_2);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_3, 326, SpringLayout.SOUTH, scrollPane_1);
+		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_3, 319, SpringLayout.EAST, scrollPane_2);
+		panel_3.add(scrollPane_3);
+		
+		table = new JTable();
+		String[] columnNames4 = {"Id", "Produtos", "Funcionario", "cliente",};
+		Object[][] data3 = {};
+		table= new JTable(new DefaultTableModel(data3,columnNames4));
+		BuscarVendas();
+		scrollPane_3.setViewportView(table);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Vendas");
+		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1, 0, SpringLayout.NORTH, lblNewLabel_1);
+		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel_1_1, 0, SpringLayout.WEST, scrollPane_3);
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
+		panel_3.add(lblNewLabel_1_1);
+		
 	}
+		private void BuscarVendas() {
+			List<Object[]> vendas = VendaDAO.buscarVendasReduzindas(table);
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.setRowCount(0);  // Limpa a tabela antes de adicionar novos dados
+			
+			// Preenche a tabela com os dados dos produtos
+			for (Object[] produto : vendas) {
+			    model.addRow(produto);  // Adiciona uma nova linha à tabela
+			}
+		}
+			
+		
 		private void buscarProdutos() {
 		    try {
 		        List<Object[]> produtos = ProdutoDAO.buscarTodosProdutos();  // Recupera a lista de produtos
@@ -266,6 +300,4 @@ public class TelaResumo extends JFrame {
 	            e.printStackTrace();
 	        }
 	    }
-
-
 }
