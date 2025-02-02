@@ -76,6 +76,24 @@ public class TelaEstoque extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
+		
+		RoundedButton btnNewButton = new RoundedButton("",1,1);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerGerente abrir = new ControllerGerente();
+				abrir.AbrirTelaInicial(f);
+			}
+		});
+        
+        
+        btnNewButton.setBackground(Color.LIGHT_GRAY);
+		ImageIcon originalIconLogo2 = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
+		Image imageLogo2 = originalIconLogo2.getImage(); 
+		Image NovaLogo2 = imageLogo2.getScaledInstance(100, 100, Image.SCALE_SMOOTH); 
+		ImageIcon ImgRedimencionada2 = new ImageIcon(NovaLogo2);
+		btnNewButton.setIcon(ImgRedimencionada2);
+
+        panel_1.add(btnNewButton);
 
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
