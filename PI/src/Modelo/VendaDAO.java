@@ -129,7 +129,7 @@ public class VendaDAO {
         }
         String idClienteString =String.valueOf(idCliente);
         try {
-            this.connection = ConexaoBanco.conector();
+            VendaDAO.connection = ConexaoBanco.conector();
             if (connection != null) {
                 // Criar a venda e obter o ID da venda
                 String sqlVenda = "INSERT INTO vendas (funcionario_id_funcionario, cliente_id_cliente) VALUES (?, ?)";
