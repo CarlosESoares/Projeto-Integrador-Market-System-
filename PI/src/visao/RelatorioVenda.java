@@ -21,18 +21,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
+import Modelo.Funcionario;
 
 public class RelatorioVenda extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 		private JTable tableRelatorio;
-		static RelatorioVenda frame = new RelatorioVenda();
+		static RelatorioVenda frame = new RelatorioVenda(null);
 	/**
 	 * Launch the application.
 	 */
 	
-	public RelatorioVenda() {
+	public RelatorioVenda(Funcionario f) {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
@@ -63,7 +64,7 @@ public class RelatorioVenda extends JFrame {
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.TelaInicial();
+				abrir.TelaInicial(f);
 				dispose();
 			}
 		});

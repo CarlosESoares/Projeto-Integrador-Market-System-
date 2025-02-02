@@ -171,7 +171,7 @@ import Modelo.Funcionario;
 			                int row = table.getSelectedRow(); // obtém a linha selecionada
 			                if (row != -1) {
 			                    // A linha foi clicada - abre a tela de Relatório
-			                    RelatorioVenda relatorioVenda = new RelatorioVenda();
+			                    RelatorioVenda relatorioVenda = new RelatorioVenda(f);
 			                    relatorioVenda.setVisible(true);
 			                    dispose(); // opcional: fecha a TelaVendas
 			                }
