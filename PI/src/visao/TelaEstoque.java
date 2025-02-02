@@ -76,33 +76,14 @@ public class TelaEstoque extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
-		
-		RoundedButton btnNewButton = new RoundedButton("",1,1);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaInicial(f);
-				dispose();
-			}
-		});
-        
-        
-        btnNewButton.setBackground(Color.LIGHT_GRAY);
-		ImageIcon originalIconLogo2 = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
-		Image imageLogo2 = originalIconLogo2.getImage(); 
-		Image NovaLogo2 = imageLogo2.getScaledInstance(100, 100, Image.SCALE_SMOOTH); 
-		ImageIcon ImgRedimencionada2 = new ImageIcon(NovaLogo2);
-		btnNewButton.setIcon(ImgRedimencionada2);
-
-        panel_1.add(btnNewButton);
 
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial(f);
-                dispose();
-		    }
+				abrir.AbrirTelaInicial(f);
+				dispose();
+			}
 		});
 		imgLogo.setBackground(Color.LIGHT_GRAY);
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
@@ -115,22 +96,13 @@ public class TelaEstoque extends JFrame {
 
 		// Botão Estoque
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
-		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-		    	rndbtnHomeProdutos.setBackground(Color.GRAY); 
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	rndbtnHomeProdutos.setBackground(Color.RED); 
-		    }
-		});
 		rndbtnHomeProdutos.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    }
 		});
-		
 
 		rndbtnHomeProdutos.setText("Estoque");
-		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeProdutos.setBackground(Color.GRAY);
 
 		// Adicionando ícone ao botão Estoque
@@ -158,7 +130,7 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 		rndbtnHomeClientes.setText("Clientes");
-		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 15));
+		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 11));
 		rndbtnHomeClientes.setBackground(Color.RED);
 
 		// Adicionando ícone ao botão Clientes
@@ -178,7 +150,50 @@ public class TelaEstoque extends JFrame {
 		        rndbtnHomeVendas.setBackground(Color.RED);
 		    }
 		});
+		rndbtnHomeVendas.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	ControllerGerente abrir = new ControllerGerente();
+                  
+                dispose();
+		    }
+		});
+		rndbtnHomeVendas.setText("Vendas");
+		rndbtnHomeVendas.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeVendas.setBackground(Color.RED);
+
 		
+		ImageIcon iconVendas = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
+		Image imgVendas = iconVendas.getImage();
+		Image novaImgVendas = imgVendas.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		rndbtnHomeVendas.setIcon(new ImageIcon(novaImgVendas));
+
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+		    gl_panel_1.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_1.createSequentialGroup()
+		            .addContainerGap()
+		            .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+		                .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 101, Short.MAX_VALUE)
+		                .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+		                    .addComponent(rndbtnHomeVendas, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+		                    .addComponent(rndbtnHomeProdutos, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
+		            .addContainerGap())
+		);
+		gl_panel_1.setVerticalGroup(
+		    gl_panel_1.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_1.createSequentialGroup()
+		            .addContainerGap()
+		            .addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		            .addGap(24)
+		            .addComponent(rndbtnHomeProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		            .addGap(18)
+		            .addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+		            .addGap(18)
+		            .addComponent(rndbtnHomeVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+		            .addContainerGap(276, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
 
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
