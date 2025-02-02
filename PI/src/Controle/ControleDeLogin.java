@@ -46,15 +46,16 @@ public class ControleDeLogin  {
 	    String tipoFuncionario = f.getTipoFucionario();
 	    
 	    System.out.println(f.getNomeFuncionario());
-	    ControllerGerente.tipo(f);
+	    
 	    
 	    
 	    if (tipoFuncionario != null) {
 	        if (tipoFuncionario.equals("Caixa")) {
 	        	ControllerGerente abrir = new ControllerGerente ();
-	            abrir.AbrirTelaCaixa(f);
+	        	abrir.AbrirTelaInicial(f);
 	        } else if (tipoFuncionario.equals("Gerente")) {
-	            ControllerGerente.TelaGerente(f);
+	        	ControllerGerente abrir = new ControllerGerente ();
+	            abrir.AbrirTelaInicial(f);
 	        } else {
 	        	ControllerGerente abrir = new ControllerGerente();
 	            abrir.AbrirTelaEstoque(f);

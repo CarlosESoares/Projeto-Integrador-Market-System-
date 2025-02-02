@@ -82,6 +82,7 @@ public class TelaEstoque extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
 				abrir.AbrirTelaInicial(f);
+				dispose();
 			}
 		});
         

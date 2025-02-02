@@ -94,11 +94,12 @@ public class TelaResumo extends JFrame {
 		    imgLogo.setBackground(new Color(192, 192, 192));
 		    imgLogo.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
-		            ControllerGerente abrir = new ControllerGerente();
-		            abrir.TelaInicial(f);
-		            dispose();
-		        }
-		    });
+		        	ControllerGerente abrir = new ControllerGerente();
+					abrir.AbrirTelaInicial(f);
+					dispose();
+				}
+			});
+	
 		    imgLogo.setIcon(ImgRedimencionada);
 		    imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
 		    
@@ -116,7 +117,7 @@ public class TelaResumo extends JFrame {
 			});
 		    btnFunciora.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		    		ControllerGerente.TelaGerente(f);
+		    		ControllerGerente.TelaInicial(f);
 		    	}
 		    });
 		    

@@ -11,7 +11,7 @@ public class ConexaoBanco {
 		// Armazenando infos do banco
 		String url = "jdbc:mysql://localhost:3306/mercado";
 		String user = "root";
-		String password = "Aluno";
+		String password = "aluno";
 		// Estabelecer a conexao com o DB
 		try {
 			Class.forName(driver);

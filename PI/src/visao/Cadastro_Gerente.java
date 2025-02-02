@@ -166,7 +166,8 @@ public	String tipoFunci;
 		imgLogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial(f);
+				abrir.AbrirTelaInicial(f);
+		
                 dispose();
             
 			

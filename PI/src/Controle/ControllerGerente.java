@@ -55,15 +55,9 @@ public class ControllerGerente {
 		tela2.setVisible(true);
 		
 	}
-	public static void TelaGerente(Funcionario f) {
-    	System.out.println(f.getTipoFucionario());
 
-		visao.TelaGerente abrir = new TelaGerente(f);
-		abrir.setLocationRelativeTo(null);
-		abrir.setVisible(true);
 		
-		
-	}
+	
 	public static void AbrirTelaInicial(Funcionario f) {
 		telaInicial Tela = new telaInicial(f);
 		Tela.setLocationRelativeTo(null);
@@ -325,8 +319,8 @@ VendaDAO dao = new VendaDAO();
 	public static  void tipo(Funcionario f) {
 		System.out.println(f.tipoFucionario);
 		
-		if (f.tipoFucionario.equals("Gerente")) {
-			TelaGerente(f);		}else {
+		if (f.tipoFucionario.equals("Estoquista")) {
+			AbrirTelaInicial(f);	}else {
 				AbrirTelaInicial(f);
 			}
 				

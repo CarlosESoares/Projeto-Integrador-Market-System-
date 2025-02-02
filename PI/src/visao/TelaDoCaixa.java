@@ -116,10 +116,10 @@ public class TelaDoCaixa extends JFrame {
         imgLogo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ControllerGerente abrir = new ControllerGerente();
-                abrir.TelaInicial(f);
-                dispose();
-            }
-        });
+				abrir.AbrirTelaInicial(f);
+				dispose();
+			}
+		});
         imgLogo.setIcon(ImgRedimencionada);
 
         imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);

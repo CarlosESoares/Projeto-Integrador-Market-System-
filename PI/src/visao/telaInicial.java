@@ -168,23 +168,6 @@ public class telaInicial extends JFrame {
         Image vendasImage = vendasIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon resizedVendasIcon = new ImageIcon(vendasImage);
 
-        RoundedButton btnVendas = new RoundedButton("Tela_Vendas", 30, 30);
-        btnVendas.setVisible(false);
-        btnVendas.setHorizontalAlignment(SwingConstants.LEFT);
-        btnVendas.setText("  Vendas");
-        btnVendas.setForeground(new Color(255, 255, 255));
-        btnVendas.setFont(new Font("Arial", Font.PLAIN, 20));
-        btnVendas.setBackground(new Color(255, 0, 0));
-        btnVendas.setIcon(resizedVendasIcon); 
-        btnVendas.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                btnVendas.setBackground(Color.LIGHT_GRAY);
-            }
-            public void mouseExited(MouseEvent e) {
-                btnVendas.setBackground(Color.RED);
-            }
-        });
-       
 
         ImageIcon caixaIcon = new ImageIcon(getClass().getResource("/Imagens/desktop-solid.png"));
         Image caixaImage = caixaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -284,6 +267,9 @@ public class telaInicial extends JFrame {
 		
 		rndbtnResumo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControllerGerente abrir = new ControllerGerente();
+				abrir.abrirTelaResumo(f);
+				dispose();
 			}
 		});
 		rndbtnResumo.setText("Resumo");
@@ -316,13 +302,13 @@ public class telaInicial extends JFrame {
 	            	btnCaixa.setVisible(true);
 	            	btnCliente.setVisible(true);
 	            	btnEstoque.setVisible(true);
-	            	btnVendas.setVisible(true);
+	
 	            	btnFuncionários.setVisible(true);
 	            	rndbtnResumo.setVisible(true);
 	            } else {
 	               
 	                btnEstoque.setVisible(true);
-	                btnVendas.setVisible(true);
+
 	            }
 	            
 	        }
