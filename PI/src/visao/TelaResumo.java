@@ -130,6 +130,7 @@ public class TelaResumo extends JFrame {
 
 
 			RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+			rndbtnHomeClientes.setForeground(Color.WHITE);
 			rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
 			rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
 	            public void mouseEntered(MouseEvent e) {
