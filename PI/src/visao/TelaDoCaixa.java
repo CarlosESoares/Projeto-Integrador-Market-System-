@@ -345,6 +345,7 @@ public class TelaDoCaixa extends JFrame {
                                 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
                                 		rndbtnHomeProdutos.setHorizontalAlignment(SwingConstants.LEFT);
                                 		rndbtnHomeProdutos.setForeground(new Color(255, 255, 255));
+                                		rndbtnHomeProdutos.setVisible(false);
                                 		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
                                 		    public void mouseEntered(MouseEvent e) {
                                 		        rndbtnHomeProdutos.setBackground(Color.GRAY); 
@@ -372,6 +373,7 @@ public class TelaDoCaixa extends JFrame {
 
 
                                 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+                                		rndbtnHomeClientes.setForeground(Color.WHITE);
                                 		rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
                                 		rndbtnHomeClientes.addActionListener(new ActionListener() {
                                 		    public void actionPerformed(ActionEvent e) {
@@ -423,6 +425,7 @@ public class TelaDoCaixa extends JFrame {
                                 		
                                 		
                                 		RoundedButton rndbtnFuncionarios = new RoundedButton("Cadastrar", 30, 30);
+                                		rndbtnFuncionarios.setVisible(false);
                                 		rndbtnFuncionarios.addMouseListener(new MouseAdapter() {
                                             public void mouseEntered(MouseEvent e) {
                                             	rndbtnFuncionarios.setBackground(Color.GRAY);
@@ -454,6 +457,7 @@ public class TelaDoCaixa extends JFrame {
                                 		
                                         
                                 		RoundedButton rndbtnResumo = new RoundedButton("Cadastrar", 30, 30);
+                                		rndbtnResumo.setVisible(false);
                                 		rndbtnResumo.setIcon(new ImageIcon(novaImgResumo));
                                 		rndbtnResumo.addActionListener(new ActionListener() {
                                 			public void actionPerformed(ActionEvent e) {
@@ -543,13 +547,13 @@ public class TelaDoCaixa extends JFrame {
                                 							.addContainerGap()
                                 							.addComponent(rndbtnHomeProdutos, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                                 						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-                                							.addGap(19)
-                                							.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
-                                						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
                                 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
                                 								.addComponent(rndbtnFecharCaixa, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-                                								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                						.addGroup(gl_panel_1.createSequentialGroup()
+                                							.addGap(20)
+                                							.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
                                 					.addContainerGap())
                                 		);
                                 		gl_panel_1.setVerticalGroup(
@@ -575,7 +579,23 @@ public class TelaDoCaixa extends JFrame {
                                 		);
                                 		panel_1.setLayout(gl_panel_1);
 
-        
+                                		String tipoFuncionario = f.getTipoFucionario();
+                                		 if (tipoFuncionario != null) {
+                                	            if (tipoFuncionario.equals("Caixa")) {
+                                	                
+                                	            } else if (tipoFuncionario.equals("Gerente")) {
+                                	            	rndbtnHomeProdutos.setVisible(true);
+                                	            	rndbtnFuncionarios.setVisible(true);
+                                	            	rndbtnResumo.setVisible(true);
+                                	            } else {
+                                	                
+                                	            }
+                                	          
+                                	        } else {
+                                	          new MensagemView( "Tipo de funcionário não definido.");
+                                	        }
+
+                                	    
        
         TxtCodigoProduto.addKeyListener(new KeyAdapter() {
             @Override

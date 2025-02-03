@@ -47,9 +47,9 @@ public class ControllerGerente {
 	}
 	
 	public void AbrirTelaEstoque(Funcionario f) {
+		System.out.println(f.getTipoFucionario());
 		TelaEstoque tela2 = new TelaEstoque(f);
 		tela2.setLocationRelativeTo(null);
-    	System.out.println(f.getTipoFucionario());
 
 		tela2.setVisible(true);
 		

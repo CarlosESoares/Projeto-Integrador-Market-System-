@@ -34,24 +34,11 @@ public class TelaEstoque extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private ProdutoDAO produtoDAO;
-	static Funcionario f;
-	static TelaEstoque frame = new TelaEstoque(f);
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	
 
 	/**
@@ -60,7 +47,7 @@ public class TelaEstoque extends JFrame {
 	public TelaEstoque(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 582);
+		setBounds(100, 100, 748, 582);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		produtoDAO = new ProdutoDAO();
@@ -74,9 +61,9 @@ public class TelaEstoque extends JFrame {
 		ImageIcon resizedIcon = new ImageIcon(newImage);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setVisible(false);
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
-
 		RoundedButton imgLogo = new RoundedButton("", 1, 1);
 		imgLogo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -85,6 +72,23 @@ public class TelaEstoque extends JFrame {
 				dispose();
 			}
 		});
+		String tipoFuncionario = f.getTipoFucionario();
+		 if (tipoFuncionario != null) {
+	            if (tipoFuncionario.equals("Caixa")) {
+	                
+	            } else if (tipoFuncionario.equals("Gerente")) {
+	            	panel_1.setVisible(true);
+	            	setBounds(100, 100, 950, 582);
+	            } else {
+	                
+	            }
+	          
+	        } else {
+	          new MensagemView( "Tipo de funcionário não definido.");
+	        }
+
+	
+
 		imgLogo.setBackground(Color.LIGHT_GRAY);
 		imgLogo.setForeground(Color.LIGHT_GRAY);
 		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
@@ -119,6 +123,7 @@ public class TelaEstoque extends JFrame {
 
 
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeClientes.setForeground(Color.WHITE);
 		rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
@@ -529,7 +534,7 @@ public class TelaEstoque extends JFrame {
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
 		
-
+		
 	
 
 

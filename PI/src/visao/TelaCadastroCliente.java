@@ -98,6 +98,7 @@ public class TelaCadastroCliente extends JFrame {
 		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnHomeProdutos.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeProdutos.setForeground(new Color(255, 255, 255));
+		rndbtnHomeProdutos.setVisible(false);
 		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
 		    public void mouseEntered(MouseEvent e) {
 		        rndbtnHomeProdutos.setBackground(Color.GRAY); 
@@ -125,6 +126,7 @@ public class TelaCadastroCliente extends JFrame {
 
 
 		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeClientes.setForeground(Color.WHITE);
 		rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
 		rndbtnHomeClientes.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -173,6 +175,7 @@ public class TelaCadastroCliente extends JFrame {
 		
 		
 		RoundedButton rndbtnFuncionarios = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnFuncionarios.setVisible(false);
 		rndbtnFuncionarios.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
             	rndbtnFuncionarios.setBackground(Color.GRAY);
@@ -205,6 +208,7 @@ public class TelaCadastroCliente extends JFrame {
         
 		RoundedButton rndbtnResumo = new RoundedButton("Cadastrar", 30, 30);
 		rndbtnResumo.setIcon(new ImageIcon(novaImgResumo));
+		rndbtnResumo.setVisible(false);
 		rndbtnResumo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
@@ -428,7 +432,21 @@ public class TelaCadastroCliente extends JFrame {
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
 		
-
+		String tipoFuncionario = f.getTipoFucionario();
+		if (tipoFuncionario != null) {
+            if (tipoFuncionario.equals("Caixa")) {
+               
+            } else if (tipoFuncionario.equals("Gerente")) {
+            	rndbtnHomeProdutos.setVisible(true);
+            	rndbtnFuncionarios.setVisible(true);
+            	rndbtnResumo.setVisible(true);
+            } else {
+          
+            }
+            
+        } else {
+          new MensagemView( "Tipo de funcionário não definido.");
+        }
 		
 
 
