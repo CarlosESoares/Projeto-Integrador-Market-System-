@@ -47,7 +47,7 @@ public class TelaEstoque extends JFrame {
 	public TelaEstoque(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 748, 582);
+		setBounds(100, 100, 1024, 768);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		produtoDAO = new ProdutoDAO();
@@ -78,7 +78,7 @@ public class TelaEstoque extends JFrame {
 	                
 	            } else if (tipoFuncionario.equals("Gerente")) {
 	            	panel_1.setVisible(true);
-	            	setBounds(100, 100, 950, 582);
+	            	setBounds(100, 100, 1024, 768);
 	            } else {
 	                
 	            }
@@ -284,42 +284,42 @@ public class TelaEstoque extends JFrame {
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		JComboBox<Integer> combodia_1 = new JComboBox<>();
-        combodia_1.setBounds(252, 294, 43, 21);
+        combodia_1.setBounds(303, 389, 43, 21);
         for (int i = 1; i <= 31; i++) {
             combodia_1.addItem(i);
         }
         panel_2.add(combodia_1);
 
         JComboBox<Integer> combomes_1 = new JComboBox<>();
-        combomes_1.setBounds(305, 294, 43, 21);
+        combomes_1.setBounds(356, 389, 43, 21);
         for (int i = 1; i <= 12; i++) {
             combomes_1.addItem(i);
         }
         panel_2.add(combomes_1);
 
         JComboBox<Integer> comboano_1 = new JComboBox<>();
-        comboano_1.setBounds(358, 294, 57, 21);
+        comboano_1.setBounds(411, 389, 57, 21);
         for (int i = 2024; i <= 2050; i++) {
             comboano_1.addItem(i);
         }
         panel_2.add(comboano_1);
         
 		JComboBox<Integer> combodia = new JComboBox<Integer>();
-		combodia.setBounds(9, 294, 43, 21);
+		combodia.setBounds(10, 389, 43, 21);
         for (int i = 1; i <= 31; i++) {
         	combodia.addItem(i);
         }
 		panel_2.add(combodia);
 		
 		JComboBox<Integer> combomes = new JComboBox<Integer>();
-		combomes.setBounds(62, 294, 43, 21);
+		combomes.setBounds(63, 389, 43, 21);
 	     for (int i = 1; i <= 12; i++) {
 	    	 combomes.addItem(i);
 	        }
 		panel_2.add(combomes);
 		
 		JComboBox<Integer> comboano = new JComboBox<Integer>();
-		comboano.setBounds(115, 294, 57, 21);
+		comboano.setBounds(116, 389, 57, 21);
 	     for (int i = 2024; i <= 2050; i++) {
 	    	 comboano.addItem(i);
 	        }
@@ -330,42 +330,42 @@ public class TelaEstoque extends JFrame {
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNome = new JLabel("Nome do produto:");
-		lblNome.setBounds(9, 71, 131, 18);
+		lblNome.setBounds(10, 282, 131, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(9, 99, 188, 24);
+		TextNome.setBounds(10, 310, 188, 24);
 		TextNome.setColumns(10);
 		
 		JLabel lblTipo = new JLabel("Tipo do produto:");
-		lblTipo.setBounds(10, 139, 130, 18);
+		lblTipo.setBounds(303, 282, 130, 18);
 		lblTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextTipo = new TextFielArredondada(15,20,20);
-		TextTipo.setBounds(9, 165, 188, 24);
+		TextTipo.setBounds(303, 310, 188, 24);
 		TextTipo.setColumns(10);
 		
 		JLabel lblChegada = new JLabel("Data de chegada:");
-		lblChegada.setBounds(10, 264, 150, 18);
+		lblChegada.setBounds(11, 359, 150, 18);
 		lblChegada.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		JLabel lblPreco = new JLabel("Preço:");
-		lblPreco.setBounds(9, 199, 111, 18);
+		lblPreco.setBounds(599, 282, 111, 18);
 		lblPreco.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextQntd = new TextFielArredondada(15, 20, 20);
 		TextQntd.setColumns(10);
-		TextQntd.setBounds(523, 293, 187, 24);
+		TextQntd.setBounds(599, 388, 187, 24);
 		panel_2.add(TextQntd);
 		
 		JLabel lblQntd = new JLabel("Quantidade:");
 		lblQntd.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblQntd.setBounds(523, 264, 139, 18);
+		lblQntd.setBounds(599, 359, 139, 18);
 		panel_2.add(lblQntd);
 
 		
 		TextFielArredondada TextPreco = new TextFielArredondada(15, 20, 20);
-		TextPreco.setBounds(9, 227, 188, 24);
+		TextPreco.setBounds(599, 310, 188, 24);
 		TextPreco.setColumns(10);
 		TextPreco.setText("R$:");
 		
@@ -385,7 +385,7 @@ public class TelaEstoque extends JFrame {
 		    	ControllerGerente.excluirProduto(table, produtoDAO);
 		    }
 		});
-		rndbtnExcluir.setBounds(255, 396, 150, 26);
+		rndbtnExcluir.setBounds(316, 541, 150, 26);
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
@@ -420,19 +420,19 @@ public class TelaEstoque extends JFrame {
 		    }
 		});
 
-		rndbtnEditar.setBounds(523, 396, 150, 26);
+		rndbtnEditar.setBounds(637, 541, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnEditar.setBackground(Color.RED);
 		
 		JLabel lblValidadeDoProduto = new JLabel("Validade do produto:");
-		lblValidadeDoProduto.setBounds(255, 264, 187, 18);
+		lblValidadeDoProduto.setBounds(303, 361, 187, 18);
 		lblValidadeDoProduto.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(224, 58, 486, 195);
+		panel_3.setBounds(11, 58, 837, 195);
 		
 		
 
@@ -481,7 +481,7 @@ public class TelaEstoque extends JFrame {
 		ControllerGerente.buscarProdutos(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
-		rndbtnCadastrar.setBounds(10, 396, 150, 26);
+		rndbtnCadastrar.setBounds(10, 541, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));
 		rndbtnCadastrar.addMouseListener(new MouseAdapter() {
@@ -528,7 +528,7 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-25, 433, 866, 100);
+		imgOndinha.setBounds(-17, 539, 938, 290);
 		panel_2.add(imgOndinha);
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));

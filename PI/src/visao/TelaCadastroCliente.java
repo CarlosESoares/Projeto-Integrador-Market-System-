@@ -60,7 +60,7 @@ public class TelaCadastroCliente extends JFrame {
 	public TelaCadastroCliente(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 582);
+		setBounds(100, 100, 1024, 768);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		new ClienteDAO();
@@ -281,37 +281,37 @@ public class TelaCadastroCliente extends JFrame {
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		TextFielArredondada TextLimite = new TextFielArredondada(15, 20, 20);
 		TextLimite.setColumns(10);
-		TextLimite.setBounds(9, 293, 187, 24);
+		TextLimite.setBounds(18, 442, 187, 24);
 		TextLimite.setText("R$:");
 		panel_2.add(TextLimite);
 		
 		JLabel lblLimiteDeCrdito = new JLabel("Limite de crédito");
 		lblLimiteDeCrdito.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblLimiteDeCrdito.setBounds(9, 264, 115, 18);
+		lblLimiteDeCrdito.setBounds(18, 413, 115, 18);
 		panel_2.add(lblLimiteDeCrdito);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(9, 71, 116, 18);
+		lblNome.setBounds(18, 318, 116, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(10, 104, 187, 24);
+		TextNome.setBounds(19, 351, 187, 24);
 		TextNome.setColumns(10);
 		
 		JLabel lblTipo = new JLabel("Sobrenome:");
-		lblTipo.setBounds(10, 139, 105, 18);
+		lblTipo.setBounds(339, 325, 105, 18);
 		lblTipo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSobrenome = new TextFielArredondada(15,20,20);
-		TextSobrenome.setBounds(10, 165, 187, 24);
+		TextSobrenome.setBounds(339, 351, 187, 24);
 		TextSobrenome.setColumns(10);
 		
 		JLabel lblChegada = new JLabel("CPF:");
-		lblChegada.setBounds(10, 200, 115, 18);
+		lblChegada.setBounds(644, 318, 115, 18);
 		lblChegada.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCPF = new TextFielArredondada(15,20,20);
-		TextCPF.setBounds(10, 229, 187, 24);
+		TextCPF.setBounds(644, 347, 187, 24);
 		TextCPF.setColumns(10);
 		
 		RoundedButton rndbtnExcluir = new RoundedButton("Cadastrar", 30, 30);
@@ -330,7 +330,7 @@ public class TelaCadastroCliente extends JFrame {
 		        controller.excluirCliente(table, TextNome, TextSobrenome, TextCPF,TextLimite);
 		    }
 		});
-		rndbtnExcluir.setBounds(255, 396, 150, 26);
+		rndbtnExcluir.setBounds(339, 573, 150, 26);
 		rndbtnExcluir.setText("Excluir");
 		rndbtnExcluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnExcluir.setBackground(Color.RED);
@@ -353,7 +353,7 @@ public class TelaCadastroCliente extends JFrame {
 		    	controller.editarCliente(table, TextNome, TextSobrenome, TextCPF,TextLimite);
 		    }
 		});
-		rndbtnEditar.setBounds(523, 396, 150, 26);
+		rndbtnEditar.setBounds(644, 573, 150, 26);
 		rndbtnEditar.setText("Editar");
 		rndbtnEditar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnEditar.setBackground(Color.RED);
@@ -361,7 +361,7 @@ public class TelaCadastroCliente extends JFrame {
 
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(224, 58, 486, 195);
+		panel_3.setBounds(18, 59, 830, 195);
 		
 		
 
@@ -390,7 +390,7 @@ public class TelaCadastroCliente extends JFrame {
           controller.buscarClientes(table);
 		RoundedButton rndbtnCadastrar = new RoundedButton("Cadastrar",30,30);
 		rndbtnCadastrar.setForeground(new Color(255, 255, 255));
-		rndbtnCadastrar.setBounds(10, 396, 150, 26);
+		rndbtnCadastrar.setBounds(18, 573, 150, 26);
 		rndbtnCadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		rndbtnCadastrar.setBackground(new Color(255, 0, 0));
 		rndbtnCadastrar.addMouseListener(new MouseAdapter() {
@@ -426,7 +426,7 @@ public class TelaCadastroCliente extends JFrame {
 		panel_2.add(panel_3);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-25, 433, 866, 100);
+		imgOndinha.setBounds(-18, 631, 932, 100);
 		panel_2.add(imgOndinha);
 		imgOndinha.setBackground(new Color(192, 192, 192));
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));

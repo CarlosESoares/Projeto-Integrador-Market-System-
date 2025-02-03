@@ -50,7 +50,7 @@ public class TelaInicial extends JFrame {
     public TelaInicial(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1024, 582);
+        setBounds(100, 100, 1024, 768);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -95,7 +95,7 @@ public class TelaInicial extends JFrame {
         Titulo.setFont(new Font("Arial", Font.PLAIN, 20));
         
         JLabel imgOndinha = new JLabel("");
-        imgOndinha.setBounds(-12, 260, 1200, 355);
+        imgOndinha.setBounds(0, 453, 1200, 355);
         imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
         imgOndinha.setIcon(resizedIcon);
 
@@ -127,7 +127,7 @@ public class TelaInicial extends JFrame {
                 dispose();
             }
         });
-        btnCliente.setBounds(306, 45, 187, 66);
+        btnCliente.setBounds(306, 133, 187, 66);
         panel_2.setLayout(null);
         panel_2.add(imgOndinha);
         panel_2.add(btnCliente);
@@ -161,7 +161,7 @@ public class TelaInicial extends JFrame {
                 dispose();
             }
         });
-        btnEstoque.setBounds(563, 45, 187, 66);
+        btnEstoque.setBounds(565, 133, 187, 66);
         panel_2.add(btnEstoque);
 
         ImageIcon vendasIcon = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
@@ -196,7 +196,7 @@ public class TelaInicial extends JFrame {
                 dispose();
             }
         });
-        btnCaixa.setBounds(306, 171, 187, 66);
+        btnCaixa.setBounds(306, 280, 187, 66);
         panel_2.add(btnCaixa);
         ImageIcon LogoutIcon = new ImageIcon(getClass().getResource("/Imagens/left-from-backet.png"));
         Image LogoutImagem = LogoutIcon.getImage().getScaledInstance(25, 20, Image.SCALE_SMOOTH);
@@ -256,7 +256,7 @@ public class TelaInicial extends JFrame {
 		btnFuncionários.setForeground(Color.WHITE);
 		btnFuncionários.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnFuncionários.setBackground(Color.RED);
-		btnFuncionários.setBounds(50, 45, 187, 66);
+		btnFuncionários.setBounds(50, 133, 187, 66);
 		panel_2.add(btnFuncionários);
 		
 		
@@ -286,7 +286,7 @@ public class TelaInicial extends JFrame {
 		rndbtnResumo.setIcon(resizedResumoIcon);
 		rndbtnResumo.setFont(new Font("Arial", Font.PLAIN, 20));
 		rndbtnResumo.setBackground(Color.RED);
-		rndbtnResumo.setBounds(50, 171, 187, 66);
+		rndbtnResumo.setBounds(50, 280, 187, 66);
 		rndbtnResumo.setVisible(false);
 		panel_2.add(rndbtnResumo);
 		
