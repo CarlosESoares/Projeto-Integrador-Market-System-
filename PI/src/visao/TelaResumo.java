@@ -64,7 +64,7 @@ public class TelaResumo extends JFrame {
 		public TelaResumo(Funcionario f) {
 		    // Configuração básica da janela
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    setBounds(100, 100, 1078, 739);
+		    setBounds(100, 100, 1024, 768);
 
 		    // Inicialize o contentPane e defina o layout
 		    contentPane = new JPanel();
@@ -314,14 +314,14 @@ public class TelaResumo extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.WEST, Funcio, 0, SpringLayout.WEST, scrollPane);
 		sl_panel_3.putConstraint(SpringLayout.SOUTH, Funcio, -6, SpringLayout.NORTH, scrollPane);
 		sl_panel_3.putConstraint(SpringLayout.EAST, Funcio, 266, SpringLayout.WEST, panel_3);
-		Funcio.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
+		Funcio.setFont(new Font("Arial", Font.PLAIN, 30));
 		panel_3.add(Funcio);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_1, -257, SpringLayout.SOUTH, scrollPane);
-		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_1, 25, SpringLayout.EAST, scrollPane);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_1, 0, SpringLayout.SOUTH, scrollPane);
-		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_1, 330, SpringLayout.EAST, scrollPane);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_1, 60, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_1, 105, SpringLayout.EAST, scrollPane);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_1, -5, SpringLayout.SOUTH, scrollPane);
+		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_1, -84, SpringLayout.EAST, panel_3);
 		panel_3.add(scrollPane_1);
 			
 
@@ -333,16 +333,17 @@ public class TelaResumo extends JFrame {
 		scrollPane_1.setViewportView(tableProdutos);
 		
 		JLabel lblNewLabel = new JLabel("Produto");
-		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel, -4, SpringLayout.NORTH, Funcio);
-		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel, 133, SpringLayout.EAST, Funcio);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel, -2, SpringLayout.NORTH, scrollPane_1);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel, 0, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel, 213, SpringLayout.EAST, Funcio);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel, -7, SpringLayout.NORTH, scrollPane_1);
 		sl_panel_3.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, scrollPane_1);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		panel_3.add(lblNewLabel);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_2, 59, SpringLayout.SOUTH, scrollPane);
 		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_2, 59, SpringLayout.WEST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_2, -73, SpringLayout.SOUTH, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_2, 14, SpringLayout.EAST, scrollPane);
 		panel_3.add(scrollPane_2);
 		
@@ -356,16 +357,15 @@ public class TelaResumo extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Clientes");
 		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel_1, 62, SpringLayout.WEST, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -6, SpringLayout.NORTH, scrollPane_2);
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -346, SpringLayout.SOUTH, panel_3);
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 30));
 		panel_3.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_3, 35, SpringLayout.EAST, scrollPane_2);
-		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_3, -215, SpringLayout.EAST, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_2, 0, SpringLayout.SOUTH, scrollPane_3);
-		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_3, 59, SpringLayout.SOUTH, scrollPane_1);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_3, 326, SpringLayout.SOUTH, scrollPane_1);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, scrollPane_3, 0, SpringLayout.NORTH, scrollPane_2);
+		sl_panel_3.putConstraint(SpringLayout.WEST, scrollPane_3, 0, SpringLayout.WEST, scrollPane_1);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, scrollPane_3, -73, SpringLayout.SOUTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, scrollPane_3, 0, SpringLayout.EAST, scrollPane_1);
 		panel_3.add(scrollPane_3);
 		
 		table = new JTable();
@@ -377,8 +377,8 @@ public class TelaResumo extends JFrame {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Vendas");
 		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1, 0, SpringLayout.NORTH, lblNewLabel_1);
-		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel_1_1, 0, SpringLayout.WEST, scrollPane_3);
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 30));
+		sl_panel_3.putConstraint(SpringLayout.EAST, lblNewLabel_1_1, -284, SpringLayout.EAST, panel_3);
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 30));
 		panel_3.add(lblNewLabel_1_1);
 		
 	}

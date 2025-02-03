@@ -68,7 +68,7 @@ public	String tipoFunci;
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 582);
+		setBounds(100, 100, 1024, 768);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -295,58 +295,58 @@ public	String tipoFunci;
 		lblNewLabel_1.setBounds(299, 7, 225, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(10, 43, 106, 18);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(20, 356, 106, 18);
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextNome = new TextFielArredondada(15,20,20);
-		TextNome.setBounds(97, 41, 187, 24);
+		TextNome.setBounds(20, 382, 187, 24);
 		TextNome.setColumns(10);
 		
 		
-		JLabel lblCpf = new JLabel("CPF");
-		lblCpf.setBounds(10, 163, 42, 18);
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setBounds(611, 356, 42, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
-		TextCpf.setBounds(97, 161, 187, 24);
+		TextCpf.setBounds(611, 382, 187, 24);
 		TextCpf.setColumns(10);
 		
 		
-		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(10, 209, 42, 18);
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setBounds(20, 438, 71, 18);
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSenha = new TextFielArredondada(15,20,20);
-		TextSenha.setBounds(97, 207, 187, 24);
+		TextSenha.setBounds(20, 466, 187, 24);
 		TextSenha.setColumns(10);
 		
-		JLabel lblFuncao = new JLabel("Função");
-		lblFuncao.setBounds(10, 248, 77, 18);
+		JLabel lblFuncao = new JLabel("Função:");
+		lblFuncao.setBounds(214, 438, 77, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSobrenome = new TextFielArredondada(15, 20, 20);
 		TextSobrenome.setColumns(10);
-		TextSobrenome.setBounds(97, 83, 187, 24);
+		TextSobrenome.setBounds(217, 382, 187, 24);
 		panel_2.add(TextSobrenome);
 		
 		TextFielArredondada TextTelefone = new TextFielArredondada(15, 20, 20);
 		TextTelefone.setColumns(10);
-		TextTelefone.setBounds(97, 118, 187, 24);
+		TextTelefone.setBounds(414, 382, 187, 24);
 		panel_2.add(TextTelefone);
 		
 		TextFielArredondada TextSalario = new TextFielArredondada(15, 20, 20);
 		TextSalario.setColumns(10);
-		TextSalario.setBounds(97, 279, 187, 24);
+		TextSalario.setBounds(414, 466, 187, 24);
 		panel_2.add(TextSalario);
 		
 		TextFielArredondada TextEndereço = new TextFielArredondada(15, 20, 20);
 		TextEndereço.setColumns(10);
-		TextEndereço.setBounds(97, 322, 187, 24);
+		TextEndereço.setBounds(611, 466, 187, 24);
 		panel_2.add(TextEndereço);
 		
 		JComboBox<Object> comboFuncao = new JComboBox<Object>();
-		comboFuncao.setBounds(97, 248, 187, 20);
+		comboFuncao.setBounds(217, 467, 187, 20);
 		comboFuncao.setModel(new DefaultComboBoxModel<Object>(new String[] {"Selecionar", "Caixa", "Gerente", "Estoquista"}));
 		
 		RoundedButton Cadastrar = new RoundedButton("Cadastrar",30,30);
@@ -371,7 +371,7 @@ public	String tipoFunci;
 		    	
 		    }
 		    });
-		Cadastrar.setBounds(322, 319, 113, 26);
+		Cadastrar.setBounds(20, 565, 113, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
 		panel_2.setLayout(null);
@@ -386,40 +386,25 @@ public	String tipoFunci;
 		panel_2.add(comboFuncao);
 		panel_2.add(Cadastrar);
 		
-		JLabel lblSobrenome = new JLabel("Sobrenome");
+		JLabel lblSobrenome = new JLabel("Sobrenome:");
 		lblSobrenome.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSobrenome.setBounds(10, 85, 106, 18);
+		lblSobrenome.setBounds(220, 358, 106, 18);
 		panel_2.add(lblSobrenome);
 		
-		JLabel lblTelefone = new JLabel("Telefone");
+		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblTelefone.setBounds(10, 120, 106, 18);
+		lblTelefone.setBounds(418, 356, 106, 18);
 		panel_2.add(lblTelefone);
 		
-		JLabel lblSalario = new JLabel("Salário");
+		JLabel lblSalario = new JLabel("Salário:");
 		lblSalario.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSalario.setBounds(10, 285, 106, 18);
+		lblSalario.setBounds(414, 438, 106, 18);
 		panel_2.add(lblSalario);
 		
-		JLabel lblEndereco = new JLabel("Endereço");
+		JLabel lblEndereco = new JLabel("Endereço:");
 		lblEndereco.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblEndereco.setBounds(10, 324, 106, 18);
+		lblEndereco.setBounds(611, 438, 106, 18);
 		panel_2.add(lblEndereco);
-		
-		RoundedButton Deslogar = new RoundedButton("Log Off", 30, 30); // deslogar
-		Deslogar.setForeground(new Color(255, 255, 255));
-		Deslogar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControleDeLogin login = new ControleDeLogin();
-            	login.iniciar();
-            	dispose();
-			}
-		});
-		Deslogar.setText("Log Off");
-		Deslogar.setFont(new Font("Arial", Font.PLAIN, 15));
-		Deslogar.setBackground(Color.RED);
-		Deslogar.setBounds(661, 8, 113, 26);
-		panel_2.add(Deslogar);
 		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
 		excluir.addMouseListener(new MouseAdapter() {
@@ -488,7 +473,7 @@ public	String tipoFunci;
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		excluir.setForeground(new Color(255, 255, 255));
 		excluir.setBackground(new Color(255, 0, 0));
-		excluir.setBounds(479, 322, 113, 24);
+		excluir.setBounds(358, 566, 113, 24);
 		panel_2.add(excluir);
 		
 		RoundedButton editar = new RoundedButton("Editar", 30, 30);
@@ -616,11 +601,11 @@ public	String tipoFunci;
 		});
 		editar.setForeground(new Color(255, 255, 255));
 		editar.setBackground(new Color(255, 0, 0));
-		editar.setBounds(628, 322, 113, 24);
+		editar.setBounds(685, 566, 113, 24);
 		panel_2.add(editar);
 		
 		JLabel imgOndinha = new JLabel("");
-		imgOndinha.setBounds(-142, 277, 1200, 355);
+		imgOndinha.setBounds(-16, 508, 1200, 355);
 		panel_2.add(imgOndinha);
 		imgOndinha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		imgOndinha.setIcon(resizedIcon);
@@ -631,7 +616,7 @@ public	String tipoFunci;
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(322, 81, 452, 190);
+		scrollPane.setBounds(20, 85, 828, 228);
 		panel_2.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Voltar");

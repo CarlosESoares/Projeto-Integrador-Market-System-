@@ -114,7 +114,7 @@ VendaDAO dao = new VendaDAO();
 			// Declaração das variáveis de validação
 			boolean login2 = loginStr.chars().anyMatch(ch -> !Character.isDigit(ch));
 			boolean telefone2 = telefoneStr.chars().anyMatch(ch -> !Character.isDigit(ch));
-			boolean salario2 = salarioStr.chars().anyMatch(ch -> !Character.isDigit(ch));
+			
 			
 			// Validação dos campos
 			if (loginStr.isEmpty()) {
@@ -161,10 +161,7 @@ VendaDAO dao = new VendaDAO();
 			if (salarioStr.isEmpty()) {
 				new MensagemView("O campo salário não pode estar vazio.",1);
 				return;
-			} else if (salario2) {
-				new MensagemView("O Salário deve conter apenas números.",1);
-				return;
-			}
+			} 
 
 			// Definir o tipo de funcionário com base na opção 'op'
 			if (op == 1) {
@@ -182,7 +179,8 @@ VendaDAO dao = new VendaDAO();
 			long login = Long.parseLong(loginStr);
 			int telefone = Integer.parseInt(telefoneStr);
 			double salario = Double.parseDouble(salarioStr);
-			
+			String salario1 = salarioStr.replaceAll("[R$:]", "").replace(',', '.');
+			salario = Double.parseDouble(salario1);
 			// Cadastro no banco de dados
 			FuncionarioDAO f = new FuncionarioDAO();
 			f.cadastroFuncionario(NomeFuncionario, login, senha, tipo_funcionario, sobrenome, salario, telefone, endereco);
@@ -309,7 +307,7 @@ VendaDAO dao = new VendaDAO();
 		    // Limpa os campos de texto
 		    Nome.setText("");
 		    tfSobrenome.setText("");
-		    tfSalario.setText("");
+		    tfSalario.setText("R$:");
 		    tfTelefone.setText("");
 		    tfEndereco.setText("");
 		}
@@ -613,6 +611,7 @@ VendaDAO dao = new VendaDAO();
 	public void abrirTelaResumo(Funcionario f) {
 		TelaResumo abrir = new TelaResumo(f);
 		abrir.setVisible(true);
+		abrir.setLocationRelativeTo(null);
 		
 	}
 		public  double buscarProdutoPeloIdCaixa(String idProduto, String quantidadeText, Double Total) {
