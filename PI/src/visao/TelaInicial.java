@@ -50,7 +50,7 @@ public class TelaInicial extends JFrame {
     public TelaInicial(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1042, 536);
+        setBounds(100, 100, 1024, 582);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -224,7 +224,7 @@ public class TelaInicial extends JFrame {
 		rndbtnLo.setText("Log off");
 		rndbtnLo.setFont(new Font("Arial", Font.PLAIN, 12));
 		rndbtnLo.setBackground(Color.RED);
-		rndbtnLo.setBounds(743, 17, 109, 24);
+		rndbtnLo.setBounds(675, 11, 109, 24);
 		panel_2.add(rndbtnLo);
 		
 		RoundedButton btnFuncionários = new RoundedButton("Tela_Vendas", 30, 30);

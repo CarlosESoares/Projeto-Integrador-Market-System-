@@ -68,7 +68,7 @@ public	String tipoFunci;
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1042, 536);
+		setBounds(100, 100, 950, 582);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -371,7 +371,7 @@ public	String tipoFunci;
 		    	
 		    }
 		    });
-		Cadastrar.setBounds(373, 320, 113, 26);
+		Cadastrar.setBounds(322, 319, 113, 26);
 		Cadastrar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Cadastrar.setBackground(new Color(255, 0, 0));
 		panel_2.setLayout(null);
@@ -418,7 +418,7 @@ public	String tipoFunci;
 		Deslogar.setText("Log Off");
 		Deslogar.setFont(new Font("Arial", Font.PLAIN, 15));
 		Deslogar.setBackground(Color.RED);
-		Deslogar.setBounds(731, 8, 113, 26);
+		Deslogar.setBounds(661, 8, 113, 26);
 		panel_2.add(Deslogar);
 		
 		RoundedButton excluir = new RoundedButton("Excluir",30,30);
@@ -488,7 +488,7 @@ public	String tipoFunci;
 		excluir.setFont(new Font("Arial", Font.PLAIN, 15));
 		excluir.setForeground(new Color(255, 255, 255));
 		excluir.setBackground(new Color(255, 0, 0));
-		excluir.setBounds(528, 322, 113, 24);
+		excluir.setBounds(479, 322, 113, 24);
 		panel_2.add(excluir);
 		
 		RoundedButton editar = new RoundedButton("Editar", 30, 30);
@@ -616,7 +616,7 @@ public	String tipoFunci;
 		});
 		editar.setForeground(new Color(255, 255, 255));
 		editar.setBackground(new Color(255, 0, 0));
-		editar.setBounds(695, 322, 113, 24);
+		editar.setBounds(628, 322, 113, 24);
 		panel_2.add(editar);
 		
 		JLabel imgOndinha = new JLabel("");
@@ -631,7 +631,7 @@ public	String tipoFunci;
 		Object[][] data = {};
 		table = new JTable(new DefaultTableModel(data, columnNames));
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(299, 83, 545, 190);
+		scrollPane.setBounds(322, 81, 452, 190);
 		panel_2.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Voltar");
