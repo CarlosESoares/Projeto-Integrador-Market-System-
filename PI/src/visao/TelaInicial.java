@@ -23,7 +23,7 @@ import Controle.ControllerGerente;
 import Modelo.Funcionario;
 
 
-public class telaInicial extends JFrame {
+public class TelaInicial extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -35,7 +35,7 @@ public class telaInicial extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    telaInicial frame = new telaInicial(null);
+                    TelaInicial frame = new TelaInicial(null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,7 +47,7 @@ public class telaInicial extends JFrame {
     /**
      * Create the frame.
      */
-    public telaInicial(Funcionario f) {
+    public TelaInicial(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1042, 536);
@@ -161,7 +161,7 @@ public class telaInicial extends JFrame {
                 dispose();
             }
         });
-        btnEstoque.setBounds(37, 171, 187, 66);
+        btnEstoque.setBounds(563, 45, 187, 66);
         panel_2.add(btnEstoque);
 
         ImageIcon vendasIcon = new ImageIcon(getClass().getResource("/Imagens/comments-dollar-solid.png"));
@@ -256,7 +256,7 @@ public class telaInicial extends JFrame {
 		btnFuncionários.setForeground(Color.WHITE);
 		btnFuncionários.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnFuncionários.setBackground(Color.RED);
-		btnFuncionários.setBounds(563, 45, 187, 66);
+		btnFuncionários.setBounds(50, 45, 187, 66);
 		panel_2.add(btnFuncionários);
 		
 		
@@ -286,7 +286,7 @@ public class telaInicial extends JFrame {
 		rndbtnResumo.setIcon(resizedResumoIcon);
 		rndbtnResumo.setFont(new Font("Arial", Font.PLAIN, 20));
 		rndbtnResumo.setBackground(Color.RED);
-		rndbtnResumo.setBounds(563, 171, 187, 66);
+		rndbtnResumo.setBounds(50, 171, 187, 66);
 		rndbtnResumo.setVisible(false);
 		panel_2.add(rndbtnResumo);
 		

@@ -89,121 +89,201 @@ public	String tipoFunci;
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_1, BorderLayout.WEST);
-		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
-		Image imageLogo = originalIconLogo.getImage(); // Obtenha a imagem do ImageIcon
-		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Redimensione a imagem
-		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
-		
-		RoundedButton btnProduto = new RoundedButton("Produto", 30, 30);
-		btnProduto.setForeground(new Color(255, 255, 255));
-		btnProduto.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-		    	btnProduto.setBackground(Color.LIGHT_GRAY);
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	btnProduto.setBackground(Color.RED);
-		    }
-		});
-		btnProduto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaEstoque(f);
+
+		RoundedButton imgLogo = new RoundedButton("", 1, 1);
+		imgLogo.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	ControllerGerente abrir = new ControllerGerente();
+		    	abrir.AbrirTelaInicial(f);
 				dispose();
-		
 			}
 		});
-		btnProduto.setText("Estoque");
-		btnProduto.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnProduto.setBackground(Color.RED);
-		
+		imgLogo.setBackground(Color.LIGHT_GRAY);
+		imgLogo.setForeground(Color.LIGHT_GRAY);
+		ImageIcon originalIconLogo = new ImageIcon(Login.class.getResource("/Imagens/Logo2.png"));
+		Image imageLogo = originalIconLogo.getImage(); 
+		Image NovaLogo = imageLogo.getScaledInstance(100, 100, Image.SCALE_SMOOTH); 
+		ImageIcon ImgRedimencionada = new ImageIcon(NovaLogo);
+		imgLogo.setIcon(ImgRedimencionada);
+		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+
+
+		RoundedButton rndbtnHomeProdutos = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeProdutos.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnHomeProdutos.setForeground(new Color(255, 255, 255));
+		rndbtnHomeProdutos.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		        rndbtnHomeProdutos.setBackground(Color.GRAY); 
+		    }
+		    public void mouseExited(MouseEvent e) {
+		        rndbtnHomeProdutos.setBackground(Color.RED);
+		    }
+		});
+		rndbtnHomeProdutos.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        ControllerGerente abrir = new ControllerGerente();
+		        abrir.AbrirTelaEstoque(f);
+		        dispose();
+		    }
+		});
+		rndbtnHomeProdutos.setText("Estoque");
+		rndbtnHomeProdutos.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeProdutos.setBackground(Color.RED);
+
+
 		ImageIcon iconProdutos = new ImageIcon(getClass().getResource("/Imagens/box-open-solid.png"));
 		Image imgProdutos = iconProdutos.getImage();
 		Image novaImgProdutos = imgProdutos.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		btnProduto.setIcon(new ImageIcon(novaImgProdutos));
-		
-		RoundedButton btnCliente = new RoundedButton("Cliente", 30, 30);
-		btnCliente.setForeground(new Color(255, 255, 255));
-		btnCliente.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCliente.setBackground(Color.LIGHT_GRAY);
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	btnCliente.setBackground(Color.RED);
-		    }
-		});
-		btnCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaCliente(f);
-				dispose();
-		
-			}
-		});
-		btnCliente.setText("Clientes");
-		btnCliente.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnCliente.setBackground(Color.RED);
-		
+		rndbtnHomeProdutos.setIcon(new ImageIcon(novaImgProdutos));
+
+
+		RoundedButton rndbtnHomeClientes = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeClientes.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnHomeClientes.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+            	rndbtnHomeClientes.setBackground(Color.GRAY);
+            }
+            public void mouseExited(MouseEvent e) {
+            	rndbtnHomeClientes.setBackground(Color.RED);
+            }
+        });
+		rndbtnHomeClientes.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+
+		    	ControllerGerente abrir = new ControllerGerente();
+                abrir.AbrirTelaCliente(f);
+                dispose();
+            }
+        });
+		rndbtnHomeClientes.setText("Clientes");
+		rndbtnHomeClientes.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeClientes.setBackground(Color.RED);
+
 		ImageIcon iconClientes = new ImageIcon(getClass().getResource("/Imagens/address-card-solid.png"));
 		Image imgClientes = iconClientes.getImage();
 		Image novaImgClientes = imgClientes.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		btnCliente.setIcon(new ImageIcon(novaImgClientes));
-		
-		RoundedButton btnVendas = new RoundedButton("Vendas", 30, 30);
-		btnVendas.setForeground(new Color(255, 255, 255));
-		btnVendas.addMouseListener(new MouseAdapter() {
-		    public void mouseEntered(MouseEvent e) {
-		    	btnVendas.setBackground(Color.LIGHT_GRAY);
-		    }
-		    public void mouseExited(MouseEvent e) {
-		    	btnVendas.setBackground(Color.RED);
-		    }
-		});
-		
-		
-		RoundedButton imgLogo = new RoundedButton("",1,1);
-		imgLogo.setBackground(new Color(192, 192, 192));
-		panel_1.add(imgLogo, "cell 0 0");
-		imgLogo.addActionListener(new ActionListener() {
+		rndbtnHomeClientes.setIcon(new ImageIcon(novaImgClientes));
+
+
+		RoundedButton rndbtnHomeCaixa = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnHomeCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControllerGerente abrir = new ControllerGerente();
-				abrir.AbrirTelaInicial(f);
-		
+                abrir.AbrirTelaCaixa(f);
                 dispose();
-            
-			
-		}});
-		imgLogo.setIcon(ImgRedimencionada);
+            }
+        });
+		rndbtnHomeCaixa.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnHomeCaixa.setForeground(new Color(255, 255, 255));
+		rndbtnHomeCaixa.addMouseListener(new MouseAdapter() {
+		    public void mouseEntered(MouseEvent e) {
+		        rndbtnHomeCaixa.setBackground(Color.GRAY); 
+		    }
+		    public void mouseExited(MouseEvent e) {
+		        rndbtnHomeCaixa.setBackground(Color.RED);
+		    }
+		});
+
+		rndbtnHomeCaixa.setText("Caixa");
+		rndbtnHomeCaixa.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnHomeCaixa.setBackground(Color.RED);
+
 		
-		imgLogo.setVerticalAlignment(SwingConstants.BOTTOM);
+		ImageIcon iconCaixa = new ImageIcon(getClass().getResource("/Imagens/desktop-solid.png"));
+		Image imgCaixa = iconCaixa.getImage();
+		Image novaImgCaixa = imgCaixa.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		rndbtnHomeCaixa.setIcon(new ImageIcon(novaImgCaixa));
 		
+		
+		
+		RoundedButton rndbtnFuncionarios = new RoundedButton("Cadastrar", 30, 30);
+
+		rndbtnFuncionarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		dispose();
+				
+				ControllerGerente.TelaCadastro(f);
+				
+
+	
+			}
+		});
+		rndbtnFuncionarios.setText("Funcionários");
+		rndbtnFuncionarios.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnFuncionarios.setForeground(Color.WHITE);
+		rndbtnFuncionarios.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnFuncionarios.setBackground(Color.GRAY);
+		rndbtnFuncionarios.setIcon(new ImageIcon(novaImgClientes));
+		
+		ImageIcon iconResumo = new ImageIcon(getClass().getResource("/Imagens/address-card-solid.png"));
+		Image imgResumo = iconClientes.getImage();
+		Image novaImgResumo = imgResumo.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		
+        
+		RoundedButton rndbtnResumo = new RoundedButton("Cadastrar", 30, 30);
+		rndbtnResumo.setIcon(new ImageIcon(novaImgResumo));
+		rndbtnResumo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControllerGerente abrir = new ControllerGerente();
+				abrir.abrirTelaResumo(f);
+				dispose();
+			}
+		});
+		rndbtnResumo.setText("Resumo");
+		rndbtnResumo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+            	rndbtnResumo.setBackground(Color.GRAY);
+            }
+            public void mouseExited(MouseEvent e) {
+            	rndbtnResumo.setBackground(Color.RED);
+            }
+        });
+		rndbtnResumo.setText("Resumo");
+		rndbtnResumo.setHorizontalAlignment(SwingConstants.LEFT);
+		rndbtnResumo.setForeground(Color.WHITE);
+		rndbtnResumo.setFont(new Font("Arial", Font.PLAIN, 11));
+		rndbtnResumo.setBackground(Color.RED);
+
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(18)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(20, Short.MAX_VALUE))
+								.addComponent(rndbtnResumo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+								.addComponent(rndbtnFuncionarios, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(rndbtnHomeCaixa, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(rndbtnHomeClientes, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(rndbtnHomeProdutos, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(19)
+							.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(24)
-					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(49)
-					.addComponent(btnProduto, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap()
+					.addComponent(imgLogo, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnCliente, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addComponent(rndbtnHomeCaixa, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnVendas, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(276, Short.MAX_VALUE))
+					.addComponent(rndbtnHomeClientes, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rndbtnHomeProdutos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rndbtnFuncionarios, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(rndbtnResumo, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(197, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -211,7 +291,7 @@ public	String tipoFunci;
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro Funcionário");
-		lblNewLabel_1.setBounds(299, 7, 187, 24);
+		lblNewLabel_1.setBounds(299, 7, 225, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -224,7 +304,7 @@ public	String tipoFunci;
 		
 		
 		JLabel lblCpf = new JLabel("CPF");
-		lblCpf.setBounds(10, 163, 30, 18);
+		lblCpf.setBounds(10, 163, 42, 18);
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextCpf = new TextFielArredondada(15,20,20);
@@ -241,7 +321,7 @@ public	String tipoFunci;
 		TextSenha.setColumns(10);
 		
 		JLabel lblFuncao = new JLabel("Função");
-		lblFuncao.setBounds(10, 248, 49, 18);
+		lblFuncao.setBounds(10, 248, 77, 18);
 		lblFuncao.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		TextFielArredondada TextSobrenome = new TextFielArredondada(15, 20, 20);

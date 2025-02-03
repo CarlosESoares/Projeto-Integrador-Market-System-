@@ -21,7 +21,7 @@ import visao.TelaDoCaixa;
 import visao.TelaEstoque;
 import visao.TelaResumo;
 import visao.TextFielArredondada;
-import visao.telaInicial;
+import visao.TelaInicial;
 
 public class ControllerGerente {
 	public   boolean telefone2;
@@ -30,7 +30,7 @@ public class ControllerGerente {
 	
 	public static void TelaInicial(Funcionario f) {
 
-		telaInicial tela = new telaInicial(null);
+		TelaInicial tela = new TelaInicial(null);
     	System.out.println(f.getTipoFucionario());
 
 		tela.setVisible(true);
@@ -58,7 +58,7 @@ public class ControllerGerente {
 		
 	
 	public static void AbrirTelaInicial(Funcionario f) {
-		telaInicial Tela = new telaInicial(f);
+		TelaInicial Tela = new TelaInicial(f);
 		Tela.setLocationRelativeTo(null);
     	System.out.println(f.getTipoFucionario());
 
