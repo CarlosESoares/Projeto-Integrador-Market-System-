@@ -66,7 +66,7 @@ public class TelaDoCaixa extends JFrame {
     public TelaDoCaixa(Funcionario f) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1042, 536);
+        setBounds(100, 100, 1024, 768);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -89,7 +89,7 @@ public class TelaDoCaixa extends JFrame {
 
         JPanel panel_3_2 = new JPanel();
         panel_3_2.setBackground(Color.WHITE);
-        panel_3_2.setBounds(47, 80, 155, 23);
+        panel_3_2.setBounds(8, 373, 155, 23);
         panel_2.add(panel_3_2);
 
         JLabel lblTotal = new JLabel("0.00");
@@ -103,7 +103,7 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_2.setText("TOTAL DO ITEM");
         btnNewButton_1_2.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_2.setBounds(47, 57, 155, 23);
+        btnNewButton_1_2.setBounds(8, 354, 155, 23);
         panel_2.add(btnNewButton_1_2);
 
         RoundedButton btnNewButton_1_3 = new RoundedButton("New button", 1, 1);
@@ -113,7 +113,7 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3.setText("CÓDIGO");
         btnNewButton_1_3.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3.setBounds(47, 130, 155, 23);
+        btnNewButton_1_3.setBounds(232, 354, 155, 23);
         panel_2.add(btnNewButton_1_3);
 
         RoundedButton btnNewButton_1_3_1 = new RoundedButton("New button", 1, 1);
@@ -123,12 +123,12 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3_1.setText("SUBTOTAL");
         btnNewButton_1_3_1.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3_1.setBounds(294, 331, 486, 23);
+        btnNewButton_1_3_1.setBounds(195, 439, 486, 23);
         panel_2.add(btnNewButton_1_3_1);
 
         JPanel panel_3_3_1 = new JPanel();
         panel_3_3_1.setBackground(Color.WHITE);
-        panel_3_3_1.setBounds(294, 354, 486, 23);
+        panel_3_3_1.setBounds(195, 462, 486, 23);
         panel_2.add(panel_3_3_1);
 
          lblSubTotal = new JLabel("");
@@ -141,7 +141,7 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3_1_1.setText("TOTAL RECEBIDO");
         btnNewButton_1_3_1_1.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3_1_1.setBounds(345, 399, 181, 23);
+        btnNewButton_1_3_1_1.setBounds(235, 511, 181, 23);
         panel_2.add(btnNewButton_1_3_1_1);
 
         RoundedButton btnNewButton_1_3_1_1_1 = new RoundedButton("New button", 1, 1);
@@ -151,19 +151,19 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3_1_1_1.setText("TROCO");
         btnNewButton_1_3_1_1_1.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3_1_1_1.setBounds(536, 399, 186, 23);
+        btnNewButton_1_3_1_1_1.setBounds(426, 511, 186, 23);
         panel_2.add(btnNewButton_1_3_1_1_1);
 
         JPanel panel_3_3_1_1_1 = new JPanel();
         panel_3_3_1_1_1.setBackground(Color.WHITE);
-        panel_3_3_1_1_1.setBounds(536, 422, 186, 23);
+        panel_3_3_1_1_1.setBounds(426, 534, 186, 23);
         panel_2.add(panel_3_3_1_1_1);
 
         JLabel lblTroco = new JLabel("R$:0,00");
         panel_3_3_1_1_1.add(lblTroco);
 
         JPanel panel_4 = new JPanel();
-        panel_4.setBounds(247, 57, 582, 263);
+        panel_4.setBounds(26, 57, 803, 263);
         panel_2.add(panel_4);
 
         panel_4.setLayout(new BorderLayout());
@@ -172,7 +172,7 @@ public class TelaDoCaixa extends JFrame {
      
         TxtCodigoProduto.setHorizontalAlignment(SwingConstants.CENTER);
         TxtCodigoProduto.setColumns(10);
-        TxtCodigoProduto.setBounds(47, 152, 155, 20);
+        TxtCodigoProduto.setBounds(232, 376, 155, 20);
         panel_2.add(TxtCodigoProduto);
        
 
@@ -194,7 +194,7 @@ public class TelaDoCaixa extends JFrame {
 
         JPanel panel_3 = new JPanel();
         panel_3.setBackground(new Color(192, 192, 192));
-        panel_3.setBounds(0, 369, 125, 117);
+        panel_3.setBounds(0, 603, 125, 117);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
@@ -218,13 +218,13 @@ public class TelaDoCaixa extends JFrame {
         RoundedButton btnDoCliente = new RoundedButton("New button", 1, 1);
         btnDoCliente.setText("Cpf do cliente");
         btnDoCliente.setBackground(Color.LIGHT_GRAY);
-        btnDoCliente.setBounds(47, 266, 155, 23);
+        btnDoCliente.setBounds(674, 355, 155, 23);
         panel_2.add(btnDoCliente);
         
         HintTextField TxtCPF = new HintTextField("00000");
         TxtCPF.setHorizontalAlignment(SwingConstants.CENTER);
         TxtCPF.setColumns(10);
-        TxtCPF.setBounds(47, 287, 155, 20);
+        TxtCPF.setBounds(674, 376, 155, 20);
         panel_2.add(TxtCPF);
         
         RoundedButton btnNewButton_1_3_2 = new RoundedButton("New button", 1, 1);
@@ -234,13 +234,13 @@ public class TelaDoCaixa extends JFrame {
         });
         btnNewButton_1_3_2.setText("Quantidade");
         btnNewButton_1_3_2.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1_3_2.setBounds(47, 199, 155, 23);
+        btnNewButton_1_3_2.setBounds(451, 354, 155, 23);
         panel_2.add(btnNewButton_1_3_2);
         
          quantidade_produto= new HintTextField("1");
          quantidade_produto.setHorizontalAlignment(SwingConstants.CENTER);
          quantidade_produto.setColumns(10);
-         quantidade_produto.setBounds(47, 221, 155, 20);
+         quantidade_produto.setBounds(451, 376, 155, 20);
         panel_2.add(         quantidade_produto);
         
         RoundedButton BtnFecharVenda = new RoundedButton("ABRIR CAIXA", 30, 30);
@@ -294,7 +294,7 @@ public class TelaDoCaixa extends JFrame {
             
              new MensagemView("Venda finalizada com sucesso",0);
         }});
-        BtnFecharVenda.setBounds(135, 369, 130, 24);
+        BtnFecharVenda.setBounds(353, 618, 130, 24);
         panel_2.add(BtnFecharVenda);
         BtnFecharVenda.setText("Fechar Venda");
         BtnFecharVenda.setForeground(Color.WHITE);
@@ -311,11 +311,11 @@ public class TelaDoCaixa extends JFrame {
         rndbtnLimparATabela.setForeground(Color.WHITE);
         rndbtnLimparATabela.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rndbtnLimparATabela.setBackground(Color.RED);
-        rndbtnLimparATabela.setBounds(135, 398, 130, 24);
+        rndbtnLimparATabela.setBounds(353, 658, 130, 24);
         panel_2.add(rndbtnLimparATabela);
         
         TxtTroco = new JTextField();
-        TxtTroco.setBounds(345, 422, 181, 23);
+        TxtTroco.setBounds(235, 534, 181, 23);
         panel_2.add(TxtTroco);
         TxtTroco.setColumns(10);
         

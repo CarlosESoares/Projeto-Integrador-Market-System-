@@ -47,7 +47,7 @@ public class TelaEstoque extends JFrame {
 	public TelaEstoque(Funcionario f) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 768);
+		setBounds(100, 100, 880, 768);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		produtoDAO = new ProdutoDAO();
@@ -79,6 +79,7 @@ public class TelaEstoque extends JFrame {
 	            } else if (tipoFuncionario.equals("Gerente")) {
 	            	panel_1.setVisible(true);
 	            	setBounds(100, 100, 1024, 768);
+	            	
 	            } else {
 	                
 	            }
@@ -326,7 +327,7 @@ public class TelaEstoque extends JFrame {
 		panel_2.add(comboano);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cadastro de produto");
-		lblNewLabel_1.setBounds(185, 0, 230, 24);
+		lblNewLabel_1.setBounds(298, 0, 230, 24);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		JLabel lblNome = new JLabel("Nome do produto:");
