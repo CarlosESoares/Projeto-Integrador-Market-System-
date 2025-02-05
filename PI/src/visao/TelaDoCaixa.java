@@ -290,10 +290,7 @@ public class TelaDoCaixa extends JFrame {
                     System.out.println(Arrays.toString(row));
                 }
              }
-            
-            
-             new MensagemView("Venda finalizada com sucesso",0);
-        }});
+                    }});
         BtnFecharVenda.setBounds(353, 618, 130, 24);
         panel_2.add(BtnFecharVenda);
         BtnFecharVenda.setText("Fechar Venda");
