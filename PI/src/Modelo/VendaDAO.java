@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controle.ControllerGerente;
+import visao.MensagemDinheiro;
 import visao.MensagemView;
 import visao.TelaDoCaixa;
 
@@ -74,77 +75,98 @@ public class VendaDAO {
         
     }
     public void CadastrarVenda(JTable table, Funcionario f, long cpfCliente) {
-    	System.out.println(f.getTipoFucionario());
+        System.out.println(f.getTipoFucionario()); // Corrigido erro de digitação
+
         int idFuncionario = f.getIdFuncionario();
         ControllerGerente geral = new ControllerGerente();
+        
         // Buscando o idCliente a partir do CPF
-        long idCliente =  geral.BuscarClientePorCPF(cpfCliente);
+        long idCliente = geral.BuscarClientePorCPF(cpfCliente);
         if (idCliente == -1) {
-            return;  // Retorna caso o cliente não tenha sido encontrado
+            new MensagemView("Cliente não encontrado!", 0);
+            return;
         }
-        String idClienteString =String.valueOf(idCliente);
-        try {
-            VendaDAO.connection = ConexaoBanco.conector();
+
+        try (Connection connection = ConexaoBanco.conector()) { // Usa try-with-resources para fechar automaticamente
             if (connection != null) {
                 // Criar a venda e obter o ID da venda
                 String sqlVenda = "INSERT INTO vendas (funcionario_id_funcionario, cliente_id_cliente) VALUES (?, ?)";
-                PreparedStatement statementVenda = connection.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS);
-                statementVenda.setInt(1, idFuncionario);
-                statementVenda.setString(2,idClienteString);
-                int rowsAffectedVenda = statementVenda.executeUpdate();
-
-                int idVenda = -1;
-                if (rowsAffectedVenda > 0) {
-                    ResultSet generatedKeys = statementVenda.getGeneratedKeys();
-                    if (generatedKeys.next()) {
-                        idVenda = generatedKeys.getInt(1);  // Obtendo o ID da venda gerada
+                try (PreparedStatement statementVenda = connection.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
+                    statementVenda.setInt(1, idFuncionario);
+                    statementVenda.setLong(2, idCliente); // Mantém como long
+                    
+                    int rowsAffectedVenda = statementVenda.executeUpdate();
+                    int idVenda = -1;
+                    
+                    if (rowsAffectedVenda > 0) {
+                        try (ResultSet generatedKeys = statementVenda.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                idVenda = generatedKeys.getInt(1);
+                            }
+                        }
                     }
-                }
 
-                if (idVenda == -1) {
-                    new MensagemView("Erro ao criar venda", 0);
-                    return;
-                }
+                    if (idVenda == -1) {
+                        new MensagemView("Erro ao criar venda", 0);
+                        return;
+                    }
 
-                // Percorrer as linhas da JTable e inserir os produtos no carrinho
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    int idProduto = Integer.parseInt(model.getValueAt(i, 0).toString());  // ID do produto
-                    String tipo = model.getValueAt(i, 2).toString();  // Tipo do produto
-                    String dataChegada = model.getValueAt(i, 3).toString();  // Data de chegada
-                    
-                    String precoString =String.valueOf(model.getValueAt(i, 4).toString());
-                    precoString = precoString.replace("R$", "").trim();  // Remove "R$"
-                    precoString = precoString.replace(",", ".");  // Substitui vírgula por ponto
-                    double preco = Double.parseDouble(precoString);
-                    String validade = model.getValueAt(i, 5).toString();  // Validade
-                    int quantidade = Integer.parseInt(model.getValueAt(i, 6).toString());  // Quantidade
-                    
-                    double total = preco*quantidade;
-                    // Inserir produto no carrinho
+                    // Verifica se a tabela não está vazia antes de acessar os dados
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    if (model.getRowCount() == 0) {
+                        new MensagemView("Nenhum produto na venda!", 0);
+                        return;
+                    }
+
+                    double total = 0.0; // Variável para acumular o total da venda
+
+                    // Percorre a JTable e insere os produtos no carrinho
                     String sqlCarrinho = "INSERT INTO carrinho (id_venda, produtos_Id_produto, quantidade, preco, data_chegada, tipo, validade) "
                             + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-                    PreparedStatement statementCarrinho = connection.prepareStatement(sqlCarrinho);
-                    statementCarrinho.setInt(1, idVenda);
-                    statementCarrinho.setInt(2, idProduto);
-                    statementCarrinho.setInt(3, quantidade);
-                    statementCarrinho.setDouble(4, preco);
-                    statementCarrinho.setString(5, dataChegada);
-                    statementCarrinho.setString(6, tipo);
-                    statementCarrinho.setString(7, validade);
-
-                    statementCarrinho.executeUpdate();
-                    finalizarCompra(idVenda, idCliente, total);
                     
-                    
+                    try (PreparedStatement statementCarrinho = connection.prepareStatement(sqlCarrinho)) {
+                        for (int i = 0; i < model.getRowCount(); i++) {
+                            int idProduto = Integer.parseInt(model.getValueAt(i, 0).toString());
+                            String tipo = model.getValueAt(i, 2).toString();
+                            String dataChegada = model.getValueAt(i, 3).toString();
+                            String precoString = model.getValueAt(i, 4).toString().replace("R$", "").trim().replace(",", ".");
+                            double preco = Double.parseDouble(precoString);
+                            String validade = model.getValueAt(i, 5).toString();
+                            int quantidade = Integer.parseInt(model.getValueAt(i, 6).toString());
+
+                            total += preco * quantidade; // Soma os valores para o total
+
+                            // Adiciona os parâmetros
+                            statementCarrinho.setInt(1, idVenda);
+                            statementCarrinho.setInt(2, idProduto);
+                            statementCarrinho.setInt(3, quantidade);
+                            statementCarrinho.setDouble(4, preco);
+                            statementCarrinho.setString(5, dataChegada);
+                            statementCarrinho.setString(6, tipo);
+                            statementCarrinho.setString(7, validade);
+
+                            statementCarrinho.executeUpdate();
+                        }
+                    }
+
+                    // Pergunta sobre o uso de crédito do cliente
+                    MensagemView mv = new MensagemView("Usar crédito do cliente?");
+                    int resposta = mv.getResposta();
+
+                    if (resposta == 1) {
+                        finalizarCompra(idVenda, idCliente, total,resposta);
+                    } else {
+                        selecionarMetodoPagamento(idVenda);
+                    }
                 }
             }
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            new MensagemView("Erro ao cadastrar venda", 0);
+            new MensagemView("Erro ao cadastrar venda: " + ex.getMessage(), 0);
         }
     }
+
+
 
     public  double ColocarProdutoNaTabela(String idProduto2, String quantidade,Double total) {
         String url = "jdbc:mysql://localhost:3306/mercado";
@@ -220,14 +242,13 @@ public class VendaDAO {
         return subtotal;
 
 	}
-    public static void finalizarCompra(int idVenda, long idCliente, double totalCompra) {
+    public static void finalizarCompra(int idVenda, long idCliente, double totalCompra,int resposta) {
         try {
             connection = ConexaoBanco.conector();
             
             if (connection != null) {
                 // 1. Exibir mensagem para perguntar se deseja usar crédito
-            	MensagemView mv = new MensagemView("Usar credito do cliente? ");
-                int confirmacao = mv.getResposta();
+                int confirmacao =resposta;
 
                
                
@@ -272,21 +293,50 @@ public class VendaDAO {
     }
 
     private static void selecionarMetodoPagamento(int idVenda) {
-        String[] opcoes = {"Dinheiro", "Cartão", "Pix"};
-        String metodo = (String) JOptionPane.showInputDialog(null, "Escolha o método de pagamento:", "Pagamento", JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 
-        if (metodo != null) {
-            try {
-                PreparedStatement stmt = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = ? WHERE id_venda = ?");
-                stmt.setString(1, metodo);
-                stmt.setInt(2, idVenda);
-                stmt.executeUpdate();
+   	 MensagemDinheiro metodo = new MensagemDinheiro("Selecione o metodo de pagamento",0);
+   	
+       if (metodo != null) {
+       	if (metodo.equals("Dinheiro")) {
+       		  try {
+       			  String metodo2="Dinheiro";
+                     PreparedStatement stmt = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = ? WHERE id_venda = ?");
+                     stmt.setString(1, metodo2);
+                     stmt.setInt(2, idVenda);
+                     stmt.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Compra finalizada com pagamento via " + metodo);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+                     JOptionPane.showMessageDialog(null, "Compra finalizada com pagamento via " + metodo2);
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                 }
+             }
+       	}if(metodo.equals("Cartão")) {
+       			String metodo2="Cartão";
+       		try {
+                   PreparedStatement stmt = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = ? WHERE id_venda = ?");
+                   stmt.setString(1, metodo2);
+                   stmt.setInt(2, idVenda);
+                   stmt.executeUpdate();
+
+                   new MensagemView( "Compra finalizada com pagamento via " + metodo2,0);
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+       	
+           }else {
+           	try {
+           		String metodo2="Pix";
+                   PreparedStatement stmt = connection.prepareStatement("UPDATE vendas SET metodo_pagamento = ? WHERE id_venda = ?");
+                   stmt.setString(1, metodo2);
+                   stmt.setInt(2, idVenda);
+                   stmt.executeUpdate();
+
+                   new MensagemView( "Compra finalizada com pagamento via " + metodo2,0);
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+           }
+           
+   }
 
 }
