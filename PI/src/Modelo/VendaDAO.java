@@ -265,7 +265,6 @@ public class VendaDAO {
                     selecionarMetodoPagamento(idVenda);
                 }
 
-                connection.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
