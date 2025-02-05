@@ -29,6 +29,8 @@ public class FuncionarioDAO  {
             preparedStatement.setString(8, endereco);
             
             preparedStatement.executeUpdate();
+            
+            
         }
     }
 

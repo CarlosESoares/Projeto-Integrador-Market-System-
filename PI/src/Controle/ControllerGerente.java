@@ -202,6 +202,8 @@ VendaDAO dao = new VendaDAO();
 			}
 			BuscarF(Cadastro_Gerente.table);
 			
+				limparCamposFuncionario(textNome, textSobrenome, textSalario, textTelefone, textEndereço, textCpf, textSenha);
+			
 		}
 	
 	public static void BuscarF(JTable table) {
@@ -295,7 +297,7 @@ VendaDAO dao = new VendaDAO();
 	    
 	    if (success) {
 	    	new MensagemView("Funcionário atualizado com sucesso!",1);
-	        limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco);
+	        limparCamposFuncionario(tfNome, tfSobrenome, tfSalario, tfTelefone, tfEndereco, tfTelefone, tfEndereco);
 	    } else {
 	    	new MensagemView("Erro ao atualizar o Funcionário.",1);
 	    }
@@ -303,14 +305,16 @@ VendaDAO dao = new VendaDAO();
 	}
 
 	 
-	 public static void limparCamposFuncionario( JTextField Nome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco) {
+	 public static void limparCamposFuncionario( JTextField Nome, JTextField tfSobrenome, JTextField tfSalario, JTextField tfTelefone, JTextField tfEndereco,JTextField cpf,JTextField senha) {
 		    // Limpa os campos de texto
 		    Nome.setText("");
 		    tfSobrenome.setText("");
 		    tfSalario.setText("R$:");
 		    tfTelefone.setText("");
 		    tfEndereco.setText("");
-		}
+		    cpf.setText("");
+		    senha.setText("");
+		    }
 	
 	
 	public static  void tipo(Funcionario f) {

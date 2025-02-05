@@ -149,7 +149,7 @@ public class VendaDAO {
     public  double ColocarProdutoNaTabela(String idProduto2, String quantidade,Double total) {
         String url = "jdbc:mysql://localhost:3306/mercado";
         String user = "root";
-        String password = "Aluno";
+        String password = "aluno";
         String queryBusca = "SELECT * FROM produtos WHERE id_produto = ?";
         String queryAtualiza = "UPDATE produtos SET qntd = ? WHERE id_produto = ?";
         int quantV = Integer.parseInt(quantidade);
@@ -183,7 +183,7 @@ public class VendaDAO {
 
 
 
-                    System.out.println("Quantidade atualizada para: " + novaQuantidade);
+                    new MensagemView("Quantidade atualizada para: " + novaQuantidade,1);
 
                     DefaultTableModel model = (DefaultTableModel) TelaDoCaixa.table_1.getModel();
                     model.addRow(new Object[]{

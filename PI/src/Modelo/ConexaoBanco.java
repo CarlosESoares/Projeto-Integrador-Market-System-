@@ -3,6 +3,8 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import visao.MensagemView;
+
 public class ConexaoBanco {
 	public static Connection conector() {
 		Connection conexao = null;
@@ -16,10 +18,9 @@ public class ConexaoBanco {
 		try {
 			Class.forName(driver);
 			conexao = DriverManager.getConnection(url, user, password);
-			System.out.println(" conectado");
 			return conexao;
 		} catch (Exception e) {
-			System.out.println(" nao conectado");
+			new MensagemView(" nao conectado ao banco de dados",1);
 			return null;
 		}
 	
