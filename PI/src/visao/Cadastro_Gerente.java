@@ -477,6 +477,15 @@ public	String tipoFunci;
 		
 		RoundedButton editar = new RoundedButton("Editar", 30, 30);
 		editar.setFont(new Font("Arial", Font.PLAIN, 15));
+		 editar.addMouseListener(new MouseAdapter() {
+	            public void mouseEntered(MouseEvent e) {
+	                editar.setBackground(Color.LIGHT_GRAY);
+	            }
+
+	            public void mouseExited(MouseEvent e) {
+	                editar.setBackground(Color.RED);
+	            }
+	        });
 		editar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        // Criando a janela de edição
@@ -579,7 +588,7 @@ public	String tipoFunci;
 		            }
 
 		            public void mouseExited(MouseEvent e) {
-		                btnSalvar.setBackground(Color.GREEN);
+		                btnSalvar.setBackground(Color.RED);
 		            }
 		        });
 
