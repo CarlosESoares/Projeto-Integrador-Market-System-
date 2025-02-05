@@ -456,8 +456,7 @@ public	String tipoFunci;
 			                	
 			                    int id = Integer.parseInt(textId.getText());
 			                    ControllerGerente.excluir(id);
-			                    Janelaexcluir.dispose();
-			                    JOptionPane.showMessageDialog(Janelaexcluir, "Funcionário excluído com sucesso!");            
+			                    Janelaexcluir.dispose();          
 			                    
 			                } catch (NumberFormatException ex) {
 			                	

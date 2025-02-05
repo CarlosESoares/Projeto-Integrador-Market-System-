@@ -244,8 +244,6 @@ VendaDAO dao = new VendaDAO();
 	            if (sucesso) {
 	                new MensagemView("Funcionário excluído com sucesso!",1);
 	                BuscarF(Cadastro_Gerente.table);
-	            } else {
-	            	new MensagemView("Falha ao excluir o Funcionário.",1);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
